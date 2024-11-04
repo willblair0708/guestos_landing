@@ -31,22 +31,22 @@ const FOOTER_LINKS = [
 const SOCIAL_ICONS = [
   {
     name: 'linkedin',
-    href: 'https://www.linkedin.com/company/aaru-ai',
+    href: 'https://www.linkedin.com/company/guestos-ai',
     Icon: SocialIcons.LinkedInIcon,
   },
   // {
   //   name: 'youtube',
-  //   href: 'https://www.youtube.com/aaru',
+  //   href: 'https://www.youtube.com/guestos_ai',
   //   Icon: SocialIcons.YoutubeIcon,
   // },
   {
     name: 'twitter',
-    href: 'https://twitter.com/aaruhq',
+    href: 'https://twitter.com/guestos_ai',
     Icon: SocialIcons.TwitterIcon,
   },
   // {
   //   name: 'instagram',
-  //   href: 'https://www.instagram.com/aaru',
+  //   href: 'https://www.instagram.com/guestos_ai',
   //   Icon: SocialIcons.InstagramIcon,
   // },
 ];
@@ -209,7 +209,7 @@ const Footer: React.FC = () => {
                 COOKIE SETTINGS
               </button> */}
               <p className='text-xs font-book tracking-[0.08em] text-[#ffffff]'>
-                &copy; 2024 AARU
+                &copy; 2024 GUESTOS
               </p>
             </div>
           </div>
@@ -285,7 +285,7 @@ const Footer: React.FC = () => {
               </div>
               {/* Mobile copyright - hidden on desktop */}
               <p className='mt-8 text-xs font-book tracking-[0.08em] text-[#ffffff] sm:hidden'>
-                &copy; 2024 AARU
+                &copy; 2024 GUESTOS
               </p>
             </div>
           </div>

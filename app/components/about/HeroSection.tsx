@@ -43,7 +43,7 @@ export default function HeroSection({
       >
         <Image
           src='/assets/about/about_header.webp'
-          alt='About Aaru'
+          alt='About GuestOS'
           fill
           quality={75}
           priority

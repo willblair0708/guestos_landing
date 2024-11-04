@@ -1,6 +1,6 @@
 # Configuration Folder Documentation
 
-Welcome to the `config` directory of the Aaru Sponsor Website. This directory is the backbone of our project, containing all the essential configuration files that streamline our development process, enforce coding standards, and facilitate a seamless setup for linting, formatting, and testing.
+Welcome to the `config` directory of the GuestOS Sponsor Website. This directory is the backbone of our project, containing all the essential configuration files that streamline our development process, enforce coding standards, and facilitate a seamless setup for linting, formatting, and testing.
 
 ## Purpose and Importance
 
