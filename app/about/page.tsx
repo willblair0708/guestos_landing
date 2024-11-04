@@ -14,10 +14,10 @@ const HeroSection = dynamic(() => import('../components/about/HeroSection'), {
   ssr: false,
 });
 
-// const MissionSection = dynamic(
-//   () => import('../components/about/MissionSection'),
-//   { ssr: false }
-// );
+const MissionSection = dynamic(
+  () => import('../components/about/MissionSection'),
+  { ssr: false }
+);
 // const SimulationSection = dynamic(
 //   () => import('../components/about/SimulationSection'),
 //   { ssr: false }
@@ -58,13 +58,13 @@ export default function AboutPage() {
             <HeroSection id='section-0' bgColor='#123456' isMobile={isMobile} />
 
             <motion.div ref={ref}>
-              {/* <MissionSection
+              <MissionSection
                 id='section-1'
                 bgColor='#FFFFFF'
                 isMobile={isMobile}
                 inView={inView}
               />
-              <TeamSection
+              {/* <TeamSection
                 id='section-2'
                 bgColor='#FFFFFF'
                 isMobile={isMobile}
