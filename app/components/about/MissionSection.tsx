@@ -49,21 +49,21 @@ export default function MissionSection({
       initial='hidden'
       animate={parentInView && sectionInView ? 'visible' : 'hidden'}
       variants={containerVariants}
-      className={`relative flex min-h-screen flex-col justify-center overflow-hidden bg-gradient-to-b from-neutral-50/50 via-white to-neutral-50/50 backdrop-blur-sm ${
-        isMobile ? 'px-4 py-12' : 'px-8 py-24 lg:px-32'
+      className={`relative flex min-h-screen flex-col justify-center overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-neutral-50 ${
+        isMobile ? 'px-4 py-12' : 'px-8 py-24 lg:px-24'
       }`}
     >
-      <div className='mx-auto max-w-8xl'>
-        <div className='grid gap-16 lg:grid-cols-2 lg:gap-32'>
+      <div className='mx-auto max-w-7xl'>
+        <div className='grid gap-16 lg:grid-cols-2 lg:gap-24'>
           {/* Left Column - Story */}
           <motion.div
             variants={itemVariants}
-            className='flex flex-col justify-center space-y-16'
+            className='flex flex-col justify-center space-y-12'
           >
-            <div className='space-y-12'>
-              <div className='relative space-y-6'>
+            <div className='space-y-10'>
+              <div className='relative space-y-4'>
                 <motion.span
-                  className='inline-block rounded-full border border-gray-200/50 bg-white/80 px-5 py-2 text-xs font-medium tracking-[0.2em] text-gray-500 shadow-sm backdrop-blur-sm'
+                  className='inline-block rounded-full bg-gray-100 px-4 py-1.5 text-xs font-medium tracking-widest text-gray-500'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
@@ -72,16 +72,16 @@ export default function MissionSection({
                 </motion.span>
                 <h2
                   className={`font-book ${
-                    isMobile ? 'text-4xl' : 'text-6xl lg:text-8xl'
+                    isMobile ? 'text-3xl' : 'text-5xl lg:text-7xl'
                   } tracking-tight text-gray-900`}
                 >
                   A Legacy of{' '}
-                  <span className='relative inline-block'>
-                    <span className='bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent'>
+                  <span className='relative'>
+                    <span className='bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 bg-clip-text text-transparent'>
                       Hospitality
                     </span>
-                    <motion.span 
-                      className='absolute -bottom-2 left-0 h-[2px] w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700'
+                    <motion.span
+                      className='absolute -bottom-2 left-0 h-0.5 w-full bg-gradient-to-r from-gray-900 to-gray-500'
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 1, duration: 0.8 }}
@@ -90,13 +90,13 @@ export default function MissionSection({
                 </h2>
               </div>
               <div
-                className={`space-y-10 text-gray-600 ${
+                className={`space-y-8 text-gray-600 ${
                   isMobile ? 'text-lg' : 'text-xl'
                 }`}
               >
-                <blockquote className='relative border-l-[3px] border-gray-200 pl-8 italic'>
-                  <div className='absolute -left-[7px] top-0 h-5 w-5 rounded-full bg-white shadow-md ring-4 ring-gray-50' />
-                  <div className='absolute -left-[7px] bottom-0 h-5 w-5 rounded-full bg-white shadow-md ring-4 ring-gray-50' />
+                <blockquote className='relative border-l-2 border-gray-200 pl-6 italic'>
+                  <div className='absolute -left-2.5 top-0 h-4 w-4 rounded-full bg-gray-100 shadow-sm' />
+                  <div className='absolute -left-2.5 bottom-0 h-4 w-4 rounded-full bg-gray-100 shadow-sm' />
                   &ldquo;I remember watching my parents greet guests at Yosemite
                   View Lodge like they were welcoming old friends into their
                   home. That warmth, that personal touch – it&apos;s something
@@ -119,23 +119,22 @@ export default function MissionSection({
             </div>
             <div className='flex items-center justify-between border-t border-gray-100 pt-8'>
               <div className='flex items-center space-x-4'>
-                <div className='h-[2px] w-16 bg-gradient-to-r from-gray-300 to-transparent'></div>
-                <span className='font-book text-sm tracking-wider text-gray-400'>
+                <div className='h-px w-12 bg-gradient-to-r from-gray-300 to-transparent'></div>
+                <span className='text-sm font-book text-gray-400'>
                   Est. 1976
                 </span>
               </div>
               <motion.button
-                className='group flex items-center space-x-3 rounded-full bg-white px-8 py-4 text-gray-900 shadow-lg transition-all hover:shadow-xl'
-                whileHover={{ x: 10, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className='group flex items-center space-x-3 rounded-full bg-gray-50 px-6 py-3 transition-all hover:bg-gray-100'
+                whileHover={{ x: 10 }}
                 transition={{ type: 'spring', stiffness: 400 }}
               >
-                <span className='text-sm font-medium tracking-wide'>
+                <span className='text-sm font-medium text-gray-900'>
                   Our Journey
                 </span>
-                <motion.svg 
-                  className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1' 
-                  viewBox='0 0 24 24' 
+                <motion.svg
+                  className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1'
+                  viewBox='0 0 24 24'
                   fill='none'
                 >
                   <path
@@ -151,11 +150,11 @@ export default function MissionSection({
           </motion.div>
 
           {/* Right Column - Hero Image */}
-          <motion.div variants={itemVariants} className='relative lg:h-[900px]'>
+          <motion.div variants={itemVariants} className='relative lg:h-[800px]'>
             <div className='sticky top-8 h-full w-full'>
-              <div className='group relative h-full w-full overflow-hidden rounded-[2rem] bg-gray-100 shadow-2xl transition-all duration-500 hover:shadow-3xl'>
-                <motion.div 
-                  className='absolute inset-0 bg-gradient-to-br from-gray-900/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100'
+              <div className='hover:shadow-3xl group relative h-full w-full overflow-hidden rounded-3xl bg-gray-100 shadow-2xl transition-all duration-500'>
+                <motion.div
+                  className='absolute inset-0 bg-gradient-to-br from-gray-900/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100'
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 0.1 }}
                 />
@@ -166,13 +165,13 @@ export default function MissionSection({
                   className='object-cover transition-transform duration-700 group-hover:scale-105'
                   sizes='(max-width: 768px) 100vw, 50vw'
                 />
-                <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-10 text-white'>
-                  <p className='font-light text-sm tracking-[0.2em]'>
+                <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-8 text-white'>
+                  <p className='font-light text-sm tracking-wide'>
                     Yosemite View Lodge, Summer of 1986
                   </p>
                 </div>
-                <div className='absolute right-6 top-6 rounded-full bg-white/10 px-6 py-3 backdrop-blur-md'>
-                  <span className='font-light text-xs tracking-[0.2em] text-white'>
+                <div className='absolute right-4 top-4 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md'>
+                  <span className='font-light text-xs tracking-wider text-white'>
                     Historical Photo
                   </span>
                 </div>
