@@ -14,8 +14,15 @@ const navItems = [
 ] as const;
 
 const navItemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: -10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.6, 0.05, 0.01, 0.9],
+    },
+  },
 };
 
 interface NavbarProps {
@@ -30,11 +37,11 @@ export default function Navbar({ isFixed = true }: NavbarProps) {
 
   return (
     <motion.nav
-      initial={false} // Prevent initial animation
+      initial='hidden'
       animate='visible'
       className={`${
-        isFixed ? 'fixed' : 'absolute'
-      } left-0 right-0 z-50 flex w-full items-center justify-between bg-transparent px-4 py-4 sm:px-8 sm:py-6`}
+        isFixed ? 'fixed backdrop-blur-sm' : 'absolute'
+      } left-0 right-0 z-50 flex w-full items-center justify-between px-4 py-6`}
     >
       <NavLogo />
       <DesktopMenu pathname={pathname} />
@@ -55,7 +62,7 @@ export default function Navbar({ isFixed = true }: NavbarProps) {
 const NavLogo = memo(() => (
   <motion.div variants={navItemVariants} className='flex items-center'>
     <Link href='/' scroll={false}>
-      <span className='mt-4 text-2xl font-bold text-white sm:text-4xl'>
+      <span className='text-2xl font-book tracking-tight text-white transition-opacity hover:opacity-80 sm:text-3xl'>
         GuestOS
       </span>
     </Link>
@@ -67,7 +74,7 @@ NavLogo.displayName = 'NavLogo';
 const DesktopMenu = memo(({ pathname }: { pathname: string }) => (
   <motion.div
     variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-    className='hidden items-center space-x-6 sm:flex sm:space-x-10'
+    className='hidden items-center space-x-8 sm:flex sm:space-x-12'
   >
     {navItems.map((item) => (
       <NavItem key={item.text} item={item} pathname={pathname} />
@@ -92,29 +99,30 @@ const NavItem = memo(
       <motion.div variants={navItemVariants} className='group relative'>
         <Link
           href={item.href}
-          className='text-[14px] font-book text-white transition-colors hover:text-gray-300'
-          scroll={false} // Prevent scroll to top on navigation
+          className='text-sm font-book tracking-wide text-white/90 transition-colors hover:text-white'
+          scroll={false}
         >
           <span className='flex items-center'>
+            {item.text}
             <AnimatePresence mode='wait'>
               {isActive && (
-                <motion.span
-                  className='mr-2 h-2 w-2 rounded-full bg-white'
-                  layoutId='activeDot'
-                  initial={false} // Prevent initial animation
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
+                <motion.div
+                  className='absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-white via-white/80 to-white/30'
+                  layoutId='activeIndicator'
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  exit={{ scaleX: 0 }}
+                  transition={{ duration: 0.3, ease: [0.6, 0.05, 0.01, 0.9] }}
                 />
               )}
             </AnimatePresence>
-            {item.text}
           </span>
         </Link>
         <motion.div
-          className='absolute -bottom-1 left-0 right-0 h-px origin-left bg-white'
+          className='absolute -bottom-1 left-0 right-0 h-px origin-left bg-white/20'
           initial={{ scaleX: 0 }}
           whileHover={{ scaleX: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
         />
       </motion.div>
     );
@@ -124,36 +132,29 @@ const NavItem = memo(
 NavItem.displayName = 'NavItem';
 
 const ContactButton = memo(() => (
-  <motion.div variants={navItemVariants} className='group relative'>
+  <motion.div variants={navItemVariants}>
     <Link href='/contact' scroll={false}>
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className='flex items-center rounded-full border border-white bg-white px-2 py-0.5 text-xs text-black transition-all hover:bg-transparent hover:text-white'
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className='group flex items-center space-x-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20'
       >
-        CONTACT
-        <svg
+        <span className='font-book tracking-wide text-white'>Book Demo</span>
+        <motion.svg
           xmlns='http://www.w3.org/2000/svg'
-          className='ml-2 h-3 w-3'
+          className='h-4 w-4 stroke-white transition-transform duration-300 group-hover:translate-x-0.5'
           fill='none'
           viewBox='0 0 24 24'
-          stroke='currentColor'
+          strokeWidth={1.5}
         >
           <path
             strokeLinecap='round'
             strokeLinejoin='round'
-            strokeWidth={2}
-            d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+            d='M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75'
           />
-        </svg>
+        </motion.svg>
       </motion.button>
     </Link>
-    <motion.div
-      className='absolute -bottom-1 left-0 right-0 h-px origin-left bg-white'
-      initial={{ scaleX: 0 }}
-      whileHover={{ scaleX: 1 }}
-      transition={{ duration: 0.3 }}
-    />
   </motion.div>
 ));
 
@@ -166,17 +167,10 @@ const MobileMenuButton = memo(({ toggleMenu }: { toggleMenu: () => void }) => (
     onClick={toggleMenu}
     aria-label='Toggle mobile menu'
   >
-    <svg
-      width='38'
-      height='12'
-      viewBox='0 0 38 12'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      className='text-white'
-    >
-      <path d='M0.5 1H38' stroke='currentColor' strokeWidth='2' />
-      <path d='M0.5 11H38' stroke='currentColor' strokeWidth='2' />
-    </svg>
+    <div className='space-y-2'>
+      <motion.div className='h-px w-8 bg-white/80' />
+      <motion.div className='h-px w-6 bg-white/60' />
+    </div>
   </motion.button>
 ));
 
