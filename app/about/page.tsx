@@ -18,6 +18,12 @@ const MissionSection = dynamic(
   () => import('../components/about/MissionSection'),
   { ssr: false }
 );
+
+const FutureSection = dynamic(
+  () => import('../components/about/FutureSection'),
+  { ssr: false }
+);
+
 // const SimulationSection = dynamic(
 //   () => import('../components/about/SimulationSection'),
 //   { ssr: false }
@@ -64,12 +70,6 @@ export default function AboutPage() {
                 isMobile={isMobile}
                 inView={inView}
               />
-              {/* <TeamSection
-                id='section-2'
-                bgColor='#FFFFFF'
-                isMobile={isMobile}
-                inView={inView}
-              /> */}
               {/* <SimulationSection
                 id='section-3'
                 bgColor='#000000'
@@ -80,6 +80,10 @@ export default function AboutPage() {
           </motion.main>
         </motion.div>
       </AnimatePresence>
+      <FutureSection
+                id='section-2'
+                bgColor='#181818'
+              />
       <Footer />
     </>
   );
