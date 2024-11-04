@@ -79,10 +79,10 @@ const gtPantheon = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://aaruaaru.com'),
-  title: 'Aaru | Rethinking the Science of Prediction',
+  metadataBase: new URL('https://guestos.ai'),
+  title: 'GuestOS | The AI Concierge for Hospitality',
   description:
-    'Aaru is revolutionizing prediction through multi-agent systems, offering unparalleled insights into future events and trends.',
+    'GuestOS is the leading AI concierge platform designed for the hospitality industry, offering 24/7 multilingual support and personalized guest experiences.',
   viewport: {
     width: 'device-width',
     initialScale: 1,
@@ -92,31 +92,31 @@ export const metadata: Metadata = {
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
   twitter: {
     card: 'summary_large_image',
-    site: '@aaruhq',
-    creator: '@aaruhq',
+    site: '@guestosai',
+    creator: '@guestosai',
     images: [
       {
         url: '/assets/og.png',
         width: 1200,
         height: 630,
-        alt: 'Aaru - Rethinking the Science of Prediction',
+        alt: 'GuestOS - The AI Concierge for Hospitality',
       },
     ],
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://aaruaaru.com',
-    siteName: 'Aaru',
-    title: 'Aaru | Rethinking the Science of Prediction',
+    url: 'https://guestos.ai',
+    siteName: 'GuestOS',
+    title: 'GuestOS | The AI Concierge for Hospitality',
     description:
-      'Aaru is revolutionizing prediction through multi-agent systems, offering unparalleled insights into future events and trends.',
+      'GuestOS is the leading AI concierge platform designed for the hospitality industry, offering 24/7 multilingual support and personalized guest experiences.',
     images: [
       {
         url: '/assets/og.png',
         width: 1200,
         height: 630,
-        alt: 'Aaru - Rethinking the Science of Prediction',
+        alt: 'GuestOS - The AI Concierge for Hospitality',
       },
     ],
   },
