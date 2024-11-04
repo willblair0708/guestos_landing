@@ -12,9 +12,9 @@ const FOOTER_LINKS = [
   {
     title: 'PRODUCTS',
     links: [
-      { name: 'DYNAMO', href: '/products#dynamo-section' },
-      { name: 'LUMEN', href: '/products#lumen-section' },
-      { name: 'SERAPH', href: '/products#seraph-section' },
+      { name: 'HOTELS', href: '/products#hotels-section' },
+      { name: 'PARKS', href: '/products#parks-section' },
+      { name: 'RESERVES', href: '/products#reserves-section' },
     ],
   },
   {
