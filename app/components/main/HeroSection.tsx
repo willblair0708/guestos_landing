@@ -247,7 +247,8 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
           </div>
           <div>
             <p className='text-white text-opacity-60'>
-              Born from a family of hoteliers, GuestOS helps you focus on what matters most - creating memorable experiences for your guests.
+              Born from a family of hoteliers, GuestOS helps you focus on what
+              matters most - creating memorable experiences for your guests.
             </p>
           </div>
         </motion.div>

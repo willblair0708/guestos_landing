@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useIsMobile from '@/hooks/use-is-mobile';
 
 import Footer from './components/Footer';
-
 import HeroSection from './components/main/HeroSection';
 
 export default function Home() {
@@ -53,10 +52,7 @@ export default function Home() {
                   viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
                   className='w-full'
                 >
-                  <HeroSection
-                    id="section-0"
-                    isMobile={isMobile}
-                  />
+                  <HeroSection id='section-0' isMobile={isMobile} />
                 </motion.div>
                 <motion.div
                   variants={sectionVariants}
@@ -64,8 +60,7 @@ export default function Home() {
                   whileInView='visible'
                   viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
                   className='w-full'
-                >
-                </motion.div>
+                ></motion.div>
               </motion.main>
             </motion.div>
           </AnimatePresence>
