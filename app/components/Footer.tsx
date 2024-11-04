@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { useState } from 'react';
+import { memo } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -22,8 +23,6 @@ const FOOTER_LINKS = [
     links: [
       { name: 'ABOUT US', href: '/about' },
       { name: 'CAREERS', href: '/careers' },
-      // { name: 'SECURITY', href: '/security' },
-      // { name: 'PRIVACY', href: '/privacy' },
     ],
   },
 ];
@@ -55,30 +54,36 @@ const SOCIAL_ICONS = [
 const containerVariants = {
   visible: {
     opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
   },
 };
 
 const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: {
       type: 'spring',
-      stiffness: 200,
-      damping: 20,
+      stiffness: 300,
+      damping: 30,
       mass: 0.8,
     },
   },
 };
 
-// Add new variants for form elements
 const formVariants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    scale: 1,
+    y: 0,
     transition: {
       type: 'spring',
-      stiffness: 300,
-      damping: 25,
+      stiffness: 400,
+      damping: 35,
     },
   },
 };
@@ -111,18 +116,24 @@ const FooterSection = ({
   title: string;
   links: { name: string; href: string }[];
 }) => (
-  <motion.div variants={itemVariants} className='font-oracle font-normal'>
-    <h3 className='mb-0.5 select-none text-xs tracking-wider text-white'>
+  <motion.div variants={itemVariants} className='font-oracle'>
+    <h3 className='mb-2 select-none text-xs tracking-wider text-white/90'>
       {title}
     </h3>
-    <ul className='space-y-0.5'>
+    <ul className='space-y-2'>
       {links.map((link) => (
         <li key={link.name}>
           <Link
             href={link.href}
-            className='text-xs tracking-wider text-white opacity-50 transition-colors duration-200 hover:text-[#8B8B8B]'
+            className='group flex items-center text-xs tracking-wider text-white/60 transition-all duration-300 hover:text-white'
           >
-            {link.name}
+            <motion.span
+              className='inline-block origin-left'
+              whileHover={{ scale: 1.05 }}
+            >
+              {link.name}
+            </motion.span>
+            <motion.div className='ml-2 h-px w-0 bg-gradient-to-r from-white/40 to-transparent transition-all duration-300 group-hover:w-8' />
           </Link>
         </li>
       ))}
@@ -130,27 +141,32 @@ const FooterSection = ({
   </motion.div>
 );
 
-const SocialIcon = ({
-  icon,
-}: {
-  icon: { name: string; href: string; Icon: React.ComponentType<any> };
-}) => (
-  <Link
-    href={icon.href}
-    target='_blank'
-    rel='noopener noreferrer'
-    className='mt-8 text-white transition-colors duration-200 hover:text-[#8B8B8B]'
-  >
-    <span className='sr-only'>{icon.name}</span>
-    <icon.Icon color='currentColor' />
-  </Link>
-);
+const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
+  <motion.div variants={itemVariants}>
+    <Link
+      href={icon.href}
+      target='_blank'
+      rel='noopener noreferrer'
+      className='group flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10'
+    >
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className='text-white/80 transition-colors duration-300 group-hover:text-white'
+      >
+        <icon.Icon color='currentColor' />
+      </motion.div>
+    </Link>
+  </motion.div>
+));
+
+SocialIcon.displayName = 'SocialIcon';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     fetch(
@@ -176,119 +192,98 @@ const Footer: React.FC = () => {
 
   return (
     <motion.footer
-      initial='visible'
-      variants={containerVariants}
-      className='w-full bg-[#000000] px-4 py-6 font-book text-white sm:px-8 sm:py-8'
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true }}
+      className='relative overflow-hidden bg-black'
     >
-      <div className='max-w-9xl mx-auto'>
-        <div className='mb-6 flex flex-col sm:mb-8 lg:grid lg:grid-cols-[3fr_2fr] lg:items-start'>
+      <motion.div
+        className='absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      />
+      <div className='mx-auto max-w-7xl px-4 pb-8 pt-16 sm:px-6 lg:px-8'>
+        <motion.div
+          variants={containerVariants}
+          className='grid gap-8 sm:grid-cols-2 lg:grid-cols-4'
+        >
           <motion.div
             variants={itemVariants}
-            className='mb-6 mt-2 text-left lg:mb-0 lg:w-1/3'
+            className='col-span-full lg:col-span-1'
           >
-            GuestOS
+            <Link href='/' className='group inline-block'>
+              <span className='text-2xl font-book tracking-tight text-white transition-all duration-300 group-hover:opacity-80'>
+                Guest<span className='font-light tracking-tighter'>OS</span>
+              </span>
+              <motion.div className='mt-0.5 h-px w-0 bg-gradient-to-r from-white/80 to-transparent transition-all duration-300 group-hover:w-full' />
+            </Link>
           </motion.div>
-          <div className='flex w-full justify-start'>
-            <div className='mr-12'>
-              <FooterSection {...FOOTER_LINKS[0]} />
-            </div>
-            <div>
-              <FooterSection {...FOOTER_LINKS[1]} />
-            </div>
-          </div>
-        </div>
+
+          {FOOTER_LINKS.map((section) => (
+            <FooterSection key={section.title} {...section} />
+          ))}
+
+          <motion.div
+            variants={itemVariants}
+            className='col-span-full lg:col-span-1'
+          >
+            <h3 className='mb-2 text-xs tracking-wider text-white/90'>
+              JOIN OUR MAILING LIST
+            </h3>
+            <form onSubmit={handleSubmit} className='relative'>
+              <AnimatePresence mode='wait'>
+                {!showSuccess ? (
+                  <motion.div variants={formVariants} className='relative'>
+                    <input
+                      type='email'
+                      placeholder='Email Address'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className='h-10 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white backdrop-blur-sm transition-all duration-300 placeholder:text-white/40 hover:border-white/20 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/30'
+                    />
+                    <AnimatePresence>
+                      {email && (
+                        <motion.button
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -10 }}
+                          type='submit'
+                          className='absolute right-2 top-2 rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20'
+                        >
+                          Subscribe
+                        </motion.button>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    variants={formVariants}
+                    className='flex h-10 items-center rounded-lg border border-white/20 bg-white/5 px-4 text-sm text-white backdrop-blur-sm'
+                  >
+                    Thank you for subscribing
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </form>
+          </motion.div>
+        </motion.div>
 
         <motion.div
-          variants={itemVariants}
-          className='flex flex-col space-y-6 sm:grid sm:grid-cols-[3fr_2fr] sm:items-start sm:space-y-8'
+          variants={containerVariants}
+          className='mt-16 flex flex-col items-center justify-between border-t border-white/10 pt-8 sm:flex-row'
         >
-          {/* Desktop copyright - hidden on mobile */}
-          <div className='mt-6 hidden sm:flex sm:flex-col sm:space-y-2 sm:text-left'>
-            <div className='mt-10 flex flex-col items-start space-y-0'>
-              {/* <button className='font-oracle text-xs tracking-[0.08em] text-[#8B8B8B] transition-colors duration-200 hover:text-white'>
-                COOKIE SETTINGS
-              </button> */}
-              <p className='text-xs font-book tracking-[0.08em] text-[#ffffff]'>
-                &copy; 2024 GUESTOS
-              </p>
-            </div>
-          </div>
-
-          <div className='flex flex-col space-y-4 pr-4 sm:flex-row sm:items-start sm:justify-between sm:space-x-8 sm:space-y-0 sm:pr-8'>
-            <div className='flex flex-col space-y-2'>
-              <h3 className='text-xs font-book tracking-[0.08em] text-[#ffffff]'>
-                JOIN OUR MAILING LIST:
-              </h3>
-              <form
-                onSubmit={handleSubmit}
-                className='relative flex w-full items-center sm:w-[330px]'
-              >
-                <AnimatePresence mode='wait'>
-                  {!showSuccess ? (
-                    <motion.div
-                      key='form'
-                      variants={formVariants}
-                      initial='hidden'
-                      animate='visible'
-                      exit='hidden'
-                      className='w-full'
-                    >
-                      <input
-                        type='email'
-                        placeholder='Email Address'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className='h-[38px] w-full rounded-md bg-[#18181B] px-3 py-2 pr-16 text-xs font-book text-white transition-all duration-200 placeholder:font-oracle placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-white'
-                      />
-                      <AnimatePresence>
-                        {email && (
-                          <motion.button
-                            initial={{ opacity: 0, x: -10, scale: 0.9 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            exit={{ opacity: 0, x: -10, scale: 0.9 }}
-                            transition={{
-                              type: 'spring',
-                              stiffness: 400,
-                              damping: 25,
-                            }}
-                            type='submit'
-                            className='absolute right-2 top-2 flex h-[24px] items-center rounded-full bg-[#303036] px-2 py-[0.5px] hover:border-white/20'
-                          >
-                            <span className='text-[10px] font-medium uppercase sm:text-xs'>
-                              Send
-                            </span>
-                          </motion.button>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key='success'
-                      variants={successVariants}
-                      initial='hidden'
-                      animate='visible'
-                      exit='exit'
-                      className='items-left justify-left flex h-[38px] w-full rounded-md bg-[#18181B] px-3 py-2 text-xs font-book tracking-[0.08em] text-white'
-                    >
-                      Thank you for subscribing
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </form>
-            </div>
-            {/* Modified social icons and copyright container */}
-            <div className='flex items-center justify-between sm:flex-col sm:items-end sm:space-y-4'>
-              <div className='flex space-x-3 sm:space-x-4'>
-                {SOCIAL_ICONS.map((icon) => (
-                  <SocialIcon key={icon.name} icon={icon} />
-                ))}
-              </div>
-              {/* Mobile copyright - hidden on desktop */}
-              <p className='mt-8 text-xs font-book tracking-[0.08em] text-[#ffffff] sm:hidden'>
-                &copy; 2024 GUESTOS
-              </p>
-            </div>
-          </div>
+          <motion.div variants={itemVariants} className='flex space-x-4'>
+            {SOCIAL_ICONS.map((icon) => (
+              <SocialIcon key={icon.name} icon={icon} />
+            ))}
+          </motion.div>
+          <motion.p
+            variants={itemVariants}
+            className='mt-4 text-xs tracking-wider text-white/60 sm:mt-0'
+          >
+            &copy; 2024 GUESTOS
+          </motion.p>
         </motion.div>
       </div>
     </motion.footer>
