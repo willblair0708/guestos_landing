@@ -17,6 +17,7 @@ import { z } from 'zod';
 import ArrowIcon from '@/public/assets/ui/Arrow';
 
 import Navbar from '../Navbar';
+import Icon from '../ui/Icon';
 
 interface HeroSectionProps {
   id: string;
@@ -28,45 +29,51 @@ interface HeroSectionProps {
 const formFields = [
   {
     id: 'firstName',
-    label: 'FIRST NAME',
-    placeholder: 'First Name',
+    label: 'First Name',
+    placeholder: 'John',
     type: 'text',
     width: 'half',
+    icon: 'user',
   },
   {
     id: 'lastName',
-    label: 'LAST NAME',
-    placeholder: 'Last Name',
+    label: 'Last Name',
+    placeholder: 'Doe',
     type: 'text',
     width: 'half',
+    icon: 'user',
   },
   {
     id: 'email',
-    label: 'EMAIL',
-    placeholder: 'Business Email Address',
+    label: 'Work Email',
+    placeholder: 'john@company.com',
     type: 'email',
     width: 'half',
+    icon: 'mail',
   },
   {
     id: 'jobTitle',
-    label: 'JOB TITLE',
-    placeholder: 'Job Title',
+    label: 'Role',
+    placeholder: 'Head of Operations',
     type: 'text',
     width: 'half',
+    icon: 'briefcase',
   },
   {
     id: 'organization',
-    label: 'ORGANIZATION',
-    placeholder: 'Organization',
+    label: 'Company',
+    placeholder: 'Acme Inc.',
     type: 'text',
     width: 'half',
+    icon: 'building',
   },
   {
     id: 'message',
-    label: 'MESSAGE',
-    placeholder: 'Your Message',
+    label: 'Message',
+    placeholder: 'Tell us about your needs...',
     type: 'textarea',
     width: 'full',
+    icon: 'message',
   },
 ] as const;
 
@@ -102,21 +109,19 @@ const itemVariants = {
   },
 } as const;
 
-// Update input variants for more luxury feel
+// Update input variants for more modern feel
 const inputVariants = {
   initial: {
     y: 0,
-    boxShadow: '0 0 0 1px rgba(198,168,124,0.1)',
+    boxShadow: '0 0 0 1px rgba(198,168,124,0.08)',
   },
   hover: {
-    y: -2,
-    boxShadow:
-      '0 0 0 1px rgba(198,168,124,0.3), 0 8px 24px rgba(198,168,124,0.08)',
+    y: -1,
+    boxShadow: '0 4px 20px rgba(198,168,124,0.12)',
   },
   focus: {
-    y: -2,
-    boxShadow:
-      '0 0 0 1px rgba(198,168,124,0.4), 0 8px 24px rgba(198,168,124,0.12)',
+    y: -1,
+    boxShadow: '0 4px 20px rgba(198,168,124,0.16)',
   },
 } as const;
 
@@ -153,7 +158,7 @@ declare global {
   }
 }
 
-// Update FormInput component with enhanced styling
+// Update FormInput component
 const FormInput = ({
   field,
   form,
@@ -167,50 +172,55 @@ const FormInput = ({
   const hasValue = value.length > 0;
 
   return (
-    <div className='relative flex w-full flex-col items-start justify-end gap-6'>
-      <div className='relative flex w-full flex-col items-start justify-center gap-2'>
-        <motion.div
-          className='relative w-full'
-          initial='initial'
-          animate={isFocused ? 'focus' : 'initial'}
-          whileHover='hover'
-          variants={inputVariants}
+    <div className='relative flex w-full flex-col items-start justify-end gap-4'>
+      <motion.div
+        className='relative w-full'
+        initial='initial'
+        animate={isFocused ? 'focus' : 'initial'}
+        whileHover='hover'
+        variants={inputVariants}
+      >
+        <span className='absolute left-4 top-1/2 -translate-y-1/2 text-primary-gold/40'>
+          <Icon name={field.icon} size={16} />
+        </span>
+
+        <motion.input
+          type={field.type}
+          {...props}
+          onFocus={(e) => {
+            setIsFocused(true);
+            e.target.placeholder = '';
+          }}
+          onBlur={(e) => {
+            setIsFocused(false);
+            e.target.placeholder = field.placeholder;
+          }}
+          placeholder={field.placeholder}
+          name={field.id}
+          className='peer relative flex h-[48px] w-full items-center gap-2.5 rounded-xl bg-gradient-to-b from-surface-dark/95 to-surface-dark/90 pl-11 pr-4 font-light text-base tracking-wide text-white/90 backdrop-blur-md transition-all duration-200 placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-primary-gold/30'
+        />
+
+        <div className='pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-r from-primary-gold/[0.02] via-transparent to-primary-gold/[0.02]' />
+      </motion.div>
+
+      <motion.label
+        initial='initial'
+        animate={isFocused || hasValue ? 'visible' : 'initial'}
+        variants={labelVariants}
+        className='pointer-events-none absolute -top-6 left-0 origin-left font-light text-sm tracking-wide text-primary-gold/80'
+      >
+        {field.label}
+      </motion.label>
+
+      {form.formState.errors[field.id] && (
+        <motion.p
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className='text-sm text-red-400/90'
         >
-          <motion.input
-            type={field.type}
-            {...props}
-            onFocus={(e) => {
-              setIsFocused(true);
-              e.target.placeholder = '';
-            }}
-            onBlur={(e) => {
-              setIsFocused(false);
-              e.target.placeholder = field.placeholder;
-            }}
-            placeholder={field.placeholder}
-            name={field.id}
-            className='peer relative flex h-[42px] w-full items-center gap-2.5 rounded-xl bg-gradient-to-b from-surface-dark/90 to-surface-dark/70 px-5 py-3 font-light text-sm tracking-wide text-white/90 backdrop-blur-md transition-all duration-200 placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-primary-gold/30'
-          />
-          <div className='pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-r from-primary-gold/[0.03] via-transparent to-primary-gold/[0.03]' />
-        </motion.div>
-        <motion.label
-          initial='initial'
-          animate={isFocused || hasValue ? 'visible' : 'initial'}
-          variants={labelVariants}
-          className='pointer-events-none absolute -top-6 left-0 origin-left font-light text-xs tracking-wider text-primary-gold/90'
-        >
-          {field.label}
-        </motion.label>
-        {form.formState.errors[field.id] && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className='text-sm text-accent-burgundy/90'
-          >
-            {form.formState.errors[field.id]?.message}
-          </motion.p>
-        )}
-      </div>
+          {form.formState.errors[field.id]?.message}
+        </motion.p>
+      )}
     </div>
   );
 };
@@ -309,53 +319,68 @@ export default function HeroSection({
     <motion.section
       ref={sectionRef}
       id={id}
-      className='relative flex min-h-[98dvh] flex-col overflow-x-hidden bg-bg-dark text-white'
+      className='relative flex min-h-[100dvh] flex-col overflow-x-hidden bg-bg-dark text-white'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.08),transparent_70%)]' />
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.05),transparent_70%)]' />
+      <div className='absolute inset-0'>
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.1),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.08),transparent_70%)]' />
+        <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20' />
+      </div>
 
       <Navbar isFixed={false} />
 
-      <div className='relative mt-20 flex flex-1 flex-col px-4 pb-8 sm:flex-row sm:justify-between sm:px-8 sm:pb-0'>
+      <div className='max-w-9xl relative mx-auto mt-40 flex w-full flex-1 flex-col gap-16 px-4 pb-12 pt-24 sm:flex-row sm:items-start sm:justify-between sm:px-8 lg:gap-24'>
         <motion.div
           variants={containerVariants}
           initial='initial'
           animate='animate'
-          className='flex flex-col gap-6'
+          className='flex max-w-xl flex-col gap-8'
         >
-          <motion.span className='inline-flex items-center gap-3 rounded-full border border-primary-gold/10 bg-surface-dark/50 px-4 py-1.5 backdrop-blur-sm'>
+          <motion.span className='inline-flex items-center gap-3 self-start rounded-full bg-surface-dark/50 px-4 py-1.5 backdrop-blur-sm'>
             <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
-            <span className='font-light text-sm text-white/80'>
-              Contact / Request a Demo
+            <span className='font-light text-sm text-white/90'>
+              Book a Demo
             </span>
           </motion.span>
 
-          <motion.h1
-            variants={itemVariants}
-            className={`${
-              isMobile ? 'text-[36px]' : 'text-[42px]'
-            } max-w-2xl font-light leading-[1.2] tracking-tight text-white`}
-          >
-            See The Future,
-            <br />
-            Change The Present
-          </motion.h1>
+          <div className='space-y-6'>
+            <motion.h1
+              variants={itemVariants}
+              className={`${
+                isMobile ? 'text-4xl' : 'text-5xl'
+              } max-w-2xl font-light leading-[1.1] tracking-tight text-white`}
+            >
+              Experience the Future of
+              <br />
+              <span className='bg-gradient-to-r from-primary-gold via-primary-gold/90 to-primary-gold/80 bg-clip-text text-transparent'>
+                Hospitality AI
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className='max-w-lg font-light text-lg leading-relaxed text-white/60'
+            >
+              See how GuestOS can transform your guest experience with our
+              personalized demo.
+            </motion.p>
+          </div>
         </motion.div>
 
-        {/* Form section updates */}
-        <div
+        <motion.div
+          variants={containerVariants}
+          initial='initial'
+          animate='animate'
           className={`${
-            isMobile
-              ? 'mt-12 w-full'
-              : 'mt-32 w-full max-w-[569px] xl:max-w-[640px]'
-          } relative overflow-hidden rounded-2xl border border-primary-gold/20 bg-gradient-to-br from-surface-dark/80 via-surface-dark/60 to-surface-dark/80 p-8 backdrop-blur-xl before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary-gold/[0.03] before:via-transparent before:to-primary-gold/[0.03]`}
+            isMobile ? 'w-full' : 'w-full max-w-[600px]'
+          } relative overflow-hidden rounded-2xl border border-primary-gold/10 bg-gradient-to-br from-surface-dark/90 via-surface-dark/95 to-surface-dark/90 p-8 backdrop-blur-xl lg:p-10`}
         >
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='relative flex w-full flex-col items-start gap-[50px]'
+            className='relative flex w-full flex-col items-start gap-12'
           >
             {/* honey pot */}
             <input type='hidden' name='_gotcha' className='hidden' />
@@ -451,23 +476,23 @@ export default function HeroSection({
             <motion.button
               type='submit'
               disabled={isSubmitting}
-              className='relative inline-flex items-center justify-center gap-2.5 rounded-full border border-primary-gold/30 bg-gradient-to-r from-primary-gold/20 via-primary-gold/10 to-primary-gold/20 px-7 py-3.5 font-light text-sm tracking-wider text-white/90 backdrop-blur-sm transition-all duration-300 hover:border-primary-gold/40 hover:from-primary-gold/30 hover:via-primary-gold/20 hover:to-primary-gold/30 disabled:cursor-not-allowed disabled:opacity-50'
-              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              className='relative inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary-gold/90 via-primary-gold/80 to-primary-gold/90 px-8 py-4 font-medium text-black transition-all duration-300 hover:from-primary-gold hover:to-primary-gold disabled:cursor-not-allowed disabled:opacity-50'
+              whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.99 }}
             >
-              <span className='relative whitespace-nowrap'>
-                {isSubmitting ? 'SENDING...' : 'SUBMIT'}
+              <span className='relative whitespace-nowrap text-base'>
+                {isSubmitting ? 'Sending...' : 'Request Demo'}
               </span>
               {!isSubmitting && (
                 <ArrowIcon
                   className='rotate-[-90deg]'
-                  color='white'
-                  size={12}
+                  color='black'
+                  size={16}
                 />
               )}
             </motion.button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );
