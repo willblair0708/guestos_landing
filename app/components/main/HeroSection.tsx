@@ -63,7 +63,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
   const renderBackground = () => (
     <motion.div className='absolute inset-0 z-0'>
       <Image
-        src='/assets/main/main_hero_poster.png'
+        src='/assets/main/main_hero_poster.webp'
         alt='Hero background'
         fill
         priority
