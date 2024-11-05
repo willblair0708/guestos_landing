@@ -152,8 +152,10 @@ const FooterSection = ({
             className='group relative inline-flex items-center text-sm tracking-wide text-neutral-400 transition-colors duration-300 hover:text-[#03E87A]'
           >
             <motion.div
-              className='absolute -left-4 h-4 w-0.5 rounded-full bg-[#03E87A]/20 opacity-0 transition-all duration-300 group-hover:opacity-100'
-              layoutId={`marker-${link.name}`}
+              className='absolute -left-4 h-4 w-0.5 rounded-full bg-[#03E87A]/20'
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
             />
             {link.name}
           </Link>
