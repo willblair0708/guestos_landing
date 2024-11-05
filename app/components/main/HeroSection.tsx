@@ -17,16 +17,21 @@ interface HeroSectionProps {
 }
 
 // Constants
-const PARTICLE_COUNT = 25;
-const SPRING_CONFIG = { stiffness: 100, damping: 30, restDelta: 0.001 };
+const PARTICLE_COUNT = 35;
+const SPRING_CONFIG = { stiffness: 120, damping: 25, restDelta: 0.001 };
 
-// Animation variants
+// Enhanced animation variants
 const fadeInVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'easeOut' },
+    scale: 1,
+    transition: {
+      duration: 1,
+      ease: [0.25, 0.1, 0.25, 1],
+      staggerChildren: 0.1,
+    },
   },
 };
 
@@ -34,37 +39,60 @@ const floatingGradientVariants = {
   animate: {
     x: [0, 200, 0],
     y: [-100, 100, -100],
-    scale: [1, 1.1, 1],
+    scale: [1, 1.2, 1],
+    opacity: [0.5, 0.8, 0.5],
     transition: {
-      duration: 20,
+      duration: 25,
       repeat: Infinity,
-      ease: 'linear',
+      ease: 'easeInOut',
     },
   },
 };
 
+// Enhanced particle animation with more dynamic movement
 const particleAnimation = (i: number) => ({
   style: {
     left: `${Math.random() * 100}%`,
     top: `${Math.random() * 100}%`,
-    opacity: Math.random() * 0.2 + 0.1,
-    scale: Math.random() * 0.5 + 0.5,
+    opacity: Math.random() * 0.3 + 0.1,
+    scale: Math.random() * 0.7 + 0.3,
   },
   animate: {
-    y: [0, -30, 0],
-    opacity: [0.1, 0.2, 0.1],
-    scale: [1, 1.2, 1],
+    y: [0, -40, 0],
+    x: [0, Math.sin(i) * 20, 0],
+    opacity: [0.1, 0.3, 0.1],
+    scale: [1, 1.3, 1],
   },
   transition: {
-    duration: Math.random() * 4 + 3,
+    duration: Math.random() * 5 + 4,
     repeat: Infinity,
+    ease: 'easeInOut',
     delay: Math.random() * 2,
   },
 });
 
+// New text animation variant
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 1,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  }),
+};
+
 // Components
 const Background = () => (
-  <motion.div className='absolute inset-0 z-0'>
+  <motion.div
+    className='absolute inset-0 z-0'
+    initial={{ opacity: 0, scale: 1.1 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 1.5, ease: 'easeOut' }}
+  >
     <Image
       src='/assets/main/main_hero_poster.webp'
       alt='Hero background'
@@ -74,7 +102,7 @@ const Background = () => (
       className='h-full w-full object-cover'
       sizes='100vw'
     />
-    <div className='absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/80' />
+    <div className='absolute inset-0 bg-gradient-to-b from-black/95 via-black/50 to-black/80' />
     <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
     <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]' />
     <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
@@ -90,11 +118,12 @@ const InfoCard = () => (
   <motion.div
     variants={fadeInVariants}
     initial='hidden'
-    animate='visible'
+    whileInView='visible'
+    viewport={{ once: true }}
     className='absolute bottom-12 right-8 w-[400px] space-y-8 rounded-2xl border border-[#03E87A]/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-8 backdrop-blur-xl sm:bottom-20 sm:right-12'
     whileHover={{
-      scale: 1.02,
-      transition: { duration: 0.2 },
+      scale: 1.03,
+      transition: { duration: 0.3, ease: 'easeOut' },
     }}
   >
     <div className='relative space-y-6'>
@@ -117,13 +146,18 @@ const InfoCard = () => (
 
       <div className='relative flex items-center justify-between'>
         <motion.button
-          className='group flex items-center space-x-3 rounded-full border border-primary-gold/10 bg-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all hover:border-primary-gold/20 hover:bg-primary-gold/10'
-          whileHover={{ scale: 1.02 }}
+          className='group flex items-center space-x-3 rounded-full border border-primary-gold/10 bg-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all'
+          whileHover={{
+            scale: 1.05,
+            backgroundColor: 'rgba(255,200,87,0.15)',
+            transition: { duration: 0.2 },
+          }}
           whileTap={{ scale: 0.98 }}
         >
           <span className='text-sm text-white/90'>Learn More</span>
           <motion.span
             className='inline-block text-white/90'
+            animate={{ x: [0, 5, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
             →
@@ -145,8 +179,9 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
-  const y = useTransform(scrollYProgress, [0, 0.3], ['0%', '10%']);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
+  const y = useTransform(scrollYProgress, [0, 0.3], ['0%', '15%']);
+  const blur = useTransform(scrollYProgress, [0, 0.3], [0, 5]);
   const ySpring = useSpring(y, SPRING_CONFIG);
 
   const [headerSize, setHeaderSize] = useState('text-[32px]');
@@ -174,10 +209,19 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
       className='relative h-screen overflow-hidden text-white'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 1.2 }}
     >
       <Background />
-      <div className='relative z-20 flex h-full flex-col'>
+
+      <motion.div
+        className='relative z-20 flex h-full flex-col'
+        style={{
+          opacity,
+          scale,
+          y: ySpring,
+          filter: `blur(${blur}px)`,
+        }}
+      >
         <Navbar isFixed={false} />
         <div className='relative grid h-full grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8'>
           <motion.div
@@ -229,13 +273,13 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
           </motion.div>
           <InfoCard />
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
         className='pointer-events-none absolute inset-0'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
+        transition={{ delay: 1, duration: 2 }}
       >
         {[...Array(PARTICLE_COUNT)].map((_, i) => {
           const { style, animate, transition } = particleAnimation(i);
