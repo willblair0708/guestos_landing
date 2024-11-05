@@ -78,10 +78,12 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
           className='h-full w-full object-cover'
           sizes='100vw'
         />
-        <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70' />
-        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)]' />
+        <div className='absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.15),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(3,232,122,0.08),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black_80%)]' />
         <motion.div
-          className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl'
+          className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/20 via-[#03E87A]/10 to-transparent blur-3xl'
           animate={{
             x: [0, 200, 0],
             y: [-100, 100, -100],
@@ -126,23 +128,24 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
             variants={fadeInVariants}
             initial='hidden'
             animate={isInView ? 'visible' : 'hidden'}
-            className='absolute bottom-12 right-8 w-[400px] space-y-8 rounded-2xl border border-white/10 bg-gradient-to-br from-black/40 via-black/30 to-black/20 p-8 backdrop-blur-xl sm:bottom-20 sm:right-12'
+            className='absolute bottom-12 right-8 w-[400px] space-y-8 rounded-2xl border border-[#03E87A]/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-8 backdrop-blur-xl sm:bottom-20 sm:right-12'
             whileHover={{
               scale: 1.02,
               transition: { duration: 0.2 },
             }}
           >
             <div className='relative space-y-6'>
-              <div className='absolute -left-14 top-0 h-[150px] w-[150px] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl' />
-              <div className='absolute -right-14 -top-10 h-[150px] w-[150px] bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-blue-500/20 blur-3xl' />
+              <div className='absolute -left-14 top-0 h-[150px] w-[150px] bg-gradient-to-r from-[#03E87A]/20 via-[#03E87A]/10 to-transparent blur-3xl' />
+              <div className='absolute -right-14 -top-10 h-[150px] w-[150px] bg-gradient-to-r from-[#03E87A]/20 via-[#03E87A]/5 to-transparent blur-3xl' />
 
               <div className='relative space-y-4'>
                 <div className='flex items-center space-x-3'>
+                  <div className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
                   <h2 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light text-2xl text-transparent'>
                     Enhancing Human Connection
                   </h2>
                 </div>
-                <div className='h-px w-12 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500' />
+                <div className='h-px w-12 bg-gradient-to-r from-[#03E87A] to-transparent' />
               </div>
 
               <p className='relative font-light text-lg leading-relaxed text-white/70'>
@@ -152,7 +155,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
 
               <div className='relative flex items-center justify-between'>
                 <motion.button
-                  className='group flex items-center space-x-3 rounded-full border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10'
+                  className='group flex items-center space-x-3 rounded-full border border-[#03E87A]/10 bg-[#03E87A]/5 px-6 py-3 backdrop-blur-sm transition-all hover:border-[#03E87A]/20 hover:bg-[#03E87A]/10'
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -167,11 +170,14 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                 </motion.button>
 
                 <motion.div
-                  className='flex items-center space-x-2 text-sm text-white/40'
+                  className='flex items-center space-x-2 text-sm text-[#03E87A]/60'
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5 }}
-                ></motion.div>
+                >
+                  <div className='h-1 w-1 rounded-full bg-[#03E87A]/60' />
+                  <span>AI Powered</span>
+                </motion.div>
               </div>
             </div>
           </motion.div>
