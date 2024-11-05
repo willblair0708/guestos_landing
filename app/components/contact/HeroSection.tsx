@@ -197,7 +197,7 @@ const FormInput = ({
           }}
           placeholder={field.placeholder}
           name={field.id}
-          className='peer relative flex h-[48px] w-full items-center gap-2.5 rounded-xl bg-gradient-to-b from-surface-dark/95 to-surface-dark/90 pl-11 pr-4 font-light text-base tracking-wide text-white/90 backdrop-blur-md transition-all duration-200 placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-primary-gold/30'
+          className='peer relative flex h-[48px] w-full items-center gap-2.5 rounded-xl bg-gradient-to-b from-surface-dark/95 to-surface-dark/90 pl-4 pr-4 font-light text-base tracking-wide text-white/90 backdrop-blur-md transition-all duration-200 placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-primary-gold/30'
         />
 
         <div className='pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-r from-primary-gold/[0.02] via-transparent to-primary-gold/[0.02]' />

@@ -10,6 +10,7 @@ import MobileMenu from './MobileMenu';
 
 const navItems = [
   { text: 'Home', href: '/' },
+  { text: 'Platform', href: '/platform' },
   { text: 'About', href: '/about' },
 ] as const;
 
