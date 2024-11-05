@@ -19,23 +19,27 @@ export default function ContactPage() {
       <Script src='https://www.google.com/recaptcha/enterprise.js?render=6LexbW8qAAAAAIr7IhfsTb0UMA8gqigbZIY1sHrY' />
       <motion.div
         key='contact-page'
-        className='relative min-h-screen w-screen overflow-hidden bg-[#0A2F51] font-sans'
+        className='relative w-screen overflow-hidden bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-200'
       >
-        <div className='pointer-events-none absolute inset-0 z-0'>
-          <div className='absolute inset-0 bg-[url("/assets/patterns/grid.svg")] opacity-[0.02]' />
-          <div className='absolute inset-0 bg-[url("/assets/patterns/dna.svg")] opacity-[0.03]' />
-          <div className='absolute inset-0 bg-gradient-to-br from-[#0A2F51] via-[#0E4941] to-[#1A472A] opacity-80' />
-          <div className='bg-gradient-conic absolute inset-0 animate-spin-slow from-[#03E87A]/10 via-transparent to-transparent opacity-20' />
-        </div>
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.15),transparent_50%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.1),transparent_50%)]' />
+        <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.8),transparent_10%,transparent_90%,rgba(255,255,255,0.8))]' />
 
         <motion.main
           ref={containerRef}
           initial='hidden'
           animate='visible'
           variants={containerVariants}
-          className='relative z-10 flex min-h-screen flex-col justify-between'
+          className='relative flex flex-col justify-between'
         >
-          <HeroSection id='section-0' bgColor='#0A2F51' isMobile={isMobile} />
+          <div className='absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/50 to-transparent backdrop-blur-[2px]' />
+          <div className='absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/50 to-transparent backdrop-blur-[2px]' />
+
+          <HeroSection
+            id='section-0'
+            bgColor='bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-200'
+            isMobile={isMobile}
+          />
           <Footer />
         </motion.main>
       </motion.div>
@@ -51,7 +55,7 @@ const containerVariants = {
       staggerChildren: 0.1,
       when: 'beforeChildren',
       ease: [0.25, 0.1, 0.25, 1],
-      duration: 0.6,
+      duration: 0.8,
     },
   },
 };
