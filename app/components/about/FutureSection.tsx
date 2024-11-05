@@ -52,16 +52,44 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
     <motion.section
       ref={sectionRef}
       id={id}
-      className='relative min-h-screen overflow-hidden bg-[#0A0A0B] px-5 pb-32 text-white sm:px-8'
+      className='relative min-h-screen overflow-hidden bg-gradient-to-b from-[#0A0A0B] to-[#0F1112] px-5 pb-32 text-white sm:px-8'
     >
-      {/* Enhanced Background Effects */}
-      <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(3,232,122,0.15),transparent_70%)]' />
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(3,232,122,0.08),transparent_70%)]' />
-      <div className='absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.5))]' />
-      <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.03] mix-blend-overlay' />
+      {/* Enhanced Nature-Inspired Background Effects */}
+      <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(3,232,122,0.08),transparent_70%)]' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,200,255,0.05),transparent_70%)]' />
+      <div className='absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.6))]' />
+      <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
 
-      {/* Animated Grid Pattern */}
-      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)]' />
+      {/* Refined Grid Pattern */}
+      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]' />
+
+      {/* Floating Particles */}
+      <motion.div
+        className='absolute inset-0'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
+      >
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className='absolute h-1 w-1 rounded-full bg-white/20'
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{
+              duration: Math.random() * 4 + 3,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+      </motion.div>
 
       <div className='container relative z-10 mx-auto mt-[120px] lg:mt-[160px]'>
         {/* Hero Section */}
@@ -72,48 +100,48 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
           viewport={{ once: true }}
           className='mb-32 flex flex-col items-center'
         >
-          {/* Hiring Badge */}
+          {/* Enhanced Hiring Badge */}
           <motion.div
             variants={itemVariants}
-            className='group relative mb-8 overflow-hidden rounded-full border border-white/5 bg-white/5 p-1 backdrop-blur-md'
+            className='group relative mb-8 overflow-hidden rounded-full border border-white/5 bg-gradient-to-r from-white/5 via-white/[0.07] to-white/5 p-1 backdrop-blur-md'
             whileHover={{ scale: 1.02 }}
           >
-            <div className='relative flex items-center gap-2 px-4 py-1.5'>
-              <span className='h-2 w-2 animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
-              <span className='text-xs font-medium tracking-wider'>
+            <div className='relative flex items-center gap-3 px-5 py-2'>
+              <span className='h-2 w-2 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
+              <span className='font-light text-xs tracking-widest'>
                 WE'RE HIRING
               </span>
-              <div className='absolute inset-0 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent' />
+              <div className='absolute inset-0 animate-[shimmer_3s_infinite] bg-gradient-to-r from-transparent via-white/[0.07] to-transparent' />
             </div>
           </motion.div>
 
-          {/* Main Heading */}
+          {/* Enhanced Main Heading */}
           <motion.div
             variants={itemVariants}
-            className='relative space-y-8 text-center'
+            className='relative space-y-10 text-center'
           >
-            <h2 className='mx-auto max-w-4xl text-5xl font-book tracking-tight lg:text-7xl'>
+            <h2 className='mx-auto max-w-4xl font-light text-5xl tracking-tight lg:text-7xl'>
               Join us in shaping the{' '}
               <span className='relative inline-block'>
                 future
                 <motion.div
-                  className='absolute -bottom-2 left-0 h-[2px] w-full bg-gradient-to-r from-[#03E87A] via-[#03E87A]/50 to-transparent'
+                  className='absolute -bottom-2 left-0 h-[2px] w-full bg-gradient-to-r from-[#03E87A]/80 via-[#03E87A]/40 to-transparent'
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  transition={{ delay: 0.5, duration: 1.2 }}
                 />
               </span>{' '}
               of hospitality
             </h2>
-            <p className='mx-auto max-w-2xl font-light text-lg leading-relaxed text-white/60'>
+            <p className='mx-auto max-w-2xl font-light text-lg leading-relaxed tracking-wide text-white/60'>
               Where cutting-edge AI technology meets genuine human connection to
               create unforgettable guest experiences.
             </p>
           </motion.div>
         </motion.div>
 
-        {/* Founder Card */}
+        {/* Enhanced Founder Card */}
         <motion.div
           variants={itemVariants}
           initial='hidden'
@@ -121,13 +149,13 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
           viewport={{ once: true }}
           className='relative mx-auto mb-40 max-w-5xl'
         >
-          <div className='group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 to-white/5 p-[1px]'>
-            {/* Card Background Effects */}
-            <div className='absolute inset-0 bg-gradient-to-r from-[#03E87A]/20 via-white/5 to-transparent blur-xl' />
-            <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.03] mix-blend-overlay' />
+          <div className='group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-[1px]'>
+            {/* Enhanced Card Background Effects */}
+            <div className='absolute inset-0 bg-gradient-to-r from-[#03E87A]/10 via-[rgba(100,200,255,0.05)] to-transparent blur-2xl' />
+            <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
 
-            {/* Card Content */}
-            <div className='relative flex flex-col gap-8 rounded-[23px] bg-gradient-to-br from-gray-900/95 to-black p-8 backdrop-blur-xl lg:flex-row lg:items-center lg:p-12'>
+            {/* Enhanced Card Content */}
+            <div className='relative flex flex-col gap-8 rounded-[23px] bg-gradient-to-br from-gray-900/95 to-black/95 p-8 backdrop-blur-xl lg:flex-row lg:items-center lg:p-12'>
               {/* Image Section */}
               <motion.div
                 className='relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl lg:w-2/5'
