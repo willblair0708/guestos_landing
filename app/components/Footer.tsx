@@ -135,10 +135,10 @@ const FooterSection = ({
   links: { name: string; href: string }[];
 }) => (
   <motion.div variants={itemVariants} className='font-book'>
-    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-white/50'>
+    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-neutral-400'>
       {title}
       <motion.div
-        className='mt-2 h-px w-12 bg-gradient-to-r from-[#03E87A]/30 to-transparent'
+        className='mt-2 h-px w-12 bg-gradient-to-r from-[#03E87A]/40 to-transparent'
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
@@ -149,10 +149,10 @@ const FooterSection = ({
         <li key={link.name}>
           <Link
             href={link.href}
-            className='group relative inline-flex items-center text-sm tracking-wide text-white/40 transition-colors duration-300 hover:text-white'
+            className='group relative inline-flex items-center text-sm tracking-wide text-neutral-400 transition-colors duration-300 hover:text-[#03E87A]'
           >
             <motion.div
-              className='absolute -left-4 h-4 w-0.5 rounded-full bg-[#03E87A]/0 transition-all duration-300 group-hover:bg-[#03E87A]/20'
+              className='absolute -left-4 h-4 w-0.5 rounded-full bg-[#03E87A]/20 opacity-0 transition-all duration-300 group-hover:opacity-100'
               layoutId={`marker-${link.name}`}
             />
             {link.name}
@@ -168,14 +168,11 @@ const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
     href={icon.href}
     target='_blank'
     rel='noopener noreferrer'
-    className='group relative flex h-10 w-10 items-center justify-center rounded-lg border border-white/5 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-[#03E87A]/20 hover:bg-[#03E87A]/5'
+    className='group relative flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900 shadow-sm transition-all duration-300 hover:border-[#03E87A]/30 hover:bg-[#03E87A]/5'
     whileHover={{ y: -2 }}
     whileTap={{ scale: 0.95 }}
   >
-    <icon.Icon
-      className='text-white transition-colors duration-300 group-hover:text-white'
-      color='currentColor'
-    />
+    <icon.Icon className='text-neutral-400 transition-colors duration-300 group-hover:text-[#03E87A]' />
   </motion.a>
 ));
 
@@ -208,9 +205,9 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <motion.footer className='relative overflow-hidden bg-[#000000]/95'>
+    <motion.footer className='relative overflow-hidden bg-neutral-900'>
       {/* Subtle grid background */}
-      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]' />
+      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:64px_64px]' />
 
       <div className='relative mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-20'>
         <motion.div
@@ -225,7 +222,7 @@ const Footer: React.FC = () => {
             className='col-span-full lg:col-span-1'
           >
             <Link href='/' className='group inline-flex flex-col'>
-              <span className='text-2xl font-book tracking-tight text-white/90'>
+              <span className='text-2xl font-book tracking-tight text-white'>
                 Guest<span className='font-light'>OS</span>
               </span>
               <motion.div
@@ -233,7 +230,7 @@ const Footer: React.FC = () => {
                 layoutId='logo-underline'
               />
             </Link>
-            <p className='mt-6 max-w-sm text-sm leading-relaxed tracking-wide text-white/40'>
+            <p className='mt-6 max-w-sm text-sm leading-relaxed tracking-wide text-neutral-400'>
               Enhancing human connection through AI-powered hospitality
               experiences.
             </p>
@@ -247,10 +244,10 @@ const Footer: React.FC = () => {
             variants={itemVariants}
             className='col-span-full lg:col-span-1'
           >
-            <h3 className='mb-6 text-xs font-medium tracking-[0.2em] text-white/50'>
+            <h3 className='mb-6 text-xs font-medium tracking-[0.2em] text-neutral-500'>
               NEWSLETTER
               <motion.div
-                className='mt-2 h-px w-12 bg-gradient-to-r from-[#03E87A]/30 to-transparent'
+                className='mt-2 h-px w-12 bg-gradient-to-r from-neutral-300 to-transparent'
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
@@ -265,7 +262,7 @@ const Footer: React.FC = () => {
                       placeholder='Enter your email'
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className='h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white backdrop-blur-sm transition-all duration-300 placeholder:text-white/30 hover:border-white/20 focus:border-[#03E87A]/30 focus:outline-none focus:ring-1 focus:ring-[#03E87A]/20'
+                      className='h-11 w-full rounded-lg border border-neutral-800 bg-neutral-900 px-4 text-sm text-white shadow-sm transition-all duration-300 placeholder:text-neutral-500 hover:border-[#03E87A]/30 focus:border-[#03E87A]/50 focus:outline-none focus:ring-1 focus:ring-[#03E87A]/20'
                     />
                     <AnimatePresence>
                       {email && (
@@ -274,7 +271,7 @@ const Footer: React.FC = () => {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -10 }}
                           type='submit'
-                          className='absolute right-2 top-1.5 rounded-md bg-[#03E87A]/10 px-3 py-2 text-xs font-medium tracking-wide text-white backdrop-blur-sm transition-all duration-300 hover:bg-[#03E87A]/20'
+                          className='absolute right-2 top-1.5 rounded-md bg-[#03E87A]/10 px-3 py-2 text-xs font-medium tracking-wide text-[#03E87A] transition-all duration-300 hover:bg-[#03E87A]/20'
                         >
                           Subscribe
                         </motion.button>
@@ -284,7 +281,7 @@ const Footer: React.FC = () => {
                 ) : (
                   <motion.div
                     variants={successVariants}
-                    className='flex h-11 items-center rounded-lg border border-[#03E87A]/20 bg-[#03E87A]/5 px-4 text-sm text-white backdrop-blur-sm'
+                    className='flex h-11 items-center rounded-lg border border-[#03E87A]/30 bg-[#03E87A]/5 px-4 text-sm text-[#03E87A]'
                   >
                     <span className='flex items-center'>
                       Thank you for subscribing
@@ -312,7 +309,7 @@ const Footer: React.FC = () => {
 
         <motion.div
           variants={containerVariants}
-          className='mt-16 flex flex-col items-center justify-between border-t border-white/[0.05] pt-8 sm:flex-row'
+          className='mt-16 flex flex-col items-center justify-between border-t border-neutral-800 pt-8 sm:flex-row'
         >
           <motion.div variants={itemVariants} className='flex space-x-3'>
             {SOCIAL_ICONS.map((icon) => (
@@ -321,7 +318,7 @@ const Footer: React.FC = () => {
           </motion.div>
           <motion.p
             variants={itemVariants}
-            className='mt-6 text-xs tracking-wide text-white/30 sm:mt-0'
+            className='mt-6 text-xs tracking-wide text-neutral-500 sm:mt-0'
           >
             &copy; {new Date().getFullYear()} GuestOS. All rights reserved.
           </motion.p>
