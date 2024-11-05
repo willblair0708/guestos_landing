@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -13,22 +13,31 @@ import Footer from '../components/Footer';
 export default function ContactPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null; // or a loading skeleton
+  }
 
   return (
     <AnimatePresence mode='wait'>
       <Script src='https://www.google.com/recaptcha/enterprise.js?render=6LexbW8qAAAAAIr7IhfsTb0UMA8gqigbZIY1sHrY' />
       <motion.div
         key='contact-page'
-        className='relative w-screen overflow-hidden bg-background-dark font-sans'
+        className='relative w-screen overflow-hidden font-sans'
       >
         <motion.main
           ref={containerRef}
           initial='hidden'
           animate='visible'
           variants={containerVariants}
-          className='flex flex-col justify-between bg-background-dark'
+          className='flex flex-col justify-between'
         >
-          <HeroSection id='section-0' bgColor='#000000' isMobile={isMobile} />
+          <HeroSection id='section-0' bgColor='#0A2F51' isMobile={isMobile} />
           <Footer />
         </motion.main>
       </motion.div>
@@ -47,4 +56,4 @@ const containerVariants = {
       duration: 0.6,
     },
   },
-};
+} as const;

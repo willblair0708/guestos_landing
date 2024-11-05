@@ -62,9 +62,7 @@ export default function Navbar({ isFixed = true }: NavbarProps) {
 const NavLogo = memo(() => (
   <motion.div variants={navItemVariants} className='flex items-center'>
     <Link href='/' scroll={false}>
-      <span className='text-2xl font-book tracking-tight text-white transition-opacity hover:opacity-80 sm:text-3xl'>
-        GuestOS
-      </span>
+      <GuestOSIcon className='h-8 w-auto sm:h-10' />
     </Link>
   </motion.div>
 ));
