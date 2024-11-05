@@ -8,6 +8,7 @@ import useIsMobile from '@/hooks/use-is-mobile';
 
 import Footer from './components/Footer';
 import HeroSection from './components/main/HeroSection';
+import SimulationSection from './components/main/SimulationSection';
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -60,7 +61,13 @@ export default function Home() {
                   whileInView='visible'
                   viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
                   className='w-full'
-                ></motion.div>
+                >
+                  <SimulationSection
+                    id='section-1'
+                    isMobile={isMobile}
+                    bgColor='white'
+                  />
+                </motion.div>
               </motion.main>
             </motion.div>
           </AnimatePresence>

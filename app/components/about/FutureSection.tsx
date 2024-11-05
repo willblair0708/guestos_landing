@@ -52,93 +52,60 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
     <motion.section
       ref={sectionRef}
       id={id}
-      className='relative min-h-screen overflow-hidden bg-gradient-to-b from-[#0A0A0B] to-[#0F1112] px-5 pb-32 text-white sm:px-8'
+      className='from-primary-black relative min-h-screen overflow-hidden bg-gradient-to-b via-[#0D0D0E] to-[#0F1112] px-5 pb-32 text-white sm:px-8'
     >
-      {/* Enhanced Nature-Inspired Background Effects */}
-      <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(3,232,122,0.08),transparent_70%)]' />
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,200,255,0.05),transparent_70%)]' />
-      <div className='absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.6))]' />
-      <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
+      {/* Enhanced Background Effects */}
+      <div className='absolute inset-0'>
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.08),transparent_50%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.05),transparent_50%)]' />
+        <div className='absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.4))]' />
+        <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.03] mix-blend-overlay' />
 
-      {/* Refined Grid Pattern */}
-      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]' />
+        {/* Animated Grid Pattern */}
+        <motion.div
+          className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:72px_72px]'
+          style={{
+            maskImage:
+              'radial-gradient(ellipse at center, black 40%, transparent 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse at center, black 40%, transparent 100%)',
+          }}
+          animate={{
+            opacity: [0.5, 0.8, 0.5],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+        />
+      </div>
 
-      {/* Floating Particles */}
-      <motion.div
-        className='absolute inset-0'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-      >
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className='absolute h-1 w-1 rounded-full bg-white/20'
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: Math.random() * 4 + 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
-      </motion.div>
-
-      <div className='container relative z-10 mx-auto mt-[120px] lg:mt-[160px]'>
-        {/* Hero Section */}
+      <div className='relative z-10 mx-auto max-w-7xl'>
+        {/* Section Header */}
         <motion.div
           variants={containerVariants}
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true }}
-          className='mb-32 flex flex-col items-center'
+          className='mb-20 space-y-6 pt-32 text-center'
         >
-          {/* Enhanced Hiring Badge */}
           <motion.div
             variants={itemVariants}
-            className='group relative mb-8 overflow-hidden rounded-full border border-white/5 bg-gradient-to-r from-white/5 via-white/[0.07] to-white/5 p-1 backdrop-blur-md'
-            whileHover={{ scale: 1.02 }}
+            className='inline-block rounded-full border border-primary-green/10 bg-primary-green/5 px-6 py-2 backdrop-blur-sm'
           >
-            <div className='relative flex items-center gap-3 px-5 py-2'>
-              <span className='h-2 w-2 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
-              <span className='font-light text-xs tracking-widest'>
-                WE'RE HIRING
-              </span>
-              <div className='absolute inset-0 animate-[shimmer_3s_infinite] bg-gradient-to-r from-transparent via-white/[0.07] to-transparent' />
-            </div>
+            <span className='bg-gradient-to-r from-white/90 to-white/70 bg-clip-text font-light text-sm text-transparent'>
+              Our Vision
+            </span>
           </motion.div>
 
-          {/* Enhanced Main Heading */}
-          <motion.div
+          <motion.h2
             variants={itemVariants}
-            className='relative space-y-10 text-center'
+            className='mx-auto max-w-3xl bg-gradient-to-b from-white via-white/90 to-white/80 bg-clip-text font-light text-4xl leading-tight text-transparent sm:text-5xl'
           >
-            <h2 className='mx-auto max-w-4xl font-light text-5xl tracking-tight lg:text-7xl'>
-              Join us in shaping the{' '}
-              <span className='relative inline-block'>
-                future
-                <motion.div
-                  className='absolute -bottom-2 left-0 h-[2px] w-full bg-gradient-to-r from-[#03E87A]/80 via-[#03E87A]/40 to-transparent'
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 1.2 }}
-                />
-              </span>{' '}
-              of hospitality
-            </h2>
-            <p className='mx-auto max-w-2xl font-light text-lg leading-relaxed tracking-wide text-white/60'>
-              Where cutting-edge AI technology meets genuine human connection to
-              create unforgettable guest experiences.
-            </p>
-          </motion.div>
+            Shaping the Future of Hospitality Technology
+          </motion.h2>
         </motion.div>
 
         {/* Enhanced Founder Card */}
@@ -147,16 +114,18 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true }}
-          className='relative mx-auto mb-40 max-w-5xl'
+          className='relative mx-auto max-w-5xl'
         >
           <div className='group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-[1px]'>
-            {/* Enhanced Card Background Effects */}
-            <div className='absolute inset-0 bg-gradient-to-r from-[#03E87A]/10 via-[rgba(100,200,255,0.05)] to-transparent blur-2xl' />
-            <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
+            {/* Card Glow Effects */}
+            <div className='absolute inset-0'>
+              <div className='absolute inset-0 bg-gradient-to-r from-glow-green via-glow-teal to-transparent opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-80' />
+              <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.03] mix-blend-overlay' />
+            </div>
 
-            {/* Enhanced Card Content */}
+            {/* Card Content */}
             <div className='relative flex flex-col gap-8 rounded-[23px] bg-gradient-to-br from-gray-900/95 to-black/95 p-8 backdrop-blur-xl lg:flex-row lg:items-center lg:p-12'>
-              {/* Image Section */}
+              {/* Image Section with Enhanced Hover Effects */}
               <motion.div
                 className='relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl lg:w-2/5'
                 whileHover={{ scale: 1.02 }}
@@ -166,53 +135,68 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                   src='/assets/about/jessie.jpeg'
                   alt='Jessie Fischer'
                   fill
-                  className='object-cover transition-transform duration-700 group-hover:scale-105'
+                  className='object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110'
                   sizes='(max-width: 768px) 100vw, 40vw'
                   priority
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
-                <div className='absolute inset-0 bg-gradient-to-b from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+                <motion.div
+                  className='absolute inset-0 bg-gradient-to-b from-primary-green/20 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300'
+                  whileHover={{ opacity: 0.5 }}
+                />
               </motion.div>
 
-              {/* Text Content */}
+              {/* Enhanced Text Content */}
               <div className='flex flex-1 flex-col justify-between gap-8 lg:py-8'>
                 <div className='space-y-6'>
                   <div className='flex items-center gap-4'>
                     <h3 className='bg-gradient-to-r from-white to-white/80 bg-clip-text text-2xl font-medium text-transparent'>
                       Jessie Fischer
                     </h3>
-                    <div className='h-px flex-1 bg-gradient-to-r from-white/20 to-transparent' />
+                    <div className='h-px flex-1 bg-gradient-to-r from-primary-green/20 to-transparent' />
                   </div>
-                  <p className='tracking-wide text-white/60'>Founder & CEO</p>
-                  <blockquote className='font-light text-xl italic leading-relaxed text-white/80'>
-                    "We're not just building another AI tool – we're crafting
-                    the future of hospitality experiences, where technology
-                    enhances rather than replaces human connection."
+                  <p className='font-light tracking-wide text-primary-green/80'>
+                    Founder & CEO
+                  </p>
+                  <blockquote className='relative font-light text-xl italic leading-relaxed text-white/80'>
+                    <span className='absolute -left-4 top-0 text-3xl text-primary-green/20'>
+                      "
+                    </span>
+                    We're not just building another AI tool – we're crafting the
+                    future of hospitality experiences, where technology enhances
+                    rather than replaces human connection.
+                    <span className='absolute -bottom-4 right-0 text-3xl text-primary-green/20'>
+                      "
+                    </span>
                   </blockquote>
                 </div>
 
-                {/* Social Links */}
+                {/* Enhanced Social Links */}
                 <div className='flex items-center gap-6'>
                   <Link
                     href='https://www.linkedin.com/in/jessiefischer/'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='group rounded-full bg-white/5 p-3 transition-all hover:bg-white/10 hover:shadow-lg hover:shadow-[#03E87A]/10'
+                    className='group relative rounded-full bg-white/5 p-3 transition-all hover:bg-white/10'
                   >
+                    <div className='absolute inset-0 rounded-full bg-primary-green/20 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100' />
                     <LinkedIn
                       width={20}
                       height={20}
-                      className='transition-transform group-hover:scale-110'
+                      className='relative transition-transform group-hover:scale-110'
                     />
                   </Link>
-                  <div className='h-8 w-px bg-white/10' />
+                  <div className='h-8 w-px bg-gradient-to-b from-white/5 via-white/10 to-white/5' />
                   <Link
                     href='/careers'
-                    className='group flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white'
+                    className='group flex items-center gap-2 text-sm text-white/60 transition-all hover:text-white'
                   >
-                    View Open Positions
+                    <span className='relative'>
+                      View Open Positions
+                      <span className='absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-primary-green to-transparent transition-all group-hover:w-full' />
+                    </span>
                     <motion.span
-                      className='inline-block'
+                      className='inline-block text-primary-green'
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >

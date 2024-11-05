@@ -16,60 +16,94 @@ export default {
   theme: {
     extend: {
       colors: {
-        'party-blue': '#1019EC',
-        'party-red': '#EC1014',
+        'primary-green': '#03E87A', // Vibrant green for main CTAs and key accents
+        'primary-gray': '#1A1D24', // Rich gray for main backgrounds
+        'primary-white': '#FFFFFF', // Pure white for text on dark backgrounds
 
-        // Background colors
-        'background-light': '#F9FAFB',
-        'background-dark': '#121212',
-        'background-accent': '#D1E9FD',
-        'secondary-background': '#F3F4F6',
+        // Secondary Colors
+        'secondary-teal': '#6FC3C6', // Soft teal for supporting elements
+        'secondary-gold': '#FFB956', // Warm gold for luxury accents
+        'secondary-blue': '#2A4B6D', // Deep blue for trust elements
 
-        // Primary colors
-        'primary-black': '#1A1A1A',
-        'primary-white': '#FFFFFF',
-        'primary-blue': '#002E5D',
-        'primary-gold': '#FFC857',
+        // Gray Scale (Cool-toned)
+        'gray-50': '#F8F9FA', // Lightest - for light mode backgrounds
+        'gray-100': '#F1F3F5', // Very light - for hover states in light mode
+        'gray-200': '#E9ECEF', // Light - for borders in light mode
+        'gray-300': '#DEE2E6', // Light medium - for disabled states
+        'gray-400': '#CED4DA', // Medium - for secondary text in light mode
+        'gray-500': '#ADB5BD', // True medium - for placeholder text
+        'gray-600': '#868E96', // Dark medium - for secondary text in dark mode
+        'gray-700': '#495057', // Dark - for main text in light mode
+        'gray-800': '#343A40', // Very dark - for main text in dark mode
+        'gray-900': '#212529', // Darkest - for headings in dark mode
 
-        // Secondary colors
-        'dark-blue': '#1A1EBF',
-        'light-blue': 'rgba(16, 25, 236, 0.6)',
-        'line-blue': '#000AFF1F',
-
-        // Gray scale
-        'light-gray': '#F3F4F6',
-        'mid-gray': '#D1D5DB',
-        'dark-gray': '#6B7280',
-        'line-gray': '#E5E7EB',
-
-        // Text colors
-        primary: '#1A1A1A',
-        secondary: '#4B5563',
-        muted: '#9CA3AF',
-
-        // Success/Warning/Error colors
-        success: '#10B981',
-        warning: '#F59E0B',
-        error: '#EF4444',
-
-        // Dark Mode Adjustments
-        'dark-mode-text': '#F0F0F0',
-        'dark-mode-background': '#121212',
-        'dark-mode-accent': '#242424',
-
-        gray: colors.zinc,
-        'modal-background': {
-          light: '#FFFFFF',
+        // Background Variations
+        'bg-dark': {
+          DEFAULT: '#1A1D24', // Main dark background
+          lighter: '#22262F', // Card backgrounds
+          darker: '#15171C', // Deepest backgrounds
         },
-        // You can add more custom colors if needed
 
-        // Accent colors
-        'accent-teal': '#6FC3C6',
-        'accent-gray': '#5D737E',
+        // Accent Colors with Opacity Variants
+        accent: {
+          green: {
+            DEFAULT: '#03E87A',
+            light: 'rgba(3,232,122,0.1)',
+            medium: 'rgba(3,232,122,0.5)',
+            dark: '#02C968',
+          },
+          gold: {
+            DEFAULT: '#FFB956',
+            light: 'rgba(255,185,86,0.1)',
+            medium: 'rgba(255,185,86,0.5)',
+            dark: '#F5A43D',
+          },
+          teal: {
+            DEFAULT: '#6FC3C6',
+            light: 'rgba(111,195,198,0.1)',
+            medium: 'rgba(111,195,198,0.5)',
+            dark: '#5BB1B4',
+          },
+        },
 
-        // Background colors
-        'bg-white': '#F6F5F5',
-        'bg-beige': '#F0E5D8',
+        // Functional Colors
+        status: {
+          success: '#12B76A',
+          warning: '#F59E0B',
+          error: '#F04438',
+          info: '#3B82F6',
+        },
+
+        // Gradient Colors
+        gradient: {
+          'green-start': 'rgba(3,232,122,0.12)',
+          'green-end': 'rgba(3,232,122,0.02)',
+          'gold-start': 'rgba(255,185,86,0.12)',
+          'gold-end': 'rgba(255,185,86,0.02)',
+          'teal-start': 'rgba(111,195,198,0.12)',
+          'teal-end': 'rgba(111,195,198,0.02)',
+        },
+
+        // Surface Colors (for cards, modals, etc.)
+        surface: {
+          light: '#FFFFFF',
+          dark: '#22262F',
+          accent: 'rgba(255,255,255,0.03)',
+        },
+
+        // Overlay Colors
+        overlay: {
+          light: 'rgba(255,255,255,0.1)',
+          dark: 'rgba(0,0,0,0.5)',
+          modal: 'rgba(26,29,36,0.8)',
+        },
+
+        // Glow Effects
+        glow: {
+          green: 'rgba(3,232,122,0.15)',
+          gold: 'rgba(255,185,86,0.15)',
+          teal: 'rgba(111,195,198,0.15)',
+        },
       },
       backgroundColor: {
         white: '#FFFFFF',

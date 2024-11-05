@@ -153,7 +153,7 @@ export default function RootLayout({
         }}
       />
       <body
-        className={`${abcOracle.variable} ${geistMono.variable} ${gtPantheon.variable} bg-background-light font-sans text-primary antialiased`}
+        className={`${abcOracle.variable} ${geistMono.variable} ${gtPantheon.variable} bg-background-light text-primary font-sans antialiased`}
       >
         <div className='flex min-h-screen flex-col'>
           <Toaster />
