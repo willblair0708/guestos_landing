@@ -74,23 +74,23 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
           alt='Hero background'
           fill
           priority
-          quality={90}
+          quality={100}
           className='h-full w-full object-cover'
           sizes='100vw'
         />
-        <div className='absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.15),transparent_70%)]' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(3,232,122,0.08),transparent_70%)]' />
-        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black_80%)]' />
+        <div className='absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/80' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,200,255,0.08),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
         <motion.div
-          className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/20 via-[#03E87A]/10 to-transparent blur-3xl'
+          className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/15 via-[rgba(100,200,255,0.1)] to-transparent blur-3xl'
           animate={{
             x: [0, 200, 0],
             y: [-100, 100, -100],
-            scale: [1, 1.2, 1],
+            scale: [1, 1.1, 1],
           }}
           transition={{
-            duration: 15,
+            duration: 20,
             repeat: Infinity,
             ease: 'linear',
           }}
@@ -103,24 +103,46 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
             className='col-span-12 flex items-center lg:col-span-7'
             style={{ opacity, scale }}
           >
-            <div className='w-full space-y-8'>
+            <div className='w-full space-y-10'>
               <motion.div
                 variants={fadeInVariants}
                 initial='hidden'
                 animate={isInView ? 'visible' : 'hidden'}
-                className='space-y-4'
+                className='space-y-6'
               >
-                <span className='inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm backdrop-blur-sm'>
-                  Welcome to the Future of Hospitality
-                </span>
+                <motion.span
+                  className='group inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm backdrop-blur-sm'
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className='relative flex items-center gap-3'>
+                    <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
+                    <span className='relative'>
+                      Welcome to the Future of Hospitality
+                      <div className='absolute inset-0 animate-[shimmer_3s_infinite] bg-gradient-to-r from-transparent via-white/[0.07] to-transparent' />
+                    </span>
+                  </div>
+                </motion.span>
+
                 <h1 className='text-hero font-book'>
-                  <span className='block font-light text-6xl tracking-tight sm:text-7xl lg:text-8xl'>
-                    The AI Concierge
-                  </span>
-                  <span className='mt-2 block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-4xl text-transparent sm:text-5xl lg:text-6xl'>
-                    For Hospitality
-                  </span>
+                  <motion.span
+                    className='block font-light tracking-tight sm:text-4xl lg:text-5xl'
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                  >
+                    The AI Concierge for Hospitality
+                  </motion.span>
                 </h1>
+
+                <motion.p
+                  className='max-w-xl font-light text-lg leading-relaxed text-white/60'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.8 }}
+                >
+                  Experience the perfect blend of AI technology and human touch,
+                  designed to elevate your guest experience to new heights.
+                </motion.p>
               </motion.div>
             </div>
           </motion.div>
@@ -140,7 +162,6 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
 
               <div className='relative space-y-4'>
                 <div className='flex items-center space-x-3'>
-                  <div className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
                   <h2 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light text-2xl text-transparent'>
                     Enhancing Human Connection
                   </h2>
@@ -174,10 +195,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5 }}
-                >
-                  <div className='h-1 w-1 rounded-full bg-[#03E87A]/60' />
-                  <span>AI Powered</span>
-                </motion.div>
+                ></motion.div>
               </div>
             </div>
           </motion.div>
@@ -189,21 +207,23 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
       >
-        {[...Array(20)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <motion.div
             key={i}
             className='absolute h-1 w-1 rounded-full bg-white'
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.3 + 0.1,
+              opacity: Math.random() * 0.2 + 0.1,
+              scale: Math.random() * 0.5 + 0.5,
             }}
             animate={{
               y: [0, -30, 0],
-              opacity: [0.1, 0.3, 0.1],
+              opacity: [0.1, 0.2, 0.1],
+              scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: Math.random() * 3 + 2,
+              duration: Math.random() * 4 + 3,
               repeat: Infinity,
               delay: Math.random() * 2,
             }}
