@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import { useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import { motion } from 'framer-motion';
+import {
+  motion,
+  useSpring as useFramerSpring,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 
 import Navbar from '../Navbar';
 
@@ -18,68 +24,131 @@ const HERO_IMAGE_DIMENSIONS = {
   mobileHeight: 1792,
 };
 
+const SPRING_CONFIG = { stiffness: 120, damping: 25, restDelta: 0.001 };
+
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 1,
+      ease: [0.25, 0.1, 0.25, 1],
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const Background = () => (
+  <motion.div
+    className='absolute inset-0 z-0'
+    initial={{ opacity: 0, scale: 1.1 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 1.5, ease: 'easeOut' }}
+  >
+    <Image
+      src='/assets/about/about_header.webp'
+      alt='About GuestOS'
+      fill
+      priority
+      quality={100}
+      className='h-full w-full object-cover'
+      sizes='100vw'
+    />
+    <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/60' />
+    <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.12),transparent_70%)]' />
+    <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.08),transparent_70%)]' />
+    <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+  </motion.div>
+);
+
 export default function HeroSection({
   id,
   bgColor,
   isMobile,
 }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const { ref: inViewRef, inView: isInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
+  const y = useTransform(scrollYProgress, [0, 0.3], [0, 15]);
+  const ySpring = useFramerSpring(y, SPRING_CONFIG);
 
   return (
     <motion.section
       ref={sectionRef}
       id={id}
       className='relative h-screen overflow-hidden text-white'
-      style={{ backgroundColor: bgColor }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 1.2 }}
     >
+      <Background />
+
       <motion.div
-        className='absolute inset-0'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        className='relative z-20 flex h-full flex-col'
+        style={{
+          opacity,
+          scale,
+          y: ySpring,
+        }}
       >
-        <Image
-          src='/assets/about/about_header.webp'
-          alt='About GuestOS'
-          fill
-          quality={75}
-          priority
-          placeholder='blur'
-          blurDataURL='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMzMzMzMzMiLz48L3N2Zz4='
-          sizes={`(max-width: 768px) ${HERO_IMAGE_DIMENSIONS.mobileWidth}px, ${HERO_IMAGE_DIMENSIONS.width}px`}
-          style={{
-            objectFit: 'cover',
-          }}
-          loading='eager'
-        />
+        <Navbar isFixed={false} />
+
+        <div className='relative grid h-full grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8'>
+          <motion.div
+            ref={inViewRef}
+            className='col-span-12 flex items-center lg:col-span-7'
+            variants={fadeInVariants}
+            initial='hidden'
+            animate={isInView ? 'visible' : 'hidden'}
+          >
+            <div className='w-full space-y-10'>
+              <div className='space-y-6'>
+                <motion.span
+                  className='group inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm'
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className='relative flex items-center gap-3'>
+                    <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
+                    <span className='text-sm text-white'>Our Story</span>
+                  </div>
+                </motion.span>
+
+                <motion.h1
+                  className='max-w-3xl font-light text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                >
+                  A Long-Standing Family Affair.
+                </motion.h1>
+
+                <motion.p
+                  className='max-w-xl font-light text-lg leading-relaxed text-white/80'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.8 }}
+                >
+                  For over four decades, our family has been at the forefront of
+                  hospitality innovation, crafting exceptional experiences that
+                  blend tradition with technology.
+                </motion.p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
-      <div className='absolute inset-0 bg-black bg-opacity-30' />
-      <Navbar isFixed={false} />
-      <div className='absolute inset-0 flex items-start px-4 pt-[300px] text-white sm:items-center sm:px-4 sm:pt-0 md:px-8'>
-        <motion.h1
-          variants={itemVariants}
-          initial='initial'
-          animate='animate'
-          className='max-w-4xl text-left font-light sm:text-4xl lg:text-5xl' // Changed to smaller text
-        >
-          A Long-Standing Family Affair.
-        </motion.h1>
-      </div>
     </motion.section>
   );
 }
-
-const itemVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
-    },
-  },
-};

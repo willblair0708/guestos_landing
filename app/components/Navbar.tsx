@@ -42,7 +42,7 @@ export default function Navbar({ isFixed = true }: NavbarProps) {
       animate='visible'
       className={`${
         isFixed ? 'fixed backdrop-blur-md' : 'absolute'
-      } left-0 right-0 z-50 flex w-full items-center justify-between bg-gradient-to-b from-primary-navy/80 to-transparent px-4 py-6`}
+      } left-0 right-0 z-50 flex w-full items-center justify-between px-4 py-6`}
     >
       <NavLogo />
       <DesktopMenu pathname={pathname} />
