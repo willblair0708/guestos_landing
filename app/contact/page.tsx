@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -13,29 +13,27 @@ import Footer from '../components/Footer';
 export default function ContactPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null; // or a loading skeleton
-  }
 
   return (
     <AnimatePresence mode='wait'>
       <Script src='https://www.google.com/recaptcha/enterprise.js?render=6LexbW8qAAAAAIr7IhfsTb0UMA8gqigbZIY1sHrY' />
       <motion.div
         key='contact-page'
-        className='relative w-screen overflow-hidden font-sans'
+        className='relative min-h-screen w-screen overflow-hidden bg-[#0A2F51] font-sans'
       >
+        <div className='pointer-events-none absolute inset-0 z-0'>
+          <div className='absolute inset-0 bg-[url("/assets/patterns/grid.svg")] opacity-[0.02]' />
+          <div className='absolute inset-0 bg-[url("/assets/patterns/dna.svg")] opacity-[0.03]' />
+          <div className='absolute inset-0 bg-gradient-to-br from-[#0A2F51] via-[#0E4941] to-[#1A472A] opacity-80' />
+          <div className='bg-gradient-conic absolute inset-0 animate-spin-slow from-[#03E87A]/10 via-transparent to-transparent opacity-20' />
+        </div>
+
         <motion.main
           ref={containerRef}
           initial='hidden'
           animate='visible'
           variants={containerVariants}
-          className='flex flex-col justify-between'
+          className='relative z-10 flex min-h-screen flex-col justify-between'
         >
           <HeroSection id='section-0' bgColor='#0A2F51' isMobile={isMobile} />
           <Footer />
@@ -56,4 +54,4 @@ const containerVariants = {
       duration: 0.6,
     },
   },
-} as const;
+};
