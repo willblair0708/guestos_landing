@@ -16,6 +16,16 @@ interface HeroSectionProps {
   isMobile?: boolean;
 }
 
+// Animation variants
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'easeOut' },
+  },
+};
+
 export default function HeroSection({ id, isMobile }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
@@ -50,14 +60,36 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const fadeInVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  };
+  const renderBackground = () => (
+    <motion.div className='absolute inset-0 z-0'>
+      <Image
+        src='/assets/main/main_hero_poster.png'
+        alt='Hero background'
+        fill
+        priority
+        quality={100}
+        className='h-full w-full object-cover'
+        sizes='100vw'
+      />
+      <div className='absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/80' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,200,255,0.08),transparent_70%)]' />
+      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+      <motion.div
+        className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/15 via-[rgba(100,200,255,0.1)] to-transparent blur-3xl'
+        animate={{
+          x: [0, 200, 0],
+          y: [-100, 100, -100],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+      />
+    </motion.div>
+  );
 
   return (
     <motion.section
@@ -68,34 +100,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <motion.div className='absolute inset-0 z-0'>
-        <Image
-          src='/assets/main/main_hero_poster.png'
-          alt='Hero background'
-          fill
-          priority
-          quality={100}
-          className='h-full w-full object-cover'
-          sizes='100vw'
-        />
-        <div className='absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/80' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,200,255,0.08),transparent_70%)]' />
-        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
-        <motion.div
-          className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/15 via-[rgba(100,200,255,0.1)] to-transparent blur-3xl'
-          animate={{
-            x: [0, 200, 0],
-            y: [-100, 100, -100],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-      </motion.div>
+      {renderBackground()}
       <div className='relative z-20 flex h-full flex-col'>
         <Navbar isFixed={false} />
         <div className='relative grid h-full grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8'>
@@ -169,7 +174,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                 <div className='h-px w-12 bg-gradient-to-r from-[#03E87A] to-transparent' />
               </div>
 
-              <p className='relative font-light text-lg leading-relaxed text-white/70'>
+              <p className='text-md relative font-light leading-relaxed text-white/70'>
                 Born from a family of hoteliers, GuestOS helps you focus on what
                 matters most - creating memorable experiences for your guests.
               </p>
@@ -180,7 +185,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className='text-white/90'>Learn More</span>
+                  <span className='text-sm text-white/90'>Learn More</span>
                   <motion.span
                     className='inline-block text-white/90'
                     animate={{ x: [0, 5, 0] }}
