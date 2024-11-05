@@ -16,93 +16,89 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary-green': '#03E87A', // Vibrant green for main CTAs and key accents
-        'primary-gray': '#1A1D24', // Rich gray for main backgrounds
-        'primary-white': '#FFFFFF', // Pure white for text on dark backgrounds
-
-        // Secondary Colors
-        'secondary-teal': '#6FC3C6', // Soft teal for supporting elements
-        'secondary-gold': '#FFB956', // Warm gold for luxury accents
-        'secondary-blue': '#2A4B6D', // Deep blue for trust elements
-
-        // Gray Scale (Cool-toned)
-        'gray-50': '#F8F9FA', // Lightest - for light mode backgrounds
-        'gray-100': '#F1F3F5', // Very light - for hover states in light mode
-        'gray-200': '#E9ECEF', // Light - for borders in light mode
-        'gray-300': '#DEE2E6', // Light medium - for disabled states
-        'gray-400': '#CED4DA', // Medium - for secondary text in light mode
-        'gray-500': '#ADB5BD', // True medium - for placeholder text
-        'gray-600': '#868E96', // Dark medium - for secondary text in dark mode
-        'gray-700': '#495057', // Dark - for main text in light mode
-        'gray-800': '#343A40', // Very dark - for main text in dark mode
-        'gray-900': '#212529', // Darkest - for headings in dark mode
-
-        // Background Variations
-        'bg-dark': {
-          DEFAULT: '#1A1D24', // Main dark background
-          lighter: '#22262F', // Card backgrounds
-          darker: '#15171C', // Deepest backgrounds
+        // Core Brand Colors
+        primary: {
+          gold: '#C6A87C', // Luxury gold for primary accents
+          cream: '#F5F1E8', // Warm cream for light backgrounds
+          navy: '#1C2B3E', // Deep navy for dark backgrounds
+          sand: '#E8DFD1', // Warm sand for secondary backgrounds
         },
 
-        // Accent Colors with Opacity Variants
+        // Accent Colors
         accent: {
-          green: {
-            DEFAULT: '#03E87A',
-            light: 'rgba(3,232,122,0.1)',
-            medium: 'rgba(3,232,122,0.5)',
-            dark: '#02C968',
-          },
           gold: {
-            DEFAULT: '#FFB956',
-            light: 'rgba(255,185,86,0.1)',
-            medium: 'rgba(255,185,86,0.5)',
-            dark: '#F5A43D',
+            DEFAULT: '#C6A87C',
+            light: 'rgba(198,168,124,0.1)',
+            medium: 'rgba(198,168,124,0.5)',
+            dark: '#B39468',
           },
           teal: {
-            DEFAULT: '#6FC3C6',
-            light: 'rgba(111,195,198,0.1)',
-            medium: 'rgba(111,195,198,0.5)',
-            dark: '#5BB1B4',
+            DEFAULT: '#5B8B8C',
+            light: 'rgba(91,139,140,0.1)',
+            medium: 'rgba(91,139,140,0.5)',
+            dark: '#4A7475',
+          },
+          burgundy: {
+            DEFAULT: '#8E4B55',
+            light: 'rgba(142,75,85,0.1)',
+            medium: 'rgba(142,75,85,0.5)',
+            dark: '#7A3F47',
           },
         },
 
-        // Functional Colors
+        // Neutral Scale (Warm-toned)
+        neutral: {
+          50: '#FDFBF7', // Lightest - warm white
+          100: '#F7F3ED', // Very light cream
+          200: '#EBE5DB', // Light sand
+          300: '#D8CFBF', // Medium light
+          400: '#BFB3A0', // Medium
+          500: '#A69883', // Medium dark
+          600: '#8C7D69', // Dark sand
+          700: '#6B5D4B', // Dark brown
+          800: '#4A3F32', // Very dark brown
+          900: '#2A241D', // Darkest - almost black
+        },
+
+        // Background Variations
+        bg: {
+          light: '#FDFBF7',
+          dark: '#1C2B3E',
+          cream: '#F5F1E8',
+          sand: '#E8DFD1',
+        },
+
+        // Surface Colors
+        surface: {
+          light: 'rgba(255,255,255,0.9)',
+          dark: 'rgba(28,43,62,0.95)',
+          gold: 'rgba(198,168,124,0.1)',
+          cream: 'rgba(245,241,232,0.95)',
+        },
+
+        // Status Colors
         status: {
-          success: '#12B76A',
-          warning: '#F59E0B',
-          error: '#F04438',
-          info: '#3B82F6',
+          success: '#5B8B8C', // Muted teal
+          warning: '#C6A87C', // Warm gold
+          error: '#8E4B55', // Muted burgundy
+          info: '#1C2B3E', // Navy
         },
 
         // Gradient Colors
         gradient: {
-          'green-start': 'rgba(3,232,122,0.12)',
-          'green-end': 'rgba(3,232,122,0.02)',
-          'gold-start': 'rgba(255,185,86,0.12)',
-          'gold-end': 'rgba(255,185,86,0.02)',
-          'teal-start': 'rgba(111,195,198,0.12)',
-          'teal-end': 'rgba(111,195,198,0.02)',
-        },
-
-        // Surface Colors (for cards, modals, etc.)
-        surface: {
-          light: '#FFFFFF',
-          dark: '#22262F',
-          accent: 'rgba(255,255,255,0.03)',
-        },
-
-        // Overlay Colors
-        overlay: {
-          light: 'rgba(255,255,255,0.1)',
-          dark: 'rgba(0,0,0,0.5)',
-          modal: 'rgba(26,29,36,0.8)',
+          'gold-start': 'rgba(198,168,124,0.2)',
+          'gold-end': 'rgba(198,168,124,0.05)',
+          'teal-start': 'rgba(91,139,140,0.2)',
+          'teal-end': 'rgba(91,139,140,0.05)',
+          'burgundy-start': 'rgba(142,75,85,0.2)',
+          'burgundy-end': 'rgba(142,75,85,0.05)',
         },
 
         // Glow Effects
         glow: {
-          green: 'rgba(3,232,122,0.15)',
-          gold: 'rgba(255,185,86,0.15)',
-          teal: 'rgba(111,195,198,0.15)',
+          gold: 'rgba(198,168,124,0.2)',
+          teal: 'rgba(91,139,140,0.2)',
+          burgundy: 'rgba(142,75,85,0.2)',
         },
       },
       backgroundColor: {

@@ -41,7 +41,7 @@ export default function Navbar({ isFixed = true }: NavbarProps) {
       animate='visible'
       className={`${
         isFixed ? 'fixed backdrop-blur-md' : 'absolute'
-      } left-0 right-0 z-50 flex w-full items-center justify-between bg-gradient-to-b from-bg-dark-darker/80 to-transparent px-4 py-6`}
+      } left-0 right-0 z-50 flex w-full items-center justify-between bg-gradient-to-b from-primary-navy/80 to-transparent px-4 py-6`}
     >
       <NavLogo />
       <DesktopMenu pathname={pathname} />
@@ -97,13 +97,13 @@ const NavItem = memo(({ item, pathname }: NavItemProps) => {
   return (
     <motion.div className='relative' variants={navItemVariants}>
       <Link href={item.href} className='relative'>
-        <span className='relative inline-block px-4 py-2 text-sm tracking-wide text-gray-100 transition-colors duration-300 hover:text-primary-green'>
+        <span className='relative inline-block px-4 py-2 text-sm tracking-wide text-neutral-100 transition-colors duration-300 hover:text-primary-gold'>
           {item.text}
           <AnimatePresence>
             {isActive && (
               <motion.div
                 layoutId='navbar-active'
-                className='absolute inset-0 rounded-full bg-accent-green-light'
+                className='absolute inset-0 rounded-full bg-accent-gold-light'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -113,7 +113,7 @@ const NavItem = memo(({ item, pathname }: NavItemProps) => {
         </span>
       </Link>
       <motion.div
-        className='absolute -bottom-1 left-0 right-0 h-px origin-left bg-gradient-to-r from-accent-green-light to-transparent'
+        className='absolute -bottom-1 left-0 right-0 h-px origin-left bg-gradient-to-r from-accent-gold-light to-transparent'
         initial={{ scaleX: 0 }}
         whileHover={{ scaleX: 1 }}
         transition={{ duration: 0.4 }}
@@ -130,14 +130,14 @@ const ContactButton = memo(() => (
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className='group flex items-center space-x-2 rounded-full border border-accent-green-light bg-accent-green-light/10 px-5 py-2 text-sm backdrop-blur-sm transition-all hover:border-accent-green-medium hover:bg-accent-green-light/20'
+        className='group flex items-center space-x-2 rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-5 py-2 text-sm backdrop-blur-sm transition-all hover:border-accent-gold-medium hover:bg-accent-gold-light/20'
       >
-        <span className='font-book tracking-wide text-primary-green'>
+        <span className='font-book tracking-wide text-primary-gold'>
           Book Demo
         </span>
         <motion.svg
           xmlns='http://www.w3.org/2000/svg'
-          className='h-4 w-4 stroke-primary-green transition-transform duration-300 group-hover:translate-x-0.5'
+          className='h-4 w-4 stroke-primary-gold transition-transform duration-300 group-hover:translate-x-0.5'
           fill='none'
           viewBox='0 0 24 24'
           strokeWidth={1.5}

@@ -93,7 +93,7 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
         >
           <motion.div
             variants={itemVariants}
-            className='inline-block rounded-full border border-primary-green/10 bg-primary-green/5 px-6 py-2 backdrop-blur-sm'
+            className='border-primary-green/10 bg-primary-green/5 inline-block rounded-full border px-6 py-2 backdrop-blur-sm'
           >
             <span className='bg-gradient-to-r from-white/90 to-white/70 bg-clip-text font-light text-sm text-transparent'>
               Our Vision
@@ -119,7 +119,7 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
           <div className='group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-[1px]'>
             {/* Card Glow Effects */}
             <div className='absolute inset-0'>
-              <div className='absolute inset-0 bg-gradient-to-r from-glow-green via-glow-teal to-transparent opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-80' />
+              <div className='from-glow-green absolute inset-0 bg-gradient-to-r via-glow-teal to-transparent opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-80' />
               <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.03] mix-blend-overlay' />
             </div>
 
@@ -141,7 +141,7 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
                 <motion.div
-                  className='absolute inset-0 bg-gradient-to-b from-primary-green/20 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300'
+                  className='from-primary-green/20 absolute inset-0 bg-gradient-to-b to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300'
                   whileHover={{ opacity: 0.5 }}
                 />
               </motion.div>
@@ -153,19 +153,19 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                     <h3 className='bg-gradient-to-r from-white to-white/80 bg-clip-text text-2xl font-medium text-transparent'>
                       Jessie Fischer
                     </h3>
-                    <div className='h-px flex-1 bg-gradient-to-r from-primary-green/20 to-transparent' />
+                    <div className='from-primary-green/20 h-px flex-1 bg-gradient-to-r to-transparent' />
                   </div>
-                  <p className='font-light tracking-wide text-primary-green/80'>
+                  <p className='text-primary-green/80 font-light tracking-wide'>
                     Founder & CEO
                   </p>
                   <blockquote className='relative font-light text-xl italic leading-relaxed text-white/80'>
-                    <span className='absolute -left-4 top-0 text-3xl text-primary-green/20'>
+                    <span className='text-primary-green/20 absolute -left-4 top-0 text-3xl'>
                       "
                     </span>
                     We're not just building another AI tool – we're crafting the
                     future of hospitality experiences, where technology enhances
                     rather than replaces human connection.
-                    <span className='absolute -bottom-4 right-0 text-3xl text-primary-green/20'>
+                    <span className='text-primary-green/20 absolute -bottom-4 right-0 text-3xl'>
                       "
                     </span>
                   </blockquote>
@@ -179,7 +179,7 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                     rel='noopener noreferrer'
                     className='group relative rounded-full bg-white/5 p-3 transition-all hover:bg-white/10'
                   >
-                    <div className='absolute inset-0 rounded-full bg-primary-green/20 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100' />
+                    <div className='bg-primary-green/20 absolute inset-0 rounded-full opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100' />
                     <LinkedIn
                       width={20}
                       height={20}
@@ -193,10 +193,10 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                   >
                     <span className='relative'>
                       View Open Positions
-                      <span className='absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-primary-green to-transparent transition-all group-hover:w-full' />
+                      <span className='from-primary-green absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r to-transparent transition-all group-hover:w-full' />
                     </span>
                     <motion.span
-                      className='inline-block text-primary-green'
+                      className='text-primary-green inline-block'
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
