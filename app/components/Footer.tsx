@@ -134,45 +134,28 @@ const FooterSection = ({
   title: string;
   links: { name: string; href: string }[];
 }) => (
-  <motion.div variants={itemVariants} className='relative font-book'>
-    <motion.div
-      className='absolute -left-4 top-0 h-8 w-1 rounded-full bg-gradient-to-b from-[#03E87A]/20 via-[#03E87A]/10 to-transparent'
-      variants={floatingVariants}
-      animate='animate'
-    />
-
-    <h3 className='relative mb-8 select-none text-[11px] font-medium tracking-[0.3em] text-white/40'>
+  <motion.div variants={itemVariants} className='font-book'>
+    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-white/50'>
       {title}
       <motion.div
-        className='absolute -bottom-3 left-0 h-px w-8 bg-gradient-to-r from-[#03E87A]/40 to-transparent'
+        className='mt-2 h-px w-12 bg-gradient-to-r from-[#03E87A]/30 to-transparent'
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
       />
     </h3>
-
-    <ul className='space-y-5'>
+    <ul className='space-y-4'>
       {links.map((link) => (
         <li key={link.name}>
           <Link
             href={link.href}
-            className='group relative inline-flex items-center text-sm tracking-wide text-white/40 transition-all duration-300 hover:text-white'
+            className='group relative inline-flex items-center text-sm tracking-wide text-white/40 transition-colors duration-300 hover:text-white'
           >
-            <motion.span
-              className='relative flex items-center gap-2'
-              whileHover={{ x: 6 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            >
-              <motion.span
-                className='h-1 w-1 rounded-full bg-[#03E87A]/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
-                layoutId={`dot-${link.name}`}
-              />
-              {link.name}
-              <motion.div
-                className='absolute -bottom-px left-0 h-[1px] w-0 bg-gradient-to-r from-[#03E87A]/60 via-[#03E87A]/30 to-transparent transition-all duration-300 group-hover:w-full'
-                layoutId={`underline-${link.name}`}
-              />
-            </motion.span>
+            <motion.div
+              className='absolute -left-4 h-4 w-0.5 rounded-full bg-[#03E87A]/0 transition-all duration-300 group-hover:bg-[#03E87A]/20'
+              layoutId={`marker-${link.name}`}
+            />
+            {link.name}
           </Link>
         </li>
       ))}
@@ -185,15 +168,14 @@ const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
     href={icon.href}
     target='_blank'
     rel='noopener noreferrer'
-    variants={itemVariants}
-    whileHover={{ scale: 1.05, rotate: 5 }}
+    className='group relative flex h-10 w-10 items-center justify-center rounded-lg border border-white/5 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-[#03E87A]/20 hover:bg-[#03E87A]/5'
+    whileHover={{ y: -2 }}
     whileTap={{ scale: 0.95 }}
-    className='group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-gradient-to-b from-white/[0.08] to-transparent backdrop-blur-sm transition-all duration-300 hover:border-[#03E87A]/20'
   >
-    <motion.div className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(3,232,122,0.15),transparent_70%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
-    <motion.div className='relative text-white/60 transition-colors duration-300 group-hover:text-white'>
-      <icon.Icon color='currentColor' />
-    </motion.div>
+    <icon.Icon
+      className='text-white transition-colors duration-300 group-hover:text-white'
+      color='currentColor'
+    />
   </motion.a>
 ));
 
@@ -226,59 +208,32 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <motion.footer
-      initial='hidden'
-      whileInView='visible'
-      viewport={{ once: true, margin: '-100px' }}
-      className='relative overflow-hidden bg-gradient-to-b from-black/90 to-black/95 backdrop-blur-sm'
-    >
-      {/* Enhanced gradient backgrounds */}
-      <motion.div className='absolute inset-0'>
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(3,232,122,0.03),transparent_70%)]' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,200,255,0.02),transparent_70%)]' />
-        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+    <motion.footer className='relative overflow-hidden bg-[#000000]/95'>
+      {/* Subtle grid background */}
+      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:64px_64px]' />
 
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className='absolute h-1 w-1 rounded-full bg-[#03E87A]/20'
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.5, 0.2],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </motion.div>
-
-      <div className='max-w-9xl mx-auto flex h-full flex-col justify-between px-6 py-20 sm:px-8 lg:px-12'>
+      <div className='relative mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-20'>
         <motion.div
           variants={containerVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
           className='grid gap-12 sm:grid-cols-2 lg:grid-cols-4'
         >
           <motion.div
             variants={itemVariants}
             className='col-span-full lg:col-span-1'
           >
-            <Link href='/' className='group inline-block'>
-              <span className='text-2xl font-book tracking-tight text-white/90 transition-all duration-300 group-hover:text-white'>
-                Guest<span className='font-light tracking-tighter'>OS</span>
+            <Link href='/' className='group inline-flex flex-col'>
+              <span className='text-2xl font-book tracking-tight text-white/90'>
+                Guest<span className='font-light'>OS</span>
               </span>
               <motion.div
-                className='mt-1 h-[1px] w-0 bg-gradient-to-r from-[#03E87A]/60 via-[#03E87A]/30 to-transparent transition-all duration-300 group-hover:w-full'
+                className='h-px w-0 bg-gradient-to-r from-[#03E87A]/40 to-transparent transition-all duration-300 group-hover:w-full'
                 layoutId='logo-underline'
               />
             </Link>
-            <p className='mt-8 max-w-sm text-sm leading-relaxed tracking-wide text-white/40'>
+            <p className='mt-6 max-w-sm text-sm leading-relaxed tracking-wide text-white/40'>
               Enhancing human connection through AI-powered hospitality
               experiences.
             </p>
@@ -292,22 +247,16 @@ const Footer: React.FC = () => {
             variants={itemVariants}
             className='col-span-full lg:col-span-1'
           >
-            <h3 className='mb-6 text-[11px] font-medium tracking-[0.3em] text-white/40'>
+            <h3 className='mb-6 text-xs font-medium tracking-[0.2em] text-white/50'>
               NEWSLETTER
               <motion.div
-                className='mt-2 h-px w-8 bg-gradient-to-r from-[#03E87A]/40 to-transparent'
+                className='mt-2 h-px w-12 bg-gradient-to-r from-[#03E87A]/30 to-transparent'
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
               />
             </h3>
             <form onSubmit={handleSubmit} className='group relative'>
-              <motion.div
-                className='absolute -inset-0.5 rounded-lg bg-gradient-to-r from-[#03E87A]/20 to-[#03E87A]/0 opacity-0 blur transition duration-1000 group-hover:opacity-100'
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
-
               <AnimatePresence mode='wait'>
                 {!showSuccess ? (
                   <motion.div className='relative'>
@@ -316,7 +265,7 @@ const Footer: React.FC = () => {
                       placeholder='Enter your email'
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className='h-12 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white backdrop-blur-sm transition-all duration-300 placeholder:text-white/30 hover:border-white/20 focus:border-[#03E87A]/30 focus:outline-none focus:ring-1 focus:ring-[#03E87A]/30'
+                      className='h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white backdrop-blur-sm transition-all duration-300 placeholder:text-white/30 hover:border-white/20 focus:border-[#03E87A]/30 focus:outline-none focus:ring-1 focus:ring-[#03E87A]/20'
                     />
                     <AnimatePresence>
                       {email && (
@@ -325,9 +274,9 @@ const Footer: React.FC = () => {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -10 }}
                           type='submit'
-                          className='absolute right-2 top-2 rounded-md bg-gradient-to-r from-[#03E87A]/20 to-[#03E87A]/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur-sm transition-all duration-300 hover:from-[#03E87A]/30 hover:to-[#03E87A]/20'
+                          className='absolute right-2 top-1.5 rounded-md bg-[#03E87A]/10 px-3 py-2 text-xs font-medium tracking-wide text-white backdrop-blur-sm transition-all duration-300 hover:bg-[#03E87A]/20'
                         >
-                          Subscribe →
+                          Subscribe
                         </motion.button>
                       )}
                     </AnimatePresence>
@@ -335,13 +284,13 @@ const Footer: React.FC = () => {
                 ) : (
                   <motion.div
                     variants={successVariants}
-                    className='flex h-12 items-center rounded-lg border border-white/20 bg-gradient-to-b from-white/[0.08] to-transparent px-4 text-sm text-white/90 backdrop-blur-sm'
+                    className='flex h-11 items-center rounded-lg border border-[#03E87A]/20 bg-[#03E87A]/5 px-4 text-sm text-white backdrop-blur-sm'
                   >
                     <span className='flex items-center'>
                       Thank you for subscribing
                       <motion.svg
                         xmlns='http://www.w3.org/2000/svg'
-                        className='ml-2 h-4 w-4 text-white/80'
+                        className='ml-2 h-4 w-4 text-[#03E87A]'
                         fill='none'
                         viewBox='0 0 24 24'
                         stroke='currentColor'
@@ -363,16 +312,16 @@ const Footer: React.FC = () => {
 
         <motion.div
           variants={containerVariants}
-          className='mt-16 flex flex-col items-center justify-between border-t border-white/[0.08] pt-8 sm:flex-row'
+          className='mt-16 flex flex-col items-center justify-between border-t border-white/[0.05] pt-8 sm:flex-row'
         >
-          <motion.div variants={itemVariants} className='flex space-x-4'>
+          <motion.div variants={itemVariants} className='flex space-x-3'>
             {SOCIAL_ICONS.map((icon) => (
               <SocialIcon key={icon.name} icon={icon} />
             ))}
           </motion.div>
           <motion.p
             variants={itemVariants}
-            className='mt-6 text-xs tracking-wider text-white/30 sm:mt-0'
+            className='mt-6 text-xs tracking-wide text-white/30 sm:mt-0'
           >
             &copy; {new Date().getFullYear()} GuestOS. All rights reserved.
           </motion.p>
