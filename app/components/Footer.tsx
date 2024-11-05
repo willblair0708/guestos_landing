@@ -135,10 +135,10 @@ const FooterSection = ({
   links: { name: string; href: string }[];
 }) => (
   <motion.div variants={itemVariants} className='font-book'>
-    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-white'>
+    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-gray-100'>
       {title}
       <motion.div
-        className='mt-2 h-px w-12 bg-gradient-to-r from-[#03E87A]/40 to-transparent'
+        className='mt-2 h-px w-12 bg-gradient-to-r from-accent-green-medium to-transparent'
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
@@ -149,10 +149,10 @@ const FooterSection = ({
         <li key={link.name}>
           <Link
             href={link.href}
-            className='group relative inline-flex items-center text-sm tracking-wide text-neutral-400 transition-colors duration-300 hover:text-[#03E87A]'
+            className='group relative inline-flex items-center text-sm tracking-wide text-gray-400 transition-colors duration-300 hover:text-primary-green'
           >
             <motion.div
-              className='absolute -left-4 h-4 w-0.5 rounded-full bg-[#03E87A]/20'
+              className='absolute -left-4 h-4 w-0.5 rounded-full bg-accent-green-light'
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
@@ -166,19 +166,15 @@ const FooterSection = ({
 );
 
 const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
-  <motion.a
+  <Link
     href={icon.href}
     target='_blank'
     rel='noopener noreferrer'
-    className='group relative flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900 shadow-sm transition-all duration-300 hover:border-[#03E87A]/30 hover:bg-[#03E87A]/5'
-    whileHover={{ y: -2 }}
-    whileTap={{ scale: 0.95 }}
+    className='group relative rounded-full bg-surface-accent p-2.5 transition-all hover:bg-white/10'
   >
-    <icon.Icon
-      className='text-neutral-400 transition-colors duration-300 group-hover:text-[#03E87A]'
-      color='currentColor'
-    />
-  </motion.a>
+    <div className='absolute inset-0 rounded-full bg-glow-green opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+    <icon.Icon className='relative h-4 w-4 text-gray-400 transition-colors duration-300 group-hover:text-primary-green' />
+  </Link>
 ));
 
 const Footer: React.FC = () => {
@@ -210,11 +206,8 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <motion.footer className='relative overflow-hidden bg-neutral-900'>
-      {/* Subtle grid background */}
-      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:64px_64px]' />
-
-      <div className='max-w-9xl relative mx-auto px-6 py-16 sm:px-8 lg:px-12 lg:py-20'>
+    <motion.footer className='relative overflow-hidden bg-bg-dark-darker px-5 py-20 sm:px-8'>
+      <div className='relative z-10 mx-auto max-w-7xl'>
         <motion.div
           variants={containerVariants}
           initial='hidden'
@@ -314,7 +307,7 @@ const Footer: React.FC = () => {
 
         <motion.div
           variants={containerVariants}
-          className='mt-16 flex flex-col items-center justify-between border-t border-neutral-800 pt-8 sm:flex-row'
+          className='mt-16 flex flex-col items-center justify-between border-t border-gray-800 pt-8 sm:flex-row'
         >
           <motion.div variants={itemVariants} className='flex space-x-3'>
             {SOCIAL_ICONS.map((icon) => (
@@ -323,7 +316,7 @@ const Footer: React.FC = () => {
           </motion.div>
           <motion.p
             variants={itemVariants}
-            className='mt-6 text-xs tracking-wide text-neutral-500 sm:mt-0'
+            className='mt-6 text-xs tracking-wide text-gray-600 sm:mt-0'
           >
             &copy; {new Date().getFullYear()} GuestOS. All rights reserved.
           </motion.p>

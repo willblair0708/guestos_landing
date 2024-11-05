@@ -40,8 +40,8 @@ export default function Navbar({ isFixed = true }: NavbarProps) {
       initial='hidden'
       animate='visible'
       className={`${
-        isFixed ? 'fixed backdrop-blur-sm' : 'absolute'
-      } left-0 right-0 z-50 flex w-full items-center justify-between px-4 py-6`}
+        isFixed ? 'fixed backdrop-blur-md' : 'absolute'
+      } left-0 right-0 z-50 flex w-full items-center justify-between bg-gradient-to-b from-bg-dark-darker/80 to-transparent px-4 py-6`}
     >
       <NavLogo />
       <DesktopMenu pathname={pathname} />
@@ -83,49 +83,44 @@ const DesktopMenu = memo(({ pathname }: { pathname: string }) => (
 
 DesktopMenu.displayName = 'DesktopMenu';
 
-const NavItem = memo(
-  ({
-    item,
-    pathname,
-  }: {
-    item: (typeof navItems)[number];
-    pathname: string;
-  }) => {
-    const isActive = pathname === item.href;
+interface NavItemProps {
+  item: {
+    text: string;
+    href: string;
+  };
+  pathname: string;
+}
 
-    return (
-      <motion.div variants={navItemVariants} className='group relative'>
-        <Link
-          href={item.href}
-          className='text-sm font-book tracking-wide text-white/90 transition-colors hover:text-white'
-          scroll={false}
-        >
-          <span className='flex items-center'>
-            {item.text}
-            <AnimatePresence mode='wait'>
-              {isActive && (
-                <motion.div
-                  className='absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-white via-white/80 to-white/30'
-                  layoutId='activeIndicator'
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  exit={{ scaleX: 0 }}
-                  transition={{ duration: 0.3, ease: [0.6, 0.05, 0.01, 0.9] }}
-                />
-              )}
-            </AnimatePresence>
-          </span>
-        </Link>
-        <motion.div
-          className='absolute -bottom-1 left-0 right-0 h-px origin-left bg-white/20'
-          initial={{ scaleX: 0 }}
-          whileHover={{ scaleX: 1 }}
-          transition={{ duration: 0.4 }}
-        />
-      </motion.div>
-    );
-  }
-);
+const NavItem = memo(({ item, pathname }: NavItemProps) => {
+  const isActive = pathname === item.href;
+
+  return (
+    <motion.div className='relative' variants={navItemVariants}>
+      <Link href={item.href} className='relative'>
+        <span className='relative inline-block px-4 py-2 text-sm tracking-wide text-gray-100 transition-colors duration-300 hover:text-primary-green'>
+          {item.text}
+          <AnimatePresence>
+            {isActive && (
+              <motion.div
+                layoutId='navbar-active'
+                className='absolute inset-0 rounded-full bg-accent-green-light'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              />
+            )}
+          </AnimatePresence>
+        </span>
+      </Link>
+      <motion.div
+        className='absolute -bottom-1 left-0 right-0 h-px origin-left bg-gradient-to-r from-accent-green-light to-transparent'
+        initial={{ scaleX: 0 }}
+        whileHover={{ scaleX: 1 }}
+        transition={{ duration: 0.4 }}
+      />
+    </motion.div>
+  );
+});
 
 NavItem.displayName = 'NavItem';
 
@@ -135,12 +130,14 @@ const ContactButton = memo(() => (
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className='group flex items-center space-x-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/20'
+        className='group flex items-center space-x-2 rounded-full border border-accent-green-light bg-accent-green-light/10 px-5 py-2 text-sm backdrop-blur-sm transition-all hover:border-accent-green-medium hover:bg-accent-green-light/20'
       >
-        <span className='font-book tracking-wide text-white'>Book Demo</span>
+        <span className='font-book tracking-wide text-primary-green'>
+          Book Demo
+        </span>
         <motion.svg
           xmlns='http://www.w3.org/2000/svg'
-          className='h-4 w-4 stroke-white transition-transform duration-300 group-hover:translate-x-0.5'
+          className='h-4 w-4 stroke-primary-green transition-transform duration-300 group-hover:translate-x-0.5'
           fill='none'
           viewBox='0 0 24 24'
           strokeWidth={1.5}
@@ -155,8 +152,6 @@ const ContactButton = memo(() => (
     </Link>
   </motion.div>
 ));
-
-ContactButton.displayName = 'ContactButton';
 
 const MobileMenuButton = memo(({ toggleMenu }: { toggleMenu: () => void }) => (
   <motion.button
