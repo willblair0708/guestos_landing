@@ -63,7 +63,7 @@ export default function HeroSection({
           variants={itemVariants}
           initial='initial'
           animate='animate'
-          className='max-w-4xl text-left text-hero font-book'
+          className='max-w-4xl text-left font-light sm:text-4xl lg:text-5xl' // Changed to smaller text
         >
           A Long-Standing Family Affair.
         </motion.h1>
