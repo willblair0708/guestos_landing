@@ -108,6 +108,24 @@ const successVariants = {
   },
 };
 
+const hoverScaleVariants = {
+  hover: {
+    scale: 1.02,
+    transition: { type: 'spring', stiffness: 400, damping: 17 },
+  },
+};
+
+const floatingVariants = {
+  animate: {
+    y: [0, -8, 0],
+    transition: {
+      duration: 5,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
+
 // Components
 const FooterSection = ({
   title,
@@ -116,11 +134,24 @@ const FooterSection = ({
   title: string;
   links: { name: string; href: string }[];
 }) => (
-  <motion.div variants={itemVariants} className='font-book'>
-    <h3 className='mb-6 select-none text-[11px] font-medium tracking-[0.2em] text-white/40'>
+  <motion.div variants={itemVariants} className='relative font-book'>
+    <motion.div
+      className='absolute -left-4 top-0 h-8 w-1 rounded-full bg-gradient-to-b from-[#03E87A]/20 via-[#03E87A]/10 to-transparent'
+      variants={floatingVariants}
+      animate='animate'
+    />
+
+    <h3 className='relative mb-8 select-none text-[11px] font-medium tracking-[0.3em] text-white/40'>
       {title}
+      <motion.div
+        className='absolute -bottom-3 left-0 h-px w-8 bg-gradient-to-r from-[#03E87A]/40 to-transparent'
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+      />
     </h3>
-    <ul className='space-y-4'>
+
+    <ul className='space-y-5'>
       {links.map((link) => (
         <li key={link.name}>
           <Link
@@ -128,10 +159,14 @@ const FooterSection = ({
             className='group relative inline-flex items-center text-sm tracking-wide text-white/40 transition-all duration-300 hover:text-white'
           >
             <motion.span
-              className='relative flex items-center'
+              className='relative flex items-center gap-2'
               whileHover={{ x: 6 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             >
+              <motion.span
+                className='h-1 w-1 rounded-full bg-[#03E87A]/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
+                layoutId={`dot-${link.name}`}
+              />
               {link.name}
               <motion.div
                 className='absolute -bottom-px left-0 h-[1px] w-0 bg-gradient-to-r from-[#03E87A]/60 via-[#03E87A]/30 to-transparent transition-all duration-300 group-hover:w-full'
@@ -151,11 +186,11 @@ const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
     target='_blank'
     rel='noopener noreferrer'
     variants={itemVariants}
-    whileHover={{ scale: 1.05 }}
+    whileHover={{ scale: 1.05, rotate: 5 }}
     whileTap={{ scale: 0.95 }}
-    className='group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-gradient-to-b from-white/[0.08] to-transparent backdrop-blur-sm transition-all duration-300 hover:border-white/20'
+    className='group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-gradient-to-b from-white/[0.08] to-transparent backdrop-blur-sm transition-all duration-300 hover:border-[#03E87A]/20'
   >
-    <motion.div className='absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+    <motion.div className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(3,232,122,0.15),transparent_70%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
     <motion.div className='relative text-white/60 transition-colors duration-300 group-hover:text-white'>
       <icon.Icon color='currentColor' />
     </motion.div>
@@ -197,19 +232,35 @@ const Footer: React.FC = () => {
       viewport={{ once: true, margin: '-100px' }}
       className='relative overflow-hidden bg-gradient-to-b from-black/90 to-black/95 backdrop-blur-sm'
     >
-      {/* Modern gradient backgrounds */}
-      <motion.div
-        className='absolute inset-0'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-      >
+      {/* Enhanced gradient backgrounds */}
+      <motion.div className='absolute inset-0'>
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(3,232,122,0.03),transparent_70%)]' />
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(100,200,255,0.02),transparent_70%)]' />
         <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className='absolute h-1 w-1 rounded-full bg-[#03E87A]/20'
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: Math.random() * 3 + 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
       </motion.div>
 
-      <div className='max-w-9xl mx-auto flex h-full flex-col justify-between px-6 py-16 sm:px-8 lg:px-12'>
+      <div className='max-w-9xl mx-auto flex h-full flex-col justify-between px-6 py-20 sm:px-8 lg:px-12'>
         <motion.div
           variants={containerVariants}
           className='grid gap-12 sm:grid-cols-2 lg:grid-cols-4'
@@ -241,10 +292,22 @@ const Footer: React.FC = () => {
             variants={itemVariants}
             className='col-span-full lg:col-span-1'
           >
-            <h3 className='mb-6 text-[11px] font-medium tracking-[0.2em] text-white/40'>
+            <h3 className='mb-6 text-[11px] font-medium tracking-[0.3em] text-white/40'>
               NEWSLETTER
+              <motion.div
+                className='mt-2 h-px w-8 bg-gradient-to-r from-[#03E87A]/40 to-transparent'
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+              />
             </h3>
-            <form onSubmit={handleSubmit} className='relative'>
+            <form onSubmit={handleSubmit} className='group relative'>
+              <motion.div
+                className='absolute -inset-0.5 rounded-lg bg-gradient-to-r from-[#03E87A]/20 to-[#03E87A]/0 opacity-0 blur transition duration-1000 group-hover:opacity-100'
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
+
               <AnimatePresence mode='wait'>
                 {!showSuccess ? (
                   <motion.div className='relative'>
