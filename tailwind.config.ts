@@ -28,7 +28,8 @@ export default {
         // Primary colors
         'primary-black': '#1A1A1A',
         'primary-white': '#FFFFFF',
-        'primary-blue': '#1019EC',
+        'primary-blue': '#002E5D',
+        'primary-gold': '#FFC857',
 
         // Secondary colors
         'dark-blue': '#1A1EBF',
@@ -61,6 +62,14 @@ export default {
           light: '#FFFFFF',
         },
         // You can add more custom colors if needed
+
+        // Accent colors
+        'accent-teal': '#6FC3C6',
+        'accent-gray': '#5D737E',
+
+        // Background colors
+        'bg-white': '#F6F5F5',
+        'bg-beige': '#F0E5D8',
       },
       backgroundColor: {
         white: '#FFFFFF',
