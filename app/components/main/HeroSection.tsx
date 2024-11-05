@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 import {
@@ -17,11 +18,6 @@ interface HeroSectionProps {
 
 export default function HeroSection({ id, isMobile }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [isLowBandwidth, setIsLowBandwidth] = useState(false);
-  const [videoError, setVideoError] = useState(false);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const { scrollYProgress } = useScroll({
@@ -54,102 +50,6 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useEffect(() => {
-    const checkBandwidth = async () => {
-      if ('connection' in navigator) {
-        const conn = (navigator as any).connection;
-        if (
-          conn.effectiveType === '2g' ||
-          conn.effectiveType === 'slow-2g' ||
-          conn.saveData
-        ) {
-          setIsLowBandwidth(true);
-        }
-      }
-    };
-    checkBandwidth();
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Reset video playback rate for smoother playback
-    video.playbackRate = 0.8;
-
-    // Optimize video loading
-    const loadVideo = async () => {
-      try {
-        video.preload = isLowBandwidth ? 'metadata' : 'auto';
-
-        // Load lower quality version for low bandwidth
-        if (isLowBandwidth) {
-          video
-            .querySelector('source[type="video/webm"]')
-            ?.setAttribute('src', '/assets/main/main_hero_low.webm');
-          video
-            .querySelector('source[type="video/mp4"]')
-            ?.setAttribute('src', '/assets/main/main_hero_low.mp4');
-        }
-
-        await video.load();
-        setIsVideoLoaded(true);
-
-        if (document.visibilityState === 'visible') {
-          await video.play();
-          setIsVideoPlaying(true);
-        }
-      } catch (error) {
-        console.warn('Video autoplay failed:', error);
-        setVideoError(true);
-      }
-    };
-
-    const handleError = () => {
-      console.warn('Video error occurred');
-      setVideoError(true);
-    };
-
-    const handleVisibilityChange = async () => {
-      if (document.visibilityState === 'visible') {
-        try {
-          await video.play();
-          setIsVideoPlaying(true);
-        } catch (error) {
-          console.warn('Video play failed:', error);
-        }
-      } else {
-        video.pause();
-        setIsVideoPlaying(false);
-      }
-    };
-
-    const handleLoadedData = () => {
-      setIsVideoLoaded(true);
-      if (document.visibilityState === 'visible') {
-        video.play().catch(console.warn);
-      }
-    };
-
-    // Event listeners
-    video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('error', handleError);
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleVisibilityChange);
-
-    loadVideo();
-
-    return () => {
-      video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('error', handleError);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleVisibilityChange);
-      video.pause();
-      video.src = '';
-      video.load();
-    };
-  }, [isLowBandwidth]);
-
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -174,31 +74,19 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {!isLowBandwidth && !videoError ? (
-          <video
-            ref={videoRef}
-            className='h-full w-full object-cover'
-            loop
-            muted
-            playsInline
-            disablePictureInPicture
-            poster='/assets/main/main_hero_poster.webp'
-            style={{
-              willChange: 'transform',
-              transform: 'translate3d(0, 0, 0)',
-            }}
-          >
-            <source src='/assets/main/main_hero.webm' type='video/webm' />
-            <source src='/assets/main/main_hero.mp4' type='video/mp4' />
-            Your browser does not support the video tag.
-          </video>
-        ) : (
-          <img
-            src='/assets/main/main_hero_poster.webp'
-            alt='Hero background'
-            className='h-full w-full object-cover'
-          />
-        )}
+        <Image
+          src='/assets/main/main_hero_poster.png'
+          alt='Hero background'
+          fill
+          priority
+          quality={90}
+          className='h-full w-full object-cover'
+          sizes='100vw'
+          style={{
+            willChange: 'transform',
+            transform: 'translate3d(0, 0, 0)',
+          }}
+        />
         <div className='absolute inset-0 bg-black opacity-50'></div>
       </motion.div>
       <motion.div
