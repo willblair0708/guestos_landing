@@ -135,10 +135,10 @@ const FooterSection = ({
   links: { name: string; href: string }[];
 }) => (
   <motion.div variants={itemVariants} className='font-book'>
-    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-neutral-200'>
+    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-gray-100'>
       {title}
       <motion.div
-        className='mt-2 h-px w-12 bg-gradient-to-r from-primary-gold to-transparent'
+        className='from-accent-green-medium mt-2 h-px w-12 bg-gradient-to-r to-transparent'
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
@@ -149,10 +149,10 @@ const FooterSection = ({
         <li key={link.name}>
           <Link
             href={link.href}
-            className='group relative inline-flex items-center text-sm tracking-wide text-neutral-400 transition-colors duration-300 hover:text-primary-gold'
+            className='hover:text-primary-green group relative inline-flex items-center text-sm tracking-wide text-gray-400 transition-colors duration-300'
           >
             <motion.div
-              className='absolute -left-4 h-4 w-0.5 rounded-full bg-accent-gold-light'
+              className='bg-accent-green-light absolute -left-4 h-4 w-0.5 rounded-full'
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
@@ -170,10 +170,10 @@ const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
     href={icon.href}
     target='_blank'
     rel='noopener noreferrer'
-    className='group relative rounded-full bg-surface-gold p-2.5 transition-all hover:bg-white/5'
+    className='bg-surface-accent group relative rounded-full p-2.5 transition-all hover:bg-white/10'
   >
-    <div className='absolute inset-0 rounded-full bg-glow-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
-    <icon.Icon className='relative h-4 w-4 text-neutral-400 transition-colors duration-300 group-hover:text-primary-gold' />
+    <div className='bg-glow-green absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+    <icon.Icon className='group-hover:text-primary-green relative h-4 w-4 text-gray-400 transition-colors duration-300' />
   </Link>
 ));
 
@@ -206,7 +206,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <motion.footer className='relative overflow-hidden bg-primary-navy px-5 py-20 sm:px-8'>
+    <motion.footer className='bg-bg-dark-darker relative overflow-hidden px-5 py-20 sm:px-8'>
       <div className='relative z-10 mx-auto max-w-7xl'>
         <motion.div
           variants={containerVariants}
@@ -307,7 +307,7 @@ const Footer: React.FC = () => {
 
         <motion.div
           variants={containerVariants}
-          className='mt-16 flex flex-col items-center justify-between border-t border-neutral-800 pt-8 sm:flex-row'
+          className='mt-16 flex flex-col items-center justify-between border-t border-gray-800 pt-8 sm:flex-row'
         >
           <motion.div variants={itemVariants} className='flex space-x-3'>
             {SOCIAL_ICONS.map((icon) => (
@@ -316,7 +316,7 @@ const Footer: React.FC = () => {
           </motion.div>
           <motion.p
             variants={itemVariants}
-            className='mt-6 text-xs tracking-wide text-neutral-600 sm:mt-0'
+            className='mt-6 text-xs tracking-wide text-gray-600 sm:mt-0'
           >
             &copy; {new Date().getFullYear()} GuestOS. All rights reserved.
           </motion.p>
