@@ -135,7 +135,7 @@ const FooterSection = ({
   links: { name: string; href: string }[];
 }) => (
   <motion.div variants={itemVariants} className='font-book'>
-    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-neutral-400'>
+    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-white'>
       {title}
       <motion.div
         className='mt-2 h-px w-12 bg-gradient-to-r from-[#03E87A]/40 to-transparent'
@@ -172,7 +172,10 @@ const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
     whileHover={{ y: -2 }}
     whileTap={{ scale: 0.95 }}
   >
-    <icon.Icon className='text-neutral-400 transition-colors duration-300 group-hover:text-[#03E87A]' />
+    <icon.Icon
+      className='text-neutral-400 transition-colors duration-300 group-hover:text-[#03E87A]'
+      color='currentColor'
+    />
   </motion.a>
 ));
 
@@ -209,7 +212,7 @@ const Footer: React.FC = () => {
       {/* Subtle grid background */}
       <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:64px_64px]' />
 
-      <div className='relative mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-20'>
+      <div className='max-w-9xl relative mx-auto px-6 py-16 sm:px-8 lg:px-12 lg:py-20'>
         <motion.div
           variants={containerVariants}
           initial='hidden'
@@ -244,7 +247,7 @@ const Footer: React.FC = () => {
             variants={itemVariants}
             className='col-span-full lg:col-span-1'
           >
-            <h3 className='mb-6 text-xs font-medium tracking-[0.2em] text-neutral-500'>
+            <h3 className='mb-6 text-xs font-medium tracking-[0.2em] text-white'>
               NEWSLETTER
               <motion.div
                 className='mt-2 h-px w-12 bg-gradient-to-r from-neutral-300 to-transparent'
