@@ -120,10 +120,10 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className='relative flex items-center gap-3'>
-                    <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
+                    <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
                     <span className='relative'>
                       Welcome to the Future of Hospitality
-                      <div className='absolute inset-0 animate-[shimmer_3s_infinite] bg-gradient-to-r from-transparent via-white/[0.07] to-transparent' />
+                      <div className='absolute inset-0 animate-[shimmer_3s_infinite] to-transparent' />
                     </span>
                   </div>
                 </motion.span>
@@ -171,7 +171,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                     Enhancing Human Connection
                   </h2>
                 </div>
-                <div className='h-px w-12 bg-gradient-to-r from-[#03E87A] to-transparent' />
+                <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' />
               </div>
 
               <p className='text-md relative font-light leading-relaxed text-white/70'>
@@ -181,14 +181,13 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
 
               <div className='relative flex items-center justify-between'>
                 <motion.button
-                  className='group flex items-center space-x-3 rounded-full border border-[#03E87A]/10 bg-[#03E87A]/5 px-6 py-3 backdrop-blur-sm transition-all hover:border-[#03E87A]/20 hover:bg-[#03E87A]/10'
+                  className='group flex items-center space-x-3 rounded-full border border-primary-gold/10 bg-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all hover:border-primary-gold/20 hover:bg-primary-gold/10'
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <span className='text-sm text-white/90'>Learn More</span>
                   <motion.span
                     className='inline-block text-white/90'
-                    animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   >
                     →
