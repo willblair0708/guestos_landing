@@ -174,7 +174,7 @@ const FormInput = ({
   return (
     <div className='relative flex w-full flex-col items-start justify-end gap-4'>
       <motion.div
-        className='relative w-full'
+        className='relative w-full rounded-xl'
         initial='initial'
         animate={isFocused ? 'focus' : 'initial'}
         whileHover='hover'
@@ -484,11 +484,28 @@ export default function HeroSection({
                 {isSubmitting ? 'Sending...' : 'Request Demo'}
               </span>
               {!isSubmitting && (
-                <ArrowIcon
-                  className='rotate-[-90deg]'
-                  color='black'
-                  size={16}
-                />
+                <svg
+                  width='20'
+                  height='20'
+                  viewBox='0 0 20 20'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M4.16669 10H15.8334'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M10.8334 5L15.8334 10L10.8334 15'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
               )}
             </motion.button>
           </form>
