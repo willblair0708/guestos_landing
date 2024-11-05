@@ -85,7 +85,13 @@ export default {
         '7xl': ['4.5rem', { lineHeight: '1' }],
         '8xl': ['6rem', { lineHeight: '1' }],
         '9xl': ['8rem', { lineHeight: '1' }],
-        hero: ['36px', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        hero: [
+          'clamp(2.5rem, 8vw, 5rem)',
+          {
+            lineHeight: '1.1',
+            letterSpacing: '-0.02em',
+          },
+        ],
       },
       fontWeight: {
         thin: '100',
@@ -230,6 +236,9 @@ export default {
         xl: '12px',
         '2xl': '16px',
         '3xl': '24px',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
     },
   },
