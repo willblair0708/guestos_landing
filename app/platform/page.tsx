@@ -13,18 +13,22 @@ const HeroSection = dynamic(
   () => import('../components/platform/HeroSection'),
   { ssr: false }
 );
-// const LumenSection = dynamic(
-//   () => import('../components/products/LumenSection'),
-//   { ssr: false }
-// );
-// const SeraphSection = dynamic(
-//   () => import('../components/products/SeraphSection'),
-//   { ssr: false }
-// );
-// const ProductNavbar = dynamic(
-//   () => import('../components/products/ProductNavbar'),
-//   { ssr: false }
-// );
+const LumenSection = dynamic(
+  () => import('../components/platform/LumenSection'),
+  { ssr: false }
+);
+const SeraphSection = dynamic(
+  () => import('../components/platform/SeraphSection'),
+  { ssr: false }
+);
+const DynamoSection = dynamic(
+  () => import('../components/platform/DynamoSection'),
+  { ssr: false }
+);
+const ProductNavbar = dynamic(
+  () => import('../components/platform/ProductNavbar'),
+  { ssr: false }
+);
 
 export default function ProductsPage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -118,7 +122,7 @@ export default function ProductsPage() {
               }}
             />
 
-            {/* <ProductSectionWrapper onInView={() => setCurrentProduct('Dynamo')}>
+            <ProductSectionWrapper onInView={() => setCurrentProduct('Dynamo')}>
               <DynamoSection id='dynamo-section' bgColor='#18181B' />
             </ProductSectionWrapper>
             <ProductSectionWrapper onInView={() => setCurrentProduct('Lumen')}>
@@ -126,7 +130,7 @@ export default function ProductsPage() {
             </ProductSectionWrapper>
             <ProductSectionWrapper onInView={() => setCurrentProduct('Seraph')}>
               <SeraphSection id='seraph-section' bgColor='#18181B' />
-            </ProductSectionWrapper> */}
+            </ProductSectionWrapper>
           </motion.main>
         </motion.div>
       </AnimatePresence>
