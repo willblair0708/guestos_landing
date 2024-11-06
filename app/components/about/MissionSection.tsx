@@ -188,27 +188,28 @@ export default function MissionSection({
             className='relative lg:h-[800px]'
           >
             <div className='sticky top-8 h-full w-full'>
-              <div className='group relative h-full w-full overflow-hidden rounded-3xl bg-gray-100 shadow-xl transition-all duration-500 hover:shadow-2xl'>
+              <div className='group relative h-full w-full overflow-hidden rounded-3xl bg-neutral-100 shadow-xl transition-all duration-500 hover:shadow-2xl'>
                 <motion.div
-                  className='absolute inset-0 bg-gradient-to-br from-primary-gold/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100'
+                  className='absolute inset-0 bg-gradient-to-br from-gradient-gold-start to-gradient-gold-end opacity-0 transition-opacity duration-500 group-hover:opacity-100'
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.1 }}
+                  animate={{ opacity: 0.2 }}
                 />
                 <Image
-                  src='/assets/about/story.png'
+                  src='/assets/about/story.jpg'
                   alt='Yosemite View Lodge in the 1980s'
                   fill
                   className='object-cover transition-transform duration-700 group-hover:scale-105'
                   sizes='(max-width: 768px) 100vw, 50vw'
+                  style={{ objectPosition: '42% center' }}
                 />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20' />
+                <div className='absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-transparent to-neutral-900/20' />
                 <div className='absolute bottom-0 left-0 right-0 p-8'>
-                  <p className='font-light text-sm tracking-wide text-white/90'>
-                    Yosemite View Lodge, Summer of 1986
+                  <p className='font-light text-sm tracking-wide text-neutral-50'>
+                    Yosemite View Lodge, Summer of 1996
                   </p>
                 </div>
-                <div className='absolute right-4 top-4 rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md'>
-                  <span className='font-light text-xs tracking-wider text-white/90'>
+                <div className='absolute right-4 top-4 rounded-full border border-accent-gold-light bg-surface-gold px-4 py-2 backdrop-blur-md'>
+                  <span className='font-light text-xs tracking-wider text-primary-gold'>
                     Historical Photo
                   </span>
                 </div>
