@@ -272,7 +272,7 @@ const Footer: React.FC = () => {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -10 }}
                           type='submit'
-                          className='absolute right-2 top-1.5 rounded-md bg-accent-gold-light/10 px-3 py-2 text-xs font-medium tracking-wide text-accent-gold-light transition-all duration-300 hover:bg-accent-gold-light/20'
+                          className='absolute right-2 top-1.5 rounded-md bg-accent-gold-light/10 px-3 py-2 text-xs font-medium tracking-wide text-white transition-all duration-300 hover:bg-accent-gold-light/20'
                         >
                           Subscribe
                         </motion.button>
