@@ -12,7 +12,7 @@ export default function DynamoSection({ id, bgColor }: DynamoSectionProps) {
       bgColor={bgColor}
       productName='Hotel Operations'
       productDescription='Comprehensive AI solutions for hotels and resorts.'
-      imageSrc='/assets/products/dynamo.webp'
+      imageSrc='/assets/about/about_header.webp'
       features={[
         {
           title: 'AI CONCIERGE',

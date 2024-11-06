@@ -19,6 +19,11 @@ interface ProductSectionProps {
 const PRODUCT_DESCRIPTION =
   'Too many people make decisions based on no data, or worse, bad data. Meet a family of simulation engines, built by our researchers alongside our category-defining partners. Engineered to provide clairvoyance for those who need it most.';
 
+// Update gradient constants
+const ACCENT_GRADIENT =
+  'from-primary-gold/10 via-primary-gold/5 to-transparent';
+const ACCENT_BORDER = 'border-white/10';
+
 export default function ProductSection({
   id,
   bgColor,
@@ -75,17 +80,17 @@ export default function ProductSection({
         {id === 'dynamo-section' && (
           <motion.h3
             variants={itemVariants}
-            className='mb-32 max-w-md px-4 text-left text-[15px] font-book leading-[18px] tracking-[-0.02em] text-gray-400 sm:px-0'
+            className='relative mb-32 max-w-md rounded-3xl border border-white/5 bg-gradient-to-br from-surface-dark via-black/80 to-black/60 px-8 py-6 text-left text-base font-book leading-relaxed tracking-[-0.02em] text-neutral-300 shadow-lg backdrop-blur-xl transition-all duration-700 hover:border-white/10 hover:shadow-xl sm:px-8'
           >
             {PRODUCT_DESCRIPTION}
           </motion.h3>
         )}
 
-        <div className='flex min-h-[900px] w-full flex-col items-stretch bg-[#303036] md:flex-row'>
+        <div className='flex min-h-[900px] w-full flex-col items-stretch overflow-hidden rounded-3xl bg-gradient-to-br from-black via-neutral-900/95 to-neutral-900 shadow-2xl md:flex-row'>
           {/* Image Section */}
           <motion.div
             variants={itemVariants}
-            className='relative h-[400px] w-full md:h-auto md:w-1/2'
+            className='group relative h-[400px] w-full overflow-hidden md:h-auto md:w-1/2'
           >
             <div className='relative h-full w-full'>
               <Image
@@ -96,8 +101,10 @@ export default function ProductSection({
                 quality={90}
                 priority
                 placeholder='blur'
-                blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 5'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='.5'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='1 1'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter='url(%23b)' x='0' y='0' height='100%25' width='100%25' href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMUlEQVQImWNkYGBg+P///38GBgYGRhgHRMAViKEKwCXQFcBVIivAUIDMQVGAzIFLAAC5WBKGV8FhOAAAAABJRU5ErkJggg=='%3E%3C/image%3E%3C/svg%3E"
+                blurDataURL='...'
+                className='rounded-3xl transition-all duration-700 will-change-transform'
               />
+              <div className='absolute inset-0 bg-gradient-to-t from-neutral-900/40 via-transparent to-transparent' />
             </div>
           </motion.div>
 
@@ -106,32 +113,41 @@ export default function ProductSection({
             variants={itemVariants}
             className='flex w-full flex-col justify-center p-8 sm:p-16 md:w-1/2'
           >
-            <h2 className='mb-[30px] font-light font-lt text-[64px] leading-tight'>
+            <h2 className='mb-[30px] bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light font-pantheon text-[64px] leading-tight tracking-tight text-transparent'>
               {productName}
             </h2>
-            <h2 className='text-2xl font-book leading-tight tracking-tight text-[#C6C4C2]'>
+            <h2 className='text-2xl font-book leading-snug tracking-tight text-neutral-200'>
               {productDescription}
             </h2>
             <div className='mt-[100px] sm:mt-[200px]'>
-              <ul className='space-y-8'>
+              <ul className='space-y-6'>
                 {features.map((feature, index) => (
-                  <motion.li key={index} variants={itemVariants}>
-                    <div className='mb-2 h-px w-full bg-white opacity-20'></div>
-                    <div className='flex flex-col items-start sm:flex-row'>
+                  <motion.li
+                    key={index}
+                    variants={itemVariants}
+                    className='group relative overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-6 shadow-lg transition-all duration-500 hover:border-white/10 hover:from-white/[0.03] hover:to-white/[0.01] hover:shadow-xl'
+                  >
+                    <div className='group-hover:via-white/2 absolute inset-0 bg-gradient-to-r from-primary-gold/0 via-primary-gold/0 to-primary-gold/0 opacity-0 transition-opacity duration-500 group-hover:from-white/5 group-hover:to-transparent group-hover:opacity-100' />
+
+                    <div className='relative flex flex-col items-start sm:flex-row'>
                       <div className='mb-2 flex items-center sm:mb-0 sm:w-1/3'>
-                        <div className='mr-2 h-2 w-2 bg-white'></div>
-                        <h3 className='text-xs font-bold uppercase tracking-tight'>
+                        <div className='mr-2 h-2 w-2 rounded-full bg-gradient-to-r from-white via-white/80 to-white/60 shadow-sm' />
+                        <h3 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-xs font-bold uppercase tracking-tight text-transparent'>
                           {feature.title}
                         </h3>
                       </div>
-                      <div className='w-full text-white opacity-70 sm:w-2/3'>
-                        <p>{feature.description}</p>
+                      <div className='w-full text-neutral-200 sm:w-2/3'>
+                        <p className='font-book'>{feature.description}</p>
                         {feature.bulletPoints && (
-                          <ul className='mt-2 space-y-1 pl-2'>
+                          <ul className='mt-4 space-y-2 pl-2'>
                             {feature.bulletPoints.map((point, i) => (
                               <li key={i} className='flex items-start'>
-                                <span className='mr-2'>•</span>
-                                <span>{point}</span>
+                                <span className='mr-2 text-primary-gold'>
+                                  •
+                                </span>
+                                <span className='font-book text-neutral-300'>
+                                  {point}
+                                </span>
                               </li>
                             ))}
                           </ul>

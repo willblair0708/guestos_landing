@@ -12,7 +12,7 @@ export default function LumenSection({ id, bgColor }: LumenSectionProps) {
       bgColor={bgColor}
       productName='Tourism & Attractions'
       productDescription='Smart solutions for tourism operators and destinations.'
-      imageSrc='/assets/products/lumen.webp'
+      imageSrc='/assets/about/about_header.webp'
       features={[
         {
           title: 'VISITOR EXPERIENCE',
