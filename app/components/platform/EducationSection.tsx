@@ -11,23 +11,23 @@ export default function SeraphSection({ id, bgColor }: SeraphSectionProps) {
       id={id}
       bgColor={bgColor}
       productName='Education'
-      productDescription='Next-generation tools for hospitality schools and training programs.'
+      productDescription='AI-powered solutions for educational institutions and student travel.'
       imageSrc='/assets/about/about_header.webp'
       features={[
         {
-          title: 'INTERACTIVE LEARNING',
+          title: 'TRIP PLANNING',
           description:
-            'Deliver engaging hospitality education through virtual simulations, interactive scenarios, and real-world case studies.',
+            'Streamline educational travel planning with AI-powered itinerary creation, accommodation booking, and group coordination tools.',
         },
         {
-          title: 'SKILLS DEVELOPMENT',
+          title: 'STUDENT EXPERIENCE',
           description:
-            'Provide hands-on training with industry-standard tools and AI-powered feedback systems that prepare students for real hospitality environments.',
+            'Enhance student trips with personalized recommendations, real-time updates, and interactive cultural learning experiences.',
         },
         {
-          title: 'INDUSTRY CONNECTION',
+          title: 'ADMINISTRATIVE TOOLS',
           description:
-            'Bridge education and industry with internship matching, career guidance, and direct connections to hospitality employers.',
+            'Simplify logistics with automated scheduling, budget management, risk assessment, and communication tools for faculty and staff.',
         },
       ]}
     />
