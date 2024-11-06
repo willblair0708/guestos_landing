@@ -131,21 +131,12 @@ export default function HeroSection({
                 </motion.div>
 
                 <motion.h1
-                  className='max-w-4xl bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text font-light text-4xl tracking-tight text-transparent sm:text-5xl lg:text-7xl'
+                  className='max-w-4xl bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text pb-1 font-light text-4xl leading-[1.2] tracking-tight text-transparent sm:text-5xl lg:text-5xl'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
                 >
-                  A Long-Standing{' '}
-                  <span className='relative inline-block'>
-                    Family Affair
-                    <motion.span
-                      className='absolute -bottom-2 left-0 h-0.5 w-full bg-gradient-to-r from-primary-gold to-primary-gold/30'
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ delay: 1, duration: 0.8 }}
-                    />
-                  </span>
+                  A Long-Standing Family Affair
                 </motion.h1>
 
                 <motion.p
