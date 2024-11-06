@@ -10,7 +10,7 @@ interface ProductNavbarProps {
   currentProduct: string;
 }
 
-const products = ['Dynamo', 'Lumen', 'Seraph'];
+const products = ['Hospitality', 'Tourism', 'Education'];
 
 const navItemVariants = {
   hidden: { opacity: 0, y: 10 },

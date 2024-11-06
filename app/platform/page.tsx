@@ -13,16 +13,16 @@ const HeroSection = dynamic(
   () => import('../components/platform/HeroSection'),
   { ssr: false }
 );
-const LumenSection = dynamic(
-  () => import('../components/platform/LumenSection'),
+const TourismSection = dynamic(
+  () => import('../components/platform/TourismSection'),
   { ssr: false }
 );
-const SeraphSection = dynamic(
-  () => import('../components/platform/SeraphSection'),
+const EducationSection = dynamic(
+  () => import('../components/platform/EducationSection'),
   { ssr: false }
 );
-const DynamoSection = dynamic(
-  () => import('../components/platform/DynamoSection'),
+const HospitalitySection = dynamic(
+  () => import('../components/platform/HospitalitySection'),
   { ssr: false }
 );
 const ProductNavbar = dynamic(
@@ -101,7 +101,7 @@ export default function ProductsPage() {
                 exit={{ opacity: 0, y: -100 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* <ProductNavbar currentProduct={currentProduct} /> */}
+                <ProductNavbar currentProduct={currentProduct} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -122,14 +122,20 @@ export default function ProductsPage() {
               }}
             />
 
-            <ProductSectionWrapper onInView={() => setCurrentProduct('Dynamo')}>
-              <DynamoSection id='dynamo-section' bgColor='#18181B' />
+            <ProductSectionWrapper
+              onInView={() => setCurrentProduct('Hospitality')}
+            >
+              <HospitalitySection id='hospitality-section' bgColor='#18181B' />
             </ProductSectionWrapper>
-            <ProductSectionWrapper onInView={() => setCurrentProduct('Lumen')}>
-              <LumenSection id='lumen-section' bgColor='#18181B' />
+            <ProductSectionWrapper
+              onInView={() => setCurrentProduct('Tourism')}
+            >
+              <TourismSection id='tourism-section' bgColor='#18181B' />
             </ProductSectionWrapper>
-            <ProductSectionWrapper onInView={() => setCurrentProduct('Seraph')}>
-              <SeraphSection id='seraph-section' bgColor='#18181B' />
+            <ProductSectionWrapper
+              onInView={() => setCurrentProduct('Education')}
+            >
+              <EducationSection id='education-section' bgColor='#18181B' />
             </ProductSectionWrapper>
           </motion.main>
         </motion.div>
