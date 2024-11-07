@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Inter, Roboto } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { ReactNode } from 'react';
@@ -11,71 +12,16 @@ import CookieBanner from '@/app/components/CookieBanner';
 
 import './globals.css';
 
-const geistMono = localFont({
-  src: '../public/fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
   display: 'swap',
-  preload: true,
 });
 
-const abcOracle = localFont({
-  src: [
-    {
-      path: '../public/fonts/ABCOracle-Light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/ABCOracle-Book.woff2',
-      weight: '350',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/ABCOracle-BookItalic.woff2',
-      weight: '350',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/ABCOracle-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/ABCOracle-RegularItalic.woff2',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/ABCOracle-Medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/ABCOracle-MediumItalic.woff2',
-      weight: '500',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/ABCOracle-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/ABCOracle-BoldItalic.woff2',
-      weight: '700',
-      style: 'italic',
-    },
-  ],
-  variable: '--font-abc-oracle',
+const inter = Inter({
+  subsets: ['latin'],
   display: 'swap',
-  preload: true,
-});
-
-const gtPantheon = localFont({
-  src: '../public/fonts/GT-Pantheon-Text-Regular.woff2',
-  variable: '--font-gt-pantheon',
-  display: 'swap',
-  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -128,7 +74,10 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang='en' className='scroll-smooth bg-[#000000]'>
+    <html
+      lang='en'
+      className={`scroll-smooth bg-[#000000] ${roboto.className}`}
+    >
       {/* GA Script with default denied consent */}
       <Script
         strategy='afterInteractive'
@@ -152,9 +101,7 @@ export default function RootLayout({
                 `,
         }}
       />
-      <body
-        className={`${abcOracle.variable} ${geistMono.variable} ${gtPantheon.variable} bg-background-light text-primary font-sans antialiased`}
-      >
+      <body className='bg-background-light text-primary antialiased'>
         <div className='flex min-h-screen flex-col'>
           <Toaster />
           <main className='flex-grow'>{children}</main>

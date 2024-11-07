@@ -250,7 +250,7 @@ const MobileMenuItem = memo(
         <Link
           href={item.href}
           onClick={toggleMenu}
-          className={`relative mb-[15px] block font-oracle text-[32px] leading-[43.20px] tracking-[-0.36px] text-zinc-900 transition-opacity duration-200 ${
+          className={`font-oracle relative mb-[15px] block text-[32px] leading-[43.20px] tracking-[-0.36px] text-zinc-900 transition-opacity duration-200 ${
             isActive ? 'opacity-100' : 'opacity-60 hover:opacity-80'
           }`}
         >

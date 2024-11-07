@@ -256,14 +256,14 @@ export default {
         'screen-2xl': '1536px',
       },
       fontFamily: {
-        sans: ['var(--font-abc-oracle)', 'Arial', 'Helvetica', 'sans-serif'],
+        sans: ['var(--font-roboto)', 'Arial', 'Helvetica', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
         serif: ['var(--font-gt-pantheon)', 'serif'],
 
-        oracle: ['var(--font-abc-oracle)'],
+        roboto: ['var(--font-roboto)'],
         pantheon: ['var(--font-gt-pantheon)'],
         geist: ['var(--font-geist-mono)'],
-        light: ['var(--font-abc-oracle)'],
+        light: ['var(--font-roboto)'],
         rg: ['var(--font-gt-pantheon)'],
         lt: ['var(--font-gt-pantheon)'],
       },
