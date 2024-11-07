@@ -1,36 +1,152 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_PUBLIC_\\*",
+    "DATABASE_\\*",
+    "CI",
+    "VERCEL",
+    "DEPLOY_ENV",
+    "TURBO_\\*"
+  ],
+  "remoteCache": {
+    "enabled": true,
+    "signature": true,
+    "teamId": "${TURBO_TEAM}",
+    "timeout": 60000
+  },
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"],
-      "env": ["NEXT_PUBLIC_*", "NODE_ENV"],
-      "cache": true
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        "build/**"
+      ],
+      "env": [
+        "NEXT_PUBLIC_\\*",
+        "STYTCH_\\*",
+        "GOOGLE_MAP_KEY",
+        "SURVEYJS_LICENSE_KEY"
+      ],
+      "cache": true,
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "public/**/*",
+        "next.config.js",
+        "package.json",
+        "tsconfig.json",
+        "postcss.config.js",
+        "tailwind.config.ts"
+      ],
+      "outputLogs": "new-only"
     },
     "dev": {
       "cache": false,
-      "persistent": true
-    },
-    "start": {
-      "dependsOn": ["build"],
-      "cache": false
-    },
-    "lint": {
-      "outputs": [],
-      "cache": true
+      "persistent": true,
+      "dependsOn": [
+        "^build"
+      ]
     },
     "test": {
-      "dependsOn": ["build"],
-      "outputs": ["coverage/**"],
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "coverage/**"
+      ],
       "inputs": [
         "src/**/*.tsx",
         "src/**/*.ts",
         "test/**/*.ts",
-        "test/**/*.tsx"
+        "test/**/*.tsx",
+        "config/**/*.ts"
       ],
-      "cache": true
+      "cache": true,
+      "env": [
+        "NODE_ENV",
+        "DATABASE_TYPE",
+        "DATABASE"
+      ],
+      "outputLogs": "hash-only"
+    },
+    "test:coverage": {
+      "outputs": [
+        "coverage/**"
+      ],
+      "cache": true,
+      "outputLogs": "hash-only"
+    },
+    "lint": {
+      "outputs": [
+        "lint-results/**"
+      ],
+      "cache": true,
+      "dependsOn": [],
+      "outputLogs": "hash-only"
+    },
+    "lint:fix": {
+      "cache": false,
+      "dependsOn": []
+    },
+    "format": {
+      "outputs": [],
+      "cache": false,
+      "dependsOn": []
+    },
+    "format:check": {
+      "outputs": [],
+      "cache": true,
+      "dependsOn": []
+    },
+    "clean": {
+      "cache": false
+    },
+    "clean:builds": {
+      "cache": false
+    },
+    "type-check": {
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": true,
+      "outputLogs": "hash-only"
+    },
+    "deploy": {
+      "dependsOn": [
+        "build",
+        "test",
+        "lint"
+      ],
+      "outputs": [],
+      "cache": false
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:migrate": {
+      "cache": false
+    },
+    "db:seed": {
+      "cache": false
+    },
+    "install": {
+      "cache": false,
+      "dependsOn": []
     }
   },
-  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_*"]
+  "pipeline": {
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    }
+  }
 }

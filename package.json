@@ -5,21 +5,22 @@
   "packageManager": "pnpm@8.15.4",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint",
     "lint:fix": "eslint --fix --config ./.eslintrc.json --ignore-path ./config/.eslintignore",
     "lint:debug": "eslint --debug --config ./config/eslintrc.json --ignore-path ./config/.eslintignore",
-    "format": "prettier --write --config ./config/.prettierrc --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json,css}\"",
+    "format": "turbo format",
     "format:check": "prettier --check --config ./config/.prettierrc --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json,css}\"",
-    "test": "jest",
+    "test": "turbo test",
     "test:watch": "jest --detectOpenHandles --watchAll",
     "test:coverage": "jest --detectOpenHandles --coverage",
     "prepare": "husky",
     "check": "tsc --noEmit",
     "check:watch": "tsc --noEmit --watch",
     "knip": "knip",
-    "knip:files": "knip --files"
+    "knip:files": "knip --files",
+    "clean": "turbo clean"
   },
   "jest": {
     "testEnvironment": "jest-environment-jsdom",
