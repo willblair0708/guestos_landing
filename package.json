@@ -5,7 +5,7 @@
   "packageManager": "pnpm@8.15.4",
   "scripts": {
     "dev": "next dev",
-    "build": "turbo build",
+    "build": "next build",
     "start": "turbo start",
     "lint": "turbo lint",
     "lint:fix": "eslint --fix --config ./.eslintrc.json --ignore-path ./config/.eslintignore",
