@@ -5,30 +5,37 @@ interface SeraphSectionProps {
   bgColor: string;
 }
 
-export default function SeraphSection({ id, bgColor }: SeraphSectionProps) {
+export default function EducationSection({ id, bgColor }: SeraphSectionProps) {
   return (
     <ProductSection
       id={id}
       bgColor={bgColor}
-      productName='Education'
-      productDescription='AI-powered solutions for educational institutions and student travel.'
-      imageSrc='/assets/about/about_header.webp'
+      productName="Education"
+      productDescription="Revolutionize educational travel with AI-powered planning tools and immersive learning experiences."
+      imageSrc="/assets/platform/education-hero.webp"
       features={[
         {
-          title: 'TRIP PLANNING',
-          description:
-            'Streamline educational travel planning with AI-powered itinerary creation, accommodation booking, and group coordination tools.',
+          title: "TRIP PLANNING",
+          description: "Streamline educational travel planning:",
+          bulletPoints: [
+            "AI-powered itinerary creation",
+            "Smart accommodation booking",
+            "Group coordination tools",
+            "Risk assessment automation",
+            "Budget optimization"
+          ]
         },
         {
-          title: 'STUDENT EXPERIENCE',
-          description:
-            'Enhance student trips with personalized recommendations, real-time updates, and interactive cultural learning experiences.',
-        },
-        {
-          title: 'ADMINISTRATIVE TOOLS',
-          description:
-            'Simplify logistics with automated scheduling, budget management, risk assessment, and communication tools for faculty and staff.',
-        },
+          title: "STUDENT EXPERIENCE",
+          description: "Enhance learning journeys:",
+          bulletPoints: [
+            "Personalized recommendations",
+            "Interactive cultural guides",
+            "Real-time updates",
+            "Educational gamification",
+            "Social learning features"
+          ]
+        }
       ]}
     />
   );

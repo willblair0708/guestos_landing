@@ -5,31 +5,37 @@ interface LumenSectionProps {
   bgColor: string;
 }
 
-export default function LumenSection({ id, bgColor }: LumenSectionProps) {
+export default function TourismSection({ id, bgColor }: LumenSectionProps) {
   return (
     <ProductSection
       id={id}
       bgColor={bgColor}
-      productName='Tourism & Attractions'
-      productDescription='Smart solutions for tourism operators and destinations.'
-      imageSrc='/assets/about/about_header.webp'
+      productName="Tourism & Attractions"
+      productDescription="Transform visitor experiences with AI-powered solutions that enhance engagement and optimize operations."
+      imageSrc="/assets/platform/tourism-hero.webp"
       features={[
         {
-          title: 'VISITOR EXPERIENCE',
-          description:
-            'Create personalized visitor journeys with AI-powered recommendations, digital guides, and real-time attraction information.',
+          title: "VISITOR EXPERIENCE",
+          description: "Create immersive experiences:",
+          bulletPoints: [
+            "AI-powered recommendations",
+            "Interactive digital guides",
+            "Real-time attraction updates",
+            "Virtual queuing system",
+            "Augmented reality features"
+          ]
         },
         {
-          title: 'DESTINATION MANAGEMENT',
-          description: 'Optimize your tourism operations with:',
+          title: "DESTINATION MANAGEMENT",
+          description: "Optimize operations with smart tools:",
           bulletPoints: [
-            'Smart capacity management',
-            'Dynamic pricing optimization',
-            'Local business partnerships',
-            'Sustainable tourism tools',
-            'Cultural experience curation',
-          ],
-        },
+            "Capacity optimization",
+            "Dynamic pricing",
+            "Local business integration",
+            "Sustainability metrics",
+            "Cultural experience curation"
+          ]
+        }
       ]}
     />
   );
