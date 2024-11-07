@@ -1,8 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "**/.env.*local"
-  ],
+  "globalDependencies": ["**/.env.*local"],
   "globalEnv": [
     "NODE_ENV",
     "NEXT_PUBLIC_\\*",
@@ -20,15 +18,8 @@
   },
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**",
-        "dist/**",
-        "build/**"
-      ],
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "build/**"],
       "env": [
         "NEXT_PUBLIC_\\*",
         "STYTCH_\\*",
@@ -50,17 +41,11 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     },
     "test": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "coverage/**"
-      ],
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
       "inputs": [
         "src/**/*.tsx",
         "src/**/*.ts",
@@ -69,24 +54,16 @@
         "config/**/*.ts"
       ],
       "cache": true,
-      "env": [
-        "NODE_ENV",
-        "DATABASE_TYPE",
-        "DATABASE"
-      ],
+      "env": ["NODE_ENV", "DATABASE_TYPE", "DATABASE"],
       "outputLogs": "hash-only"
     },
     "test:coverage": {
-      "outputs": [
-        "coverage/**"
-      ],
+      "outputs": ["coverage/**"],
       "cache": true,
       "outputLogs": "hash-only"
     },
     "lint": {
-      "outputs": [
-        "lint-results/**"
-      ],
+      "outputs": ["lint-results/**"],
       "cache": true,
       "dependsOn": [],
       "outputLogs": "hash-only"
@@ -112,18 +89,12 @@
       "cache": false
     },
     "type-check": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": true,
       "outputLogs": "hash-only"
     },
     "deploy": {
-      "dependsOn": [
-        "build",
-        "test",
-        "lint"
-      ],
+      "dependsOn": ["build", "test", "lint"],
       "outputs": [],
       "cache": false
     },
@@ -140,13 +111,6 @@
     "install": {
       "cache": false,
       "dependsOn": []
-    }
-  },
-  "pipeline": {
-    "dev": {
-      "cache": false,
-      "persistent": true,
-      "dependsOn": ["^build"]
     }
   }
 }

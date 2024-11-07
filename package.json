@@ -10,7 +10,7 @@
     "lint": "turbo lint",
     "lint:fix": "eslint --fix --config ./.eslintrc.json --ignore-path ./config/.eslintignore",
     "lint:debug": "eslint --debug --config ./config/eslintrc.json --ignore-path ./config/.eslintignore",
-    "format": "turbo format",
+    "format": "prettier --write --config ./config/.prettierrc --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json,css}\"",
     "format:check": "prettier --check --config ./config/.prettierrc --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json,css}\"",
     "test": "turbo test",
     "test:watch": "jest --detectOpenHandles --watchAll",
