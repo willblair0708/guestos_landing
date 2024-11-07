@@ -16,6 +16,8 @@ import { motion, type MotionValue, useTransform } from 'framer-motion';
 import { useCooldown } from '@/hooks/use-cooldown';
 import { useScrollControl, useScrollForce } from '@/hooks/use-scroll-control';
 
+import Slide from './HumanitySection/Slide';
+
 interface HumanitySectionProps {
   id: string;
   bgColor: string;
@@ -73,87 +75,6 @@ const boxVariants = {
     },
   },
 };
-
-const Slide = memo(
-  ({
-    progressX,
-    index,
-    isFallback,
-  }: {
-    progressX?: MotionValue<number>;
-    index?: number;
-    isFallback: boolean;
-  }) => {
-    useSignals();
-
-    const id = useId();
-    const slide = useComputed(() => slides[index ?? slideIndex.value]);
-
-    return (
-      <section
-        id={id}
-        className='flex min-h-screen flex-col items-center justify-center bg-gradient-to-r from-bg-light via-bg-cream to-bg-light'
-      >
-        <motion.div
-          className='flex w-full max-w-6xl flex-col items-center justify-between p-8 lg:flex-row'
-          variants={containerVariants}
-          initial='hidden'
-          animate='visible'
-        >
-          <motion.div
-            variants={imageVariants}
-            className={`flex w-full items-center justify-center p-4 lg:w-1/2 ${
-              isFallback && index !== 0 ? 'border-r lg:border-r-0' : ''
-            }`}
-          >
-            <motion.div
-              className='m-auto h-fit w-fit p-2'
-              key={`${slideIndex.value}:image`}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Image
-                src={slide.value.image}
-                alt='Woman Aaru'
-                width={500}
-                height={500}
-                className='h-80 lg:h-full'
-              />
-            </motion.div>
-          </motion.div>
-          <motion.div
-            variants={textVariants}
-            className='flex w-full flex-col justify-center p-4 lg:w-1/2'
-          >
-            <motion.div
-              className='mb-4 text-lg font-semibold uppercase tracking-wide text-neutral-700'
-              key={`${slideIndex.value}:tagline`}
-              variants={textVariants}
-            >
-              {slide.value.label}
-            </motion.div>
-            <motion.h3
-              className='font-serif text-3xl leading-tight tracking-tight text-neutral-900 lg:text-4xl'
-              key={`${slideIndex.value}:description`}
-              variants={textVariants}
-            >
-              {slide.value.tagline}
-            </motion.h3>
-            <motion.p
-              className='mt-4 text-base text-neutral-700'
-              key={`${slideIndex.value}:desc`}
-              variants={boxVariants}
-            >
-              {slide.value.description}
-            </motion.p>
-          </motion.div>
-        </motion.div>
-      </section>
-    );
-  }
-);
-
-Slide.displayName = 'Slide';
 
 const slides = [
   {
@@ -213,7 +134,13 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
       style={{ backgroundColor: bgColor }}
     >
       {slides.map((_, index) => (
-        <Slide index={index} key={index} isFallback={true} />
+        <Slide
+          index={index}
+          key={index}
+          isFallback={true}
+          slideIndex={slideIndex}
+          slides={slides}
+        />
       ))}
     </motion.section>
   );
@@ -227,6 +154,8 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
   const { scrollForce, scrollTotal, addScrollEvent, resetScrollForce } =
     useScrollForce();
 
+  // Use a cooldown so we don't immediately relock scroll when trying to scroll
+  // past the section
   const cooldown = useCooldown(100);
 
   const { isLocked, lockScroll, unlockScroll } = useScrollControl({
@@ -306,6 +235,8 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
   useLayoutEffect(() => {
     const ref = sectionRef.current;
 
+    // Use a raw intersection observer here because we want to react to the events,
+    // not just whenever we happen to rerender.
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -344,7 +275,12 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
       whileInView={{ padding: '2rem' }}
       viewport={{ amount: 0.9, once: true }}
     >
-      <Slide progressX={progressX} isFallback={false} />
+      <Slide
+        progressX={progressX}
+        isFallback={false}
+        slideIndex={slideIndex}
+        slides={slides}
+      />
     </motion.section>
   );
 }
@@ -352,3 +288,67 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
 export default dynamic(() => Promise.resolve(HumanitySection), {
   ssr: false,
 });
+
+type Axis = 'left' | 'right' | 'bottom' | 'top';
+
+const Scrollbar = memo(
+  ({
+    range,
+    value,
+    axis,
+  }: {
+    range: number[];
+    value: MotionValue<number>;
+    axis: { primary: Axis; secondary: Axis };
+  }) => {
+    const segment = useTransform(value, range, ['0%', '100%']);
+    const display = useTransform(value, (value) => {
+      const [start, end] = range;
+
+      if (value > start && value <= end) {
+        return 'initial';
+      } else if (start === 0 && value <= 0) {
+        return 'initial';
+      } else {
+        return 'none';
+      }
+    });
+
+    // TODO: clean this up
+    const position =
+      axis.secondary === 'top'
+        ? '-top-1'
+        : axis.secondary === 'bottom'
+          ? '-bottom-1'
+          : axis.secondary === 'left'
+            ? '-left-1'
+            : '-right-1';
+
+    const padding =
+      axis.primary === 'top'
+        ? 'pb-8'
+        : axis.primary === 'bottom'
+          ? 'pt-8'
+          : axis.primary === 'left'
+            ? 'pr-8'
+            : 'pl-8';
+
+    const dimensions =
+      axis.primary === 'left' || axis.primary === 'right'
+        ? 'w-8 h-2'
+        : 'w-2 h-8';
+
+    return (
+      <div className={`absolute h-full w-full ${padding}`}>
+        <div className='relative h-full w-full'>
+          <motion.div
+            className={`absolute ${dimensions} rounded-md bg-black ${position}`}
+            style={{ [axis.primary]: segment, display }}
+          />
+        </div>
+      </div>
+    );
+  }
+);
+
+Scrollbar.displayName = 'Scrollbar';
