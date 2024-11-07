@@ -8,6 +8,7 @@ import useIsMobile from '@/hooks/use-is-mobile';
 
 import Footer from './components/Footer';
 import HeroSection from './components/main/HeroSection';
+import HumanitySection from './components/main/HumanitySection';
 import SimulationSection from './components/main/SimulationSection';
 
 export default function Home() {
@@ -64,6 +65,11 @@ export default function Home() {
                 >
                   <SimulationSection
                     id='section-1'
+                    isMobile={isMobile}
+                    bgColor='white'
+                  />
+                  <HumanitySection
+                    id='section-2'
                     isMobile={isMobile}
                     bgColor='white'
                   />
