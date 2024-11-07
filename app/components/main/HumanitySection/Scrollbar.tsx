@@ -48,14 +48,14 @@ export const Scrollbar = memo(
 
     const dimensions =
       axis.primary === 'left' || axis.primary === 'right'
-        ? 'w-8 h-2'
-        : 'w-2 h-8';
+        ? 'w-8 h-2 bg-primary-gold'
+        : 'w-2 h-8 bg-primary-gold';
 
     return (
       <div className={`absolute h-full w-full ${padding}`}>
         <div className='relative h-full w-full'>
           <motion.div
-            className={`absolute ${dimensions} rounded-md bg-black ${position}`}
+            className={`absolute ${dimensions} rounded-md ${position}`}
             style={{ [axis.primary]: segment, display }}
           />
         </div>

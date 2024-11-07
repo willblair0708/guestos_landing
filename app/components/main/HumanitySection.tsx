@@ -79,38 +79,39 @@ const boxVariants = {
 const slides = [
   {
     image: '/assets/main/pixelated_woman.svg',
-    label: 'Humanity at Scale',
+    label: 'The AI Concierge for Hospitality',
     tagline:
-      'Leverage hundreds of traits across demographics, psychographics and more to recreate any population, group, or geography in moments.',
-    description: 'If you can describe it, Aaru can simulate it.',
-    buttonText: 'Build your World',
+      'Improve your guest experience with GuestOS, the leading AI concierge platform designed for the hospitality industry.',
+    description:
+      '24/7 multilingual support with advanced AI voice and SMS technology.',
+    buttonText: 'Book Demo',
   },
   {
     image: '/assets/main/pixelated_earth.svg',
-    label: 'See the future, change the present',
+    label: 'Who uses GuestOS?',
     tagline:
-      'Configure worlds with hypothetical news, information, and stories to measure the impact of events that haven’t yet happened.',
+      'GuestOS equips boutique hotels and resorts with an advanced AI concierge, streamlining operations while enhancing guest experiences.',
     description:
-      "Whether it is a Vice Presidential nomination, a brand launch, or a terrorist attack, proactively identifying the impact of events is core to Aaru's operations.",
-    buttonText: 'See the Future',
+      'Enhance your boutique hotel or resort experience with GuestOS.',
+    buttonText: 'Learn More',
   },
   {
     image: '/assets/main/pixelated_stopwatch.svg',
-    label: 'Infinite Scale in Minimal Time',
+    label: 'How does GuestOS AI work?',
     tagline:
-      'Reduce 4 weeks of research into 40 seconds with higher accuracy than any survey, poll, or focus group in 1/1000th of the time.',
+      "GuestOS's advanced AI seamlessly integrates with your hotel systems, anticipating guest needs and enabling personalized interactions.",
     description:
-      "Humans don't scale. They don't tell the truth, they have biases, and they frequently don't respond. Worst of all, they're slow.",
-    buttonText: 'Learn more',
+      'Offer tailored suggestions based on guest preferences and behavior.',
+    buttonText: 'Discover More',
   },
   {
     image: '/assets/main/pixelated_tree.svg',
-    label: 'Converge on Reality',
+    label: 'Why Hoteliers love GuestOS',
     tagline:
-      'With an increasing number of agents, variance decreases. Simulations get closer and closer to reality until Aaru reaches convergence.',
+      'Automate Workflow and empower your hotel staff with GuestOS to better understand and fulfill guest needs.',
     description:
-      'Aaru researchers work on complex challenges daily. We tackle questions on the scale of humanity. What we build provides more accurate and detailed understandings of the world. We build clarity in chaos.',
-    buttonText: 'Design Tomorrow',
+      "Boost your bottom line with GuestOS' proven ability to generate revenue.",
+    buttonText: 'Contact Us',
   },
 ];
 
