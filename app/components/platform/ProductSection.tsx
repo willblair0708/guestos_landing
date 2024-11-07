@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
-
 import { motion } from 'framer-motion';
 
 interface ProductSectionProps {
@@ -16,15 +15,7 @@ interface ProductSectionProps {
   }>;
 }
 
-const PRODUCT_DESCRIPTION =
-  'Too many people make decisions based on no data, or worse, bad data. Meet a family of simulation engines, built by our researchers alongside our category-defining partners. Engineered to provide clairvoyance for those who need it most.';
-
-// Update gradient constants
-const ACCENT_GRADIENT =
-  'from-primary-gold/10 via-primary-gold/5 to-transparent';
-const ACCENT_BORDER = 'border-white/10';
-
-// Enhanced animation variants with optimized timing
+// Enhanced animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -62,7 +53,7 @@ const imageVariants = {
   },
 };
 
-// Add floating gradient animation
+// Floating gradient animation
 const floatingGradientVariants = {
   animate: {
     x: [0, 50, 0],
@@ -85,7 +76,7 @@ export default function ProductSection({
   imageSrc,
   features,
 }: ProductSectionProps) {
-  const [ref, inView] = useInView({
+  const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
     rootMargin: '50px',
