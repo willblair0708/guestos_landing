@@ -14,7 +14,7 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
       bgColor={bgColor}
       productName='Tourism & Attractions'
       productDescription='Transform visitor experiences with AI-powered solutions that enhance engagement and optimize operations.'
-      imageSrc='/assets/platform/tourism-hero.webp'
+      imageSrc='/assets/platform/tourism.jpg'
       overlayContent={
         <motion.div
           initial={{ opacity: 0, y: 20 }}

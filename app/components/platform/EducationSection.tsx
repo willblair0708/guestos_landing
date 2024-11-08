@@ -14,7 +14,7 @@ export default function EducationSection({ id, bgColor }: SeraphSectionProps) {
       bgColor={bgColor}
       productName='Education'
       productDescription='Revolutionize educational travel with AI-powered planning tools and immersive learning experiences.'
-      imageSrc='/assets/platform/education-hero.webp'
+      imageSrc='/assets/platform/hospitality.jpeg'
       overlayContent={
         <motion.div
           initial={{ opacity: 0, y: 20 }}
