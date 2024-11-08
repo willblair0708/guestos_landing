@@ -12,8 +12,9 @@ interface ProductSectionProps {
   features: Array<{
     title: string;
     description: string;
-    bulletPoints?: string[];
+    bulletPoints: string[];
   }>;
+  overlayContent?: React.ReactNode;
 }
 
 const containerVariants = {
@@ -74,6 +75,7 @@ export default function ProductSection({
   productDescription,
   imageSrc,
   features,
+  overlayContent,
 }: ProductSectionProps) {
   const { ref, inView } = useInView({
     threshold: 0.15,
@@ -188,6 +190,7 @@ export default function ProductSection({
                 className='absolute inset-0 bg-gradient-to-r from-primary-gold/25 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-500'
                 whileHover={{ opacity: 0.6 }}
               />
+              {overlayContent}
             </div>
           </motion.div>
 
