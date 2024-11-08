@@ -101,10 +101,16 @@ export const Instagram = ({
   </svg>
 );
 
-export const Chart = ({ width = 16, height = 16, color = '#ffffff' }) => (
+export const Chart = ({
+  width = 16,
+  height = 16,
+  color = '#ffffff',
+  className = '',
+}) => (
   <svg
     width={width}
     height={height}
+    className={className}
     viewBox='0 0 8 8'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'

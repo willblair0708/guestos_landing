@@ -274,79 +274,145 @@ function PlatformPreview() {
           />
           <div className='absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40' />
 
-          {/* Guest Request Card - Enhanced */}
+          {/* Live Guest Interaction Card */}
           <FloatingCard
-            className='left-8 top-8 max-w-xs backdrop-blur-2xl'
+            className='left-100 top-8 max-w-sm backdrop-blur-2xl'
             style={{
               background:
-                'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)',
+                'linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+              top: '2%',
+              left: '20%',
             }}
           >
             <div className='space-y-4 p-6'>
-              <div className='flex items-center gap-3'>
-                <div className='relative'>
-                  <div className='absolute -inset-0.5 animate-pulse rounded-full bg-[#03E87A]/20 blur-sm' />
-                  <div className='relative h-10 w-10 rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
-                </div>
-                <div>
-                  <p className='text-sm font-medium text-white'>
-                    Guest Request
-                  </p>
-                  <div className='flex items-center gap-1'>
-                    <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
-                    <p className='text-xs text-white/60'>Active Now</p>
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-3'>
+                  <div className='relative'>
+                    <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
+                    <div className='relative h-10 w-10 rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                  </div>
+                  <div>
+                    <p className='text-sm font-medium text-white'>
+                      Live Interaction
+                    </p>
+                    <div className='flex items-center gap-1.5'>
+                      <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
+                      <p className='text-xs text-white/60'>
+                        Multilingual Support
+                      </p>
+                    </div>
                   </div>
                 </div>
+                <div className='rounded-full bg-white/10 px-2 py-1'>
+                  <span className='text-xs text-white/80'>24/7</span>
+                </div>
               </div>
-              <div className='space-y-2'>
-                <p className='text-sm text-white/80'>
-                  "Could you recommend some local restaurants for dinner
-                  tonight?"
-                </p>
+
+              <div className='space-y-3'>
+                <div className='flex gap-2'>
+                  <div className='h-8 w-8 rounded-full bg-white/10' />
+                  <div className='flex-1 space-y-2'>
+                    <p className='text-sm text-white/80'>
+                      "Could you recommend some local restaurants for dinner
+                      tonight? Looking for something authentic."
+                    </p>
+                    <div className='flex items-center gap-1.5'>
+                      <span className='text-xs text-white/40'>
+                        Guest • Just now
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 <div className='flex items-center gap-2'>
-                  <div className='h-1 w-1 animate-pulse rounded-full bg-white/40' />
-                  <p className='text-xs text-white/40'>
-                    AI Assistant typing...
-                  </p>
+                  <div className='flex h-8 w-8 items-center justify-center rounded-full bg-[#03E87A]/10'>
+                    <icons.Message className='h-4 w-4 text-[#03E87A]' />
+                  </div>
+                  <div className='space-y-1.5'>
+                    <div className='flex items-center gap-2'>
+                      <div className='h-1 w-1 animate-pulse rounded-full bg-[#03E87A]' />
+                      <div className='h-1 w-1 animate-pulse rounded-full bg-[#03E87A] delay-75' />
+                      <div className='h-1 w-1 animate-pulse rounded-full bg-[#03E87A] delay-150' />
+                    </div>
+                    <p className='text-xs text-white/40'>
+                      AI Assistant crafting personalized recommendations...
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </FloatingCard>
 
-          {/* Analytics Card - Enhanced */}
+          {/* Guest Insights Card */}
           <FloatingCard
             className='right-8 top-8 backdrop-blur-2xl'
             style={{
               background:
-                'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)',
+                'linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
             }}
           >
             <div className='relative p-6'>
               <div className='absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#03E87A]/10 blur-3xl' />
-              <div className='relative flex items-center gap-6'>
-                <div className='relative'>
-                  <div className='absolute -inset-2 rounded-full bg-[#03E87A]/5 blur-xl' />
-                  <PercentageDial percentage={85} />
-                </div>
-                <div className='space-y-1'>
+              <div className='relative space-y-4'>
+                <div className='flex items-center justify-between'>
                   <h4 className='text-sm font-medium text-white'>
-                    Guest Satisfaction
+                    Guest Intelligence
                   </h4>
-                  <p className='text-xs text-white/60'>Last 30 days</p>
-                  <div className='mt-2 flex items-center gap-2'>
-                    <span className='flex items-center gap-1 text-xs text-[#03E87A]'>
-                      <svg className='h-3 w-3' viewBox='0 0 24 24' fill='none'>
-                        <path
-                          d='M12 20V4M12 4L4 12M12 4L20 12'
-                          stroke='currentColor'
-                          strokeWidth='2'
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                        />
-                      </svg>
-                      12%
+                  <div className='rounded-full bg-white/10 px-2 py-1'>
+                    <span className='text-xs text-white/80'>Real-time</span>
+                  </div>
+                </div>
+
+                <div className='grid grid-cols-2 gap-4'>
+                  <div className='space-y-1'>
+                    <div className='flex items-center justify-between'>
+                      <span className='text-xs text-white/60'>
+                        Satisfaction
+                      </span>
+                      <span className='text-sm font-medium text-[#03E87A]'>
+                        95%
+                      </span>
+                    </div>
+                    <div className='h-1.5 rounded-full bg-white/10'>
+                      <div className='h-full w-[95%] rounded-full bg-[#03E87A]' />
+                    </div>
+                  </div>
+
+                  <div className='space-y-1'>
+                    <div className='flex items-center justify-between'>
+                      <span className='text-xs text-white/60'>
+                        Response Rate
+                      </span>
+                      <span className='text-sm font-medium text-[#03E87A]'>
+                        &lt;1m
+                      </span>
+                    </div>
+                    <div className='h-1.5 rounded-full bg-white/10'>
+                      <div className='h-full w-[98%] rounded-full bg-[#03E87A]' />
+                    </div>
+                  </div>
+                </div>
+
+                <div className='mt-4 rounded-lg bg-white/5 p-3'>
+                  <div className='flex items-center gap-2'>
+                    <icons.Chart className='h-4 w-4 text-[#03E87A]' />
+                    <span className='text-xs text-white/80'>
+                      Trending Preferences
                     </span>
-                    <span className='text-xs text-white/40'>vs last month</span>
+                  </div>
+                  <div className='mt-2 flex gap-2'>
+                    {['Local Dining', 'Activities', 'Transport'].map(
+                      (tag, i) => (
+                        <span
+                          key={i}
+                          className='rounded-full bg-white/10 px-2 py-1 text-xs text-white/60'
+                        >
+                          {tag}
+                        </span>
+                      )
+                    )}
                   </div>
                 </div>
               </div>
@@ -390,6 +456,8 @@ function PlatformPreview() {
             style={{
               background:
                 'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)',
+              bottom: '15%',
+              right: '20%',
             }}
           >
             <div className='relative p-6'>
