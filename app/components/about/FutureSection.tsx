@@ -52,57 +52,71 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
     <motion.section
       ref={sectionRef}
       id={id}
-      className='from-primary-black relative min-h-screen overflow-hidden bg-gradient-to-b via-[#0D0D0E] to-[#0F1112] px-5 pb-32 text-white sm:px-8'
+      className='relative min-h-screen overflow-hidden bg-gradient-to-b from-[#141516] via-[#161718] to-[#181919] px-5 pb-32 text-white sm:px-8'
     >
       {/* Enhanced Background Effects */}
       <div className='absolute inset-0'>
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.08),transparent_50%)]' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.05),transparent_50%)]' />
-        <div className='absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.4))]' />
-        <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.03] mix-blend-overlay' />
-
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,200,87,0.08),transparent_50%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_50%)]' />
+        
         {/* Animated Grid Pattern */}
         <motion.div
-          className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:72px_72px]'
+          className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]'
           style={{
-            maskImage:
-              'radial-gradient(ellipse at center, black 40%, transparent 100%)',
-            WebkitMaskImage:
-              'radial-gradient(ellipse at center, black 40%, transparent 100%)',
+            maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 70%)',
           }}
           animate={{
-            opacity: [0.5, 0.8, 0.5],
-            scale: [1, 1.1, 1],
+            opacity: [0.2, 0.4, 0.2],
+            scale: [1, 1.05, 1],
           }}
           transition={{
-            duration: 10,
+            duration: 20,
             repeat: Infinity,
             ease: 'linear',
+          }}
+        />
+
+        {/* Enhanced Floating Particles */}
+        <motion.div
+          className='absolute inset-0'
+          initial={false}
+          animate={{
+            backgroundPosition: ['0px 0px', '100px 100px'],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(255,200,87,0.08) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
           }}
         />
       </div>
 
       <div className='relative z-10 mx-auto max-w-7xl'>
-        {/* Section Header */}
+        {/* Enhanced Section Header */}
         <motion.div
           variants={containerVariants}
           initial='hidden'
           whileInView='visible'
           viewport={{ once: true }}
-          className='mb-20 space-y-6 pt-32 text-center'
+          className='mb-20 space-y-8 pt-32 text-center'
         >
           <motion.div
             variants={itemVariants}
-            className='border-primary-green/10 bg-primary-green/5 inline-block rounded-full border px-6 py-2 backdrop-blur-sm'
+            className='inline-block rounded-full border border-primary-gold/20 bg-primary-gold/[0.03] px-6 py-2 backdrop-blur-sm'
           >
-            <span className='bg-gradient-to-r from-white/90 to-white/70 bg-clip-text font-light text-sm text-transparent'>
+            <span className='bg-gradient-to-r from-primary-gold to-primary-gold/70 bg-clip-text text-sm font-light tracking-wider text-transparent'>
               Our Vision
             </span>
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
-            className='mx-auto max-w-3xl bg-gradient-to-b from-white via-white/90 to-white/80 bg-clip-text font-light text-4xl leading-tight text-transparent sm:text-5xl'
+            className='mx-auto max-w-3xl bg-gradient-to-b from-white via-white/90 to-white/80 bg-clip-text font-light text-4xl leading-tight text-transparent sm:text-5xl lg:text-6xl'
           >
             Shaping the Future of Hospitality Technology
           </motion.h2>
@@ -116,15 +130,27 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
           viewport={{ once: true }}
           className='relative mx-auto max-w-5xl'
         >
-          <div className='group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-[1px]'>
-            {/* Card Glow Effects */}
+          <div className='group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/[0.11] to-white/[0.05] p-[1px] shadow-2xl'>
+            {/* Enhanced Card Glow Effects */}
             <div className='absolute inset-0'>
-              <div className='from-glow-green absolute inset-0 bg-gradient-to-r via-glow-teal to-transparent opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-80' />
-              <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.03] mix-blend-overlay' />
+              <div className='absolute inset-0 bg-gradient-to-r from-primary-gold/20 via-primary-gold/10 to-transparent opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-80' />
+              <motion.div
+                className='absolute inset-0 bg-gradient-to-r from-primary-gold/15 via-white/10 to-transparent'
+                animate={{
+                  opacity: [0.3, 0.5, 0.3],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              />
+              <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
             </div>
 
             {/* Card Content */}
-            <div className='relative flex flex-col gap-8 rounded-[23px] bg-gradient-to-br from-gray-900/95 to-black/95 p-8 backdrop-blur-xl lg:flex-row lg:items-center lg:p-12'>
+            <div className='relative flex flex-col gap-8 rounded-[23px] bg-gradient-to-br from-[#141516]/95 to-black/90 p-8 backdrop-blur-xl lg:flex-row lg:items-center lg:p-12'>
               {/* Image Section with Enhanced Hover Effects */}
               <motion.div
                 className='relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl lg:w-2/5'
@@ -141,8 +167,8 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
                 <motion.div
-                  className='from-primary-green/20 absolute inset-0 bg-gradient-to-b to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300'
-                  whileHover={{ opacity: 0.5 }}
+                  className='absolute inset-0 bg-gradient-to-b from-primary-gold/10 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300'
+                  whileHover={{ opacity: 0.6 }}
                 />
               </motion.div>
 
@@ -212,3 +238,4 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
     </motion.section>
   );
 }
+
