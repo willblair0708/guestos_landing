@@ -164,11 +164,10 @@ export default function ProductSection({
           </div>
         </motion.div>
 
-        <div className='relative mt-40 grid gap-32 lg:grid-cols-2'>
+        <div className='relative grid gap-32 lg:grid-cols-2'>
           <motion.div
             variants={imageVariants}
-            className='group relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-gradient-to-br from-white/[0.1] to-white/[0.02] p-[1px]'
-            style={{ y: parallaxY }}
+            className='group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-white/[0.1] to-white/[0.02] p-[1px]'
           >
             <div className='absolute inset-0'>
               <div className='absolute inset-0 bg-gradient-to-r from-primary-gold/25 via-white/15 to-transparent opacity-60 blur-3xl transition-all duration-700 group-hover:opacity-90 group-hover:blur-[100px]' />

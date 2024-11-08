@@ -274,30 +274,38 @@ function PlatformPreview() {
           />
           <div className='absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40' />
 
-          {/* Guest Request Card */}
+          {/* Guest Request Card - Enhanced */}
           <FloatingCard
-            className='left-8 top-8 max-w-xs'
-            style={{ backdropFilter: 'blur(16px)' }}
+            className='left-8 top-8 max-w-xs backdrop-blur-2xl'
+            style={{
+              background:
+                'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)',
+            }}
           >
             <div className='space-y-4 p-6'>
               <div className='flex items-center gap-3'>
-                <div className='h-10 w-10 rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                <div className='relative'>
+                  <div className='absolute -inset-0.5 animate-pulse rounded-full bg-[#03E87A]/20 blur-sm' />
+                  <div className='relative h-10 w-10 rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                </div>
                 <div>
-                  <p className='text-sm font-medium'>Guest Request</p>
+                  <p className='text-sm font-medium text-white'>
+                    Guest Request
+                  </p>
                   <div className='flex items-center gap-1'>
-                    <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
-                    <p className='text-xs text-black/60'>Active Now</p>
+                    <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
+                    <p className='text-xs text-white/60'>Active Now</p>
                   </div>
                 </div>
               </div>
               <div className='space-y-2'>
-                <p className='text-sm text-black/80'>
+                <p className='text-sm text-white/80'>
                   "Could you recommend some local restaurants for dinner
                   tonight?"
                 </p>
                 <div className='flex items-center gap-2'>
-                  <div className='h-1 w-1 animate-pulse rounded-full bg-black/40' />
-                  <p className='text-xs text-black/40'>
+                  <div className='h-1 w-1 animate-pulse rounded-full bg-white/40' />
+                  <p className='text-xs text-white/40'>
                     AI Assistant typing...
                   </p>
                 </div>
@@ -305,43 +313,69 @@ function PlatformPreview() {
             </div>
           </FloatingCard>
 
-          {/* Analytics Card */}
+          {/* Analytics Card - Enhanced */}
           <FloatingCard
-            className='right-8 top-8'
-            style={{ backdropFilter: 'blur(16px)' }}
+            className='right-8 top-8 backdrop-blur-2xl'
+            style={{
+              background:
+                'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)',
+            }}
           >
-            <div className='p-6'>
-              <div className='flex items-center gap-6'>
-                <PercentageDial percentage={85} />
+            <div className='relative p-6'>
+              <div className='absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#03E87A]/10 blur-3xl' />
+              <div className='relative flex items-center gap-6'>
+                <div className='relative'>
+                  <div className='absolute -inset-2 rounded-full bg-[#03E87A]/5 blur-xl' />
+                  <PercentageDial percentage={85} />
+                </div>
                 <div className='space-y-1'>
-                  <h4 className='text-sm font-medium'>Guest Satisfaction</h4>
-                  <p className='text-xs text-black/60'>Last 30 days</p>
-                  <div className='flex items-center gap-2 text-xs text-[#03E87A]'>
-                    <span>↑ 12%</span>
-                    <span className='text-black/40'>vs last month</span>
+                  <h4 className='text-sm font-medium text-white'>
+                    Guest Satisfaction
+                  </h4>
+                  <p className='text-xs text-white/60'>Last 30 days</p>
+                  <div className='mt-2 flex items-center gap-2'>
+                    <span className='flex items-center gap-1 text-xs text-[#03E87A]'>
+                      <svg className='h-3 w-3' viewBox='0 0 24 24' fill='none'>
+                        <path
+                          d='M12 20V4M12 4L4 12M12 4L20 12'
+                          stroke='currentColor'
+                          strokeWidth='2'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                      </svg>
+                      12%
+                    </span>
+                    <span className='text-xs text-white/40'>vs last month</span>
                   </div>
                 </div>
               </div>
             </div>
           </FloatingCard>
 
-          {/* Response Time Card */}
+          {/* Response Time Card - Enhanced */}
           <FloatingCard
-            className='bottom-8 left-8'
-            style={{ backdropFilter: 'blur(16px)' }}
+            className='bottom-8 left-8 backdrop-blur-2xl'
+            style={{
+              background:
+                'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)',
+            }}
           >
-            <div className='p-6'>
-              <div className='flex items-center gap-4'>
+            <div className='relative p-6'>
+              <div className='absolute -left-10 -top-10 h-20 w-20 rounded-full bg-[#03E87A]/10 blur-2xl' />
+              <div className='relative flex items-center gap-4'>
                 <div className='flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#03E87A]/20 to-[#03E87A]/5'>
                   <icons.Message className='h-5 w-5 text-[#03E87A]' />
                 </div>
                 <div>
-                  <p className='text-sm font-medium'>Average Response Time</p>
-                  <div className='flex items-center gap-2'>
-                    <span className='text-lg font-medium text-[#03E87A]'>
+                  <p className='text-sm font-medium text-white'>
+                    Average Response Time
+                  </p>
+                  <div className='mt-1 flex items-center gap-2'>
+                    <span className='bg-gradient-to-r from-[#03E87A] to-[#03E87A]/80 bg-clip-text text-lg font-medium text-transparent'>
                       &lt; 1m
                     </span>
-                    <span className='text-xs text-black/40'>
+                    <span className='text-xs text-white/40'>
                       across all channels
                     </span>
                   </div>
@@ -350,21 +384,39 @@ function PlatformPreview() {
             </div>
           </FloatingCard>
 
-          {/* Distribution Chart Card */}
+          {/* Distribution Chart Card - Enhanced */}
           <FloatingCard
-            className='bottom-8 right-8'
-            style={{ backdropFilter: 'blur(16px)' }}
+            className='bottom-8 right-8 backdrop-blur-2xl'
+            style={{
+              background:
+                'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)',
+            }}
           >
-            <div className='p-6'>
-              <div className='space-y-4'>
+            <div className='relative p-6'>
+              <div className='absolute -right-10 -top-10 h-20 w-20 rounded-full bg-[#03E87A]/10 blur-2xl' />
+              <div className='relative space-y-4'>
                 <div className='flex justify-between'>
-                  <h4 className='text-sm font-medium'>Guest Interactions</h4>
-                  <span className='text-xs text-black/40'>Today</span>
+                  <h4 className='text-sm font-medium text-white'>
+                    Guest Interactions
+                  </h4>
+                  <span className='text-xs text-white/40'>Today</span>
                 </div>
-                <div className='flex gap-2'>
-                  <DistributionBar heights={[60, 80, 40, 90]} label='SMS' />
-                  <DistributionBar heights={[80, 40, 90, 60]} label='Voice' />
-                  <DistributionBar heights={[40, 90, 60, 80]} label='Chat' />
+                <div className='flex gap-3'>
+                  <DistributionBar
+                    heights={[60, 80, 40, 90]}
+                    label='SMS'
+                    color='#03E87A'
+                  />
+                  <DistributionBar
+                    heights={[80, 40, 90, 60]}
+                    label='Voice'
+                    color='#FFB443'
+                  />
+                  <DistributionBar
+                    heights={[40, 90, 60, 80]}
+                    label='Chat'
+                    color='#3B82F6'
+                  />
                 </div>
               </div>
             </div>
@@ -442,14 +494,16 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
   );
 }
 
+// Update DistributionBar component to include color prop
 const DistributionBar = ({
   heights,
   label,
+  color,
 }: {
   heights: number[];
   label: string;
+  color: string;
 }) => {
-  const colors = ['#010365', '#1019EC', '#2553FA', '#398CFF'];
   return (
     <div className='relative flex flex-col items-center'>
       <p className='absolute inset-2 select-none text-xs uppercase tracking-wide text-white'>
@@ -458,7 +512,11 @@ const DistributionBar = ({
       {heights.map((h, index) => (
         <div
           key={index}
-          style={{ height: `${h}%`, backgroundColor: colors[index] }}
+          style={{
+            height: `${h}%`,
+            backgroundColor: color,
+            opacity: 1 - index * 0.2, // Creates a gradient effect
+          }}
           className='w-12 sm:w-24'
         />
       ))}
