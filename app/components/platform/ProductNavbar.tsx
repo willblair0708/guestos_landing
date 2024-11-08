@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { memo } from 'react';
+import { FiChevronRight } from 'react-icons/fi';
 
 import { AnimatePresence, motion } from 'framer-motion';
-
-import useIsMobile from '@/hooks/use-is-mobile';
 
 interface ProductNavbarProps {
   currentProduct: string;
@@ -18,29 +17,8 @@ const navItemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.3,
+      duration: 0.4,
       ease: [0.23, 1, 0.32, 1],
-    },
-  },
-};
-
-const menuVariants = {
-  open: {
-    opacity: 1,
-    height: 'auto',
-    marginTop: 8,
-    transition: {
-      duration: 0.3,
-      ease: 'easeInOut',
-    },
-  },
-  closed: {
-    opacity: 0,
-    height: 0,
-    marginTop: 0,
-    transition: {
-      duration: 0.3,
-      ease: 'easeInOut',
     },
   },
 };
@@ -59,6 +37,7 @@ const ProductLink = memo(
       () => currentProduct === product,
       [currentProduct, product]
     );
+
     const handleClick = useCallback(
       (e: React.MouseEvent) => {
         e.preventDefault();
@@ -66,7 +45,7 @@ const ProductLink = memo(
           `${product.toLowerCase()}-section`
         );
         if (section) {
-          const navHeight = product.toLowerCase() === 'dynamo' ? 0 : 90;
+          const navHeight = product.toLowerCase() === 'dynamo' ? 0 : 76;
           const sectionTop = section.offsetTop - navHeight;
           window.scrollTo({
             top: sectionTop,
@@ -87,30 +66,32 @@ const ProductLink = memo(
       >
         <Link
           href={`#${product.toLowerCase()}-section`}
-          className={`flex items-center transition-all duration-300 hover:text-primary-gold ${
-            isActive ? 'text-primary-gold' : 'text-white/70'
+          className={`flex items-center gap-3 rounded-2xl px-4 py-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-primary-gold/5 hover:to-transparent ${
+            isActive
+              ? 'bg-gradient-to-r from-primary-gold/10 to-transparent text-primary-gold'
+              : 'text-white/80'
           }`}
           onClick={handleClick}
           aria-current={isActive ? 'page' : undefined}
+          style={{
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+          }}
         >
-          <span className='flex items-center'>
-            <motion.span
-              className={`mr-2 h-1.5 w-1.5 rounded-full bg-primary-gold ${
-                isActive ? 'opacity-100' : 'opacity-0'
-              }`}
-              initial={{ scale: 0 }}
-              animate={{ scale: isActive ? 1 : 0 }}
-              transition={{ duration: 0.2 }}
-            />
-            {product}
-          </span>
+          <motion.span
+            className={`flex h-6 w-6 items-center justify-center rounded-lg ${
+              isActive
+                ? 'bg-gradient-to-br from-primary-gold/90 to-accent-gold text-black shadow-lg'
+                : 'bg-white/5'
+            }`}
+            initial={false}
+            animate={{ scale: isActive ? 1 : 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            {isActive && <FiChevronRight className='h-3 w-3' />}
+          </motion.span>
+          <span className='text-sm font-medium tracking-wide'>{product}</span>
         </Link>
-        <motion.div
-          className='absolute -bottom-1 left-0 right-0 h-[1px] origin-left bg-gradient-to-r from-primary-gold/80 to-transparent'
-          initial={{ scaleX: 0 }}
-          whileHover={{ scaleX: 1 }}
-          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        />
       </motion.div>
     );
   }
@@ -121,30 +102,53 @@ ProductLink.displayName = 'ProductLink';
 function ProductNavbar({ currentProduct }: ProductNavbarProps) {
   return (
     <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className='relative w-full bg-[#18181B]'
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className='sticky top-0 z-50 w-full'
+      style={{
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+      }}
     >
-      <div className='pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 to-transparent' />
+      <div className='relative'>
+        <div className='absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-transparent' />
+        <div className='absolute inset-0 bg-gradient-to-r from-primary-gold/5 via-primary-gold/10 to-primary-gold/5' />
+        <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-gold/10 via-transparent to-transparent' />
 
-      <div className='relative flex flex-col items-center justify-between p-4 sm:p-6'>
-        <div className='h-[1px] w-full bg-gradient-to-r from-transparent via-white/20 to-transparent' />
-        <div className='mt-4 flex w-full items-center justify-between sm:mt-6'>
-          <motion.p
-            variants={navItemVariants}
-            className='font-light text-[12px] tracking-wide text-primary-gold/90 sm:text-[14px]'
-          >
-            GuestOS Products
-          </motion.p>
+        <div className='max-w-9xl relative mx-auto px-6 py-4'>
+          <div className='flex items-center justify-between'>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className='flex items-center gap-3'
+            >
+              <div className='h-8 w-8 rounded-xl bg-gradient-to-br from-primary-gold via-primary-gold/80 to-accent-gold shadow-lg' />
+              <div>
+                <h2 className='text-lg font-medium tracking-tight text-white'>
+                  GuestOS
+                </h2>
+                <p className='text-xs font-medium text-white/60'>
+                  Platform Products
+                </p>
+              </div>
+            </motion.div>
 
-          <div className='flex space-x-6 font-light text-[13px] tracking-wide text-white sm:space-x-10 sm:text-[14px]'>
-            {products.map((product) => (
-              <ProductLink
-                key={product}
-                product={product}
-                currentProduct={currentProduct}
-              />
-            ))}
+            <motion.div
+              className='flex items-center gap-6'
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {products.map((product) => (
+                <ProductLink
+                  key={product}
+                  product={product}
+                  currentProduct={currentProduct}
+                />
+              ))}
+            </motion.div>
           </div>
         </div>
       </div>

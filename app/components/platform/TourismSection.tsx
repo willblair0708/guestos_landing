@@ -17,7 +17,7 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
       imageSrc='/assets/platform/tourism.jpg'
       overlayContent={
         <>
-          {/* Visitor Insights Card */}
+          {/* Visitor Analytics Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -32,56 +32,81 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
 
               <div className='relative space-y-3'>
                 <div className='flex items-center justify-between'>
-                  <h4 className='text-sm font-medium text-white'>
-                    Visitor Insights
-                  </h4>
-                  <div className='rounded-full bg-white/10 px-2 py-1'>
-                    <span className='text-xs text-white/80'>Live</span>
+                  <div className='space-y-1'>
+                    <h4 className='text-sm font-medium text-white'>
+                      Visitor Analytics
+                    </h4>
+                    <p className='text-xs text-white/60'>
+                      London Eye Experience
+                    </p>
+                  </div>
+                  <div className='flex flex-col items-end gap-1'>
+                    <div className='rounded-full bg-amber-500/20 px-2 py-1'>
+                      <span className='text-xs font-medium text-amber-400'>
+                        Peak Hours
+                      </span>
+                    </div>
+                    <span className='text-xs text-white/40'>14:30 - 16:30</span>
                   </div>
                 </div>
 
-                <div className='grid grid-cols-2 gap-3'>
-                  <div className='rounded-lg bg-white/5 p-3'>
-                    <div className='mb-2 text-center text-2xl font-medium text-amber-400'>
+                <div className='grid grid-cols-3 gap-2'>
+                  <div className='rounded-lg bg-white/5 p-2'>
+                    <div className='mb-1 text-center text-xl font-medium text-amber-400'>
                       847
                     </div>
-                    <div className='text-center text-xs text-white/60'>
-                      Current Visitors
+                    <div className='text-center text-[10px] text-white/60'>
+                      Current
                     </div>
                   </div>
-                  <div className='rounded-lg bg-white/5 p-3'>
-                    <div className='mb-2 text-center text-2xl font-medium text-amber-400'>
-                      12m
+                  <div className='rounded-lg bg-white/5 p-2'>
+                    <div className='mb-1 text-center text-xl font-medium text-amber-400'>
+                      25
                     </div>
-                    <div className='text-center text-xs text-white/60'>
-                      Wait Time
+                    <div className='text-center text-[10px] text-white/60'>
+                      Wait (min)
+                    </div>
+                  </div>
+                  <div className='rounded-lg bg-white/5 p-2'>
+                    <div className='mb-1 text-center text-xl font-medium text-amber-400'>
+                      92%
+                    </div>
+                    <div className='text-center text-[10px] text-white/60'>
+                      Capacity
                     </div>
                   </div>
                 </div>
 
                 <div className='space-y-3 rounded-lg bg-white/5 p-3'>
                   <div className='flex items-center justify-between'>
-                    <span className='text-xs text-white/80'>Peak Hours</span>
-                    <span className='text-xs text-amber-400'>Next: 2PM</span>
+                    <span className='text-xs text-white/80'>Hourly Flow</span>
+                    <div className='flex items-center gap-2'>
+                      <span className='text-xs font-medium text-amber-400'>
+                        ↑ 12%
+                      </span>
+                      <span className='text-[10px] text-white/40'>vs avg</span>
+                    </div>
                   </div>
-                  <div className='flex gap-1'>
-                    {[30, 45, 80, 95, 70, 60, 40].map((height, i) => (
+                  <div className='flex h-12 items-end gap-1'>
+                    {[45, 65, 85, 92, 88, 76, 70, 55].map((height, i) => (
                       <div key={i} className='flex-1'>
-                        <div className='h-16 w-full rounded-sm bg-white/10'>
-                          <div
-                            className='w-full rounded-sm bg-amber-400/60 transition-all'
-                            style={{ height: `${height}%` }}
-                          />
-                        </div>
+                        <div
+                          className='rounded-sm bg-amber-400/80'
+                          style={{ height: `${height}%` }}
+                        />
                       </div>
                     ))}
+                  </div>
+                  <div className='flex justify-between text-[10px] text-white/40'>
+                    <span>10:00</span>
+                    <span>17:00</span>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Experience Analytics Card */}
+          {/* Experience Ratings Card */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -91,9 +116,12 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
           >
             <div className='space-y-4'>
               <div className='flex items-center justify-between'>
-                <h4 className='text-sm font-medium text-white'>
-                  Experience Ratings
-                </h4>
+                <div className='space-y-1'>
+                  <h4 className='text-sm font-medium text-white'>
+                    Experience Ratings
+                  </h4>
+                  <p className='text-xs text-white/60'>Last 24 Hours</p>
+                </div>
                 <div className='flex items-center gap-2'>
                   <span className='h-2 w-2 animate-pulse rounded-full bg-amber-400' />
                   <span className='text-xs text-white/80'>Live</span>
@@ -102,23 +130,72 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
 
               <div className='space-y-3'>
                 {[
-                  { label: 'Cultural Tours', rating: 4.9, reviews: 328 },
-                  { label: 'Local Guides', rating: 4.8, reviews: 256 },
-                  { label: 'Food Experience', rating: 4.7, reviews: 412 },
+                  {
+                    label: 'Overall Experience',
+                    rating: 4.9,
+                    reviews: 328,
+                    trend: '↑ 0.2',
+                    details: 'Visitor satisfaction',
+                  },
+                  {
+                    label: 'Staff Service',
+                    rating: 4.8,
+                    reviews: 256,
+                    trend: '↑ 0.1',
+                    details: 'Staff interaction',
+                  },
+                  {
+                    label: 'Facilities',
+                    rating: 4.7,
+                    reviews: 412,
+                    trend: '↑ 0.3',
+                    details: 'Amenities & comfort',
+                  },
+                  {
+                    label: 'Value for Money',
+                    rating: 4.6,
+                    reviews: 289,
+                    trend: '↑ 0.2',
+                    details: 'Price satisfaction',
+                  },
                 ].map((item, i) => (
-                  <div key={i} className='rounded-lg bg-white/5 p-3'>
+                  <div key={i} className='space-y-2 rounded-lg bg-white/5 p-3'>
                     <div className='flex items-center justify-between'>
-                      <span className='text-xs text-white/60'>
-                        {item.label}
-                      </span>
-                      <div className='flex items-center gap-2'>
-                        <span className='text-sm font-medium text-amber-400'>
-                          {item.rating}
+                      <div className='space-y-1'>
+                        <span className='text-xs text-white/80'>
+                          {item.label}
                         </span>
-                        <span className='text-xs text-white/40'>
-                          ({item.reviews})
+                        <div className='text-[10px] text-white/40'>
+                          {item.details}
+                        </div>
+                      </div>
+                      <div className='text-right'>
+                        <div className='flex items-center gap-2'>
+                          <span className='text-sm font-medium text-amber-400'>
+                            {item.rating}
+                          </span>
+                          <span className='text-xs text-amber-400/60'>
+                            {item.trend}
+                          </span>
+                        </div>
+                        <span className='text-[10px] text-white/40'>
+                          {item.reviews} reviews
                         </span>
                       </div>
+                    </div>
+                    <div className='flex gap-0.5'>
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <div
+                          key={star}
+                          className={`h-1 flex-1 rounded-full ${
+                            star <= Math.floor(item.rating)
+                              ? 'bg-amber-400'
+                              : star - item.rating < 1
+                                ? 'bg-gradient-to-r from-amber-400 to-white/10'
+                                : 'bg-white/10'
+                          }`}
+                        />
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -126,7 +203,7 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
             </div>
           </motion.div>
 
-          {/* Revenue Insights Card */}
+          {/* Operations Card */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -136,29 +213,40 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
           >
             <div className='space-y-4'>
               <div className='flex items-center justify-between'>
-                <h4 className='text-sm font-medium text-white'>
-                  Revenue Insights
-                </h4>
-                <span className='text-xs text-white/60'>Today</span>
+                <div className='space-y-1'>
+                  <h4 className='text-sm font-medium text-white'>Operations</h4>
+                  <p className='text-xs text-white/60'>Today's Performance</p>
+                </div>
+                <div className='rounded-full bg-amber-500/20 px-2 py-1'>
+                  <span className='text-xs font-medium text-amber-400'>
+                    +15% Revenue
+                  </span>
+                </div>
               </div>
 
               <div className='grid grid-cols-2 gap-3'>
                 <div className='rounded-lg bg-white/5 p-3'>
                   <div className='flex items-center gap-1'>
-                    <span className='text-xs text-white/60'>Ticket Sales</span>
-                    <span className='text-xs text-amber-400'>↑ 12%</span>
+                    <span className='text-xs text-white/60'>Tickets</span>
+                    <span className='text-xs text-amber-400'>↑ 8%</span>
                   </div>
                   <div className='mt-1 text-lg font-medium text-amber-400'>
-                    $24.8k
+                    2,847
+                  </div>
+                  <div className='mt-1 text-[10px] text-white/40'>
+                    Sold today
                   </div>
                 </div>
                 <div className='rounded-lg bg-white/5 p-3'>
                   <div className='flex items-center gap-1'>
-                    <span className='text-xs text-white/60'>Avg Spend</span>
-                    <span className='text-xs text-amber-400'>↑ 8%</span>
+                    <span className='text-xs text-white/60'>Revenue</span>
+                    <span className='text-xs text-amber-400'>↑ 15%</span>
                   </div>
                   <div className='mt-1 text-lg font-medium text-amber-400'>
-                    $86
+                    £42.8k
+                  </div>
+                  <div className='mt-1 text-[10px] text-white/40'>
+                    Daily total
                   </div>
                 </div>
               </div>
@@ -169,9 +257,13 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
                 </div>
                 <div className='flex flex-wrap gap-2'>
                   {[
-                    { name: 'Guide Service', value: '+$45' },
-                    { name: 'Photo Pass', value: '+$25' },
-                    { name: 'Fast Track', value: '+$30' },
+                    { name: 'Fast Track', value: '+£15', count: '847 sold' },
+                    {
+                      name: 'VIP Experience',
+                      value: '+£45',
+                      count: '234 sold',
+                    },
+                    { name: 'Photo Pass', value: '+£12', count: '562 sold' },
                   ].map((item, i) => (
                     <div
                       key={i}
@@ -180,6 +272,9 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
                       <span className='text-xs text-white/60'>{item.name}</span>
                       <span className='text-xs font-medium text-amber-400'>
                         {item.value}
+                      </span>
+                      <span className='text-[10px] text-white/40'>
+                        ({item.count})
                       </span>
                     </div>
                   ))}
