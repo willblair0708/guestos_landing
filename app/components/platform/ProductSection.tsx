@@ -134,21 +134,12 @@ export default function ProductSection({
       <div className='max-w-8xl relative mx-auto px-6 sm:px-8 lg:px-12'>
         <motion.div variants={itemVariants} className='mb-32 max-w-4xl'>
           <motion.div
-            className='mb-10 inline-flex items-center gap-4 rounded-full border border-white/10 bg-white/[0.03] px-6 py-2.5 backdrop-blur-xl'
             whileHover={{
               scale: 1.03,
               backgroundColor: 'rgba(255, 255, 255, 0.06)',
               transition: { duration: 0.3 },
             }}
-          >
-            <span className='relative flex h-2.5 w-2.5'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-gold opacity-75'></span>
-              <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-primary-gold'></span>
-            </span>
-            <span className='font-light text-base tracking-wider text-white/90'>
-              Product Overview
-            </span>
-          </motion.div>
+          ></motion.div>
 
           <div className='relative space-y-8'>
             <h2 className='bg-gradient-to-r from-white via-white/95 to-white/85 bg-clip-text font-light text-7xl tracking-tight text-transparent'>
