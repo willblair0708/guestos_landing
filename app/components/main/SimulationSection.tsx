@@ -68,7 +68,7 @@ export default function SimulationSection({
     <motion.section
       ref={sectionRef}
       id={id}
-      className='relative flex min-h-screen items-center overflow-hidden bg-[#F1EFED] text-black sm:px-8'
+      className='relative flex items-center overflow-hidden bg-[#F1EFED] text-black sm:px-8'
       style={{ backgroundColor: bgColor }}
       initial='hidden'
       animate='visible'
@@ -146,16 +146,16 @@ export default function SimulationSection({
         </div>
 
         {/* Key Features Section */}
-        <motion.div
+        {/* <motion.div
           className='mx-auto mt-32 max-w-6xl px-4'
           variants={containerVariants}
         >
-          <div className='grid grid-cols-1 gap-8 sm:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
             {features.map((feature, index) => (
               <FeatureCard key={index} feature={feature} index={index} />
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </motion.section>
   );
@@ -163,33 +163,55 @@ export default function SimulationSection({
 
 // Add floating elements data
 const floatingElements = [
-  { icon: icons.Message, label: 'Live Chat', value: '24/7' },
-  { icon: icons.Chart, label: 'Guest Satisfaction', value: '95%' },
-  { icon: icons.Settings, label: 'Response Time', value: '<1min' },
+  { icon: icons.Message, label: 'Live Chat', value: '24/7', color: '#ffffff' },
+  {
+    icon: icons.Chart,
+    label: 'Guest Satisfaction',
+    value: '95%',
+    color: '#ffffff',
+  },
+  {
+    icon: icons.Settings,
+    label: 'Response Time',
+    value: '<1min',
+    color: '#ffffff',
+  },
 ];
 
-// Update features with more engaging content
+// Update features with richer content and better organization
 const features = [
   {
     title: 'AI-Powered Experience',
     description: 'Seamless multilingual support with natural conversations.',
     icon: icons.Message,
     stats: '24/7 Support',
-    gradient: 'from-[#03E87A]/20 to-[#03E87A]/5',
+    gradient: 'from-[#03E87A] to-[#03E87A]/5',
+    metrics: [
+      { label: 'Languages', value: '95+' },
+      { label: 'Response Time', value: '<1min' },
+    ],
   },
   {
     title: 'Smart Operations',
     description: 'Automate workflows and enhance staff productivity.',
     icon: icons.Settings,
     stats: '85% Efficiency',
-    gradient: 'from-[#FFB443]/20 to-[#FFB443]/5',
+    gradient: 'from-[#FFB443] to-[#FFB443]/5',
+    metrics: [
+      { label: 'Tasks Automated', value: '75%' },
+      { label: 'Time Saved', value: '12hrs/day' },
+    ],
   },
   {
     title: 'Guest Intelligence',
     description: 'Deep insights for personalized experiences.',
     icon: icons.Chart,
     stats: '2x Revenue',
-    gradient: 'from-[#3B82F6]/20 to-[#3B82F6]/5',
+    gradient: 'from-[#3B82F6] to-[#3B82F6]/5',
+    metrics: [
+      { label: 'Guest Satisfaction', value: '95%' },
+      { label: 'Repeat Visits', value: '+40%' },
+    ],
   },
 ];
 
@@ -252,7 +274,7 @@ function PlatformPreview() {
           />
           <div className='absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40' />
 
-          {/* Floating Cards */}
+          {/* Guest Request Card */}
           <FloatingCard
             className='left-8 top-8 max-w-xs'
             style={{ backdropFilter: 'blur(16px)' }}
@@ -261,7 +283,7 @@ function PlatformPreview() {
               <div className='flex items-center gap-3'>
                 <div className='h-10 w-10 rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
                 <div>
-                  <p className='text-sm font-medium'>Guest Interaction</p>
+                  <p className='text-sm font-medium'>Guest Request</p>
                   <div className='flex items-center gap-1'>
                     <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
                     <p className='text-xs text-black/60'>Active Now</p>
@@ -283,7 +305,70 @@ function PlatformPreview() {
             </div>
           </FloatingCard>
 
-          {/* Additional floating elements... */}
+          {/* Analytics Card */}
+          <FloatingCard
+            className='right-8 top-8'
+            style={{ backdropFilter: 'blur(16px)' }}
+          >
+            <div className='p-6'>
+              <div className='flex items-center gap-6'>
+                <PercentageDial percentage={85} />
+                <div className='space-y-1'>
+                  <h4 className='text-sm font-medium'>Guest Satisfaction</h4>
+                  <p className='text-xs text-black/60'>Last 30 days</p>
+                  <div className='flex items-center gap-2 text-xs text-[#03E87A]'>
+                    <span>↑ 12%</span>
+                    <span className='text-black/40'>vs last month</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FloatingCard>
+
+          {/* Response Time Card */}
+          <FloatingCard
+            className='bottom-8 left-8'
+            style={{ backdropFilter: 'blur(16px)' }}
+          >
+            <div className='p-6'>
+              <div className='flex items-center gap-4'>
+                <div className='flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#03E87A]/20 to-[#03E87A]/5'>
+                  <icons.Message className='h-5 w-5 text-[#03E87A]' />
+                </div>
+                <div>
+                  <p className='text-sm font-medium'>Average Response Time</p>
+                  <div className='flex items-center gap-2'>
+                    <span className='text-lg font-medium text-[#03E87A]'>
+                      &lt; 1m
+                    </span>
+                    <span className='text-xs text-black/40'>
+                      across all channels
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FloatingCard>
+
+          {/* Distribution Chart Card */}
+          <FloatingCard
+            className='bottom-8 right-8'
+            style={{ backdropFilter: 'blur(16px)' }}
+          >
+            <div className='p-6'>
+              <div className='space-y-4'>
+                <div className='flex justify-between'>
+                  <h4 className='text-sm font-medium'>Guest Interactions</h4>
+                  <span className='text-xs text-black/40'>Today</span>
+                </div>
+                <div className='flex gap-2'>
+                  <DistributionBar heights={[60, 80, 40, 90]} label='SMS' />
+                  <DistributionBar heights={[80, 40, 90, 60]} label='Voice' />
+                  <DistributionBar heights={[40, 90, 60, 80]} label='Chat' />
+                </div>
+              </div>
+            </div>
+          </FloatingCard>
         </div>
       </div>
     </div>
@@ -295,14 +380,18 @@ interface FeatureCardProps {
   feature: {
     title: string;
     description: string;
-    icon: any; // Replace with proper icon type from your icons file
+    icon: any;
     stats: string;
     gradient: string;
+    metrics: Array<{
+      label: string;
+      value: string;
+    }>;
   };
   index: number;
 }
 
-// Update FeatureCard component with proper useInView hook usage
+// Update FeatureCard component with enhanced design
 function FeatureCard({ feature, index }: FeatureCardProps) {
   const elementRef = useRef<HTMLDivElement>(null);
   const inView = useInView(elementRef, {
@@ -316,18 +405,37 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.2 }}
-      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${feature.gradient} p-6 backdrop-blur-sm transition-all duration-300`}
+      className='group relative overflow-hidden rounded-2xl bg-white/[0.02] p-1 backdrop-blur-xl transition-all duration-500 hover:bg-white/[0.05]'
     >
-      <div className='absolute inset-0 bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
-      <div className='relative space-y-4'>
-        <feature.icon className='h-8 w-8 text-black/80' />
-        <div>
-          <h3 className='mb-2 text-lg font-medium'>{feature.title}</h3>
-          <p className='text-sm text-black/60'>{feature.description}</p>
-        </div>
-        <div className='flex items-center gap-2'>
-          <div className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
-          <span className='text-xs font-medium'>{feature.stats}</span>
+      <div
+        className={`h-full w-full rounded-xl bg-gradient-to-br ${feature.gradient} p-6 opacity-[0.02] transition-opacity duration-300 group-hover:opacity-[0.05]`}
+      />
+      <div className='absolute inset-0 p-6'>
+        <div className='flex h-full flex-col justify-between'>
+          <div className='space-y-4'>
+            <div className='flex items-center justify-between'>
+              <feature.icon className='h-8 w-8 text-black/80' />
+              <div className='flex items-center gap-2 rounded-full bg-black/5 px-3 py-1'>
+                <div className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
+                <span className='text-xs font-medium'>{feature.stats}</span>
+              </div>
+            </div>
+            <div>
+              <h3 className='mb-2 text-lg font-medium tracking-tight'>
+                {feature.title}
+              </h3>
+              <p className='text-sm text-black/60'>{feature.description}</p>
+            </div>
+          </div>
+
+          <div className='mt-6 grid grid-cols-2 gap-4 border-t border-black/5 pt-4'>
+            {feature.metrics.map((metric, i) => (
+              <div key={i} className='space-y-1'>
+                <p className='text-xs text-black/40'>{metric.label}</p>
+                <p className='text-sm font-medium'>{metric.value}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </motion.div>
