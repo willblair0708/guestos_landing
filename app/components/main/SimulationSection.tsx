@@ -158,7 +158,7 @@ export default function SimulationSection({
         </motion.div>
 
         {/* Platform Preview */}
-        <div className='mx-auto max-w-[1400px] px-4 pb-20 pt-8 sm:px-8'>
+        <div className='mx-auto px-4 pt-8 sm:px-8'>
           {isMobile ? <ProductPreviewMobile /> : <PlatformPreview />}
         </div>
       </motion.div>

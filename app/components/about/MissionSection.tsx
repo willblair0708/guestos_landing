@@ -61,7 +61,8 @@ export default function MissionSection({
       ref={ref}
       id={id}
       initial='hidden'
-      animate={parentInView && sectionInView ? 'visible' : 'hidden'}
+      whileInView='visible'
+      viewport={{ once: true }}
       variants={containerVariants}
       className={`relative min-h-screen overflow-hidden ${
         isMobile ? 'py-20' : 'py-32'
