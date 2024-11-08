@@ -56,51 +56,14 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
     >
       {/* Enhanced Background Effects */}
       <div className='absolute inset-0'>
-        <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,200,87,0.08),transparent_50%)]' />
-        <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.05),transparent_50%)]' />
-
-        {/* Animated Grid Pattern */}
-        <motion.div
-          className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]'
-          style={{
-            maskImage:
-              'radial-gradient(ellipse at center, black 20%, transparent 80%)',
-            WebkitMaskImage:
-              'radial-gradient(ellipse at center, black 20%, transparent 80%)',
-          }}
-          animate={{
-            opacity: [0.15, 0.3, 0.15],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-
-        {/* Enhanced Floating Particles */}
-        <motion.div
-          className='absolute inset-0'
-          initial={false}
-          animate={{
-            backgroundPosition: ['0px 0px', '100px 100px'],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-          style={{
-            backgroundImage:
-              'radial-gradient(circle, rgba(255,200,87,0.06) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          }}
-        />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.15),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.12),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_90%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.2)_100%)]' />
       </div>
 
       <div className='relative z-10 mx-auto max-w-7xl'>
-        {/* Enhanced Section Header */}
+        {/* Updated Section Header */}
         <motion.div
           variants={containerVariants}
           initial='hidden'
@@ -110,22 +73,27 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
         >
           <motion.div
             variants={itemVariants}
-            className='inline-block rounded-full border border-primary-gold/20 bg-primary-gold/[0.03] px-6 py-2.5 backdrop-blur-sm'
+            className='group inline-flex items-center gap-3 rounded-full border border-primary-gold/20 bg-white/5 px-5 py-2 backdrop-blur-sm'
+            whileHover={{
+              scale: 1.02,
+              backgroundColor: 'rgba(255,255,255,0.1)',
+            }}
           >
-            <span className='bg-gradient-to-r from-primary-gold to-primary-gold/70 bg-clip-text font-light text-sm tracking-wider text-transparent'>
-              Our Vision
+            <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
+            <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-sm tracking-wider text-transparent'>
+              OUR VISION
             </span>
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
-            className='mx-auto max-w-3xl bg-gradient-to-b from-white via-white/90 to-white/80 bg-clip-text font-light text-4xl leading-tight text-transparent sm:text-5xl lg:text-6xl'
+            className='mx-auto max-w-3xl bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text pb-1 font-light text-4xl leading-[1.2] tracking-tight text-transparent sm:text-5xl lg:text-5xl'
           >
             Shaping the Future of Hospitality Technology
           </motion.h2>
         </motion.div>
 
-        {/* Enhanced Founder Card */}
+        {/* Updated Founder Card */}
         <motion.div
           variants={itemVariants}
           initial='hidden'
@@ -137,25 +105,14 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
             {/* Enhanced Card Glow Effects */}
             <div className='absolute inset-0'>
               <div className='absolute inset-0 bg-gradient-to-r from-primary-gold/20 via-primary-gold/10 to-transparent opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-80' />
-              <motion.div
-                className='absolute inset-0 bg-gradient-to-r from-primary-gold/15 via-white/10 to-transparent'
-                animate={{
-                  opacity: [0.3, 0.5, 0.3],
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-              />
               <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
             </div>
 
-            {/* Card Content with Enhanced Layout */}
-            <div className='relative flex flex-col gap-12 rounded-[23px] bg-gradient-to-br from-[#141516]/95 to-black/90 p-10 backdrop-blur-xl lg:flex-row lg:items-center lg:p-14'>
+            {/* Card Content */}
+            <div className='relative grid overflow-hidden rounded-[23px] bg-gradient-to-br from-[#141516]/95 to-black/90 p-8 backdrop-blur-xl lg:grid-cols-2 lg:gap-12 lg:p-12'>
+              {/* Left Column - Image */}
               <motion.div
-                className='relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl lg:w-2/5'
+                className='relative aspect-[3/4] w-full overflow-hidden rounded-2xl'
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -163,30 +120,26 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                   src='/assets/about/jessie.jpeg'
                   alt='Jessie Fischer'
                   fill
-                  className='object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110'
-                  sizes='(max-width: 768px) 100vw, 40vw'
+                  className='object-cover transition-all duration-700 group-hover:scale-105'
+                  sizes='(max-width: 768px) 100vw, 50vw'
                   priority
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent' />
-                <motion.div
-                  className='absolute inset-0 bg-gradient-to-b from-primary-gold/10 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300'
-                  whileHover={{ opacity: 0.6 }}
-                />
               </motion.div>
 
-              {/* Enhanced Text Content */}
-              <div className='flex flex-1 flex-col justify-between gap-10 lg:py-8'>
+              {/* Right Column - Content */}
+              <div className='flex flex-col justify-between py-8'>
                 <div className='space-y-8'>
-                  <div className='flex items-center gap-4'>
+                  <div className='space-y-2'>
                     <h3 className='bg-gradient-to-r from-white to-white/80 bg-clip-text text-3xl font-medium text-transparent'>
                       Jessie Fischer
                     </h3>
-                    <div className='h-px flex-1 bg-gradient-to-r from-primary-gold/20 to-transparent' />
+                    <p className='font-light tracking-wide text-primary-gold'>
+                      Founder & CEO
+                    </p>
                   </div>
-                  <p className='font-light tracking-wide text-primary-gold/90'>
-                    Founder & CEO
-                  </p>
-                  <blockquote className='relative font-light text-2xl italic leading-relaxed text-white/80'>
+
+                  <blockquote className='relative space-y-4 font-light text-2xl italic leading-relaxed text-white/80'>
                     <span className='absolute -left-4 top-0 text-4xl text-primary-gold/20'>
                       "
                     </span>
@@ -199,22 +152,21 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                   </blockquote>
                 </div>
 
-                {/* Enhanced Social Links */}
-                <div className='flex items-center gap-8'>
+                {/* Updated Social Links */}
+                <div className='flex items-center gap-8 pt-8'>
                   <Link
                     href='https://www.linkedin.com/in/jessiefischer/'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='group relative rounded-full bg-white/5 p-4 transition-all hover:bg-white/10'
                   >
-                    <div className='absolute inset-0 rounded-full bg-primary-gold/20 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100' />
                     <LinkedIn
                       width={24}
                       height={24}
-                      className='relative transition-transform group-hover:scale-110'
+                      className='relative text-white transition-transform group-hover:scale-110'
                     />
                   </Link>
-                  <div className='h-10 w-px bg-gradient-to-b from-white/5 via-white/10 to-white/5' />
+                  <div className='h-10 w-px bg-white/10' />
                   <Link
                     href='/careers'
                     className='group flex items-center gap-3 text-base text-white/60 transition-all hover:text-white'
