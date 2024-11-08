@@ -166,23 +166,23 @@ export default function FutureSection({ id, bgColor }: FutureSectionProps) {
                       className='relative text-white transition-transform group-hover:scale-110'
                     />
                   </Link>
-                  <div className='h-10 w-px bg-white/10' />
+                  {/* <div className='h-10 w-px bg-white/10' />
                   <Link
                     href='/careers'
                     className='group flex items-center gap-3 text-base text-white/60 transition-all hover:text-white'
-                  >
-                    <span className='relative'>
+                  > */}
+                  {/* <span className='relative'>
                       View Open Positions
                       <span className='absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-primary-gold to-transparent transition-all group-hover:w-full' />
-                    </span>
-                    <motion.span
+                    </span> */}
+                  {/* <motion.span
                       className='inline-block text-primary-gold'
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
                       →
-                    </motion.span>
-                  </Link>
+                    </motion.span> */}
+                  {/* </Link> */}
                 </div>
               </div>
             </div>

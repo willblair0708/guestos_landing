@@ -77,7 +77,7 @@ export default function SimulationSection({
       <motion.div className='w-full' style={{ y: ySpring, opacity }}>
         {/* Hero Content */}
         <motion.div
-          className='mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-4 pt-20 sm:px-8'
+          className='mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-4 sm:px-8'
           variants={containerVariants}
         >
           <div className='grid grid-cols-1 gap-16 lg:grid-cols-2'>
@@ -158,7 +158,7 @@ export default function SimulationSection({
         </motion.div>
 
         {/* Platform Preview */}
-        <div className='mx-auto px-4 pt-8 sm:px-8'>
+        <div className='mx-auto px-4 sm:px-8'>
           {isMobile ? <ProductPreviewMobile /> : <PlatformPreview />}
         </div>
       </motion.div>
@@ -256,7 +256,7 @@ const features = [
 // Add PlatformPreview component with modern UI
 function PlatformPreview() {
   return (
-    <div className='relative mx-auto mt-16 h-[650px] w-full max-w-screen-2xl rounded-t-[40px] bg-gradient-to-b from-black to-black/95 p-6 shadow-2xl'>
+    <div className='relative mx-auto h-[650px] w-full max-w-screen-2xl rounded-t-[40px] bg-gradient-to-b from-black to-black/95 p-6 shadow-2xl'>
       <div className='flex h-full w-full flex-col'>
         {/* Enhanced Navigation */}
         <nav className='flex w-full items-center justify-between rounded-xl px-8 pb-6'>
