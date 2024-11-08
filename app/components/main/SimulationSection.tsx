@@ -152,15 +152,7 @@ export default function SimulationSection({
         >
           <div className='grid grid-cols-1 gap-8 sm:grid-cols-3'>
             {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                variants={itemVariants}
-                className='space-y-4 rounded-xl bg-white/50 p-6 backdrop-blur-sm'
-              >
-                <feature.icon className='h-8 w-8 text-[#03E87A]' />
-                <h3 className='text-lg font-medium'>{feature.title}</h3>
-                <p className='text-sm text-black/70'>{feature.description}</p>
-              </motion.div>
+              <FeatureCard key={index} feature={feature} index={index} />
             ))}
           </div>
         </motion.div>
@@ -169,60 +161,176 @@ export default function SimulationSection({
   );
 }
 
-// Add features data
+// Add floating elements data
+const floatingElements = [
+  { icon: icons.Message, label: 'Live Chat', value: '24/7' },
+  { icon: icons.Chart, label: 'Guest Satisfaction', value: '95%' },
+  { icon: icons.Settings, label: 'Response Time', value: '<1min' },
+];
+
+// Update features with more engaging content
 const features = [
   {
-    title: '24/7 AI Concierge',
-    description:
-      'Multilingual guest support powered by advanced AI voice and SMS technology.',
+    title: 'AI-Powered Experience',
+    description: 'Seamless multilingual support with natural conversations.',
     icon: icons.Message,
+    stats: '24/7 Support',
+    gradient: 'from-[#03E87A]/20 to-[#03E87A]/5',
   },
   {
     title: 'Smart Operations',
-    description:
-      'Streamline workflows and empower staff to focus on meaningful guest interactions.',
+    description: 'Automate workflows and enhance staff productivity.',
     icon: icons.Settings,
+    stats: '85% Efficiency',
+    gradient: 'from-[#FFB443]/20 to-[#FFB443]/5',
   },
   {
-    title: 'Guest Insights',
-    description:
-      'Deep analytics to understand preferences and deliver personalized experiences.',
+    title: 'Guest Intelligence',
+    description: 'Deep insights for personalized experiences.',
     icon: icons.Chart,
+    stats: '2x Revenue',
+    gradient: 'from-[#3B82F6]/20 to-[#3B82F6]/5',
   },
 ];
 
-// Update ProductPreview component to show more relevant UI
+// Add PlatformPreview component with modern UI
 function PlatformPreview() {
   return (
-    <div className='relative mx-auto mt-16 h-[600px] w-full max-w-screen-2xl rounded-t-[40px] bg-black p-4 pb-0'>
+    <div className='relative mx-auto mt-16 h-[650px] w-full max-w-screen-2xl rounded-t-[40px] bg-gradient-to-b from-black to-black/95 p-6 shadow-2xl'>
       <div className='flex h-full w-full flex-col'>
-        <nav className='flex w-full items-center justify-between rounded-xl bg-black px-8 pb-4 text-white'>
-          <GuestOSIcon className='mt-2 h-14 w-14' />
-          <div className='flex items-center gap-4 text-sm'>
-            <Image
-              src='/assets/main/avatar.png'
-              alt='Avatar'
-              width={24}
-              height={24}
-              className='rounded-full'
-            />
-            <span>Mark</span>
+        {/* Enhanced Navigation */}
+        <nav className='flex w-full items-center justify-between rounded-xl px-8 pb-6'>
+          <div className='flex items-center gap-6'>
+            <GuestOSIcon className='h-14 w-14' />
+            <div className='h-8 w-px bg-white/10' />
+            <div className='space-y-1'>
+              <div className='flex items-center gap-2'>
+                <div className='h-2 w-2 animate-pulse rounded-full bg-[#03E87A]' />
+                <span className='font-light text-sm text-white/70'>
+                  Live Platform
+                </span>
+              </div>
+              <p className='font-light text-xs text-white/40'>
+                Powering next-gen hospitality
+              </p>
+            </div>
+          </div>
+
+          {/* Stats Bar */}
+          <div className='flex items-center gap-8'>
+            {floatingElements.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                className='flex items-center gap-3 rounded-full bg-white/5 px-4 py-2 backdrop-blur-sm'
+              >
+                <item.icon className='h-4 w-4 text-[#03E87A]' />
+                <div className='flex flex-col'>
+                  <span className='font-light text-xs text-white/60'>
+                    {item.label}
+                  </span>
+                  <span className='text-sm font-medium text-white'>
+                    {item.value}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </nav>
 
-        <div className='relative h-full w-full overflow-hidden'>
+        {/* Main Content Area */}
+        <div className='relative h-full w-full overflow-hidden rounded-t-3xl'>
           <Image
             src='/assets/main/main_hero_poster.webp'
             alt='GuestOS Platform'
             fill
-            className='object-cover'
+            className='object-cover transition-transform duration-700 hover:scale-105'
             priority
             quality={95}
           />
-          <div className='absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20' />
+          <div className='absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40' />
+
+          {/* Floating Cards */}
+          <FloatingCard
+            className='left-8 top-8 max-w-xs'
+            style={{ backdropFilter: 'blur(16px)' }}
+          >
+            <div className='space-y-4 p-6'>
+              <div className='flex items-center gap-3'>
+                <div className='h-10 w-10 rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                <div>
+                  <p className='text-sm font-medium'>Guest Interaction</p>
+                  <div className='flex items-center gap-1'>
+                    <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
+                    <p className='text-xs text-black/60'>Active Now</p>
+                  </div>
+                </div>
+              </div>
+              <div className='space-y-2'>
+                <p className='text-sm text-black/80'>
+                  "Could you recommend some local restaurants for dinner
+                  tonight?"
+                </p>
+                <div className='flex items-center gap-2'>
+                  <div className='h-1 w-1 animate-pulse rounded-full bg-black/40' />
+                  <p className='text-xs text-black/40'>
+                    AI Assistant typing...
+                  </p>
+                </div>
+              </div>
+            </div>
+          </FloatingCard>
+
+          {/* Additional floating elements... */}
         </div>
       </div>
     </div>
+  );
+}
+
+// Add interface for feature card props
+interface FeatureCardProps {
+  feature: {
+    title: string;
+    description: string;
+    icon: any; // Replace with proper icon type from your icons file
+    stats: string;
+    gradient: string;
+  };
+  index: number;
+}
+
+// Update FeatureCard component with proper useInView hook usage
+function FeatureCard({ feature, index }: FeatureCardProps) {
+  const elementRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(elementRef, {
+    once: true,
+    amount: 0.2,
+  });
+
+  return (
+    <motion.div
+      ref={elementRef}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.2 }}
+      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${feature.gradient} p-6 backdrop-blur-sm transition-all duration-300`}
+    >
+      <div className='absolute inset-0 bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
+      <div className='relative space-y-4'>
+        <feature.icon className='h-8 w-8 text-black/80' />
+        <div>
+          <h3 className='mb-2 text-lg font-medium'>{feature.title}</h3>
+          <p className='text-sm text-black/60'>{feature.description}</p>
+        </div>
+        <div className='flex items-center gap-2'>
+          <div className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
+          <span className='text-xs font-medium'>{feature.stats}</span>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -379,26 +487,25 @@ const PercentageDial = ({ percentage = 60 }) => {
   );
 };
 
-// Add ProductPreviewMobile component
+// Update ProductPreviewMobile with matching design
 function ProductPreviewMobile() {
   return (
-    <div className='relative mx-auto mt-8 h-[400px] w-full max-w-screen-lg rounded-t-[20px] bg-black p-4 pb-0'>
+    <div className='relative mx-auto mt-8 h-[400px] w-full max-w-screen-lg rounded-t-[20px] bg-gradient-to-b from-black to-black/95 p-4 pb-0 shadow-2xl'>
       <div className='flex h-full w-full flex-col'>
-        <nav className='flex w-full items-center justify-between rounded-xl bg-black px-4 pb-4 text-white'>
-          <GuestOSIcon className='mt-2 h-10 w-10' />
-          <div className='flex items-center gap-2 text-xs'>
-            <Image
-              src='/assets/main/avatar.png'
-              alt='Avatar'
-              width={20}
-              height={20}
-              className='rounded-full'
-            />
-            <span>Mark</span>
+        <nav className='flex w-full items-center justify-between rounded-xl px-4 pb-4 text-white'>
+          <div className='flex items-center gap-3'>
+            <GuestOSIcon className='mt-2 h-10 w-10' />
+            <span className='font-light text-xs tracking-wide text-white/70'>
+              AI Concierge
+            </span>
+          </div>
+          <div className='flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 backdrop-blur-sm'>
+            <div className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
+            <span className='font-light text-xs'>Live</span>
           </div>
         </nav>
 
-        <div className='relative h-full w-full overflow-hidden'>
+        <div className='relative h-full w-full overflow-hidden rounded-t-2xl'>
           <Image
             src='/assets/main/main_hero_poster.webp'
             alt='GuestOS Platform'
@@ -407,7 +514,7 @@ function ProductPreviewMobile() {
             priority
             quality={90}
           />
-          <div className='absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20' />
+          <div className='absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40' />
         </div>
       </div>
     </div>

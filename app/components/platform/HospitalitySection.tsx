@@ -15,7 +15,7 @@ export default function HospitalitySection({
       bgColor={bgColor}
       productName='Hotel Operations'
       productDescription='Elevate your hotel operations with AI-powered solutions that enhance guest experiences and streamline staff workflows.'
-      imageSrc='/assets/platform/hospitality-hero.webp'
+      imageSrc='/assets/platform/hospitality.jpeg'
       features={[
         {
           title: 'AI CONCIERGE',
