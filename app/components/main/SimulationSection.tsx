@@ -68,98 +68,124 @@ export default function SimulationSection({
     <motion.section
       ref={sectionRef}
       id={id}
-      className='relative flex items-center overflow-hidden bg-[#F1EFED] text-black sm:px-8'
+      className='relative min-h-screen overflow-hidden bg-gradient-to-b from-[#F1EFED] to-[#E9E7E5] text-black'
       style={{ backgroundColor: bgColor }}
       initial='hidden'
       animate='visible'
       variants={containerVariants}
     >
       <motion.div className='w-full' style={{ y: ySpring, opacity }}>
+        {/* Hero Content */}
         <motion.div
-          className='mx-auto mt-[100px] flex max-w-6xl flex-col items-start justify-between gap-x-12 gap-y-12 px-4 sm:mt-32 sm:flex-row sm:gap-x-24'
+          className='mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-4 pt-20 sm:px-8'
           variants={containerVariants}
         >
-          <motion.div className='w-full space-y-6 sm:w-1/2'>
-            <motion.h2
-              variants={itemVariants}
-              className='text-[32px] font-book leading-[1.2] tracking-[-0.01em] text-[#18181B] sm:text-[40px]'
-            >
-              {isMobile ? (
-                'The AI Concierge Platform for Modern Hospitality'
-              ) : (
-                <>
-                  The AI Concierge Platform <br />
-                  for Modern Hospitality
-                </>
-              )}
-            </motion.h2>
-          </motion.div>
+          <div className='grid grid-cols-1 gap-16 lg:grid-cols-2'>
+            {/* Left Column */}
+            <motion.div className='flex flex-col justify-center space-y-8'>
+              <motion.div variants={itemVariants} className='space-y-2'>
+                <span className='inline-flex items-center gap-2 rounded-full bg-black/5 px-4 py-1.5 text-sm'>
+                  <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
+                  AI-Powered Platform
+                </span>
+              </motion.div>
 
-          <motion.div
-            className='w-full space-y-8 sm:w-1/2'
-            variants={containerVariants}
-          >
-            <motion.p
-              variants={itemVariants}
-              className='text-[16px] font-book leading-relaxed tracking-tight text-black/80'
-            >
-              Enhance guest experiences with 24/7 multilingual support,
-              personalized recommendations, and streamlined operations - all
-              powered by advanced AI technology.
-            </motion.p>
+              <motion.h2
+                variants={itemVariants}
+                className='text-[40px] font-book leading-[1.1] tracking-[-0.02em] text-[#18181B] sm:text-[56px]'
+              >
+                The Future of
+                <br />
+                <span className='bg-gradient-to-r from-[#18181B] to-[#18181B]/80 bg-clip-text text-transparent'>
+                  Guest Experience
+                </span>
+              </motion.h2>
 
-            <motion.div variants={itemVariants} className='flex gap-4'>
-              <motion.div className='group flex cursor-pointer items-center'>
+              <motion.p
+                variants={itemVariants}
+                className='max-w-xl text-lg font-book leading-relaxed tracking-tight text-black/70'
+              >
+                Enhance guest experiences with 24/7 multilingual support,
+                personalized recommendations, and streamlined operations - all
+                powered by advanced AI technology.
+              </motion.p>
+
+              <motion.div variants={itemVariants} className='flex gap-4 pt-4'>
                 <Link
-                  className='flex items-center rounded-full bg-black px-6 py-3 text-sm font-book text-white transition-all hover:bg-black/90'
+                  className='group flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-book text-white transition-all hover:bg-black/90'
                   href='/demo'
                 >
-                  Book Demo
+                  <span>Book Demo</span>
+                  <ArrowIcon
+                    className='h-4 w-4 rotate-[-90deg] transition-transform group-hover:translate-x-1'
+                    color='white'
+                  />
                 </Link>
-              </motion.div>
-              <motion.div className='group flex cursor-pointer items-center'>
                 <Link
-                  className='flex items-center text-sm font-book uppercase tracking-wide transition-all'
+                  className='flex items-center gap-2 rounded-full border border-black/10 px-8 py-4 text-sm font-book text-black transition-all hover:bg-black/5'
                   href='/products'
                 >
-                  <ArrowIcon
-                    className='mr-2 inline-block rotate-[-90deg] transition-transform'
-                    color='black'
-                    opacity={0.8}
-                  />
-                  <motion.span
-                    className='text-xs font-book uppercase tracking-wide'
-                    whileHover={{ x: 8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    Learn More
-                  </motion.span>
+                  Learn More
                 </Link>
               </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* Right Column - Stats */}
+            <motion.div
+              variants={itemVariants}
+              className='relative flex items-center justify-center'
+            >
+              <div className='grid grid-cols-2 gap-6'>
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    className='rounded-2xl border border-black/5 bg-white/50 p-6 backdrop-blur-sm'
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <stat.icon className='mb-4 h-8 w-8 text-[#03E87A]' />
+                    <p className='text-3xl font-medium tracking-tight'>
+                      {stat.value}
+                    </p>
+                    <p className='text-sm text-black/60'>{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
-        {/* Platform Preview Section */}
-        <div className={`mx-auto ${isMobile ? '-mt-[200px]' : 'mt-16'}`}>
+        {/* Platform Preview */}
+        <div className='mx-auto max-w-[1400px] px-4 pb-20 pt-8 sm:px-8'>
           {isMobile ? <ProductPreviewMobile /> : <PlatformPreview />}
         </div>
-
-        {/* Key Features Section */}
-        {/* <motion.div
-          className='mx-auto mt-32 max-w-6xl px-4'
-          variants={containerVariants}
-        >
-          <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
-            {features.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} />
-            ))}
-          </div>
-        </motion.div> */}
       </motion.div>
     </motion.section>
   );
 }
+
+// Add stats data
+const stats = [
+  {
+    icon: icons.Message,
+    label: 'Languages Supported',
+    value: '95+',
+  },
+  {
+    icon: icons.Chart,
+    label: 'Guest Satisfaction',
+    value: '95%',
+  },
+  {
+    icon: icons.Settings,
+    label: 'Response Time',
+    value: '<1min',
+  },
+  {
+    icon: icons.Message,
+    label: 'Support Coverage',
+    value: '24/7',
+  },
+];
 
 // Add floating elements data
 const floatingElements = [
