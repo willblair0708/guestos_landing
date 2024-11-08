@@ -142,7 +142,10 @@ export default function SimulationSection({
                     className='rounded-2xl border border-black/5 bg-white/50 p-6 backdrop-blur-sm'
                     whileHover={{ scale: 1.02 }}
                   >
-                    <stat.icon className='mb-4 h-8 w-8 text-[#03E87A]' />
+                    <stat.icon
+                      className='mb-4 h-8 w-8'
+                      color={stat.iconColor || '#ffffff'}
+                    />
                     <p className='text-3xl font-medium tracking-tight'>
                       {stat.value}
                     </p>
@@ -163,44 +166,53 @@ export default function SimulationSection({
   );
 }
 
-// Add stats data
+// Update stats data with proper color handling
 const stats = [
   {
     icon: icons.Message,
     label: 'Languages Supported',
     value: '95+',
+    iconColor: '#000000',
   },
   {
     icon: icons.Chart,
     label: 'Guest Satisfaction',
     value: '95%',
+    iconColor: '#000000',
   },
   {
     icon: icons.Settings,
     label: 'Response Time',
     value: '<1min',
+    iconColor: '#000000',
   },
   {
     icon: icons.Message,
     label: 'Support Coverage',
     value: '24/7',
+    iconColor: '#000000',
   },
 ];
 
-// Add floating elements data
+// Update floatingElements with proper color handling
 const floatingElements = [
-  { icon: icons.Message, label: 'Live Chat', value: '24/7', color: '#ffffff' },
+  {
+    icon: icons.Message,
+    label: 'Live Chat',
+    value: '24/7',
+    iconColor: '#03E87A',
+  },
   {
     icon: icons.Chart,
     label: 'Guest Satisfaction',
     value: '95%',
-    color: '#ffffff',
+    iconColor: '#03E87A',
   },
   {
     icon: icons.Settings,
     label: 'Response Time',
     value: '<1min',
-    color: '#ffffff',
+    iconColor: '#03E87A',
   },
 ];
 
@@ -274,7 +286,10 @@ function PlatformPreview() {
                 transition={{ delay: i * 0.2 }}
                 className='flex items-center gap-3 rounded-full bg-white/5 px-4 py-2 backdrop-blur-sm'
               >
-                <item.icon className='h-4 w-4 text-[#03E87A]' />
+                <item.icon
+                  className='h-4 w-4'
+                  color={item.iconColor || '#ffffff'}
+                />
                 <div className='flex flex-col'>
                   <span className='font-light text-xs text-white/60'>
                     {item.label}
@@ -353,7 +368,7 @@ function PlatformPreview() {
 
                 <div className='flex items-center gap-2'>
                   <div className='flex h-8 w-8 items-center justify-center rounded-full bg-[#03E87A]/10'>
-                    <icons.Message className='h-4 w-4 text-[#03E87A]' />
+                    <icons.Message className='h-4 w-4' color='#ffffff' />
                   </div>
                   <div className='space-y-1.5'>
                     <div className='flex items-center gap-2'>
@@ -423,7 +438,7 @@ function PlatformPreview() {
 
                 <div className='mt-4 rounded-lg bg-white/5 p-3'>
                   <div className='flex items-center gap-2'>
-                    <icons.Chart className='h-4 w-4 text-[#03E87A]' />
+                    <icons.Chart className='h-4 w-4' color='#ffffff' />
                     <span className='text-xs text-white/80'>
                       Trending Preferences
                     </span>
@@ -457,7 +472,7 @@ function PlatformPreview() {
               <div className='absolute -left-10 -top-10 h-20 w-20 rounded-full bg-[#03E87A]/10 blur-2xl' />
               <div className='relative flex items-center gap-4'>
                 <div className='flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#03E87A]/20 to-[#03E87A]/5'>
-                  <icons.Message className='h-5 w-5 text-[#03E87A]' />
+                  <icons.Message className='h-5 w-5' color='#ffffff' />
                 </div>
                 <div>
                   <p className='text-sm font-medium text-white'>
