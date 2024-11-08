@@ -46,59 +46,57 @@ export default function HospitalitySection({
                   </div>
                 </div>
 
-                <div className='grid grid-cols-2 gap-4'>
-                  <div className='space-y-1'>
-                    <div className='flex items-center justify-between'>
-                      <span className='text-xs text-white/60'>
-                        Response Rate
-                      </span>
-                      <span className='text-sm font-medium text-[#03E87A]'>
-                        98%
-                      </span>
+                <div className='grid grid-cols-2 gap-3'>
+                  <div className='rounded-lg bg-white/5 p-3'>
+                    <div className='mb-2 text-center text-2xl font-medium text-[#03E87A]'>
+                      156
                     </div>
-                    <div className='h-1.5 rounded-full bg-white/10'>
-                      <div className='h-full w-[98%] rounded-full bg-[#03E87A]' />
+                    <div className='text-center text-xs text-white/60'>
+                      Active Guests
                     </div>
                   </div>
-
-                  <div className='space-y-1'>
-                    <div className='flex items-center justify-between'>
-                      <span className='text-xs text-white/60'>Guest Score</span>
-                      <span className='text-sm font-medium text-[#03E87A]'>
-                        4.9
-                      </span>
+                  <div className='rounded-lg bg-white/5 p-3'>
+                    <div className='mb-2 text-center text-2xl font-medium text-[#03E87A]'>
+                      4.9
                     </div>
-                    <div className='h-1.5 rounded-full bg-white/10'>
-                      <div className='h-full w-[95%] rounded-full bg-[#03E87A]' />
+                    <div className='text-center text-xs text-white/60'>
+                      Guest Score
                     </div>
                   </div>
                 </div>
 
-                <div className='mt-4 rounded-lg bg-white/5 p-3'>
-                  <div className='flex items-center gap-2'>
-                    <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
+                <div className='rounded-lg bg-white/5 p-3'>
+                  <div className='flex items-center justify-between'>
                     <span className='text-xs text-white/80'>
-                      Top Guest Requests
+                      Guest Sentiment
                     </span>
+                    <span className='text-xs text-[#03E87A]'>↑ 12%</span>
                   </div>
-                  <div className='mt-2 flex flex-wrap gap-2'>
-                    {['Room Service', 'Local Tips', 'Transport'].map(
-                      (tag, i) => (
-                        <span
-                          key={i}
-                          className='rounded-full bg-white/10 px-2 py-1 text-xs text-white/60'
-                        >
-                          {tag}
-                        </span>
-                      )
-                    )}
+                  <div className='mt-3 flex gap-2'>
+                    {[
+                      { label: 'Excellent', value: '78%' },
+                      { label: 'Good', value: '16%' },
+                      { label: 'Average', value: '6%' },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className='flex-1 rounded-lg bg-white/5 p-2 text-center'
+                      >
+                        <div className='text-sm font-medium text-[#03E87A]'>
+                          {item.value}
+                        </div>
+                        <div className='text-xs text-white/40'>
+                          {item.label}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Room Status Card */}
+          {/* Operations Card */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -108,27 +106,51 @@ export default function HospitalitySection({
           >
             <div className='space-y-4'>
               <div className='flex items-center justify-between'>
-                <h4 className='text-sm font-medium text-white'>Room Status</h4>
+                <h4 className='text-sm font-medium text-white'>
+                  Operations Status
+                </h4>
                 <div className='flex items-center gap-2'>
                   <span className='h-2 w-2 animate-pulse rounded-full bg-[#03E87A]' />
-                  <span className='text-xs text-white/80'>Updating</span>
+                  <span className='text-xs text-white/80'>Real-time</span>
                 </div>
               </div>
 
-              <div className='grid grid-cols-2 gap-3'>
-                <div className='rounded-lg bg-white/5 p-3 text-center'>
-                  <div className='text-2xl font-medium text-[#03E87A]'>92%</div>
-                  <div className='text-xs text-white/60'>Occupancy</div>
-                </div>
-                <div className='rounded-lg bg-white/5 p-3 text-center'>
-                  <div className='text-2xl font-medium text-[#03E87A]'>24</div>
-                  <div className='text-xs text-white/60'>Checkouts</div>
-                </div>
+              <div className='space-y-3'>
+                {[
+                  { label: 'Room Service', time: '8m', status: 'On Track' },
+                  { label: 'Housekeeping', time: '24m', status: 'Busy' },
+                  { label: 'Maintenance', time: '12m', status: 'Available' },
+                ].map((item, i) => (
+                  <div key={i} className='rounded-lg bg-white/5 p-3'>
+                    <div className='flex items-center justify-between'>
+                      <span className='text-xs text-white/60'>
+                        {item.label}
+                      </span>
+                      <span
+                        className={`text-xs ${
+                          item.status === 'On Track'
+                            ? 'text-[#03E87A]'
+                            : item.status === 'Busy'
+                              ? 'text-amber-400'
+                              : 'text-blue-400'
+                        }`}
+                      >
+                        {item.status}
+                      </span>
+                    </div>
+                    <div className='mt-2 flex items-center gap-2'>
+                      <div className='text-sm font-medium text-white/80'>
+                        Response Time:
+                      </div>
+                      <div className='text-sm text-[#03E87A]'>{item.time}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Service Analytics Card */}
+          {/* Revenue Insights Card */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -139,29 +161,55 @@ export default function HospitalitySection({
             <div className='space-y-4'>
               <div className='flex items-center justify-between'>
                 <h4 className='text-sm font-medium text-white'>
-                  Service Analytics
+                  Revenue Insights
                 </h4>
-                <span className='text-xs text-white/60'>Last 24h</span>
+                <span className='text-xs text-white/60'>Today</span>
               </div>
 
-              <div className='space-y-3'>
-                <div className='space-y-2'>
-                  <div className='flex justify-between text-xs'>
-                    <span className='text-white/60'>Room Service</span>
-                    <span className='text-[#03E87A]'>↑ 12%</span>
+              <div className='grid grid-cols-2 gap-3'>
+                <div className='rounded-lg bg-white/5 p-3'>
+                  <div className='flex items-center gap-1'>
+                    <span className='text-xs text-white/60'>RevPAR</span>
+                    <span className='text-xs text-[#03E87A]'>↑ 15%</span>
                   </div>
-                  <div className='h-1.5 rounded-full bg-white/10'>
-                    <div className='h-full w-[85%] rounded-full bg-[#03E87A]' />
+                  <div className='mt-1 text-lg font-medium text-[#03E87A]'>
+                    $245
                   </div>
                 </div>
+                <div className='rounded-lg bg-white/5 p-3'>
+                  <div className='flex items-center gap-1'>
+                    <span className='text-xs text-white/60'>ADR</span>
+                    <span className='text-xs text-[#03E87A]'>↑ 8%</span>
+                  </div>
+                  <div className='mt-1 text-lg font-medium text-[#03E87A]'>
+                    $320
+                  </div>
+                </div>
+              </div>
+
+              <div className='rounded-lg bg-white/5 p-3'>
+                <div className='mb-2 text-xs text-white/80'>
+                  Revenue Streams
+                </div>
                 <div className='space-y-2'>
-                  <div className='flex justify-between text-xs'>
-                    <span className='text-white/60'>Housekeeping</span>
-                    <span className='text-[#03E87A]'>↑ 8%</span>
-                  </div>
-                  <div className='h-1.5 rounded-full bg-white/10'>
-                    <div className='h-full w-[75%] rounded-full bg-[#03E87A]' />
-                  </div>
+                  {[
+                    { label: 'Room Revenue', value: '82%' },
+                    { label: 'F&B', value: '12%' },
+                    { label: 'Other Services', value: '6%' },
+                  ].map((item, i) => (
+                    <div key={i} className='space-y-1'>
+                      <div className='flex justify-between text-xs'>
+                        <span className='text-white/60'>{item.label}</span>
+                        <span className='text-[#03E87A]'>{item.value}</span>
+                      </div>
+                      <div className='h-1.5 rounded-full bg-white/10'>
+                        <div
+                          className='h-full rounded-full bg-[#03E87A]'
+                          style={{ width: item.value }}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
