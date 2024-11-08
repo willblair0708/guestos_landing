@@ -15,6 +15,7 @@ import { motion, type MotionValue, useTransform } from 'framer-motion';
 
 import { useCooldown } from '@/hooks/use-cooldown';
 import { useScrollControl, useScrollForce } from '@/hooks/use-scroll-control';
+
 import Slide from './HumanitySection/Slide';
 
 interface HumanitySectionProps {
@@ -133,7 +134,13 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
       style={{ backgroundColor: bgColor }}
     >
       {slides.map((_, index) => (
-        <Slide index={index} key={index} isFallback={true} slideIndex={slideIndex} slides={slides} />
+        <Slide
+          index={index}
+          key={index}
+          isFallback={true}
+          slideIndex={slideIndex}
+          slides={slides}
+        />
       ))}
     </motion.section>
   );
@@ -268,7 +275,12 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
       whileInView={{ padding: '2rem' }}
       viewport={{ amount: 0.9, once: true }}
     >
-      <Slide progressX={progressX} isFallback={false} slideIndex={slideIndex} slides={slides} />
+      <Slide
+        progressX={progressX}
+        isFallback={false}
+        slideIndex={slideIndex}
+        slides={slides}
+      />
     </motion.section>
   );
 }

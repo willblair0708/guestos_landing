@@ -68,11 +68,11 @@ export default function Home() {
                     isMobile={isMobile}
                     bgColor='white'
                   />
-                  <HumanitySection
+                  {/* <HumanitySection
                     id='section-2'
                     isMobile={isMobile}
                     bgColor='white'
-                  />
+                  /> */}
                 </motion.div>
               </motion.main>
             </motion.div>
