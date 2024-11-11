@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { AnimatePresence } from 'framer-motion';
 
 import {
   motion,
@@ -40,29 +41,53 @@ const fadeInVariants = {
   },
 };
 
-const Background = () => (
-  <motion.div
-    className='absolute inset-0 z-0'
-    initial={{ opacity: 0, scale: 1.1 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 1.5, ease: 'easeOut' }}
-  >
-    <Image
-      src='/assets/about/about_header.webp'
-      alt='About GuestOS'
-      fill
-      priority
-      quality={100}
-      className='h-full w-full object-cover'
-      sizes='100vw'
-    />
-    <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/50' />
-    <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.15),transparent_70%)]' />
-    <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.12),transparent_70%)]' />
-    <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_90%)]' />
-    <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.2)_100%)]' />
-  </motion.div>
-);
+const Background = () => {
+  const [currentImage, setCurrentImage] = useState('/assets/about/about_header.webp');
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentImage('/assets/about/about_header2.jpeg');
+    }, 3000); // Transition after 3 seconds
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <motion.div
+      className='absolute inset-0 z-0'
+      initial={{ opacity: 0, scale: 1.1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.5, ease: 'easeOut' }}
+    >
+      <AnimatePresence mode='wait'>
+        <motion.div
+          key={currentImage}
+          className='absolute inset-0'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
+        >
+          <Image
+            src={currentImage}
+            alt='About GuestOS'
+            fill
+            priority
+            quality={100}
+            className='h-full w-full object-cover'
+            sizes='100vw'
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/50' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.15),transparent_70%)]' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.12),transparent_70%)]' />
+      <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_90%)]' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.2)_100%)]' />
+    </motion.div>
+  );
+};
 
 export default function HeroSection({
   id,
