@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { AnimatePresence } from 'framer-motion';
 
+import { AnimatePresence } from 'framer-motion';
 import {
   motion,
   useSpring as useFramerSpring,
@@ -42,37 +42,45 @@ const fadeInVariants = {
 };
 
 const Background = () => {
-  const [currentImage, setCurrentImage] = useState('/assets/about/about_header.webp');
+  const [currentImage, setCurrentImage] = useState(
+    '/assets/about/about_header.webp'
+  );
   const [progress, setProgress] = useState(0);
+  const [isReversing, setIsReversing] = useState(false);
   const progressRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const TRANSITION_DURATION = 5000; // 5 seconds total
   const PROGRESS_INTERVAL = 50; // Update progress every 50ms
 
   useEffect(() => {
-    // Progress animation
-    progressRef.current = setInterval(() => {
-      setProgress(prev => {
-        const newProgress = prev + (PROGRESS_INTERVAL / TRANSITION_DURATION) * 100;
-        return newProgress <= 100 ? newProgress : 100;
-      });
-    }, PROGRESS_INTERVAL);
+    const updateProgress = () => {
+      setProgress((prev) => {
+        const increment = (PROGRESS_INTERVAL / TRANSITION_DURATION) * 100;
+        const newProgress = isReversing ? prev - increment : prev + increment;
 
-    // Image transition
-    const timer = setTimeout(() => {
-      setCurrentImage('/assets/about/about_header2.jpeg');
-      if (progressRef.current) {
-        clearInterval(progressRef.current);
-      }
-      setProgress(100);
-    }, TRANSITION_DURATION - 1500);
+        // Check bounds and reverse direction if needed
+        if (newProgress >= 100) {
+          setIsReversing(true);
+          setCurrentImage('/assets/about/about_header2.webp');
+          return 100;
+        } else if (newProgress <= 0) {
+          setIsReversing(false);
+          setCurrentImage('/assets/about/about_header.webp');
+          return 0;
+        }
+
+        return newProgress;
+      });
+    };
+
+    // Progress animation
+    progressRef.current = setInterval(updateProgress, PROGRESS_INTERVAL);
 
     return () => {
-      clearTimeout(timer);
       if (progressRef.current) {
         clearInterval(progressRef.current);
       }
     };
-  }, []);
+  }, [isReversing]);
 
   return (
     <motion.div
@@ -82,7 +90,7 @@ const Background = () => {
       transition={{ duration: 1.5, ease: 'easeOut' }}
     >
       {/* Progress indicator */}
-      <motion.div 
+      <motion.div
         className='absolute right-8 top-32 z-50 flex items-center gap-4'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -93,7 +101,7 @@ const Background = () => {
           <span className='font-light text-xs text-white/60'>Now</span>
         </div>
         <div className='h-12 w-[2px] overflow-hidden rounded-full bg-white/10'>
-          <motion.div 
+          <motion.div
             className='h-full w-full bg-primary-gold'
             initial={{ y: '-100%' }}
             animate={{ y: `${progress - 100}%` }}
@@ -109,7 +117,7 @@ const Background = () => {
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ 
+          transition={{
             duration: 1.5,
             ease: [0.25, 0.1, 0.25, 1],
           }}
@@ -124,7 +132,7 @@ const Background = () => {
             sizes='100vw'
           />
           {/* Enhanced gradient overlay */}
-          <motion.div 
+          <motion.div
             className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/60'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -135,7 +143,7 @@ const Background = () => {
 
       {/* Modern grain effect */}
       <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
-      
+
       {/* Enhanced gradient overlays */}
       <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.18),transparent_70%)]' />
       <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.15),transparent_70%)]' />
