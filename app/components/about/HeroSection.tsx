@@ -43,13 +43,35 @@ const fadeInVariants = {
 
 const Background = () => {
   const [currentImage, setCurrentImage] = useState('/assets/about/about_header.webp');
-  
+  const [progress, setProgress] = useState(0);
+  const progressRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const TRANSITION_DURATION = 5000; // 5 seconds total
+  const PROGRESS_INTERVAL = 50; // Update progress every 50ms
+
   useEffect(() => {
+    // Progress animation
+    progressRef.current = setInterval(() => {
+      setProgress(prev => {
+        const newProgress = prev + (PROGRESS_INTERVAL / TRANSITION_DURATION) * 100;
+        return newProgress <= 100 ? newProgress : 100;
+      });
+    }, PROGRESS_INTERVAL);
+
+    // Image transition
     const timer = setTimeout(() => {
       setCurrentImage('/assets/about/about_header2.jpeg');
-    }, 3000); // Transition after 3 seconds
-    
-    return () => clearTimeout(timer);
+      if (progressRef.current) {
+        clearInterval(progressRef.current);
+      }
+      setProgress(100);
+    }, TRANSITION_DURATION - 1500);
+
+    return () => {
+      clearTimeout(timer);
+      if (progressRef.current) {
+        clearInterval(progressRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -59,14 +81,38 @@ const Background = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.5, ease: 'easeOut' }}
     >
+      {/* Progress indicator */}
+      <motion.div 
+        className='absolute right-8 top-32 z-50 flex items-center gap-4'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+      >
+        <div className='flex flex-col items-end gap-2'>
+          <span className='font-light text-xs text-white/60'>Then</span>
+          <span className='font-light text-xs text-white/60'>Now</span>
+        </div>
+        <div className='h-12 w-[2px] overflow-hidden rounded-full bg-white/10'>
+          <motion.div 
+            className='h-full w-full bg-primary-gold'
+            initial={{ y: '-100%' }}
+            animate={{ y: `${progress - 100}%` }}
+            transition={{ duration: 0.1, ease: 'linear' }}
+          />
+        </div>
+      </motion.div>
+
       <AnimatePresence mode='wait'>
         <motion.div
           key={currentImage}
           className='absolute inset-0'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ 
+            duration: 1.5,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
         >
           <Image
             src={currentImage}
@@ -77,14 +123,24 @@ const Background = () => {
             className='h-full w-full object-cover'
             sizes='100vw'
           />
+          {/* Enhanced gradient overlay */}
+          <motion.div 
+            className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/60'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          />
         </motion.div>
       </AnimatePresence>
 
-      <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/50' />
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.15),transparent_70%)]' />
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.12),transparent_70%)]' />
+      {/* Modern grain effect */}
+      <div className='absolute inset-0 bg-[url("/assets/noise.png")] opacity-[0.02] mix-blend-overlay' />
+      
+      {/* Enhanced gradient overlays */}
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.18),transparent_70%)]' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.15),transparent_70%)]' />
       <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_90%)]' />
-      <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.2)_100%)]' />
+      <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.25)_100%)]' />
     </motion.div>
   );
 };
