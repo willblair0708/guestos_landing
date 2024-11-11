@@ -48,8 +48,8 @@ const Background = () => {
   const [progress, setProgress] = useState(0);
   const [isReversing, setIsReversing] = useState(false);
   const progressRef = useRef<NodeJS.Timeout | undefined>(undefined);
-  const TRANSITION_DURATION = 5000; // 5 seconds total
-  const PROGRESS_INTERVAL = 50; // Update progress every 50ms
+  const TRANSITION_DURATION = 6000; // Faster: 6 seconds total
+  const PROGRESS_INTERVAL = 16; // Smoother: ~60fps
 
   useEffect(() => {
     const updateProgress = () => {
@@ -57,7 +57,6 @@ const Background = () => {
         const increment = (PROGRESS_INTERVAL / TRANSITION_DURATION) * 100;
         const newProgress = isReversing ? prev - increment : prev + increment;
 
-        // Check bounds and reverse direction if needed
         if (newProgress >= 100) {
           setIsReversing(true);
           setCurrentImage('/assets/about/about_header2.webp');
@@ -72,13 +71,9 @@ const Background = () => {
       });
     };
 
-    // Progress animation
     progressRef.current = setInterval(updateProgress, PROGRESS_INTERVAL);
-
     return () => {
-      if (progressRef.current) {
-        clearInterval(progressRef.current);
-      }
+      if (progressRef.current) clearInterval(progressRef.current);
     };
   }, [isReversing]);
 
@@ -94,7 +89,7 @@ const Background = () => {
         className='absolute right-8 top-32 z-50 flex items-center gap-4'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 0.5 }}
       >
         <div className='flex flex-col items-end gap-2'>
           <span className='font-light text-xs text-white/60'>Then</span>
@@ -103,9 +98,10 @@ const Background = () => {
         <div className='h-12 w-[2px] overflow-hidden rounded-full bg-white/10'>
           <motion.div
             className='h-full w-full bg-primary-gold'
-            initial={{ y: '-100%' }}
-            animate={{ y: `${progress - 100}%` }}
-            transition={{ duration: 0.1, ease: 'linear' }}
+            style={{
+              y: `${progress - 100}%`,
+              transition: 'y 0.1s linear',
+            }}
           />
         </div>
       </motion.div>
@@ -114,11 +110,11 @@ const Background = () => {
         <motion.div
           key={currentImage}
           className='absolute inset-0'
-          initial={{ opacity: 0, scale: 1.05 }}
+          initial={{ opacity: 0, scale: 1.02 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
+          exit={{ opacity: 0, scale: 0.98 }}
           transition={{
-            duration: 1.5,
+            duration: 0.8,
             ease: [0.25, 0.1, 0.25, 1],
           }}
         >
@@ -128,15 +124,15 @@ const Background = () => {
             fill
             priority
             quality={100}
-            className='h-full w-full object-cover'
+            className='duration-[1.2s] h-full w-full object-cover transition-transform ease-out'
             sizes='100vw'
           />
-          {/* Enhanced gradient overlay */}
+          {/* Enhanced gradient overlay with smoother transition */}
           <motion.div
             className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/60'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
           />
         </motion.div>
       </AnimatePresence>
