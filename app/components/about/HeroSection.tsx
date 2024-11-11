@@ -136,7 +136,7 @@ export default function HeroSection({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
                 >
-                  A Long-Standing Family Affair
+                  A Long-Standing Family History
                 </motion.h1>
 
                 <motion.p
