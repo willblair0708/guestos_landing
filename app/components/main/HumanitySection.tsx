@@ -428,76 +428,325 @@ const Slide = memo(
 
         case 'Step 3: Meet "Sierra"':
           return (
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className='absolute left-8 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
-            >
-              <div className='space-y-4'>
-                <div className='flex items-center gap-4'>
-                  <div className='relative h-12 w-12'>
-                    <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
-                    <div className='relative h-full w-full rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
-                  </div>
-                  <div>
-                    <h4 className='text-sm font-medium text-white'>Sierra</h4>
-                    <p className='text-xs text-white/60'>AI Concierge</p>
-                  </div>
-                </div>
-                <div className='space-y-3'>
-                  {[
-                    'Natural Language Processing',
-                    'Contextual Understanding',
-                    'Personalized Responses',
-                    'Multi-channel Support',
-                  ].map((feature, i) => (
-                    <div key={i} className='flex items-center gap-2'>
-                      <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
-                      <span className='text-xs text-white/80'>{feature}</span>
+            <>
+              {/* Sierra Profile Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className='absolute left-8 top-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 backdrop-blur-xl'
+              >
+                <div className='flex h-[500px] flex-col'>
+                  {/* Header */}
+                  <div className='border-b border-white/10 p-4'>
+                    <div className='flex items-center gap-4'>
+                      <div className='relative h-12 w-12'>
+                        <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
+                        <div className='relative h-full w-full rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                      </div>
+                      <div>
+                        <h4 className='text-sm font-medium text-white'>
+                          Sierra
+                        </h4>
+                        <p className='text-xs text-white/60'>
+                          Your Elite AI Concierge
+                        </p>
+                      </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Chat Messages */}
+                  <div className='flex-1 space-y-4 overflow-y-auto p-4'>
+                    <div className='flex justify-start'>
+                      <div className='max-w-[80%] rounded-lg rounded-tl-none bg-white/10 p-3'>
+                        <p className='text-sm text-white/80'>
+                          Hello! I'm Sierra, your dedicated hospitality AI. How
+                          may I assist you today?
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex justify-end'>
+                      <div className='max-w-[80%] rounded-lg rounded-tr-none bg-[#03E87A]/20 p-3'>
+                        <p className='text-sm text-white/80'>
+                          I'd like to book a dinner reservation for tonight.
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex justify-start'>
+                      <div className='max-w-[80%] rounded-lg rounded-tl-none bg-white/10 p-3'>
+                        <p className='text-sm text-white/80'>
+                          I'll help you with that. What time would you prefer,
+                          and how many guests will be dining?
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Input Area */}
+                  <div className='border-t border-white/10 p-4'>
+                    <div className='flex items-center gap-2 rounded-lg bg-white/5 p-2'>
+                      <input
+                        type='text'
+                        placeholder='Type your message...'
+                        className='flex-1 bg-transparent text-sm text-white/80 placeholder:text-white/40 focus:outline-none'
+                      />
+                      <button className='rounded-full bg-[#03E87A] p-2 text-black hover:bg-[#03E87A]/90'>
+                        <svg
+                          className='h-4 w-4'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                        >
+                          <path
+                            d='M22 2L11 13'
+                            stroke='currentColor'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                          <path
+                            d='M22 2L15 22L11 13L2 9L22 2Z'
+                            stroke='currentColor'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+
+              {/* Capabilities Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className='absolute left-20 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <h4 className='text-sm font-medium text-white'>
+                    Core Capabilities
+                  </h4>
+                  <div className='grid grid-cols-2 gap-3'>
+                    {[
+                      'Multilingual Support',
+                      'Voice Recognition',
+                      'Emotion Analysis',
+                      'Context Memory',
+                      'Real-time Translation',
+                      'Proactive Assistance',
+                      'Cultural Awareness',
+                      'Privacy-First Design',
+                    ].map((capability, i) => (
+                      <div
+                        key={i}
+                        className='rounded-lg bg-white/5 px-3 py-2 text-center transition-colors hover:bg-white/10'
+                      >
+                        <span className='text-xs text-white/80'>
+                          {capability}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Services Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className='absolute bottom-20 left-32 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <h4 className='text-sm font-medium text-white'>
+                    Guest Services
+                  </h4>
+                  <div className='space-y-3'>
+                    {[
+                      {
+                        service: 'Personalized Recommendations',
+                        rating: '98%',
+                      },
+                      {
+                        service: 'Instant Booking & Reservations',
+                        rating: '99%',
+                      },
+                      { service: 'Special Requests Handling', rating: '97%' },
+                      { service: '24/7 Guest Support', rating: '100%' },
+                    ].map((item, i) => (
+                      <div key={i} className='space-y-1'>
+                        <div className='flex justify-between text-xs'>
+                          <span className='text-white/80'>{item.service}</span>
+                          <span className='text-[#03E87A]'>{item.rating}</span>
+                        </div>
+                        <div className='h-1 rounded-full bg-white/10'>
+                          <div
+                            className='h-full rounded-full bg-[#03E87A]'
+                            style={{ width: item.rating }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </>
           );
 
         case 'Step 4: Explore Features':
           return (
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className='absolute left-8 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
-            >
-              <div className='space-y-4'>
-                <h4 className='text-sm font-medium text-white'>
-                  Available Features
-                </h4>
-                <div className='grid gap-3'>
-                  {[
-                    { name: 'Experience Curator', status: 'Active' },
-                    { name: 'Payment Processing', status: 'Active' },
-                    { name: 'Booking Engine', status: 'Active' },
-                    { name: 'Analytics Dashboard', status: 'Active' },
-                  ].map((feature, i) => (
-                    <div
-                      key={i}
-                      className='flex items-center justify-between rounded-lg bg-white/5 p-3'
-                    >
-                      <span className='text-sm text-white/80'>
-                        {feature.name}
-                      </span>
-                      <span className='rounded-full bg-[#03E87A]/20 px-2 py-1 text-xs text-[#03E87A]'>
-                        {feature.status}
-                      </span>
+            <>
+              {/* AI Concierge Profile Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className='absolute left-8 top-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <div className='flex items-center gap-4'>
+                    <div className='relative h-12 w-12'>
+                      <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
+                      <div className='relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80'>
+                        <span className='text-lg font-medium text-white'>
+                          S
+                        </span>
+                      </div>
                     </div>
-                  ))}
+                    <div>
+                      <h4 className='text-sm font-medium text-white'>Sierra</h4>
+                      <p className='text-xs text-white/60'>Core AI Concierge</p>
+                    </div>
+                  </div>
+
+                  <div className='grid gap-3'>
+                    {[
+                      {
+                        feature: '24/7 Multilingual Support',
+                        status: 'Active',
+                      },
+                      { feature: 'Hotel Information', status: 'Active' },
+                      { feature: 'Trip Planning', status: 'Active' },
+                      { feature: 'Guest Services', status: 'Active' },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className='flex items-center justify-between rounded-lg bg-white/5 p-3'
+                      >
+                        <span className='text-sm text-white/80'>
+                          {item.feature}
+                        </span>
+                        <span className='rounded-full bg-[#03E87A]/20 px-2 py-1 text-xs text-[#03E87A]'>
+                          {item.status}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+
+              {/* Experience Curator Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className='absolute left-20 top-1/2 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <div className='flex items-center gap-4'>
+                    <div className='relative h-12 w-12'>
+                      <div className='absolute -inset-1 animate-pulse rounded-full bg-[#C6A87C]/20 blur-md' />
+                      <div className='relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-[#C6A87C] to-[#C6A87C]/80'>
+                        <span className='text-lg font-medium text-white'>
+                          N
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className='text-sm font-medium text-white'>Noah</h4>
+                      <p className='text-xs text-white/60'>
+                        Experience Curator
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className='grid gap-3'>
+                    {[
+                      { feature: 'Activity Bookings', status: 'Active' },
+                      { feature: 'Payment Processing', status: 'Active' },
+                      { feature: 'Local Experiences', status: 'Active' },
+                      { feature: 'Revenue Generation', status: 'Active' },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className='flex items-center justify-between rounded-lg bg-white/5 p-3'
+                      >
+                        <span className='text-sm text-white/80'>
+                          {item.feature}
+                        </span>
+                        <span className='rounded-full bg-[#C6A87C]/20 px-2 py-1 text-xs text-[#C6A87C]'>
+                          {item.status}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Revenue Optimizer Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className='absolute bottom-20 left-32 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <div className='flex items-center gap-4'>
+                    <div className='relative h-12 w-12'>
+                      <div className='absolute -inset-1 animate-pulse rounded-full bg-[#9B6FDF]/20 blur-md' />
+                      <div className='relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-[#9B6FDF] to-[#9B6FDF]/80'>
+                        <span className='text-lg font-medium text-white'>
+                          R
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className='text-sm font-medium text-white'>Riley</h4>
+                      <p className='text-xs text-white/60'>Revenue Optimizer</p>
+                    </div>
+                  </div>
+
+                  <div className='grid gap-3'>
+                    {[
+                      { feature: 'Upsell Opportunities', status: 'Active' },
+                      { feature: 'Dynamic Pricing', status: 'Active' },
+                      { feature: 'Package Creation', status: 'Active' },
+                      { feature: 'Analytics & Insights', status: 'Active' },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className='flex items-center justify-between rounded-lg bg-white/5 p-3'
+                      >
+                        <span className='text-sm text-white/80'>
+                          {item.feature}
+                        </span>
+                        <span className='rounded-full bg-[#9B6FDF]/20 px-2 py-1 text-xs text-[#9B6FDF]'>
+                          {item.status}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </>
           );
 
         default:
