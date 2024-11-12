@@ -113,7 +113,7 @@ export default function SimulationSection({
               <motion.div variants={itemVariants} className='flex gap-4 pt-4'>
                 <Link
                   className='group flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-book text-white transition-all hover:bg-black/90'
-                  href='/demo'
+                  href='/contact'
                 >
                   <span>Book Demo</span>
                   <ArrowIcon
@@ -123,7 +123,7 @@ export default function SimulationSection({
                 </Link>
                 <Link
                   className='flex items-center gap-2 rounded-full border border-black/10 px-8 py-4 text-sm font-book text-black transition-all hover:bg-black/5'
-                  href='/products'
+                  href='/platform'
                 >
                   Learn More
                 </Link>
