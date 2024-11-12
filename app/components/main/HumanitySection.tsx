@@ -1,3 +1,4 @@
+// HumanitySection.tsx
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import {
@@ -25,50 +26,49 @@ interface HumanitySectionProps {
 const slideIndex = signal(0);
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: {
       when: 'beforeChildren',
       staggerChildren: 0.2,
-      delayChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.95, x: -20 },
+  hidden: { opacity: 0, scale: 0.8 },
   visible: {
     opacity: 1,
     scale: 1,
-    x: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.6, -0.05, 0.01, 0.99],
     },
   },
 };
 
 const textVariants = {
-  hidden: { opacity: 0, x: -15 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
       ease: 'easeOut',
     },
   },
 };
 
-const boxVariants = {
-  hidden: { opacity: 0, x: -10, y: 10 },
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
-    x: 0,
     y: 0,
     transition: {
-      duration: 0.4,
+      duration: 0.6,
       ease: 'easeOut',
     },
   },
@@ -92,114 +92,65 @@ const Slide = memo(
     return (
       <section id={id}>
         <motion.div
-          className='relative flex min-h-[calc(100vh-60px)] w-full flex-col bg-[#EBFA13] via-[#e8f52a] to-[#EBFA13] px-5 lg:grid lg:grid-cols-[60fr_50fr_minmax(min-content,_208px)] lg:py-5'
+          className='relative flex min-h-screen w-full flex-col bg-primary-cream px-8 py-16 lg:flex-row lg:py-20'
           variants={containerVariants}
           initial='hidden'
           animate='visible'
         >
+          {/* Image Section */}
           <motion.div
             variants={imageVariants}
-            className={`relative flex h-fit w-full items-center justify-center border-black py-12 lg:h-full lg:border-b lg:p-8 ${
-              isFallback && index !== 0 ? 'border-r lg:border-r-0' : ''
-            }`}
+            className='mb-12 flex flex-1 items-center justify-center lg:mb-0'
           >
             <motion.div
-              className='m-auto h-fit w-fit p-2'
-              key={`${slideIndex.value}:image`}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
+              className='relative h-80 w-80 overflow-hidden rounded-full shadow-lg lg:h-96 lg:w-96'
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
               <Image
                 src={slide.value.image}
-                alt='Woman Aaru'
-                width={500}
-                height={500}
-                className='h-96 lg:h-full'
+                alt={slide.value.label}
+                layout='fill'
+                objectFit='cover'
+                className='object-center'
               />
             </motion.div>
-            {progressX ? (
-              <Scrollbar
-                range={[0.0, 0.21]}
-                value={progressX}
-                axis={{ primary: 'left', secondary: 'bottom' }}
-              />
-            ) : null}
           </motion.div>
+
+          {/* Content Section */}
           <motion.div
             variants={textVariants}
-            className='relative border border-b-0 border-r-0 border-black lg:border-r'
+            className='flex flex-1 flex-col justify-center lg:pl-12'
           >
-            {progressX ? (
-              <>
-                <Scrollbar
-                  range={[0.21, 0.35]}
-                  value={progressX}
-                  axis={{ primary: 'bottom', secondary: 'left' }}
-                />
-                <Scrollbar
-                  range={[0.35, 0.6]}
-                  value={progressX}
-                  axis={{ primary: 'left', secondary: 'top' }}
-                />
-                <Scrollbar
-                  range={[0.6, 0.8]}
-                  value={progressX}
-                  axis={{ primary: 'top', secondary: 'right' }}
-                />
-              </>
-            ) : null}
-            <div className='mb-[230px] h-full w-full p-5 pb-0 lg:mb-0'>
-              <motion.div
-                className='mb-10 text-[13px] uppercase tracking-wide text-black'
-                key={`${slideIndex.value}:tagline`}
-                variants={textVariants}
-              >
-                {slide.value.label}
-              </motion.div>
-              <motion.h3
-                className='font-serif text-4xl leading-[1.2] tracking-tighter text-black lg:text-[40px]'
-                key={`${slideIndex.value}:description`}
-                variants={textVariants}
-              >
-                {slide.value.tagline}
-              </motion.h3>
-            </div>
-          </motion.div>
-          <motion.div
-            variants={boxVariants}
-            className={`relative flex h-full w-full flex-col border-b border-l border-black lg:border-l-0 ${
-              isFallback && index === slides.length - 1 ? 'mb-6' : ''
-            }`}
-          >
-            <div className='flex h-full w-full pb-5 pl-5'>
-              <div className='z-20 mt-auto flex max-w-[208px] flex-col space-y-[50px] bg-white p-4 pb-8'>
-                <motion.p
-                  className='border-t border-black py-[10px] text-sm tracking-tight text-black'
-                  key={`${slideIndex.value}:tagp`}
-                  variants={boxVariants}
-                >
-                  0{(index ?? slideIndex.value) + 1}
-                </motion.p>
-                <motion.p
-                  className='border-t border-black py-[10px] text-sm tracking-tight text-black'
-                  key={`${slideIndex.value}:desc`}
-                  variants={boxVariants}
-                >
-                  {slide.value.description}
-                </motion.p>
-                {/* <button className='flex w-fit items-center gap-x-2 rounded-full bg-black px-2 py-1 text-xs uppercase text-white transition-colors hover:bg-gray-800'>
-                <span>{slide.value.buttonText}</span>
-                <icons.Arrow color='white' />
-              </button> */}
-              </div>
-            </div>
-            {progressX ? (
-              <Scrollbar
-                range={[0.8, 1]}
-                value={progressX}
-                axis={{ primary: 'left', secondary: 'bottom' }}
-              />
-            ) : null}
+            <motion.div
+              className='mb-4 text-lg uppercase tracking-wider text-primary-gold'
+              key={`${slideIndex.value}:label`}
+              variants={textVariants}
+            >
+              {slide.value.label}
+            </motion.div>
+            <motion.h3
+              className='mb-6 text-3xl font-semibold text-primary-navy'
+              key={`${slideIndex.value}:tagline`}
+              variants={textVariants}
+            >
+              {slide.value.tagline}
+            </motion.h3>
+            <motion.p
+              className='mb-8 text-base text-primary-sand'
+              key={`${slideIndex.value}:description`}
+              variants={textVariants}
+            >
+              {slide.value.description}
+            </motion.p>
+            <motion.button
+              className='hover:bg-primary-gold-dark self-start rounded-full bg-primary-gold px-6 py-3 font-medium text-primary-navy transition-colors'
+              key={`${slideIndex.value}:button`}
+              variants={cardVariants}
+              whileHover={{ scale: 1.05 }}
+            >
+              {slide.value.buttonText}
+            </motion.button>
           </motion.div>
         </motion.div>
       </section>
@@ -214,35 +165,35 @@ const slides = [
     image: '/assets/main/pixelated_woman.svg',
     label: 'Humanity at Scale',
     tagline:
-      'Leverage hundreds of traits across demographics, psychographics and more to recreate any population, group, or geography in moments.',
+      'Recreate any population, group, or geography in moments with hundreds of traits across demographics and psychographics.',
     description: 'If you can describe it, Aaru can simulate it.',
-    buttonText: 'Build your World',
+    buttonText: 'Build Your World',
   },
   {
     image: '/assets/main/pixelated_earth.svg',
-    label: 'See the future, change the present',
+    label: 'See the Future, Change the Present',
     tagline:
-      'Configure worlds with hypothetical news, information, and stories to measure the impact of events that haven’t yet happened.',
+      'Configure worlds with hypothetical events to measure their impact before they happen.',
     description:
-      "Whether it is a Vice Presidential nomination, a brand launch, or a terrorist attack, proactively identifying the impact of events is core to Aaru's operations.",
+      "Whether it's a vice presidential nomination or a brand launch, proactively identify the impact of future events.",
     buttonText: 'See the Future',
   },
   {
     image: '/assets/main/pixelated_stopwatch.svg',
     label: 'Infinite Scale in Minimal Time',
     tagline:
-      'Reduce 4 weeks of research into 40 seconds with higher accuracy than any survey, poll, or focus group in 1/1000th of the time.',
+      'Transform weeks of research into seconds with unparalleled accuracy and efficiency.',
     description:
-      "Humans don't scale. They don't tell the truth, they have biases, and they frequently don't respond. Worst of all, they're slow.",
-    buttonText: 'Learn more',
+      'Humans are slow, biased, and unreliable. Aaru delivers faster and more accurate insights.',
+    buttonText: 'Learn More',
   },
   {
     image: '/assets/main/pixelated_tree.svg',
     label: 'Converge on Reality',
     tagline:
-      'With an increasing number of agents, variance decreases. Simulations get closer and closer to reality until Aaru reaches convergence.',
+      'Simulations become indistinguishable from reality as variance decreases with more agents.',
     description:
-      'Aaru researchers work on complex challenges daily. We tackle questions on the scale of humanity. What we build provides more accurate and detailed understandings of the world. We build clarity in chaos.',
+      'Aaru provides clarity in chaos, offering detailed understandings of complex global challenges.',
     buttonText: 'Design Tomorrow',
   },
 ];
@@ -263,7 +214,7 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
   return (
     <motion.section
       id={id}
-      className='relative min-h-screen text-black'
+      className='relative min-h-screen text-primary-navy'
       style={{ backgroundColor: bgColor }}
     >
       {slides.map((_, index) => (
@@ -396,10 +347,11 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
     <motion.section
       id={id}
       ref={sectionRef}
-      className='relative h-screen p-[30px] text-black'
+      className='relative h-screen p-8 text-primary-navy'
       style={{ backgroundColor: bgColor }}
       initial={{ padding: '0' }}
-      whileInView={{ padding: '2rem' }}
+      animate={{ padding: '2rem' }}
+      transition={{ duration: 0.5 }}
       viewport={{ amount: 0.9, once: true }}
     >
       <Slide progressX={progressX} isFallback={false} />
@@ -410,67 +362,3 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
 export default dynamic(() => Promise.resolve(HumanitySection), {
   ssr: false,
 });
-
-type Axis = 'left' | 'right' | 'bottom' | 'top';
-
-const Scrollbar = memo(
-  ({
-    range,
-    value,
-    axis,
-  }: {
-    range: number[];
-    value: MotionValue<number>;
-    axis: { primary: Axis; secondary: Axis };
-  }) => {
-    const segment = useTransform(value, range, ['0%', '100%']);
-    const display = useTransform(value, (value) => {
-      const [start, end] = range;
-
-      if (value > start && value <= end) {
-        return 'initial';
-      } else if (start === 0 && value <= 0) {
-        return 'initial';
-      } else {
-        return 'none';
-      }
-    });
-
-    // TODO: clean this up
-    const position =
-      axis.secondary === 'top'
-        ? '-top-1'
-        : axis.secondary === 'bottom'
-          ? '-bottom-1'
-          : axis.secondary === 'left'
-            ? '-left-1'
-            : '-right-1';
-
-    const padding =
-      axis.primary === 'top'
-        ? 'pb-8'
-        : axis.primary === 'bottom'
-          ? 'pt-8'
-          : axis.primary === 'left'
-            ? 'pr-8'
-            : 'pl-8';
-
-    const dimensions =
-      axis.primary === 'left' || axis.primary === 'right'
-        ? 'w-8 h-2'
-        : 'w-2 h-8';
-
-    return (
-      <div className={`absolute h-full w-full ${padding}`}>
-        <div className='relative h-full w-full'>
-          <motion.div
-            className={`absolute ${dimensions} rounded-md bg-black ${position}`}
-            style={{ [axis.primary]: segment, display }}
-          />
-        </div>
-      </div>
-    );
-  }
-);
-
-Scrollbar.displayName = 'Scrollbar';
