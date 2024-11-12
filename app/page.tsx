@@ -63,12 +63,12 @@ export default function Home() {
                   viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
                   className='w-full'
                 >
-                  <SimulationSection
+                  <HumanitySection
                     id='section-1'
                     isMobile={isMobile}
                     bgColor='white'
                   />
-                  <HumanitySection
+                  <SimulationSection
                     id='section-2'
                     isMobile={isMobile}
                     bgColor='white'
