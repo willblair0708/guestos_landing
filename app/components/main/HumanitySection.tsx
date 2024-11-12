@@ -9,10 +9,17 @@ import {
   useMemo,
   useRef,
 } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import { signal } from '@preact/signals-react';
 import { useComputed, useSignals } from '@preact/signals-react/runtime';
-import { motion, type MotionValue, useTransform } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  MotionValue,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion';
 
 import { useCooldown } from '@/hooks/use-cooldown';
 import { useScrollControl, useScrollForce } from '@/hooks/use-scroll-control';
@@ -23,23 +30,25 @@ interface HumanitySectionProps {
   isMobile: boolean;
 }
 
+// Signal to keep track of the current slide index
 const slideIndex = signal(0);
 
+// Animation Variants for Framer Motion
 const containerVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0, scale: 0.98 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
+      duration: 1.2,
       ease: [0.25, 0.1, 0.25, 1],
-      staggerChildren: 0.2,
+      staggerChildren: 0.3,
     },
   },
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.9, y: 20 },
+  hidden: { opacity: 0, scale: 0.9, y: 50 },
   visible: {
     opacity: 1,
     scale: 1,
@@ -52,7 +61,7 @@ const imageVariants = {
 };
 
 const textVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
@@ -63,33 +72,18 @@ const textVariants = {
   },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
-
-// Add new floating gradient animation
 const floatingGradientVariants = {
   animate: {
-    x: [0, 200, 0],
-    y: [-100, 100, -100],
-    scale: [1, 1.2, 1],
-    opacity: [0.3, 0.5, 0.3],
+    rotate: [0, 360],
     transition: {
-      duration: 25,
+      duration: 60,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'linear',
     },
   },
 };
 
+// Slide Component
 const Slide = memo(
   ({
     progressX,
@@ -105,16 +99,22 @@ const Slide = memo(
     const id = useId();
     const slide = useComputed(() => slides[index ?? slideIndex.value]);
 
+    const { ref, inView } = useInView({
+      threshold: 0.5,
+      triggerOnce: true,
+    });
+
     return (
-      <section id={id} className='h-screen'>
+      <section id={id} className='flex h-screen items-center justify-center'>
         <motion.div
-          className='relative flex h-full w-full flex-col items-center justify-center gap-16 bg-black px-8 lg:flex-row'
+          className='relative flex h-full w-full flex-col items-center justify-center gap-16 px-8 lg:flex-row'
           variants={containerVariants}
           initial='hidden'
-          animate='visible'
+          animate={inView ? 'visible' : 'hidden'}
+          ref={ref}
         >
           {/* Enhanced Background Effects */}
-          <div className='absolute inset-0'>
+          <div className='pointer-events-none absolute inset-0'>
             <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
             <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]' />
             <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
@@ -125,36 +125,41 @@ const Slide = memo(
             />
           </div>
 
-          {/* Progress indicator */}
+          {/* Progress Indicator - Updated style */}
           <motion.div
-            className='absolute right-8 top-32 z-50 flex items-center gap-4'
+            className='absolute right-8 top-32 z-50 flex flex-col items-center gap-2'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <div className='h-12 w-[2px] overflow-hidden rounded-full bg-white/10'>
+            <div className='h-12 w-1 overflow-hidden rounded-full bg-white/10 backdrop-blur-sm'>
               <motion.div
-                className='h-full w-full bg-primary-gold'
+                className='h-full w-full bg-gradient-to-b from-[#03E87A] to-primary-gold'
                 style={{
-                  y: `${((index ?? slideIndex.value) / (slides.length - 1)) * 100 - 100}%`,
+                  scaleY: useTransform(
+                    progressX || useMotionValue(0),
+                    [0, 1],
+                    [0, 1]
+                  ),
+                  originY: 0,
                 }}
               />
             </div>
-            <span className='font-light text-xs text-white/60'>
-              0{(index ?? slideIndex.value) + 1}/0{slides.length}
+            <span className='text-sm text-black'>
+              {`0${(index ?? slideIndex.value) + 1}/0${slides.length}`}
             </span>
           </motion.div>
 
-          {/* Image Section */}
+          {/* Image Section - Updated style */}
           <motion.div
             variants={imageVariants}
-            className='relative z-10 mb-12 flex flex-1 items-center justify-center lg:mb-0'
+            className='relative z-10 flex flex-1 items-center justify-center'
           >
             <motion.div
-              className='group relative h-[400px] w-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-black/40 via-black/20 to-black/10 shadow-2xl backdrop-blur-xl lg:h-[500px] lg:w-[500px]'
+              className='relative h-80 w-80 overflow-hidden rounded-2xl border border-white/10 bg-black/20 backdrop-blur-sm lg:h-96 lg:w-96'
               whileHover={{
                 scale: 1.02,
-                transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
+                transition: { duration: 0.3, ease: 'easeOut' },
               }}
             >
               <Image
@@ -162,68 +167,67 @@ const Slide = memo(
                 alt={slide.value.label}
                 layout='fill'
                 objectFit='cover'
-                className='transition-all duration-700 ease-out group-hover:scale-105'
-                quality={100}
+                className='transition-transform duration-700 ease-in-out'
+                priority
+                quality={90}
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
-
-              {/* New floating elements */}
-              <div className='absolute -left-20 top-1/2 h-40 w-40 rounded-full bg-primary-gold/10 blur-3xl' />
-              <div className='absolute -right-20 top-1/3 h-40 w-40 rounded-full bg-[#03E87A]/10 blur-3xl' />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent' />
             </motion.div>
           </motion.div>
 
-          {/* Content Section */}
+          {/* Content Section - Updated style */}
           <motion.div
             variants={textVariants}
             className='relative z-10 flex flex-1 flex-col justify-center lg:pl-16'
           >
-            <motion.div
-              className='group mb-6 inline-flex w-fit items-center gap-3 rounded-full bg-white/5 px-5 py-2 backdrop-blur-sm'
-              whileHover={{
-                scale: 1.02,
-                backgroundColor: 'rgba(255,255,255,0.1)',
-              }}
+            <motion.span
+              className='inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm backdrop-blur-sm'
+              whileHover={{ scale: 1.02 }}
             >
-              <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
-              <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-sm tracking-wider text-transparent'>
-                {slide.value.label}
-              </span>
-            </motion.div>
+              <div className='relative flex items-center gap-3'>
+                <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
+                <span className='relative text-black'>{slide.value.label}</span>
+              </div>
+            </motion.span>
 
-            <motion.h3
-              className='mb-6 bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text font-light text-4xl leading-[1.2] tracking-tight text-transparent sm:text-5xl'
+            <motion.h2
+              className='mt-4 font-light text-4xl tracking-tight text-black sm:text-5xl'
               variants={textVariants}
             >
               {slide.value.tagline}
-            </motion.h3>
+            </motion.h2>
 
             <motion.p
-              className='mb-10 max-w-xl font-light text-lg leading-relaxed text-white/70'
+              className='mt-6 max-w-xl font-light text-lg leading-relaxed text-black'
               variants={textVariants}
             >
               {slide.value.description}
             </motion.p>
 
             <motion.button
-              className='group flex w-fit items-center gap-3 rounded-full bg-gradient-to-r from-primary-gold/20 to-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all hover:from-primary-gold/30 hover:to-primary-gold/10'
-              whileHover={{ scale: 1.02, x: 5 }}
-              transition={{ type: 'spring', stiffness: 400 }}
+              className='group mt-8 flex items-center space-x-3 self-start rounded-full border border-[#03E87A]/10 bg-[#03E87A]/5 px-6 py-3 backdrop-blur-sm transition-all'
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: 'rgba(3,232,122,0.15)',
+              }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                const nextIndex = (index ?? slideIndex.value) + 1;
+                if (nextIndex < slides.length) {
+                  slideIndex.value = nextIndex;
+                } else {
+                  slideIndex.value = 0;
+                }
+              }}
             >
-              <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-sm tracking-wider text-transparent'>
-                {slide.value.buttonText}
-              </span>
-              <motion.svg
-                className='h-4 w-4 text-white/70 transition-transform duration-300 group-hover:translate-x-1'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+              <span className='text-black'>{slide.value.buttonText}</span>
+              <motion.span
+                className='inline-block text-black'
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <path d='M5 12H19M19 12L12 5M19 12L12 19' />
-              </motion.svg>
+                →
+              </motion.span>
             </motion.button>
           </motion.div>
         </motion.div>
@@ -234,6 +238,7 @@ const Slide = memo(
 
 Slide.displayName = 'Slide';
 
+// Slides Data Array
 const slides = [
   {
     image: '/assets/main/onboarding.svg',
@@ -245,7 +250,7 @@ const slides = [
   },
   {
     image: '/assets/main/generating_ai.svg',
-    label: 'Step 2: Generating AI Concierge',
+    label: 'Step 2: Generate AI Concierge',
     tagline: 'Create Your Personalized Concierge',
     description:
       'Customize your AI concierge to reflect your hotel’s unique brand and persona, ensuring a personalized guest experience.',
@@ -253,8 +258,8 @@ const slides = [
   },
   {
     image: '/assets/main/introducing_sierra.svg',
-    label: 'Step 3: Introducing "Sierra"',
-    tagline: 'Meet Your Core AI Concierge',
+    label: 'Step 3: Meet "Sierra"',
+    tagline: 'Introducing Your Core AI Concierge',
     description:
       '"Sierra" provides 24/7 multilingual support for all your guests’ inquiries and trip planning needs.',
     buttonText: 'Meet Sierra',
@@ -267,11 +272,14 @@ const slides = [
       'Enhance guest experiences with features like "Experience Curator" for booking and payment processing of onsite activities.',
     buttonText: 'Discover Features',
   },
+  // Add more slides as needed
 ];
 
 const FORCE_THRESHOLD = 700;
 
+// Main HumanitySection Component
 function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
+  // Determine if fallback (static) rendering is needed based on device type
   const shouldFallback = useMemo(
     () =>
       typeof window !== 'undefined' &&
@@ -286,7 +294,7 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
   return (
     <motion.section
       id={id}
-      className='relative h-screen overflow-hidden text-primary-navy'
+      className='relative h-screen overflow-hidden text-white'
       style={{ backgroundColor: bgColor }}
     >
       {slides.map((_, index) => (
@@ -296,6 +304,7 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
   );
 }
 
+// ScrollingSection Component for Enhanced Interactivity
 function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
   useSignals();
 
@@ -304,8 +313,7 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
   const { scrollForce, scrollTotal, addScrollEvent, resetScrollForce } =
     useScrollForce();
 
-  // Use a cooldown so we don't immediately relock scroll when trying to scroll
-  // past the section
+  // Use a cooldown to prevent rapid scroll events
   const cooldown = useCooldown(100);
 
   const { isLocked, lockScroll, unlockScroll } = useScrollControl({
@@ -345,12 +353,14 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
     },
   });
 
+  // Transform scroll total to a progress value
   const progressX = useTransform(
     scrollTotal,
     [0, FORCE_THRESHOLD * slides.length],
     [0, 1]
   );
 
+  // Function to navigate to the next or previous section
   const gotoNextSection = useCallback(
     (direction: number) => {
       slideIndex.value += direction;
@@ -367,6 +377,7 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
     [resetScrollForce]
   );
 
+  // Function to handle leaving the current section
   const leaveSection = useCallback(
     (scroll: (y: number) => void, direction: number) => {
       unlockScroll();
@@ -385,15 +396,14 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
   useLayoutEffect(() => {
     const ref = sectionRef.current;
 
-    // Use a raw intersection observer here because we want to react to the events,
-    // not just whenever we happen to rerender.
+    // Intersection Observer to detect when the section is in view
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         const isInView = entry.isIntersecting;
 
         if (cooldown.isValid && isInView && !isLocked) {
-          sectionRef.current?.scrollIntoView({ behavior: 'instant' });
+          sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
           lockScroll();
         }
 
@@ -419,14 +429,16 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
     <motion.section
       id={id}
       ref={sectionRef}
-      className='relative h-screen overflow-hidden text-primary-navy'
+      className='relative h-screen overflow-hidden text-white'
       style={{ backgroundColor: bgColor }}
       initial={{ padding: '0' }}
       animate={{ padding: '2rem' }}
       transition={{ duration: 0.5 }}
       viewport={{ amount: 0.9, once: true }}
     >
-      <Slide progressX={progressX} isFallback={false} />
+      <AnimatePresence>
+        <Slide progressX={progressX} isFallback={false} />
+      </AnimatePresence>
     </motion.section>
   );
 }
