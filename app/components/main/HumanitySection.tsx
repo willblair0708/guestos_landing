@@ -106,9 +106,9 @@ const Slide = memo(
     const slide = useComputed(() => slides[index ?? slideIndex.value]);
 
     return (
-      <section id={id}>
+      <section id={id} className='h-screen'>
         <motion.div
-          className='relative flex min-h-screen w-full flex-col items-center justify-center gap-16 bg-black px-8 py-16 lg:flex-row lg:py-20'
+          className='relative flex h-full w-full flex-col items-center justify-center gap-16 bg-black px-8 lg:flex-row'
           variants={containerVariants}
           initial='hidden'
           animate='visible'
@@ -286,7 +286,7 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
   return (
     <motion.section
       id={id}
-      className='relative min-h-screen text-primary-navy'
+      className='relative h-screen overflow-hidden text-primary-navy'
       style={{ backgroundColor: bgColor }}
     >
       {slides.map((_, index) => (
@@ -419,7 +419,7 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
     <motion.section
       id={id}
       ref={sectionRef}
-      className='relative h-screen p-8 text-primary-navy'
+      className='relative h-screen overflow-hidden text-primary-navy'
       style={{ backgroundColor: bgColor }}
       initial={{ padding: '0' }}
       animate={{ padding: '2rem' }}
