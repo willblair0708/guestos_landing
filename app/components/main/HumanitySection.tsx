@@ -40,9 +40,9 @@ const containerVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1.2,
+      duration: 1.4,
       ease: [0.25, 0.1, 0.25, 1],
-      staggerChildren: 0.3,
+      staggerChildren: 0.4,
     },
   },
 };
@@ -107,7 +107,7 @@ const Slide = memo(
     return (
       <section id={id} className='flex h-screen items-center justify-center'>
         <motion.div
-          className='relative flex h-full w-full flex-col items-center justify-center gap-16 px-8 lg:flex-row'
+          className='relative flex h-full w-full flex-col items-center justify-center gap-20 px-8 lg:flex-row'
           variants={containerVariants}
           initial='hidden'
           animate={inView ? 'visible' : 'hidden'}
@@ -115,26 +115,26 @@ const Slide = memo(
         >
           {/* Enhanced Background Effects */}
           <div className='pointer-events-none absolute inset-0'>
-            <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.15),transparent_70%)]' />
-            <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(198,168,124,0.12),transparent_70%)]' />
-            <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.18),transparent_80%)]' />
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(198,168,124,0.15),transparent_80%)]' />
+            <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_95%)]' />
             <motion.div
-              className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/20 via-[#C6A87C]/15 to-transparent blur-3xl'
+              className='absolute -left-[600px] top-1/2 h-[1200px] w-[1200px] rounded-full bg-gradient-to-r from-[#03E87A]/25 via-[#C6A87C]/20 to-transparent blur-[120px]'
               variants={floatingGradientVariants}
               animate='animate'
             />
           </div>
 
-          {/* Progress Indicator - Updated style */}
+          {/* Progress Indicator - Modernized */}
           <motion.div
-            className='absolute right-8 top-32 z-50 flex flex-col items-center gap-2'
+            className='absolute right-12 top-32 z-50 flex flex-col items-center gap-3'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <div className='h-12 w-1 overflow-hidden rounded-full bg-white/10 backdrop-blur-sm'>
+            <div className='h-16 w-1.5 overflow-hidden rounded-full bg-black/5 backdrop-blur-xl'>
               <motion.div
-                className='h-full w-full bg-gradient-to-b from-[#03E87A] to-[#C6A87C]'
+                className='h-full w-full bg-gradient-to-b from-[#03E87A] via-[#03E87A]/80 to-[#C6A87C]'
                 style={{
                   scaleY: useTransform(
                     progressX || useMotionValue(0),
@@ -145,21 +145,21 @@ const Slide = memo(
                 }}
               />
             </div>
-            <span className='text-sm text-black'>
+            <span className='font-light text-sm tracking-wider text-black/70'>
               {`0${(index ?? slideIndex.value) + 1}/0${slides.length}`}
             </span>
           </motion.div>
 
-          {/* Image Section - Updated style */}
+          {/* Image Section - Modernized */}
           <motion.div
             variants={imageVariants}
             className='relative z-10 flex flex-1 items-center justify-center'
           >
             <motion.div
-              className='relative h-80 w-80 overflow-hidden rounded-2xl border border-white/10 bg-black/20 backdrop-blur-sm lg:h-96 lg:w-96'
+              className='group relative h-[400px] w-[400px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/20 via-black/10 to-transparent backdrop-blur-xl lg:h-[500px] lg:w-[500px]'
               whileHover={{
                 scale: 1.02,
-                transition: { duration: 0.3, ease: 'easeOut' },
+                transition: { duration: 0.4, ease: 'easeOut' },
               }}
             >
               <Image
@@ -167,63 +167,68 @@ const Slide = memo(
                 alt={slide.value.label}
                 layout='fill'
                 objectFit='cover'
-                className='transition-transform duration-700 ease-in-out'
+                className='transition-all duration-700 ease-out group-hover:scale-110'
                 priority
-                quality={90}
+                quality={95}
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent' />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40' />
+
+              {/* New: Floating label */}
+              <div className='absolute bottom-8 left-8 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md'>
+                <span className='font-light text-sm tracking-wide text-white'>
+                  {slide.value.label}
+                </span>
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Content Section - Updated style */}
+          {/* Content Section - Modernized */}
           <motion.div
             variants={textVariants}
-            className='relative z-10 flex flex-1 flex-col justify-center lg:pl-16'
+            className='relative z-10 flex flex-1 flex-col justify-center space-y-8 lg:pl-20'
           >
             <motion.span
-              className='inline-block overflow-hidden rounded-full border border-[#03E87A]/20 bg-[#03E87A]/5 px-4 py-1.5 text-sm backdrop-blur-sm'
+              className='inline-block overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 to-transparent px-5 py-2 backdrop-blur-xl'
               whileHover={{ scale: 1.02 }}
             >
               <div className='relative flex items-center gap-3'>
-                <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
-                <span className='relative text-gray-800'>
+                <span className='h-2 w-2 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-[#03E87A]' />
+                <span className='relative font-light tracking-wide text-gray-800'>
                   {slide.value.label}
                 </span>
               </div>
             </motion.span>
 
             <motion.h2
-              className='mt-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text font-light text-4xl tracking-tight text-transparent sm:text-5xl'
+              className='bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text font-light text-5xl leading-tight tracking-tight text-transparent sm:text-6xl'
               variants={textVariants}
             >
               {slide.value.tagline}
             </motion.h2>
 
             <motion.p
-              className='mt-6 max-w-xl font-light text-lg leading-relaxed text-gray-600'
+              className='max-w-xl font-light text-lg leading-relaxed text-gray-600'
               variants={textVariants}
             >
               {slide.value.description}
             </motion.p>
 
             <motion.button
-              className='group mt-8 flex items-center space-x-3 self-start rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 to-[#C6A87C]/10 px-6 py-3 backdrop-blur-sm transition-all'
+              className='group relative mt-4 flex w-fit items-center gap-4 overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 via-[#03E87A]/5 to-transparent px-8 py-4 backdrop-blur-xl transition-all'
               whileHover={{
-                scale: 1.05,
+                scale: 1.02,
                 background:
-                  'linear-gradient(to right, rgba(3,232,122,0.2), rgba(198,168,124,0.2))',
+                  'linear-gradient(to right, rgba(3,232,122,0.2), rgba(198,168,124,0.1))',
               }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
                 const nextIndex = (index ?? slideIndex.value) + 1;
-                if (nextIndex < slides.length) {
-                  slideIndex.value = nextIndex;
-                } else {
-                  slideIndex.value = 0;
-                }
+                slideIndex.value = nextIndex < slides.length ? nextIndex : 0;
               }}
             >
-              <span className='text-gray-800'>{slide.value.buttonText}</span>
+              <span className='font-light tracking-wide text-gray-800'>
+                {slide.value.buttonText}
+              </span>
               <motion.span
                 className='inline-block text-gray-800'
                 animate={{ x: [0, 5, 0] }}
