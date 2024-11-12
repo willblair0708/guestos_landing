@@ -104,6 +104,407 @@ const Slide = memo(
       triggerOnce: true,
     });
 
+    const getStepCards = () => {
+      switch (slide.value.label) {
+        case 'Step 1: Onboarding':
+          return (
+            <>
+              {/* AI Concierge Setup Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className='absolute left-8 top-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)' }}
+              >
+                <div className='relative space-y-4'>
+                  <div className='absolute -left-20 -top-20 h-40 w-40 rounded-full bg-[#03E87A]/10 blur-3xl' />
+                  <div className='absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#03E87A]/5 blur-3xl' />
+
+                  <div className='relative space-y-3'>
+                    <div className='flex items-center justify-between'>
+                      <h4 className='text-sm font-medium text-white'>
+                        AI Concierge Setup
+                      </h4>
+                      <div className='rounded-full bg-[#03E87A]/20 px-2 py-1'>
+                        <span className='text-xs text-[#03E87A]'>Step 1/4</span>
+                      </div>
+                    </div>
+
+                    <div className='space-y-3'>
+                      {[
+                        { phase: 'Brand Profile', status: 'Pending' },
+                        { phase: 'Service Catalog', status: 'Pending' },
+                        { phase: 'Language Selection', status: 'Pending' },
+                        { phase: 'Personality Design', status: 'Pending' },
+                      ].map((item, i) => (
+                        <div
+                          key={i}
+                          className='flex items-center justify-between rounded-lg bg-white/5 p-3'
+                        >
+                          <span className='text-xs text-white/60'>
+                            {item.phase}
+                          </span>
+                          <span className='flex items-center gap-1.5'>
+                            <span className='h-1.5 w-1.5 rounded-full bg-amber-400' />
+                            <span className='text-xs text-amber-400'>
+                              {item.status}
+                            </span>
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Revenue Potential Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className='absolute left-20 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <div className='flex items-center justify-between'>
+                    <h4 className='text-sm font-medium text-white'>
+                      Revenue Potential
+                    </h4>
+                    <div className='rounded-full bg-[#03E87A]/20 px-2 py-1'>
+                      <span className='text-xs text-[#03E87A]'>
+                        $6B+ Market
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className='space-y-3'>
+                    {[
+                      { source: 'Experience Bookings', share: '45%' },
+                      { source: 'Dining & Events', share: '30%' },
+                      { source: 'Concierge Services', share: '25%' },
+                    ].map((item, i) => (
+                      <div key={i} className='space-y-1'>
+                        <div className='flex justify-between text-xs'>
+                          <span className='text-white/60'>{item.source}</span>
+                          <span className='text-[#03E87A]'>{item.share}</span>
+                        </div>
+                        <div className='h-1.5 rounded-full bg-white/10'>
+                          <div
+                            className='h-full rounded-full bg-[#03E87A]'
+                            style={{ width: item.share }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* AI Concierge Features Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className='absolute bottom-20 left-32 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <div className='flex items-center gap-4'>
+                    <div className='relative h-12 w-12'>
+                      <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
+                      <div className='relative h-full w-full rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                    </div>
+                    <div>
+                      <h4 className='text-sm font-medium text-white'>
+                        Core Features
+                      </h4>
+                      <p className='text-xs text-white/60'>
+                        Customizable AI Suite
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className='grid grid-cols-2 gap-3'>
+                    {[
+                      'Multi-lingual Support',
+                      'Brand Personality',
+                      'Payment Processing',
+                      'Experience Booking',
+                      'Local Recommendations',
+                      'Guest Analytics',
+                    ].map((feature, i) => (
+                      <div
+                        key={i}
+                        className='flex items-center gap-2 rounded-lg bg-white/5 p-2'
+                      >
+                        <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
+                        <span className='text-xs text-white/80'>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          );
+
+        case 'Step 2: Generate AI Concierge':
+          return (
+            <>
+              {/* Welcome Card */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className='absolute left-8 top-8 z-10 w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <div>
+                    <h4 className='text-lg font-medium text-white'>
+                      Welcome to AI Concierge Setup
+                    </h4>
+                    <p className='mt-1 text-sm text-white/60'>
+                      Follow these simple steps to configure your AI assistant
+                    </p>
+                  </div>
+
+                  <div className='space-y-3'>
+                    {[
+                      {
+                        step: '1',
+                        title: 'Basic Configuration',
+                        status: 'Completed',
+                      },
+                      {
+                        step: '2',
+                        title: 'Personality Setup',
+                        status: 'In Progress',
+                      },
+                      {
+                        step: '3',
+                        title: 'Integration Setup',
+                        status: 'Pending',
+                      },
+                      { step: '4', title: 'Final Review', status: 'Pending' },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className='flex items-center gap-4 rounded-lg bg-white/5 p-3'
+                      >
+                        <div className='flex h-8 w-8 items-center justify-center rounded-full bg-[#03E87A]/20'>
+                          <span className='text-sm font-medium text-[#03E87A]'>
+                            {item.step}
+                          </span>
+                        </div>
+                        <div className='flex flex-1 items-center justify-between'>
+                          <span className='text-sm text-white/80'>
+                            {item.title}
+                          </span>
+                          <span className='text-xs text-[#03E87A]'>
+                            {item.status}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Personality Configuration */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className='absolute right-8 top-1/4 z-10 w-[380px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-5'>
+                  <div>
+                    <h4 className='text-sm font-medium text-white'>
+                      Step 2: Personality Configuration
+                    </h4>
+                    <p className='mt-1 text-xs text-white/60'>
+                      Define how your AI assistant will interact
+                    </p>
+                  </div>
+
+                  <div className='space-y-4'>
+                    <div className='rounded-lg bg-white/5 p-4'>
+                      <label className='text-xs text-white/80'>
+                        Assistant Name
+                      </label>
+                      <div className='mt-2 rounded-md bg-white/10 p-3'>
+                        <span className='text-sm text-[#03E87A]'>Sierra</span>
+                      </div>
+                    </div>
+
+                    <div className='grid grid-cols-2 gap-3'>
+                      <div className='rounded-lg bg-white/5 p-4'>
+                        <label className='text-xs text-white/80'>
+                          Communication Style
+                        </label>
+                        <div className='mt-2 space-y-2'>
+                          {['Professional', 'Friendly', 'Formal'].map(
+                            (style, i) => (
+                              <div key={i} className='flex items-center gap-2'>
+                                <div className='h-2 w-2 rounded-full bg-[#03E87A]' />
+                                <span className='text-xs text-white/60'>
+                                  {style}
+                                </span>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+
+                      <div className='rounded-lg bg-white/5 p-4'>
+                        <label className='text-xs text-white/80'>
+                          Knowledge Base
+                        </label>
+                        <div className='mt-2 space-y-2'>
+                          {['Hospitality', 'Local Area', 'Services'].map(
+                            (knowledge, i) => (
+                              <div key={i} className='flex items-center gap-2'>
+                                <div className='h-2 w-2 rounded-full bg-[#03E87A]' />
+                                <span className='text-xs text-white/60'>
+                                  {knowledge}
+                                </span>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Integration Options */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className='absolute bottom-8 left-1/2 z-10 w-[400px] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              >
+                <div className='space-y-4'>
+                  <div className='flex items-center justify-between'>
+                    <h4 className='text-sm font-medium text-white'>
+                      Available Integrations
+                    </h4>
+                    <span className='rounded-full bg-[#03E87A]/20 px-3 py-1 text-xs text-[#03E87A]'>
+                      12 Systems
+                    </span>
+                  </div>
+
+                  <div className='grid grid-cols-3 gap-3'>
+                    {[
+                      'Booking System',
+                      'Payment Gateway',
+                      'CRM',
+                      'Phone System',
+                      'Chat Platform',
+                      'Email Service',
+                      'PMS',
+                      'Analytics',
+                      'Calendar',
+                    ].map((integration, i) => (
+                      <div
+                        key={i}
+                        className='rounded-lg bg-white/5 p-3 text-center transition-all hover:bg-white/10'
+                      >
+                        <span className='text-xs text-white/80'>
+                          {integration}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          );
+
+        case 'Step 3: Meet "Sierra"':
+          return (
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className='absolute left-8 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+            >
+              <div className='space-y-4'>
+                <div className='flex items-center gap-4'>
+                  <div className='relative h-12 w-12'>
+                    <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
+                    <div className='relative h-full w-full rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                  </div>
+                  <div>
+                    <h4 className='text-sm font-medium text-white'>Sierra</h4>
+                    <p className='text-xs text-white/60'>AI Concierge</p>
+                  </div>
+                </div>
+                <div className='space-y-3'>
+                  {[
+                    'Natural Language Processing',
+                    'Contextual Understanding',
+                    'Personalized Responses',
+                    'Multi-channel Support',
+                  ].map((feature, i) => (
+                    <div key={i} className='flex items-center gap-2'>
+                      <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
+                      <span className='text-xs text-white/80'>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          );
+
+        case 'Step 4: Explore Features':
+          return (
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className='absolute left-8 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+            >
+              <div className='space-y-4'>
+                <h4 className='text-sm font-medium text-white'>
+                  Available Features
+                </h4>
+                <div className='grid gap-3'>
+                  {[
+                    { name: 'Experience Curator', status: 'Active' },
+                    { name: 'Payment Processing', status: 'Active' },
+                    { name: 'Booking Engine', status: 'Active' },
+                    { name: 'Analytics Dashboard', status: 'Active' },
+                  ].map((feature, i) => (
+                    <div
+                      key={i}
+                      className='flex items-center justify-between rounded-lg bg-white/5 p-3'
+                    >
+                      <span className='text-sm text-white/80'>
+                        {feature.name}
+                      </span>
+                      <span className='rounded-full bg-[#03E87A]/20 px-2 py-1 text-xs text-[#03E87A]'>
+                        {feature.status}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          );
+
+        default:
+          return null;
+      }
+    };
+
     return (
       <section
         id={id}
@@ -255,6 +656,9 @@ const Slide = memo(
               </motion.span>
             </motion.button>
           </motion.div>
+
+          {/* Dynamic Step Cards */}
+          {getStepCards()}
         </motion.div>
       </section>
     );
