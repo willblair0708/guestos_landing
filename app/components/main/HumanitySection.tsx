@@ -26,38 +26,39 @@ interface HumanitySectionProps {
 const slideIndex = signal(0);
 
 const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
-    y: 0,
+    scale: 1,
     transition: {
-      when: 'beforeChildren',
+      duration: 1,
+      ease: [0.25, 0.1, 0.25, 1],
       staggerChildren: 0.2,
-      delayChildren: 0.2,
     },
   },
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 0, scale: 0.9, y: 20 },
   visible: {
     opacity: 1,
     scale: 1,
+    y: 0,
     transition: {
-      duration: 0.6,
-      ease: [0.6, -0.05, 0.01, 0.99],
+      duration: 0.8,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
 
 const textVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: 'easeOut',
+      duration: 0.8,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
@@ -92,19 +93,24 @@ const Slide = memo(
     return (
       <section id={id}>
         <motion.div
-          className='relative flex min-h-screen w-full flex-col bg-primary-cream px-8 py-16 lg:flex-row lg:py-20'
+          className='relative flex min-h-screen w-full flex-col items-center justify-center gap-16 bg-black px-8 py-16 lg:flex-row lg:py-20'
           variants={containerVariants}
           initial='hidden'
           animate='visible'
         >
+          {/* Background gradients */}
+          <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.08),transparent_70%)]' />
+          <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.05),transparent_70%)]' />
+          <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+
           {/* Image Section */}
           <motion.div
             variants={imageVariants}
-            className='mb-12 flex flex-1 items-center justify-center lg:mb-0'
+            className='relative z-10 mb-12 flex flex-1 items-center justify-center lg:mb-0'
           >
             <motion.div
-              className='relative h-80 w-80 overflow-hidden rounded-full shadow-lg lg:h-96 lg:w-96'
-              whileHover={{ scale: 1.05 }}
+              className='group relative h-[400px] w-[400px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 shadow-2xl backdrop-blur-xl lg:h-[500px] lg:w-[500px]'
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <Image
@@ -112,44 +118,63 @@ const Slide = memo(
                 alt={slide.value.label}
                 layout='fill'
                 objectFit='cover'
-                className='object-center'
+                className='transition-transform duration-500 group-hover:scale-105'
               />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent' />
             </motion.div>
           </motion.div>
 
           {/* Content Section */}
           <motion.div
             variants={textVariants}
-            className='flex flex-1 flex-col justify-center lg:pl-12'
+            className='relative z-10 flex flex-1 flex-col justify-center lg:pl-12'
           >
             <motion.div
-              className='mb-4 text-lg uppercase tracking-wider text-primary-gold'
-              key={`${slideIndex.value}:label`}
-              variants={textVariants}
+              className='group mb-6 inline-flex w-fit items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-2 backdrop-blur-sm'
+              whileHover={{
+                scale: 1.02,
+                backgroundColor: 'rgba(255,255,255,0.1)',
+              }}
             >
-              {slide.value.label}
+              <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
+              <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-sm tracking-wider text-transparent'>
+                {slide.value.label}
+              </span>
             </motion.div>
+
             <motion.h3
-              className='mb-6 text-3xl font-semibold text-primary-navy'
-              key={`${slideIndex.value}:tagline`}
+              className='mb-6 bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text font-light text-4xl leading-[1.2] tracking-tight text-transparent sm:text-5xl'
               variants={textVariants}
             >
               {slide.value.tagline}
             </motion.h3>
+
             <motion.p
-              className='mb-8 text-base text-primary-sand'
-              key={`${slideIndex.value}:description`}
+              className='mb-8 max-w-xl font-light text-lg leading-relaxed text-white/70'
               variants={textVariants}
             >
               {slide.value.description}
             </motion.p>
+
             <motion.button
-              className='hover:bg-primary-gold-dark self-start rounded-full bg-primary-gold px-6 py-3 font-medium text-primary-navy transition-colors'
-              key={`${slideIndex.value}:button`}
-              variants={cardVariants}
-              whileHover={{ scale: 1.05 }}
+              className='group flex w-fit items-center gap-3 rounded-full border border-primary-gold/10 bg-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all hover:bg-primary-gold/15'
+              whileHover={{ scale: 1.02, x: 5 }}
+              transition={{ type: 'spring', stiffness: 400 }}
             >
-              {slide.value.buttonText}
+              <span className='font-light text-sm text-white'>
+                {slide.value.buttonText}
+              </span>
+              <motion.svg
+                className='h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              >
+                <path d='M5 12H19M19 12L12 5M19 12L12 19' />
+              </motion.svg>
             </motion.button>
           </motion.div>
         </motion.div>
@@ -162,39 +187,36 @@ Slide.displayName = 'Slide';
 
 const slides = [
   {
-    image: '/assets/main/pixelated_woman.svg',
-    label: 'Humanity at Scale',
-    tagline:
-      'Recreate any population, group, or geography in moments with hundreds of traits across demographics and psychographics.',
-    description: 'If you can describe it, Aaru can simulate it.',
-    buttonText: 'Build Your World',
-  },
-  {
-    image: '/assets/main/pixelated_earth.svg',
-    label: 'See the Future, Change the Present',
-    tagline:
-      'Configure worlds with hypothetical events to measure their impact before they happen.',
+    image: '/assets/main/onboarding.svg',
+    label: 'Step 1: Onboarding',
+    tagline: 'Get Started with GuestOS',
     description:
-      "Whether it's a vice presidential nomination or a brand launch, proactively identify the impact of future events.",
-    buttonText: 'See the Future',
-  },
-  {
-    image: '/assets/main/pixelated_stopwatch.svg',
-    label: 'Infinite Scale in Minimal Time',
-    tagline:
-      'Transform weeks of research into seconds with unparalleled accuracy and efficiency.',
-    description:
-      'Humans are slow, biased, and unreliable. Aaru delivers faster and more accurate insights.',
+      'Easily integrate GuestOS into your hotel’s existing systems with our seamless onboarding process.',
     buttonText: 'Learn More',
   },
   {
-    image: '/assets/main/pixelated_tree.svg',
-    label: 'Converge on Reality',
-    tagline:
-      'Simulations become indistinguishable from reality as variance decreases with more agents.',
+    image: '/assets/main/generating_ai.svg',
+    label: 'Step 2: Generating AI Concierge',
+    tagline: 'Create Your Personalized Concierge',
     description:
-      'Aaru provides clarity in chaos, offering detailed understandings of complex global challenges.',
-    buttonText: 'Design Tomorrow',
+      'Customize your AI concierge to reflect your hotel’s unique brand and persona, ensuring a personalized guest experience.',
+    buttonText: 'Customize Now',
+  },
+  {
+    image: '/assets/main/introducing_sierra.svg',
+    label: 'Step 3: Introducing "Sierra"',
+    tagline: 'Meet Your Core AI Concierge',
+    description:
+      '"Sierra" provides 24/7 multilingual support for all your guests’ inquiries and trip planning needs.',
+    buttonText: 'Meet Sierra',
+  },
+  {
+    image: '/assets/main/features.svg',
+    label: 'Step 4: Explore Features',
+    tagline: 'Unlock Advanced Capabilities',
+    description:
+      'Enhance guest experiences with features like "Experience Curator" for booking and payment processing of onsite activities.',
+    buttonText: 'Discover Features',
   },
 ];
 
@@ -203,8 +225,9 @@ const FORCE_THRESHOLD = 700;
 function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
   const shouldFallback = useMemo(
     () =>
-      window.matchMedia('(pointer: coarse)').matches ||
-      window.innerWidth < 1024,
+      typeof window !== 'undefined' &&
+      (window.matchMedia('(pointer: coarse)').matches ||
+        window.innerWidth < 1024),
     []
   );
 
