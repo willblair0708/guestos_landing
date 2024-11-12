@@ -75,6 +75,21 @@ const cardVariants = {
   },
 };
 
+// Add new floating gradient animation
+const floatingGradientVariants = {
+  animate: {
+    x: [0, 200, 0],
+    y: [-100, 100, -100],
+    scale: [1, 1.2, 1],
+    opacity: [0.3, 0.5, 0.3],
+    transition: {
+      duration: 25,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
+
 const Slide = memo(
   ({
     progressX,
@@ -98,10 +113,37 @@ const Slide = memo(
           initial='hidden'
           animate='visible'
         >
-          {/* Background gradients */}
-          <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.08),transparent_70%)]' />
-          <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.05),transparent_70%)]' />
-          <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+          {/* Enhanced Background Effects */}
+          <div className='absolute inset-0'>
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]' />
+            <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+            <motion.div
+              className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/15 via-[rgba(255,200,87,0.1)] to-transparent blur-3xl'
+              variants={floatingGradientVariants}
+              animate='animate'
+            />
+          </div>
+
+          {/* Progress indicator */}
+          <motion.div
+            className='absolute right-8 top-32 z-50 flex items-center gap-4'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <div className='h-12 w-[2px] overflow-hidden rounded-full bg-white/10'>
+              <motion.div
+                className='h-full w-full bg-primary-gold'
+                style={{
+                  y: `${((index ?? slideIndex.value) / (slides.length - 1)) * 100 - 100}%`,
+                }}
+              />
+            </div>
+            <span className='font-light text-xs text-white/60'>
+              0{(index ?? slideIndex.value) + 1}/0{slides.length}
+            </span>
+          </motion.div>
 
           {/* Image Section */}
           <motion.div
@@ -109,28 +151,35 @@ const Slide = memo(
             className='relative z-10 mb-12 flex flex-1 items-center justify-center lg:mb-0'
           >
             <motion.div
-              className='group relative h-[400px] w-[400px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 shadow-2xl backdrop-blur-xl lg:h-[500px] lg:w-[500px]'
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+              className='group relative h-[400px] w-[400px] overflow-hidden rounded-2xl bg-gradient-to-br from-black/40 via-black/20 to-black/10 shadow-2xl backdrop-blur-xl lg:h-[500px] lg:w-[500px]'
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
+              }}
             >
               <Image
                 src={slide.value.image}
                 alt={slide.value.label}
                 layout='fill'
                 objectFit='cover'
-                className='transition-transform duration-500 group-hover:scale-105'
+                className='transition-all duration-700 ease-out group-hover:scale-105'
+                quality={100}
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent' />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
+
+              {/* New floating elements */}
+              <div className='absolute -left-20 top-1/2 h-40 w-40 rounded-full bg-primary-gold/10 blur-3xl' />
+              <div className='absolute -right-20 top-1/3 h-40 w-40 rounded-full bg-[#03E87A]/10 blur-3xl' />
             </motion.div>
           </motion.div>
 
           {/* Content Section */}
           <motion.div
             variants={textVariants}
-            className='relative z-10 flex flex-1 flex-col justify-center lg:pl-12'
+            className='relative z-10 flex flex-1 flex-col justify-center lg:pl-16'
           >
             <motion.div
-              className='group mb-6 inline-flex w-fit items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-2 backdrop-blur-sm'
+              className='group mb-6 inline-flex w-fit items-center gap-3 rounded-full bg-white/5 px-5 py-2 backdrop-blur-sm'
               whileHover={{
                 scale: 1.02,
                 backgroundColor: 'rgba(255,255,255,0.1)',
@@ -150,22 +199,22 @@ const Slide = memo(
             </motion.h3>
 
             <motion.p
-              className='mb-8 max-w-xl font-light text-lg leading-relaxed text-white/70'
+              className='mb-10 max-w-xl font-light text-lg leading-relaxed text-white/70'
               variants={textVariants}
             >
               {slide.value.description}
             </motion.p>
 
             <motion.button
-              className='group flex w-fit items-center gap-3 rounded-full border border-primary-gold/10 bg-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all hover:bg-primary-gold/15'
+              className='group flex w-fit items-center gap-3 rounded-full bg-gradient-to-r from-primary-gold/20 to-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all hover:from-primary-gold/30 hover:to-primary-gold/10'
               whileHover={{ scale: 1.02, x: 5 }}
               transition={{ type: 'spring', stiffness: 400 }}
             >
-              <span className='font-light text-sm text-white'>
+              <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-sm tracking-wider text-transparent'>
                 {slide.value.buttonText}
               </span>
               <motion.svg
-                className='h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1'
+                className='h-4 w-4 text-white/70 transition-transform duration-300 group-hover:translate-x-1'
                 viewBox='0 0 24 24'
                 fill='none'
                 stroke='currentColor'
