@@ -364,9 +364,86 @@ export default function HeroSection({
               variants={itemVariants}
               className='max-w-lg font-light text-lg leading-relaxed text-white/60'
             >
-              See how GuestOS can transform your guest experience with our
-              personalized demo.
+              Schedule a personalized demo to see how GuestOS can transform your
+              guest experience.
             </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className='flex flex-col gap-4 sm:flex-row'
+            >
+              <a
+                href='https://calendly.com/guestos-ai'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center justify-center gap-2 rounded-xl bg-primary-gold px-8 py-4 font-medium text-black transition-all duration-300 hover:bg-primary-gold/90'
+              >
+                <span>Schedule Demo</span>
+                <svg
+                  width='20'
+                  height='20'
+                  viewBox='0 0 20 20'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='relative top-[1px]'
+                >
+                  <path
+                    d='M15.8334 4.16666H4.16669C3.24622 4.16666 2.50002 4.91285 2.50002 5.83332V15.8333C2.50002 16.7538 3.24622 17.5 4.16669 17.5H15.8334C16.7538 17.5 17.5 16.7538 17.5 15.8333V5.83332C17.5 4.91285 16.7538 4.16666 15.8334 4.16666Z'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M13.3333 2.5V5.83333'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M6.66669 2.5V5.83333'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M2.50002 9.16666H17.5'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </a>
+              <span className='inline-flex items-center gap-2 text-white/60'>
+                or fill out the form
+                <svg
+                  width='20'
+                  height='20'
+                  viewBox='0 0 20 20'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='relative top-[1px]'
+                >
+                  <path
+                    d='M5 10H15'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M10 15L15 10L10 5'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </span>
+            </motion.div>
           </div>
         </motion.div>
 

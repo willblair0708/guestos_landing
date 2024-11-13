@@ -144,7 +144,7 @@ const InfoCard = () => (
         most - creating memorable experiences for your guests.
       </p>
 
-      <div className='relative flex items-center justify-between'>
+      {/* <div className='relative flex items-center justify-between'>
         <motion.button
           className='group flex items-center space-x-3 rounded-full border border-primary-gold/10 bg-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all'
           whileHover={{
@@ -163,7 +163,7 @@ const InfoCard = () => (
             →
           </motion.span>
         </motion.button>
-      </div>
+      </div> */}
     </div>
   </motion.div>
 );

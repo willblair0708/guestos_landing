@@ -106,150 +106,7 @@ const Slide = memo(
 
     const getStepCards = () => {
       switch (slide.value.label) {
-        case 'Step 1: Onboarding':
-          return (
-            <>
-              {/* AI Concierge Setup Card */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className='absolute left-8 top-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
-                style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)' }}
-              >
-                <div className='relative space-y-4'>
-                  <div className='absolute -left-20 -top-20 h-40 w-40 rounded-full bg-[#03E87A]/10 blur-3xl' />
-                  <div className='absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#03E87A]/5 blur-3xl' />
-
-                  <div className='relative space-y-3'>
-                    <div className='flex items-center justify-between'>
-                      <h4 className='text-sm font-medium text-white'>
-                        AI Concierge Setup
-                      </h4>
-                      <div className='rounded-full bg-[#03E87A]/20 px-2 py-1'>
-                        <span className='text-xs text-[#03E87A]'>Step 1/4</span>
-                      </div>
-                    </div>
-
-                    <div className='space-y-3'>
-                      {[
-                        { phase: 'Brand Profile', status: 'Pending' },
-                        { phase: 'Service Catalog', status: 'Pending' },
-                        { phase: 'Language Selection', status: 'Pending' },
-                        { phase: 'Personality Design', status: 'Pending' },
-                      ].map((item, i) => (
-                        <div
-                          key={i}
-                          className='flex items-center justify-between rounded-lg bg-white/5 p-3'
-                        >
-                          <span className='text-xs text-white/60'>
-                            {item.phase}
-                          </span>
-                          <span className='flex items-center gap-1.5'>
-                            <span className='h-1.5 w-1.5 rounded-full bg-amber-400' />
-                            <span className='text-xs text-amber-400'>
-                              {item.status}
-                            </span>
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Revenue Potential Card */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-20 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
-              >
-                <div className='space-y-4'>
-                  <div className='flex items-center justify-between'>
-                    <h4 className='text-sm font-medium text-white'>
-                      Revenue Potential
-                    </h4>
-                    <div className='rounded-full bg-[#03E87A]/20 px-2 py-1'>
-                      <span className='text-xs text-[#03E87A]'>
-                        $6B+ Market
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className='space-y-3'>
-                    {[
-                      { source: 'Experience Bookings', share: '45%' },
-                      { source: 'Dining & Events', share: '30%' },
-                      { source: 'Concierge Services', share: '25%' },
-                    ].map((item, i) => (
-                      <div key={i} className='space-y-1'>
-                        <div className='flex justify-between text-xs'>
-                          <span className='text-white/60'>{item.source}</span>
-                          <span className='text-[#03E87A]'>{item.share}</span>
-                        </div>
-                        <div className='h-1.5 rounded-full bg-white/10'>
-                          <div
-                            className='h-full rounded-full bg-[#03E87A]'
-                            style={{ width: item.share }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* AI Concierge Features Card */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-20 left-32 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
-              >
-                <div className='space-y-4'>
-                  <div className='flex items-center gap-4'>
-                    <div className='relative h-12 w-12'>
-                      <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
-                      <div className='relative h-full w-full rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
-                    </div>
-                    <div>
-                      <h4 className='text-sm font-medium text-white'>
-                        Core Features
-                      </h4>
-                      <p className='text-xs text-white/60'>
-                        Customizable AI Suite
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className='grid grid-cols-2 gap-3'>
-                    {[
-                      'Multi-lingual Support',
-                      'Brand Personality',
-                      'Payment Processing',
-                      'Experience Booking',
-                      'Local Recommendations',
-                      'Guest Analytics',
-                    ].map((feature, i) => (
-                      <div
-                        key={i}
-                        className='flex items-center gap-2 rounded-lg bg-white/5 p-2'
-                      >
-                        <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
-                        <span className='text-xs text-white/80'>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </>
-          );
-
-        case 'Step 2: Generate AI Concierge':
+        case 'Step 1: Generate AI Concierge':
           return (
             <>
               {/* Welcome Card */}
@@ -426,7 +283,7 @@ const Slide = memo(
             </>
           );
 
-        case 'Step 3: Meet "Sierra"':
+        case 'Step 2: Meet "Sierra"':
           return (
             <>
               {/* Sierra Profile Card */}
@@ -598,7 +455,7 @@ const Slide = memo(
             </>
           );
 
-        case 'Step 4: Explore Features':
+        case 'Step 3: Explore Features':
           return (
             <>
               {/* AI Concierge Profile Card */}
@@ -826,7 +683,7 @@ const Slide = memo(
                 alt={slide.value.label}
                 layout='fill'
                 objectFit='cover'
-                className='transition-all duration-700 ease-out group-hover:scale-110'
+                className='bg-transparent transition-all duration-700 ease-out group-hover:scale-110'
                 priority
                 quality={100}
               />
@@ -919,24 +776,16 @@ Slide.displayName = 'Slide';
 // Slides Data Array
 const slides = [
   {
-    image: '/assets/main/onboarding.svg',
-    label: 'Step 1: Onboarding',
-    tagline: 'Get Started with GuestOS',
-    description:
-      'Easily integrate GuestOS into your hotel’s existing systems with our seamless onboarding process.',
-    buttonText: 'Learn More',
-  },
-  {
     image: '/assets/main/generating_ai.svg',
-    label: 'Step 2: Generate AI Concierge',
+    label: 'Step 1: Generate AI Concierge',
     tagline: 'Create Your Personalized Concierge',
     description:
       'Customize your AI concierge to reflect your hotel’s unique brand and persona, ensuring a personalized guest experience.',
     buttonText: 'Customize Now',
   },
   {
-    image: '/assets/main/introducing_sierra.svg',
-    label: 'Step 3: Meet "Sierra"',
+    image: '/assets/main/woman1.svg',
+    label: 'Step 2: Meet "Sierra"',
     tagline: 'Introducing Your Core AI Concierge',
     description:
       '"Sierra" provides 24/7 multilingual support for all your guests’ inquiries and trip planning needs.',
@@ -944,7 +793,7 @@ const slides = [
   },
   {
     image: '/assets/main/features.svg',
-    label: 'Step 4: Explore Features',
+    label: 'Step 3: Explore Features',
     tagline: 'Unlock Advanced Capabilities',
     description:
       'Enhance guest experiences with features like "Experience Curator" for booking and payment processing of onsite activities.',
