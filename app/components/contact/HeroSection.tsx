@@ -373,7 +373,7 @@ export default function HeroSection({
               className='flex flex-col gap-4 sm:flex-row'
             >
               <a
-                href='https://calendly.com/guestos-ai'
+                href='https://calendly.com/guestos_ai'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='inline-flex items-center justify-center gap-2 rounded-xl bg-primary-gold px-8 py-4 font-medium text-black transition-all duration-300 hover:bg-primary-gold/90'
