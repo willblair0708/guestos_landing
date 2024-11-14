@@ -4,6 +4,7 @@ import Image from 'next/image';
 import {
   memo,
   useCallback,
+  useEffect,
   useId,
   useLayoutEffect,
   useMemo,
@@ -115,7 +116,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className='absolute left-8 top-8 z-10 w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-4 top-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-8 sm:top-8 sm:w-[360px] sm:p-6'
               >
                 <div className='space-y-4'>
                   <div>
@@ -175,7 +176,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='top-180 absolute left-40 z-10 w-[380px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-4 top-[380px] z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-40 sm:top-[340px] sm:w-[380px] sm:p-6'
               >
                 <div className='space-y-5'>
                   <div>
@@ -244,7 +245,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-20 left-1/4 z-10 w-[400px] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute bottom-4 left-4 z-10 w-[90vw] -translate-x-0 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:bottom-20 sm:left-1/4 sm:w-[400px] sm:-translate-x-1/2 sm:p-6'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center justify-between'>
@@ -811,7 +812,7 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
     () =>
       typeof window !== 'undefined' &&
       (window.matchMedia('(pointer: coarse)').matches ||
-        window.innerWidth < 1024),
+        window.innerWidth < 768),
     []
   );
 
@@ -952,14 +953,63 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
     };
   }, [isLocked, lockScroll, unlockScroll, cooldown]);
 
+  // Add touch event handling
+  useEffect(() => {
+    let touchStart = 0;
+    let touchEnd = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStart = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      touchEnd = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
+      const touchDiff = touchStart - touchEnd;
+      const minSwipeDistance = 50;
+
+      if (Math.abs(touchDiff) > minSwipeDistance) {
+        if (touchDiff > 0) {
+          // Swipe up
+          if (slideIndex.value < slides.length - 1) {
+            gotoNextSection(1);
+          }
+        } else {
+          // Swipe down
+          if (slideIndex.value > 0) {
+            gotoNextSection(-1);
+          }
+        }
+      }
+    };
+
+    const element = sectionRef.current;
+    if (element) {
+      element.addEventListener('touchstart', handleTouchStart);
+      element.addEventListener('touchmove', handleTouchMove);
+      element.addEventListener('touchend', handleTouchEnd);
+    }
+
+    return () => {
+      if (element) {
+        element.removeEventListener('touchstart', handleTouchStart);
+        element.removeEventListener('touchmove', handleTouchMove);
+        element.removeEventListener('touchend', handleTouchEnd);
+      }
+    };
+  }, [gotoNextSection]);
+
+  // Update section styles for mobile
   return (
     <motion.section
       id={id}
       ref={sectionRef}
-      className='relative h-screen overflow-hidden text-white'
+      className='relative h-screen touch-none overflow-hidden text-white'
       style={{ backgroundColor: bgColor }}
       initial={{ padding: '0' }}
-      animate={{ padding: '2rem' }}
+      animate={{ padding: isMobile ? '1rem' : '2rem' }}
       transition={{ duration: 0.5 }}
       viewport={{ amount: 0.9, once: true }}
     >
