@@ -672,13 +672,13 @@ const Slide = memo(
             className='relative z-10 flex flex-1 items-center justify-center px-8'
           >
             <motion.div
-              className='group relative h-[450px] w-[450px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-black/20 via-black/10 to-transparent backdrop-blur-xl lg:h-[600px] lg:w-[600px]'
+              className='group relative h-[450px] w-[450px] overflow-hidden rounded-[2.5rem] border border-white/10 lg:h-[600px] lg:w-[600px]'
               whileHover={{
                 scale: 1.02,
                 transition: { duration: 0.5, ease: 'easeOut' },
               }}
             >
-              <Image
+              {/* <Image
                 src={slide.value.image}
                 alt={slide.value.label}
                 layout='fill'
@@ -686,11 +686,11 @@ const Slide = memo(
                 className='bg-transparent transition-all duration-700 ease-out group-hover:scale-110'
                 priority
                 quality={100}
-              />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40' />
+              /> */}
+              {/* <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-40' /> */}
 
               {/* Enhanced Floating Label */}
-              <motion.div
+              {/* <motion.div
                 className='absolute bottom-10 left-10 overflow-hidden rounded-full border border-white/20 bg-white/10 backdrop-blur-xl'
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -701,7 +701,7 @@ const Slide = memo(
                     {slide.value.label}
                   </span>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </motion.div>
           </motion.div>
 
