@@ -241,7 +241,7 @@ const Footer: React.FC = () => {
             <FooterSection key={section.title} {...section} />
           ))}
 
-          <motion.div
+          {/* <motion.div
             variants={itemVariants}
             className='col-span-full lg:col-span-1'
           >
@@ -305,7 +305,7 @@ const Footer: React.FC = () => {
                 )}
               </AnimatePresence>
             </form>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         <motion.div
