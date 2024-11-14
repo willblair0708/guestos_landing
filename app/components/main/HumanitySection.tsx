@@ -175,7 +175,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-40 top-1/4 z-10 w-[380px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='top-180 absolute left-40 z-10 w-[380px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
               >
                 <div className='space-y-5'>
                   <div>
@@ -244,7 +244,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-8 left-1/4 z-10 w-[400px] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute bottom-20 left-1/4 z-10 w-[400px] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center justify-between'>
@@ -381,7 +381,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-20 top-1/2 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-80 top-80 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
               >
                 <div className='space-y-4'>
                   <h4 className='text-sm font-medium text-white'>
@@ -417,7 +417,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-20 left-32 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='left-100 absolute bottom-48 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
               >
                 <div className='space-y-4'>
                   <h4 className='text-sm font-medium text-white'>
@@ -514,7 +514,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-20 top-1/2 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-80 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center gap-4'>
@@ -563,7 +563,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='left-100 absolute bottom-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute bottom-60 left-8 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center gap-4'>
