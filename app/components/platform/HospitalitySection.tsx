@@ -16,7 +16,7 @@ export default function HospitalitySection({
     <ProductSection
       id={id}
       bgColor={bgColor}
-      productName='Hotel and Resort Operations'
+      productName='Hotel and Resort'
       productDescription='Elevate your hotel and resort operations with AI-powered solutions that enhance guest experiences and streamline staff workflows.'
       imageSrc='/assets/platform/hospitality.jpeg'
       overlayContent={
