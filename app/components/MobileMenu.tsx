@@ -17,11 +17,11 @@ const SOCIAL_ICONS = [
   //   href: 'https://www.youtube.com/guestos_ai',
   //   Icon: SocialIcons.YoutubeIcon,
   // },
-  {
-    name: 'twitter',
-    href: 'https://twitter.com/guestos_ai',
-    Icon: SocialIcons.TwitterIcon,
-  },
+  // {
+  //   name: 'twitter',
+  //   href: 'https://twitter.com/guestos_ai',
+  //   Icon: SocialIcons.TwitterIcon,
+  // },
   // {
   //   name: 'instagram',
   //   href: 'https://www.instagram.com/guestos_ai',
