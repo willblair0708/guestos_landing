@@ -80,11 +80,11 @@ export default function SimulationSection({
           className='mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-4 sm:px-8'
           variants={containerVariants}
         >
-          <div className='grid grid-cols-1 gap-16 lg:grid-cols-2'>
+          <div className='grid grid-cols-1 gap-8 sm:gap-16 lg:grid-cols-2'>
             {/* Left Column */}
-            <motion.div className='flex flex-col justify-center space-y-8'>
+            <motion.div className='flex flex-col justify-center space-y-6 sm:space-y-8'>
               <motion.div variants={itemVariants} className='space-y-2'>
-                <span className='inline-flex items-center gap-2 rounded-full bg-black/5 px-4 py-1.5 text-sm'>
+                <span className='inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-sm'>
                   <span className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
                   AI-Powered Platform
                 </span>
@@ -92,7 +92,7 @@ export default function SimulationSection({
 
               <motion.h2
                 variants={itemVariants}
-                className='text-[40px] font-book leading-[1.1] tracking-[-0.02em] text-[#18181B] sm:text-[56px]'
+                className='text-[32px] font-book leading-[1.1] tracking-[-0.02em] text-[#18181B] sm:text-[40px] lg:text-[56px]'
               >
                 The Future of
                 <br />
@@ -103,16 +103,19 @@ export default function SimulationSection({
 
               <motion.p
                 variants={itemVariants}
-                className='max-w-xl text-lg font-book leading-relaxed tracking-tight text-black/70'
+                className='max-w-xl text-base font-book leading-relaxed tracking-tight text-black/70 sm:text-lg'
               >
                 Enhance guest experiences with 24/7 multilingual support,
                 personalized recommendations, and streamlined operations - all
                 powered by advanced AI technology.
               </motion.p>
 
-              <motion.div variants={itemVariants} className='flex gap-4 pt-4'>
+              <motion.div
+                variants={itemVariants}
+                className='flex flex-col gap-3 pt-2 sm:flex-row sm:gap-4 sm:pt-4'
+              >
                 <Link
-                  className='group flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-book text-white transition-all hover:bg-black/90'
+                  className='group flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-book text-white transition-all hover:bg-black/90 sm:px-8 sm:py-4'
                   href='/contact'
                 >
                   <span>Book Demo</span>
@@ -122,7 +125,7 @@ export default function SimulationSection({
                   />
                 </Link>
                 <Link
-                  className='flex items-center gap-2 rounded-full border border-black/10 px-8 py-4 text-sm font-book text-black transition-all hover:bg-black/5'
+                  className='flex items-center justify-center gap-2 rounded-full border border-black/10 px-6 py-3 text-sm font-book text-black transition-all hover:bg-black/5 sm:px-8 sm:py-4'
                   href='/platform'
                 >
                   Learn More
@@ -135,21 +138,23 @@ export default function SimulationSection({
               variants={itemVariants}
               className='relative flex items-center justify-center'
             >
-              <div className='grid grid-cols-2 gap-6'>
+              <div className='grid grid-cols-2 gap-3 sm:gap-6'>
                 {stats.map((stat, index) => (
                   <motion.div
                     key={index}
-                    className='rounded-2xl border border-black/5 bg-white/50 p-6 backdrop-blur-sm'
-                    whileHover={{ scale: 1.02 }}
+                    className='rounded-xl border border-black/5 bg-white/50 p-4 backdrop-blur-sm sm:rounded-2xl sm:p-6'
+                    whileHover={{ scale: isMobile ? 1 : 1.02 }}
                   >
                     <stat.icon
-                      className='mb-4 h-8 w-8'
+                      className='mb-3 h-6 w-6 sm:mb-4 sm:h-8 sm:w-8'
                       color={stat.iconColor || '#ffffff'}
                     />
-                    <p className='text-3xl font-medium tracking-tight'>
+                    <p className='text-2xl font-medium tracking-tight sm:text-3xl'>
                       {stat.value}
                     </p>
-                    <p className='text-sm text-black/60'>{stat.label}</p>
+                    <p className='text-xs text-black/60 sm:text-sm'>
+                      {stat.label}
+                    </p>
                   </motion.div>
                 ))}
               </div>
@@ -765,22 +770,22 @@ const PercentageDial = ({ percentage = 60 }) => {
 // Update ProductPreviewMobile with matching design
 function ProductPreviewMobile() {
   return (
-    <div className='relative mx-auto mt-8 h-[400px] w-full max-w-screen-lg rounded-t-[20px] bg-gradient-to-b from-black to-black/95 p-4 pb-0 shadow-2xl'>
+    <div className='relative mx-auto mt-6 h-[300px] w-full max-w-screen-lg rounded-t-[16px] bg-gradient-to-b from-black to-black/95 p-3 pb-0 shadow-2xl sm:mt-8 sm:h-[400px] sm:rounded-t-[20px] sm:p-4'>
       <div className='flex h-full w-full flex-col'>
-        <nav className='flex w-full items-center justify-between rounded-xl px-4 pb-4 text-white'>
-          <div className='flex items-center gap-3'>
-            <GuestOSIcon className='mt-2 h-10 w-10' />
-            <span className='font-light text-xs tracking-wide text-white/70'>
+        <nav className='flex w-full items-center justify-between rounded-xl px-3 pb-3 text-white sm:px-4 sm:pb-4'>
+          <div className='flex items-center gap-2 sm:gap-3'>
+            <GuestOSIcon className='mt-2 h-8 w-8 sm:h-10 sm:w-10' />
+            <span className='font-light text-[10px] tracking-wide text-white/70 sm:text-xs'>
               AI Concierge
             </span>
           </div>
-          <div className='flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 backdrop-blur-sm'>
-            <div className='h-1.5 w-1.5 animate-pulse rounded-full bg-[#03E87A]' />
-            <span className='font-light text-xs'>Live</span>
+          <div className='flex items-center gap-1.5 rounded-full bg-white/5 px-2 py-1 backdrop-blur-sm sm:gap-2 sm:px-3 sm:py-1.5'>
+            <div className='h-1 w-1 animate-pulse rounded-full bg-[#03E87A] sm:h-1.5 sm:w-1.5' />
+            <span className='font-light text-[10px] sm:text-xs'>Live</span>
           </div>
         </nav>
 
-        <div className='relative h-full w-full overflow-hidden rounded-t-2xl'>
+        <div className='relative h-full w-full overflow-hidden rounded-t-xl sm:rounded-t-2xl'>
           <Image
             src='/assets/main/main_hero_poster.webp'
             alt='GuestOS Platform'
