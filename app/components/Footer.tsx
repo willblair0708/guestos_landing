@@ -231,7 +231,7 @@ const Footer: React.FC = () => {
               />
             </Link>
             <p className='mt-6 max-w-sm text-base leading-relaxed tracking-wide text-neutral-400'>
-              Enhancing human connection through AI-powered hospitality
+              Bridging human connection through AI-powered hospitality
               experiences.
             </p>
           </motion.div>
