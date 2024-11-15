@@ -98,20 +98,6 @@ const MobileMenu = memo(
           animate={{ opacity: 1 }}
           transition={{ delay: 0.15 }}
         >
-          {/* <Link href="/">
-            <motion.div
-              className='absolute left-0 flex w-[85.5px] items-center pl-4'
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <GuestOSIcon
-                size={70}
-                className='mt-1 text-primary-gold'
-                stroke='currentColor'
-              />
-            </motion.div>
-          </Link> */}
-
           <motion.button
             onClick={toggleMenu}
             className='absolute right-4 top-[22px] rounded-full bg-primary-gold/5 p-2.5 text-primary-gold hover:bg-primary-gold/10'
