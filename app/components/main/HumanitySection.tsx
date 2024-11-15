@@ -713,7 +713,7 @@ const Slide = memo(
             className='flex-2 relative z-10 flex flex-col justify-center space-y-10'
           >
             <motion.div
-              className='inline-block overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 to-transparent px-2 py-3 backdrop-blur-xl'
+              className='inline-block overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 to-transparent px-2 py-3'
               whileHover={{ scale: 1.02, x: 5 }}
             >
               <div className='relative flex items-center gap-4'>
@@ -739,7 +739,7 @@ const Slide = memo(
             </motion.p>
 
             <motion.button
-              className='group relative mt-6 flex w-fit items-center gap-4 overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 via-[#03E87A]/5 to-transparent px-10 py-5 backdrop-blur-xl transition-all'
+              className='group relative mt-6 flex w-fit items-center gap-4 overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 via-[#03E87A]/5 to-transparent px-10 py-5 transition-all'
               whileHover={{
                 scale: 1.02,
                 x: 5,
