@@ -124,7 +124,7 @@ export default function HospitalitySection({
                   {[
                     {
                       label: 'Upsell Revenue',
-                      time: '$125,000',
+                      time: '$100,000',
                       status: 'On Track',
                     },
                     {
