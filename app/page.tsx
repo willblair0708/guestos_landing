@@ -9,6 +9,7 @@ import useIsMobile from '@/hooks/use-is-mobile';
 import Footer from './components/Footer';
 import HeroSection from './components/main/HeroSection';
 import HumanitySection from './components/main/HumanitySection';
+import HumanitySectionMobile from './components/main/HumanitySectionMobile';
 import SimulationSection from './components/main/SimulationSection';
 
 export default function Home() {
@@ -63,11 +64,15 @@ export default function Home() {
                   viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
                   className='w-full'
                 >
-                  <HumanitySection
-                    id='section-1'
-                    isMobile={isMobile}
-                    bgColor='white'
-                  />
+                  {isMobile ? (
+                    <HumanitySectionMobile id='section-1' bgColor='white' />
+                  ) : (
+                    <HumanitySection
+                      id='section-1'
+                      isMobile={isMobile}
+                      bgColor='white'
+                    />
+                  )}
                   <SimulationSection
                     id='section-2'
                     isMobile={isMobile}
