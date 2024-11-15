@@ -19,11 +19,11 @@ export default function ContactPage() {
       <Script src='https://www.google.com/recaptcha/enterprise.js?render=6LexbW8qAAAAAIr7IhfsTb0UMA8gqigbZIY1sHrY' />
       <motion.div
         key='contact-page'
-        className='relative w-screen overflow-hidden bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-200'
+        // className='relative w-screen overflow-hidden bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-200'
       >
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.15),transparent_50%)]' />
+        {/* <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.15),transparent_50%)]' />
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.1),transparent_50%)]' />
-        <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.8),transparent_10%,transparent_90%,rgba(255,255,255,0.8))]' />
+        <div className='absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.8),transparent_10%,transparent_90%,rgba(255,255,255,0.8))]' /> */}
 
         <motion.main
           ref={containerRef}
