@@ -338,15 +338,16 @@ const Slide = memo(
                     <div className='flex justify-end'>
                       <div className='max-w-[80%] rounded-lg rounded-tr-none bg-[#03E87A]/20 p-3'>
                         <p className='text-sm text-white/80'>
-                          I'd like to book a dinner reservation for tonight.
+                          I'd like to plan a birthday celebration for my sister
+                          during our stay.
                         </p>
                       </div>
                     </div>
                     <div className='flex justify-start'>
                       <div className='max-w-[80%] rounded-lg rounded-tl-none bg-white/10 p-3'>
                         <p className='text-sm text-white/80'>
-                          I'll help you with that. What time would you prefer,
-                          and how many guests will be dining?
+                          Wonderful. I would suggest the private picnic by the
+                          river or s'mores by the fire. What sounds good?
                         </p>
                       </div>
                     </div>

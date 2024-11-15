@@ -85,11 +85,11 @@ const slides = [
   },
 ];
 
-// Update the cardStyle for darker, more visible cards
+// First, add the cardStyle constant at the top with other constants
 const cardStyle = {
   background:
-    'linear-gradient(to bottom right, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.85))',
-  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+    'linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6))',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
 };
 
 // Mobile-optimized Slide Component
@@ -113,15 +113,15 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.3,
               }}
-              className='group w-full overflow-hidden rounded-2xl border border-white/30 p-6 backdrop-blur-xl'
-              style={cardStyle}
+              className='group w-full overflow-hidden rounded-3xl border border-white/10 p-6 backdrop-blur-2xl transition-all duration-300'
+              style={{ ...cardStyle, zIndex: 100 }}
             >
               <div className='space-y-6'>
                 <div>
-                  <h4 className='text-xl font-medium text-white'>
+                  <h4 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-xl font-medium text-white'>
                     Welcome to AI Concierge Setup
                   </h4>
-                  <p className='mt-2 font-light text-sm leading-relaxed text-white/80'>
+                  <p className='mt-2 font-light text-sm leading-relaxed text-white/60'>
                     Follow these simple steps to configure your AI assistant
                   </p>
                 </div>
@@ -132,25 +132,25 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                       step: '1',
                       title: 'Basic Configuration',
                       status: 'Completed',
-                      color: '#4ADE80',
+                      color: '#03E87A',
                     },
                     {
                       step: '2',
                       title: 'Personality Setup',
                       status: 'In Progress',
-                      color: '#FCD34D',
+                      color: '#C6A87C',
                     },
                     {
                       step: '3',
                       title: 'Integration Setup',
                       status: 'Pending',
-                      color: '#A78BFA',
+                      color: '#7C3AED',
                     },
                     {
                       step: '4',
                       title: 'Final Review',
                       status: 'Pending',
-                      color: '#FB7185',
+                      color: '#F43F5E',
                     },
                   ].map((item, i) => (
                     <motion.div
@@ -158,11 +158,11 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 + 0.5 }}
-                      className='group flex items-center gap-4 rounded-2xl bg-white/[0.08] p-4 transition-all duration-300 hover:bg-white/[0.12]'
+                      className='group flex items-center gap-4 rounded-2xl bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.06]'
                     >
                       <div
                         className='flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110'
-                        style={{ backgroundColor: `${item.color}30` }}
+                        style={{ backgroundColor: `${item.color}20` }}
                       >
                         <span
                           className='text-sm font-medium'
@@ -172,13 +172,10 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                         </span>
                       </div>
                       <div className='flex flex-1 items-center justify-between'>
-                        <span className='text-sm font-medium text-white group-hover:text-white'>
+                        <span className='font-light text-sm text-white/90 transition-all duration-300 group-hover:text-white'>
                           {item.title}
                         </span>
-                        <span
-                          className='text-xs font-medium'
-                          style={{ color: item.color }}
-                        >
+                        <span className='text-xs' style={{ color: item.color }}>
                           {item.status}
                         </span>
                       </div>
@@ -198,48 +195,48 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.4,
               }}
-              className='group mt-4 w-full overflow-hidden rounded-2xl border border-white/30 p-6 backdrop-blur-xl'
+              className='group mt-4 w-full overflow-hidden rounded-3xl border border-white/10 p-6 backdrop-blur-2xl transition-all duration-300 hover:border-white/20'
               style={cardStyle}
             >
               <div className='space-y-6'>
                 <div>
-                  <h4 className='text-lg font-medium text-white'>
+                  <h4 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-sm font-medium text-transparent'>
                     Step 2: Personality Configuration
                   </h4>
-                  <p className='mt-2 font-light text-sm leading-relaxed text-white/80'>
+                  <p className='mt-2 font-light text-xs leading-relaxed text-white/60'>
                     Define how your AI assistant will interact
                   </p>
                 </div>
 
                 <div className='space-y-3'>
-                  <div className='group rounded-2xl bg-white/[0.08] p-4 transition-all duration-300 hover:bg-white/[0.12]'>
-                    <label className='text-xs font-medium text-white/90'>
+                  <div className='group rounded-2xl bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.06]'>
+                    <label className='font-light text-xs text-white/80'>
                       Assistant Name
                     </label>
-                    <div className='mt-2 rounded-md bg-white/20 p-3'>
-                      <span className='text-sm font-medium text-[#4ADE80]'>
+                    <div className='mt-2 rounded-md bg-white/10 p-3'>
+                      <span className='text-sm font-medium text-[#03E87A]'>
                         Sierra
                       </span>
                     </div>
                   </div>
 
                   <div className='grid grid-cols-2 gap-2'>
-                    <div className='group rounded-2xl bg-white/[0.08] p-4 transition-all duration-300 hover:bg-white/[0.12]'>
-                      <label className='text-xs font-medium text-white/90'>
+                    <div className='group rounded-2xl bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.06]'>
+                      <label className='font-light text-xs text-white/80'>
                         Language
                       </label>
-                      <div className='mt-2 rounded-md bg-white/20 p-3'>
-                        <span className='text-sm font-medium text-[#4ADE80]'>
+                      <div className='mt-2 rounded-md bg-white/10 p-3'>
+                        <span className='text-sm font-medium text-[#03E87A]'>
                           English
                         </span>
                       </div>
                     </div>
-                    <div className='group rounded-2xl bg-white/[0.08] p-4 transition-all duration-300 hover:bg-white/[0.12]'>
-                      <label className='text-xs font-medium text-white/90'>
+                    <div className='group rounded-2xl bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.06]'>
+                      <label className='font-light text-xs text-white/80'>
                         Style
                       </label>
-                      <div className='mt-2 rounded-md bg-white/20 p-3'>
-                        <span className='text-sm font-medium text-[#4ADE80]'>
+                      <div className='mt-2 rounded-md bg-white/10 p-3'>
+                        <span className='text-sm font-medium text-[#03E87A]'>
                           Professional
                         </span>
                       </div>
@@ -258,7 +255,7 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            className='group w-full overflow-hidden rounded-2xl border border-white/30 p-8 backdrop-blur-xl'
+            className='group w-full overflow-hidden rounded-3xl border border-white/10 p-8 backdrop-blur-2xl transition-all duration-300 hover:border-white/20'
             style={cardStyle}
           >
             {/* Avatar and Header */}
@@ -362,7 +359,7 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className='group rounded-2xl bg-white/[0.08] p-4 transition-all duration-300 hover:bg-white/[0.12]'
+                  className='group rounded-2xl bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.06]'
                 >
                   <div className='mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-white/10 to-transparent'>
                     {item.icon}
@@ -405,7 +402,7 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className='group flex items-start gap-3 rounded-2xl bg-white/[0.08] p-4 transition-all duration-300 hover:bg-white/[0.12]'
+                  className='group flex items-start gap-3 rounded-2xl bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.06]'
                 >
                   <div
                     className='mt-1 h-2 w-2 rounded-full'
@@ -430,7 +427,7 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            className='group w-full overflow-hidden rounded-2xl border border-white/30 p-6 backdrop-blur-xl'
+            className='group w-full overflow-hidden rounded-3xl border border-white/10 p-6 backdrop-blur-2xl transition-all duration-300 hover:border-white/20'
             style={cardStyle}
           >
             <div className='space-y-6'>
@@ -465,7 +462,7 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className='group rounded-2xl bg-white/[0.08] p-4 transition-all duration-300 hover:bg-white/[0.12]'
+                    className='group rounded-2xl bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.06]'
                   >
                     <div className='flex items-center justify-between'>
                       <span className='text-sm font-medium text-white'>
