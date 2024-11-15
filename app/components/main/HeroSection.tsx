@@ -96,8 +96,8 @@ const Background = ({ isMobile }: { isMobile?: boolean }) => (
     <Image
       src={
         isMobile
-          ? '/assets/main/main_hero_poster.jpg'
-          : '/assets/main/main_hero_poster.jpg'
+          ? '/assets/main/main_hero_poster1.jpg'
+          : '/assets/main/main_hero_poster1.jpg'
       }
       alt='Hero background'
       fill
