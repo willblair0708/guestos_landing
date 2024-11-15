@@ -433,7 +433,8 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 {[
                   {
                     title: 'Experience Curator',
-                    description: 'Book and process payments for activities',
+                    description:
+                      'Book and process payments for activities onsite',
                     status: 'Active',
                   },
                   {
@@ -442,8 +443,9 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                     status: 'Active',
                   },
                   {
-                    title: 'Room Service',
-                    description: 'Automated order processing',
+                    title: 'Local Explorer',
+                    description:
+                      'Discover and book nearby attractions, tours, and hidden gems',
                     status: 'Coming Soon',
                   },
                 ].map((item, i) => (

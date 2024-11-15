@@ -156,11 +156,11 @@ export default function MissionSection({
               <div className='flex items-center space-x-4'>
                 <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' />
                 <span className='text-sm font-book text-gray-500'>
-                  Est. 1976
+                  Est. 1996
                 </span>
               </div>
 
-              <motion.button
+              {/* <motion.button
                 className='group flex items-center space-x-3 rounded-full bg-gray-50/80 px-6 py-3 shadow-sm transition-all hover:bg-white hover:shadow-md'
                 whileHover={{ x: 10, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 400 }}
@@ -179,7 +179,7 @@ export default function MissionSection({
                 >
                   <path d='M5 12H19M19 12L12 5M19 12L12 19' />
                 </motion.svg>
-              </motion.button>
+              </motion.button> */}
             </motion.div>
           </motion.div>
 

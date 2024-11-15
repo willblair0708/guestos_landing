@@ -242,7 +242,7 @@ export default function HeroSection({
                 transition={{ delay: 1, duration: 0.8 }}
                 className='flex items-center gap-8'
               >
-                <motion.button
+                {/* <motion.button
                   className='group flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-sm transition-all hover:bg-white/10'
                   whileHover={{ scale: 1.02, x: 5 }}
                   transition={{ type: 'spring', stiffness: 400 }}
@@ -261,12 +261,12 @@ export default function HeroSection({
                   >
                     <path d='M5 12H19M19 12L12 5M19 12L12 19' />
                   </motion.svg>
-                </motion.button>
+                </motion.button> */}
 
-                <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' />
-                <span className='font-light text-sm text-white/60'>
-                  Est. 1976
-                </span>
+                {/* <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' /> */}
+                {/* <span className='font-light text-sm text-white/60'>
+                  Est. 1996
+                </span> */}
               </motion.div>
             </div>
           </motion.div>
