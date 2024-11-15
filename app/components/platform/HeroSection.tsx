@@ -119,13 +119,13 @@ export default function HeroSection({
                   transition={{ duration: 0.2 }}
                 >
                   <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
-                  <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-sm tracking-wider text-transparent'>
+                  <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-base tracking-wider text-transparent'>
                     OUR PLATFORM
                   </span>
                 </motion.div>
 
                 <motion.h1
-                  className='max-w-4xl bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text pb-1 font-light text-4xl leading-[1.2] tracking-tight text-transparent sm:text-5xl lg:text-5xl'
+                  className='max-w-4xl bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text pb-1 font-light text-5xl leading-[1.2] tracking-tight text-transparent sm:text-6xl lg:text-6xl'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
@@ -134,7 +134,7 @@ export default function HeroSection({
                 </motion.h1>
 
                 <motion.p
-                  className='max-w-xl font-light text-lg leading-relaxed text-white/90'
+                  className='max-w-xl font-light text-xl leading-relaxed text-white/90'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.8 }}
@@ -150,16 +150,16 @@ export default function HeroSection({
                 transition={{ delay: 1, duration: 0.8 }}
                 className='flex items-center gap-8'
               >
-                <motion.button
+                {/* <motion.button
                   onClick={onScrollToNext}
                   className='group flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-sm transition-all hover:bg-white/10'
                   whileHover={{ scale: 1.02, x: 5 }}
                 >
-                  <span className='font-light text-sm text-white'>
+                  <span className='font-light text-base text-white'>
                     Explore Products
                   </span>
                   <ArrowIcon className='h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1' />
-                </motion.button>
+                </motion.button> */}
               </motion.div>
             </div>
           </motion.div>

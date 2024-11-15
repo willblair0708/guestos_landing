@@ -136,14 +136,14 @@ const InfoCard = () => (
 
       <div className='relative space-y-4'>
         <div className='flex items-center space-x-3'>
-          <h2 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light text-2xl text-transparent'>
+          <h2 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light text-3xl text-transparent'>
             Enhancing Human Connection
           </h2>
         </div>
         <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' />
       </div>
 
-      <p className='text-md relative font-light leading-relaxed text-white/70'>
+      <p className='relative font-light text-lg leading-relaxed text-white/70'>
         Born from a family of hoteliers, GuestOS helps you focus on what matters
         most - creating memorable experiences for your guests.
       </p>
@@ -244,7 +244,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                 className='space-y-6'
               >
                 <motion.span
-                  className='group inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm backdrop-blur-sm'
+                  className='group inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-base backdrop-blur-sm'
                   whileHover={{ scale: 1.02 }}
                 >
                   <div
@@ -262,8 +262,8 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                   <motion.span
                     className={`block font-light tracking-tight ${
                       isMobile
-                        ? 'text-3xl sm:text-4xl'
-                        : 'sm:text-4xl lg:text-5xl'
+                        ? 'text-4xl sm:text-5xl'
+                        : 'sm:text-5xl lg:text-6xl'
                     }`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -274,7 +274,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                 </h1>
 
                 <motion.p
-                  className={`font-light text-lg leading-relaxed text-white/60 ${
+                  className={`font-light text-xl leading-relaxed text-white/60 ${
                     isMobile ? 'mx-auto max-w-sm' : 'max-w-xl'
                   }`}
                   initial={{ opacity: 0, y: 20 }}

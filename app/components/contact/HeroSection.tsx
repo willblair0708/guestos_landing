@@ -197,7 +197,7 @@ const FormInput = ({
           }}
           placeholder={field.placeholder}
           name={field.id}
-          className='peer relative flex h-[48px] w-full items-center gap-2.5 rounded-xl bg-gradient-to-b from-surface-dark/95 to-surface-dark/90 pl-4 pr-4 font-light text-base tracking-wide text-white/90 backdrop-blur-md transition-all duration-200 placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-primary-gold/30'
+          className='peer relative flex h-[48px] w-full items-center gap-2.5 rounded-xl bg-gradient-to-b from-surface-dark/95 to-surface-dark/90 pl-4 pr-4 font-light text-lg tracking-wide text-white/90 backdrop-blur-md transition-all duration-200 placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-primary-gold/30'
         />
 
         <div className='pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-r from-primary-gold/[0.02] via-transparent to-primary-gold/[0.02]' />
@@ -339,9 +339,9 @@ export default function HeroSection({
           animate='animate'
           className='flex max-w-xl flex-col gap-8'
         >
-          <motion.span className='inline-flex items-center gap-3 self-start rounded-full bg-surface-dark/50 px-4 py-1.5 backdrop-blur-sm'>
+          <motion.span className='inline-flex items-center gap-3 self-start rounded-full bg-surface-dark/50 px-4 py-2 backdrop-blur-sm'>
             <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
-            <span className='font-light text-sm text-white/90'>
+            <span className='font-light text-base text-white/90'>
               Book a Demo
             </span>
           </motion.span>
@@ -350,7 +350,7 @@ export default function HeroSection({
             <motion.h1
               variants={itemVariants}
               className={`${
-                isMobile ? 'text-4xl' : 'text-5xl'
+                isMobile ? 'text-5xl' : 'text-6xl'
               } max-w-2xl font-light leading-[1.1] tracking-tight text-white`}
             >
               Experience the Future of
@@ -362,7 +362,7 @@ export default function HeroSection({
 
             <motion.p
               variants={itemVariants}
-              className='max-w-lg font-light text-lg leading-relaxed text-white/60'
+              className='max-w-lg font-light text-xl leading-relaxed text-white/60'
             >
               Schedule a personalized demo to see how GuestOS can transform your
               guest experience.
@@ -376,7 +376,7 @@ export default function HeroSection({
                 href='https://calendly.com/guestos_ai'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='inline-flex items-center justify-center gap-2 rounded-xl bg-primary-gold px-8 py-4 font-medium text-black transition-all duration-300 hover:bg-primary-gold/90'
+                className='inline-flex items-center justify-center gap-2 rounded-xl bg-primary-gold px-8 py-4 text-base font-medium text-black transition-all duration-300 hover:bg-primary-gold/90'
               >
                 <span>Schedule Demo</span>
                 <svg
@@ -417,7 +417,7 @@ export default function HeroSection({
                   />
                 </svg>
               </a>
-              <span className='inline-flex items-center gap-2 text-white/60'>
+              <span className='inline-flex items-center gap-2 text-lg text-white/60'>
                 or fill out the form
                 <svg
                   width='20'
@@ -553,7 +553,7 @@ export default function HeroSection({
             <motion.button
               type='submit'
               disabled={isSubmitting}
-              className='relative inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary-gold/90 via-primary-gold/80 to-primary-gold/90 px-8 py-4 font-medium text-black transition-all duration-300 hover:from-primary-gold hover:to-primary-gold disabled:cursor-not-allowed disabled:opacity-50'
+              className='relative inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-primary-gold/90 via-primary-gold/80 to-primary-gold/90 px-8 py-4 text-base font-medium text-black transition-all duration-300 hover:from-primary-gold hover:to-primary-gold disabled:cursor-not-allowed disabled:opacity-50'
               whileHover={{ scale: isSubmitting ? 1 : 1.01 }}
               whileTap={{ scale: isSubmitting ? 1 : 0.99 }}
             >

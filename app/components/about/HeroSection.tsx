@@ -92,8 +92,8 @@ const Background = () => {
         transition={{ delay: 0.5 }}
       >
         <div className='flex flex-col items-end gap-2'>
-          <span className='font-light text-xs text-white/60'>Then</span>
-          <span className='font-light text-xs text-white/60'>Now</span>
+          <span className='font-light text-sm text-white/60'>Then</span>
+          <span className='font-light text-sm text-white/60'>Now</span>
         </div>
         <div className='h-12 w-[2px] overflow-hidden rounded-full bg-white/10'>
           <motion.div
@@ -210,13 +210,13 @@ export default function HeroSection({
                   transition={{ duration: 0.2 }}
                 >
                   <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
-                  <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-sm tracking-wider text-transparent'>
+                  <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light text-base tracking-wider text-transparent'>
                     OUR STORY
                   </span>
                 </motion.div>
 
                 <motion.h1
-                  className='max-w-4xl bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text pb-1 font-light text-4xl leading-[1.2] tracking-tight text-transparent sm:text-5xl lg:text-5xl'
+                  className='max-w-4xl bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text pb-1 font-light text-5xl leading-[1.2] tracking-tight text-transparent sm:text-6xl lg:text-6xl'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
@@ -225,7 +225,7 @@ export default function HeroSection({
                 </motion.h1>
 
                 <motion.p
-                  className='max-w-xl font-light text-lg leading-relaxed text-white/90'
+                  className='max-w-xl font-light text-xl leading-relaxed text-white/90'
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.8 }}
@@ -264,9 +264,9 @@ export default function HeroSection({
                 </motion.button> */}
 
                 {/* <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' /> */}
-                {/* <span className='font-light text-sm text-white/60'>
+                <span className='font-light text-base text-white/60'>
                   Est. 1996
-                </span> */}
+                </span>
               </motion.div>
             </div>
           </motion.div>
