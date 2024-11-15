@@ -156,9 +156,6 @@ export default function HospitalitySection({
                         </span>
                       </div>
                       <div className='mt-2 flex items-center gap-2'>
-                        <div className='text-sm font-medium text-white/80'>
-                          Response Time:
-                        </div>
                         <div className='text-sm text-[#03E87A]'>
                           {item.time}
                         </div>
@@ -177,7 +174,7 @@ export default function HospitalitySection({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className='absolute bottom-8 right-8 z-10 w-[300px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+              className='absolute bottom-8 right-8 z-10 w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
             >
               <div className='space-y-4'>
                 <div className='flex items-center justify-between'>
@@ -191,7 +188,7 @@ export default function HospitalitySection({
                   <div className='rounded-lg bg-white/5 p-3'>
                     <div className='flex items-center gap-1'>
                       <span className='text-xs text-white/60'>RevPAR</span>
-                      <span className='text-xs text-[#03E87A]'>↑ 15%</span>
+                      <span className='text-xs text-[#03E87A]'>$245 ↑15% </span>
                     </div>
                     <div className='mt-1 text-lg font-medium text-[#03E87A]'>
                       $245
@@ -200,11 +197,19 @@ export default function HospitalitySection({
                   <div className='rounded-lg bg-white/5 p-3'>
                     <div className='flex items-center gap-1'>
                       <span className='text-xs text-white/60'>ADR</span>
-                      <span className='text-xs text-[#03E87A]'>↑ 8%</span>
+                      <span className='text-xs text-[#03E87A]'>$320 ↑8%</span>
                     </div>
                     <div className='mt-1 text-lg font-medium text-[#03E87A]'>
                       $320
                     </div>
+                  </div>
+                </div>
+                <div className='rounded-lg bg-white/5 p-3'>
+                  <div className='flex items-center gap-1'>
+                    <span className='text-xs text-white/60'>GuestOS</span>
+                  </div>
+                  <div className='mt-1 text-lg font-medium text-[#03E87A]'>
+                    $100,000
                   </div>
                 </div>
 
@@ -214,9 +219,10 @@ export default function HospitalitySection({
                   </div>
                   <div className='space-y-2'>
                     {[
-                      { label: 'Room Revenue', value: '82%' },
+                      { label: 'Room Revenue', value: '75%' },
                       { label: 'F&B', value: '12%' },
-                      { label: 'Other Services', value: '6%' },
+                      { label: 'GuestOS', value: '10%' },
+                      { label: 'Other Services', value: '3%' },
                     ].map((item, i) => (
                       <div key={i} className='space-y-1'>
                         <div className='flex justify-between text-xs'>
