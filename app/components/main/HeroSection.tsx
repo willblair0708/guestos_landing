@@ -137,7 +137,7 @@ const InfoCard = () => (
       <div className='relative space-y-4'>
         <div className='flex items-center space-x-3'>
           <h2 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light text-3xl text-transparent'>
-            Bridging Human Connection
+            Enhancing Human Connection
           </h2>
         </div>
         <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' />
