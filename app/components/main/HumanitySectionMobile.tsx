@@ -486,9 +486,14 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
     >
       {/* Enhanced Glassmorphic Background */}
       <div className='pointer-events-none absolute inset-0'>
-        <div className='bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.2) absolute inset-0' />
-        <div className='bg-[radial-gradient(circle_at_bottom_left,rgba(198,168,124,0.18) absolute inset-0' />
-        <motion.div variants={floatingGradientVariants} animate='animate' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.2)_0%,transparent_50%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(198,168,124,0.18)_0%,transparent_50%)]' />
+        <div className='absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-black/10' />
+        <motion.div
+          // className='absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(198,168,124,0.1)_0%,transparent_70%)]'
+          variants={floatingGradientVariants}
+          animate='animate'
+        />
       </div>
 
       {/* Content Section */}
