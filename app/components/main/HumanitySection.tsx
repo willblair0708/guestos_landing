@@ -116,7 +116,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className='absolute left-4 top-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-8 sm:top-8 sm:w-[360px] sm:p-6'
+                className='absolute left-4 top-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-8 sm:top-8 md:left-1/2 md:w-[min(90vw,560px)] md:-translate-x-1/2 lg:left-8 lg:w-[360px] lg:translate-x-0'
               >
                 <div className='space-y-4'>
                   <div>
@@ -176,7 +176,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-4 top-[380px] z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-40 sm:top-[340px] sm:w-[380px] sm:p-6'
+                className='absolute left-4 top-[380px] z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-40 sm:top-[340px] md:left-1/2 md:top-[420px] md:w-[min(90vw,600px)] md:-translate-x-1/2 lg:left-40 lg:top-[340px] lg:w-[380px] lg:translate-x-0'
               >
                 <div className='space-y-5'>
                   <div>
@@ -245,7 +245,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-4 left-4 z-10 w-[90vw] -translate-x-0 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:bottom-20 sm:left-1/4 sm:w-[400px] sm:-translate-x-1/2 sm:p-6'
+                className='absolute bottom-4 left-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:bottom-8 sm:left-8 md:bottom-12 md:left-1/2 md:w-[min(90vw,640px)] md:-translate-x-1/2 lg:bottom-20 lg:left-1/4 lg:w-[400px] lg:translate-x-0'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center justify-between'>
@@ -293,7 +293,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className='absolute left-8 top-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 backdrop-blur-xl'
+                className='absolute left-8 top-20 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 backdrop-blur-xl md:left-1/2 md:w-[min(90vw,560px)] md:-translate-x-1/2 lg:left-8 lg:w-[320px] lg:translate-x-0'
               >
                 <div className='flex h-[500px] flex-col'>
                   {/* Header */}
@@ -382,7 +382,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-80 top-80 z-10 w-[320px] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-80 top-80 z-10 w-[90vw] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl md:left-1/2 md:top-[65%] md:w-[min(90vw,560px)] md:-translate-x-1/2 lg:left-80 lg:top-80 lg:w-[320px] lg:translate-x-0'
               >
                 <div className='space-y-4'>
                   <h4 className='text-sm font-medium text-white'>
@@ -638,7 +638,7 @@ const Slide = memo(
 
           {/* Enhanced Progress Indicator */}
           <motion.div
-            className='absolute right-16 top-32 z-50 flex flex-col items-center gap-4'
+            className='absolute right-16 top-12 z-50 flex flex-col items-center gap-4'
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
@@ -709,10 +709,10 @@ const Slide = memo(
           {/* Enhanced Content Section */}
           <motion.div
             variants={textVariants}
-            className='relative z-10 flex flex-1 flex-col justify-center space-y-10 lg:pl-24'
+            className='flex-2 relative z-10 flex flex-col justify-center space-y-10'
           >
             <motion.div
-              className='inline-block overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 to-transparent px-6 py-3 backdrop-blur-xl'
+              className='inline-block overflow-hidden rounded-full border border-[#03E87A]/20 bg-gradient-to-r from-[#03E87A]/10 to-transparent px-2 py-3 backdrop-blur-xl'
               whileHover={{ scale: 1.02, x: 5 }}
             >
               <div className='relative flex items-center gap-4'>
@@ -724,7 +724,7 @@ const Slide = memo(
             </motion.div>
 
             <motion.h2
-              className='bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text font-light text-6xl leading-[1.1] tracking-tight text-transparent sm:text-7xl'
+              className='bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text font-light text-5xl leading-[1.1] tracking-tight text-transparent'
               variants={textVariants}
             >
               {slide.value.tagline}
@@ -812,7 +812,7 @@ function HumanitySection({ id, bgColor, isMobile }: HumanitySectionProps) {
     () =>
       typeof window !== 'undefined' &&
       (window.matchMedia('(pointer: coarse)').matches ||
-        window.innerWidth < 768),
+        window.innerWidth < 1024),
     []
   );
 
@@ -1009,7 +1009,13 @@ function ScrollingSection({ id, bgColor, isMobile }: HumanitySectionProps) {
       className='relative h-screen touch-none overflow-hidden text-white'
       style={{ backgroundColor: bgColor }}
       initial={{ padding: '0' }}
-      animate={{ padding: isMobile ? '1rem' : '2rem' }}
+      animate={{
+        padding: isMobile
+          ? '1rem'
+          : window.innerWidth < 1024
+            ? '1.5rem'
+            : '2rem',
+      }}
       transition={{ duration: 0.5 }}
       viewport={{ amount: 0.9, once: true }}
     >

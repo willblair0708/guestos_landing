@@ -4,7 +4,7 @@ export default function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
-    const onResize = () => setIsMobile(window.innerWidth < 640);
+    const onResize = () => setIsMobile(window.innerWidth < 1024);
 
     onResize();
 
