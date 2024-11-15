@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 
+import useIsMobile from '@/hooks/use-is-mobile';
+
 import Icon from '../ui/Icon';
 import ProductSection from './ProductSection';
 
@@ -12,6 +14,8 @@ export default function HospitalitySection({
   id,
   bgColor,
 }: DynamoSectionProps) {
+  const isMobile = useIsMobile();
+
   return (
     <ProductSection
       id={id}
@@ -21,7 +25,7 @@ export default function HospitalitySection({
       imageSrc='/assets/platform/hospitality.jpeg'
       overlayContent={
         <>
-          {/* Guest Intelligence Card */}
+          {/* Guest Intelligence Card - Always visible */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -96,124 +100,130 @@ export default function HospitalitySection({
             </div>
           </motion.div>
 
-          {/* Operations Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className='absolute left-8 top-1/4 z-10 w-[280px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
-          >
-            <div className='space-y-4'>
-              <div className='flex items-center justify-between'>
-                <h4 className='text-sm font-medium text-white'>
-                  Operations Status
-                </h4>
-                <div className='flex items-center gap-2'>
-                  <span className='h-2 w-2 animate-pulse rounded-full bg-[#03E87A]' />
-                  <span className='text-xs text-white/80'>Real-time</span>
-                </div>
-              </div>
-
-              <div className='space-y-3'>
-                {[
-                  { label: 'Room Service', time: '8m', status: 'On Track' },
-                  { label: 'Housekeeping', time: '24m', status: 'Busy' },
-                  { label: 'Maintenance', time: '12m', status: 'Available' },
-                ].map((item, i) => (
-                  <div key={i} className='rounded-lg bg-white/5 p-3'>
-                    <div className='flex items-center justify-between'>
-                      <span className='text-xs text-white/60'>
-                        {item.label}
-                      </span>
-                      <span
-                        className={`text-xs ${
-                          item.status === 'On Track'
-                            ? 'text-[#03E87A]'
-                            : item.status === 'Busy'
-                              ? 'text-amber-400'
-                              : 'text-blue-400'
-                        }`}
-                      >
-                        {item.status}
-                      </span>
-                    </div>
-                    <div className='mt-2 flex items-center gap-2'>
-                      <div className='text-sm font-medium text-white/80'>
-                        Response Time:
-                      </div>
-                      <div className='text-sm text-[#03E87A]'>{item.time}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Revenue Insights Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className='absolute bottom-8 right-8 z-10 w-[300px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
-          >
-            <div className='space-y-4'>
-              <div className='flex items-center justify-between'>
-                <h4 className='text-sm font-medium text-white'>
-                  Revenue Insights
-                </h4>
-                <span className='text-xs text-white/60'>Today</span>
-              </div>
-
-              <div className='grid grid-cols-2 gap-3'>
-                <div className='rounded-lg bg-white/5 p-3'>
-                  <div className='flex items-center gap-1'>
-                    <span className='text-xs text-white/60'>RevPAR</span>
-                    <span className='text-xs text-[#03E87A]'>↑ 15%</span>
-                  </div>
-                  <div className='mt-1 text-lg font-medium text-[#03E87A]'>
-                    $245
+          {/* Operations Card - Hidden on mobile */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className='absolute left-8 top-1/4 z-10 w-[280px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+            >
+              <div className='space-y-4'>
+                <div className='flex items-center justify-between'>
+                  <h4 className='text-sm font-medium text-white'>
+                    Operations Status
+                  </h4>
+                  <div className='flex items-center gap-2'>
+                    <span className='h-2 w-2 animate-pulse rounded-full bg-[#03E87A]' />
+                    <span className='text-xs text-white/80'>Real-time</span>
                   </div>
                 </div>
-                <div className='rounded-lg bg-white/5 p-3'>
-                  <div className='flex items-center gap-1'>
-                    <span className='text-xs text-white/60'>ADR</span>
-                    <span className='text-xs text-[#03E87A]'>↑ 8%</span>
-                  </div>
-                  <div className='mt-1 text-lg font-medium text-[#03E87A]'>
-                    $320
-                  </div>
-                </div>
-              </div>
 
-              <div className='rounded-lg bg-white/5 p-3'>
-                <div className='mb-2 text-xs text-white/80'>
-                  Revenue Streams
-                </div>
-                <div className='space-y-2'>
+                <div className='space-y-3'>
                   {[
-                    { label: 'Room Revenue', value: '82%' },
-                    { label: 'F&B', value: '12%' },
-                    { label: 'Other Services', value: '6%' },
+                    { label: 'Room Service', time: '8m', status: 'On Track' },
+                    { label: 'Housekeeping', time: '24m', status: 'Busy' },
+                    { label: 'Maintenance', time: '12m', status: 'Available' },
                   ].map((item, i) => (
-                    <div key={i} className='space-y-1'>
-                      <div className='flex justify-between text-xs'>
-                        <span className='text-white/60'>{item.label}</span>
-                        <span className='text-[#03E87A]'>{item.value}</span>
+                    <div key={i} className='rounded-lg bg-white/5 p-3'>
+                      <div className='flex items-center justify-between'>
+                        <span className='text-xs text-white/60'>
+                          {item.label}
+                        </span>
+                        <span
+                          className={`text-xs ${
+                            item.status === 'On Track'
+                              ? 'text-[#03E87A]'
+                              : item.status === 'Busy'
+                                ? 'text-amber-400'
+                                : 'text-blue-400'
+                          }`}
+                        >
+                          {item.status}
+                        </span>
                       </div>
-                      <div className='h-1.5 rounded-full bg-white/10'>
-                        <div
-                          className='h-full rounded-full bg-[#03E87A]'
-                          style={{ width: item.value }}
-                        />
+                      <div className='mt-2 flex items-center gap-2'>
+                        <div className='text-sm font-medium text-white/80'>
+                          Response Time:
+                        </div>
+                        <div className='text-sm text-[#03E87A]'>
+                          {item.time}
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
+
+          {/* Revenue Insights Card - Hidden on mobile */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className='absolute bottom-8 right-8 z-10 w-[300px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+            >
+              <div className='space-y-4'>
+                <div className='flex items-center justify-between'>
+                  <h4 className='text-sm font-medium text-white'>
+                    Revenue Insights
+                  </h4>
+                  <span className='text-xs text-white/60'>Today</span>
+                </div>
+
+                <div className='grid grid-cols-2 gap-3'>
+                  <div className='rounded-lg bg-white/5 p-3'>
+                    <div className='flex items-center gap-1'>
+                      <span className='text-xs text-white/60'>RevPAR</span>
+                      <span className='text-xs text-[#03E87A]'>↑ 15%</span>
+                    </div>
+                    <div className='mt-1 text-lg font-medium text-[#03E87A]'>
+                      $245
+                    </div>
+                  </div>
+                  <div className='rounded-lg bg-white/5 p-3'>
+                    <div className='flex items-center gap-1'>
+                      <span className='text-xs text-white/60'>ADR</span>
+                      <span className='text-xs text-[#03E87A]'>↑ 8%</span>
+                    </div>
+                    <div className='mt-1 text-lg font-medium text-[#03E87A]'>
+                      $320
+                    </div>
+                  </div>
+                </div>
+
+                <div className='rounded-lg bg-white/5 p-3'>
+                  <div className='mb-2 text-xs text-white/80'>
+                    Revenue Streams
+                  </div>
+                  <div className='space-y-2'>
+                    {[
+                      { label: 'Room Revenue', value: '82%' },
+                      { label: 'F&B', value: '12%' },
+                      { label: 'Other Services', value: '6%' },
+                    ].map((item, i) => (
+                      <div key={i} className='space-y-1'>
+                        <div className='flex justify-between text-xs'>
+                          <span className='text-white/60'>{item.label}</span>
+                          <span className='text-[#03E87A]'>{item.value}</span>
+                        </div>
+                        <div className='h-1.5 rounded-full bg-white/10'>
+                          <div
+                            className='h-full rounded-full bg-[#03E87A]'
+                            style={{ width: item.value }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </>
       }
       features={[
