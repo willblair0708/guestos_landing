@@ -98,6 +98,9 @@ const MobileMenu = memo(
           animate={{ opacity: 1 }}
           transition={{ delay: 0.15 }}
         >
+          <Link href='/' className='absolute left-4 top-[4px]'>
+            <GuestOSIcon className='h-20 w-20' />
+          </Link>
           <motion.button
             onClick={toggleMenu}
             className='absolute right-4 top-[22px] rounded-full bg-primary-gold/5 p-2.5 text-primary-gold hover:bg-primary-gold/10'
