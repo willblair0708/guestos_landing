@@ -85,6 +85,13 @@ const slides = [
   },
 ];
 
+// First, add the cardStyle constant at the top with other constants
+const cardStyle = {
+  background:
+    'linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6))',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+};
+
 // Mobile-optimized Slide Component
 const SlideMobile = memo(({ index }: { index?: number }) => {
   useSignals();
@@ -106,8 +113,8 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.3,
               }}
-              className='group w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/70 via-black/50 to-black/40 p-6 backdrop-blur-2xl transition-all duration-300'
-              style={{ zIndex: 100 }}
+              className='group w-full overflow-hidden rounded-3xl border border-white/10 p-6 backdrop-blur-2xl transition-all duration-300'
+              style={{ ...cardStyle, zIndex: 100 }}
             >
               <div className='space-y-6'>
                 <div>
@@ -188,7 +195,8 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.4,
               }}
-              className='group mt-4 w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/70 via-black/50 to-black/40 p-6 backdrop-blur-2xl transition-all duration-300 hover:border-white/20 hover:from-black/75 hover:via-black/55 hover:to-black/45'
+              className='group mt-4 w-full overflow-hidden rounded-3xl border border-white/10 p-6 backdrop-blur-2xl transition-all duration-300 hover:border-white/20'
+              style={cardStyle}
             >
               <div className='space-y-6'>
                 <div>
@@ -247,7 +255,8 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            className='group w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/70 via-black/50 to-black/40 p-8 backdrop-blur-2xl transition-all duration-300 hover:border-white/20 hover:from-black/75 hover:via-black/55 hover:to-black/45'
+            className='group w-full overflow-hidden rounded-3xl border border-white/10 p-8 backdrop-blur-2xl transition-all duration-300 hover:border-white/20'
+            style={cardStyle}
           >
             {/* Avatar and Header */}
             <div className='flex items-center gap-4 border-b border-white/10 pb-6'>
@@ -418,7 +427,8 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            className='group w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/70 via-black/50 to-black/40 p-6 backdrop-blur-2xl transition-all duration-300 hover:border-white/20 hover:from-black/75 hover:via-black/55 hover:to-black/45'
+            className='group w-full overflow-hidden rounded-3xl border border-white/10 p-6 backdrop-blur-2xl transition-all duration-300 hover:border-white/20'
+            style={cardStyle}
           >
             <div className='space-y-6'>
               <div>
