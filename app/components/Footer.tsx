@@ -135,7 +135,7 @@ const FooterSection = ({
   links: { name: string; href: string }[];
 }) => (
   <motion.div variants={itemVariants} className='font-book'>
-    <h3 className='mb-8 select-none text-xs font-medium tracking-[0.2em] text-gray-100'>
+    <h3 className='mb-8 select-none text-sm font-medium tracking-[0.2em] text-gray-100'>
       {title}
       <motion.div
         className='mt-2 h-px w-12 bg-gradient-to-r from-accent-gold-light to-transparent'
@@ -149,7 +149,7 @@ const FooterSection = ({
         <li key={link.name}>
           <Link
             href={link.href}
-            className='group relative inline-flex items-center text-sm tracking-wide text-gray-400 transition-colors duration-300 hover:text-accent-gold-light'
+            className='group relative inline-flex items-center text-base tracking-wide text-gray-400 transition-colors duration-300 hover:text-accent-gold-light'
           >
             <motion.div
               className='absolute -left-4 h-4 w-0.5 rounded-full bg-accent-gold-light/20'
@@ -170,11 +170,10 @@ const SocialIcon = memo(({ icon }: { icon: (typeof SOCIAL_ICONS)[number] }) => (
     href={icon.href}
     target='_blank'
     rel='noopener noreferrer'
-    className='bg-surface-accent group relative rounded-full p-2.5 transition-all hover:bg-white/10'
+    className='group flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-900 transition-all duration-300 hover:bg-neutral-800'
   >
-    <div className='absolute inset-0 rounded-full bg-accent-gold-light/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
     <icon.Icon
-      className='relative h-4 w-4 text-gray-400 transition-colors duration-300 group-hover:text-accent-gold-light'
+      className='h-5 w-5 text-neutral-400 transition-all duration-300 group-hover:text-white'
       color='currentColor'
     />
   </Link>
@@ -231,7 +230,7 @@ const Footer: React.FC = () => {
                 layoutId='logo-underline'
               />
             </Link>
-            <p className='mt-6 max-w-sm text-sm leading-relaxed tracking-wide text-neutral-400'>
+            <p className='mt-6 max-w-sm text-base leading-relaxed tracking-wide text-neutral-400'>
               Enhancing human connection through AI-powered hospitality
               experiences.
             </p>
@@ -319,7 +318,7 @@ const Footer: React.FC = () => {
           </motion.div>
           <motion.p
             variants={itemVariants}
-            className='mt-6 text-xs tracking-wide text-gray-600 sm:mt-0'
+            className='mt-6 text-sm tracking-wide text-gray-600 sm:mt-0'
           >
             &copy; {new Date().getFullYear()} GuestOS. All rights reserved.
           </motion.p>
