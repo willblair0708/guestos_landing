@@ -116,7 +116,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className='absolute left-4 top-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-8 sm:top-8 md:left-1/2 md:w-[min(90vw,560px)] md:-translate-x-1/2 lg:left-8 lg:w-[360px] lg:translate-x-0'
+                className='absolute left-4 top-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 sm:left-8 sm:top-8 md:left-1/2 md:w-[min(90vw,560px)] md:-translate-x-1/2 lg:left-8 lg:w-[360px] lg:translate-x-0'
               >
                 <div className='space-y-4'>
                   <div>
@@ -176,7 +176,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-4 top-[540px] z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-40 sm:top-[380px] md:left-1/2 md:w-[min(90vw,600px)] md:-translate-x-1/2 lg:left-40 lg:w-[380px] lg:translate-x-0'
+                className='absolute left-4 top-[540px] z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 sm:left-40 sm:top-[380px] md:left-1/2 md:w-[min(90vw,600px)] md:-translate-x-1/2 lg:left-40 lg:w-[380px] lg:translate-x-0'
               >
                 <div className='space-y-5'>
                   <div>
@@ -245,7 +245,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-4 left-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:bottom-8 sm:left-8 md:bottom-12 md:left-1/2 md:w-[min(90vw,640px)] md:-translate-x-1/2 lg:bottom-20 lg:left-1/4 lg:w-[400px] lg:translate-x-0'
+                className='absolute bottom-4 left-4 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 sm:bottom-8 sm:left-8 md:bottom-12 md:left-1/2 md:w-[min(90vw,640px)] md:-translate-x-1/2 lg:bottom-20 lg:left-1/4 lg:w-[400px] lg:translate-x-0'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center justify-between'>
@@ -293,7 +293,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className='absolute left-8 top-20 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 backdrop-blur-xl md:left-1/2 md:w-[min(90vw,560px)] md:-translate-x-1/2 lg:left-8 lg:w-[320px] lg:translate-x-0'
+                className='absolute left-8 top-20 z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 md:left-1/2 md:w-[min(90vw,560px)] md:-translate-x-1/2 lg:left-8 lg:w-[320px] lg:translate-x-0'
               >
                 <div className='flex h-[500px] flex-col'>
                   {/* Header */}
@@ -382,7 +382,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-40 top-[500px] z-10 w-[30vw] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-40 top-[500px] z-10 w-[30vw] -translate-y-1/2 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6'
               >
                 <div className='space-y-4'>
                   <h4 className='text-sm font-medium text-white'>
@@ -418,7 +418,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-24 left-60 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute bottom-24 left-60 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6'
               >
                 <div className='space-y-4'>
                   <h4 className='text-sm font-medium text-white'>
@@ -465,7 +465,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className='absolute left-8 top-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-8 top-20 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center gap-4'>
@@ -515,7 +515,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-40 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute left-40 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center gap-4'>
@@ -564,7 +564,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className='absolute bottom-20 left-60 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
+                className='absolute bottom-20 left-60 z-10 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6'
               >
                 <div className='space-y-4'>
                   <div className='flex items-center gap-4'>
