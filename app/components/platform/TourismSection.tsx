@@ -91,15 +91,101 @@ export default function TourismSection({ id, bgColor }: LumenSectionProps) {
                       <span className='text-[10px] text-white/40'>vs avg</span>
                     </div>
                   </div>
-                  <div className='flex h-12 items-end gap-1'>
-                    {[45, 65, 85, 92, 88, 76, 70, 55].map((height, i) => (
-                      <div key={i} className='flex-1'>
-                        <div
-                          className='rounded-sm bg-amber-400/80'
-                          style={{ height: `${height}%` }}
-                        />
-                      </div>
-                    ))}
+                  <div className='relative h-20'>
+                    {/* Background grid lines */}
+                    <div className='absolute inset-0 flex flex-col justify-between'>
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} className='h-[1px] w-full bg-white/10' />
+                      ))}
+                    </div>
+
+                    {/* Line graph */}
+                    <svg
+                      className='absolute inset-0 h-full w-full'
+                      viewBox='0 0 100 100'
+                      preserveAspectRatio='none'
+                    >
+                      <defs>
+                        <linearGradient
+                          id='lineGradient'
+                          x1='0'
+                          y1='0'
+                          x2='0'
+                          y2='1'
+                        >
+                          <stop
+                            offset='0%'
+                            stopColor='rgb(251 191 36)'
+                            stopOpacity='0.3'
+                          />
+                          <stop
+                            offset='100%'
+                            stopColor='rgb(251 191 36)'
+                            stopOpacity='0.02'
+                          />
+                        </linearGradient>
+                      </defs>
+
+                      {/* Area under the line */}
+                      <path
+                        d={`
+                          M 0 ${100 - 45}
+                          ${[45, 65, 85, 92, 88, 76, 70, 55]
+                            .map((point, i) => {
+                              const x = (i / 7) * 100;
+                              return `L ${x} ${100 - point}`;
+                            })
+                            .join(' ')}
+                          L 100 ${100 - 55}
+                          L 100 100
+                          L 0 100
+                          Z
+                        `}
+                        fill='url(#lineGradient)'
+                        className='opacity-50'
+                      />
+
+                      {/* Main line */}
+                      <path
+                        d={`
+                          M 0 ${100 - 45}
+                          ${[45, 65, 85, 92, 88, 76, 70, 55]
+                            .map((point, i) => {
+                              const x = (i / 7) * 100;
+                              return `L ${x} ${100 - point}`;
+                            })
+                            .join(' ')}
+                          L 100 ${100 - 55}
+                        `}
+                        fill='none'
+                        stroke='rgb(251 191 36)'
+                        strokeWidth='2'
+                        className='opacity-90'
+                      />
+
+                      {/* Data points */}
+                      {[45, 65, 85, 92, 88, 76, 70, 55].map((point, i) => {
+                        const x = (i / 7) * 100;
+                        return (
+                          <g key={i}>
+                            <circle
+                              cx={x}
+                              cy={100 - point}
+                              r='2'
+                              fill='rgb(251 191 36)'
+                              className='opacity-90'
+                            />
+                            <circle
+                              cx={x}
+                              cy={100 - point}
+                              r='1'
+                              fill='white'
+                              className='opacity-90'
+                            />
+                          </g>
+                        );
+                      })}
+                    </svg>
                   </div>
                   <div className='flex justify-between text-[10px] text-white/40'>
                     <span>10:00</span>
