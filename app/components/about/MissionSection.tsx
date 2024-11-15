@@ -206,7 +206,7 @@ export default function MissionSection({
                 <div className='absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-transparent to-neutral-900/20' />
                 <div className='absolute bottom-0 left-0 right-0 p-8'>
                   <p className='font-light text-sm tracking-wide text-neutral-50'>
-                    Yosemite View Lodge, Summer of 1996
+                    Yosemite View Lodge, Spring of 1996
                   </p>
                 </div>
                 <div className='absolute right-4 top-4 rounded-full border border-accent-gold-light bg-surface-gold px-4 py-2 backdrop-blur-md'>
