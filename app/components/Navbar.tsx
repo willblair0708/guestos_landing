@@ -98,7 +98,7 @@ const NavItem = memo(({ item, pathname }: NavItemProps) => {
   return (
     <motion.div className='relative' variants={navItemVariants}>
       <Link href={item.href} className='relative'>
-        <span className='relative inline-block px-4 py-2 text-sm tracking-wide text-neutral-100 transition-colors duration-300 hover:text-primary-gold'>
+        <span className='relative inline-block px-4 py-2 text-base tracking-wide text-neutral-100 transition-colors duration-300 hover:text-primary-gold'>
           {item.text}
           <AnimatePresence>
             {isActive && (
@@ -131,7 +131,7 @@ const ContactButton = memo(() => (
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className='group flex items-center space-x-2 rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-5 py-2 text-sm backdrop-blur-sm transition-all hover:border-accent-gold-medium hover:bg-accent-gold-light/20'
+        className='group flex items-center space-x-2 rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-5 py-2 text-base backdrop-blur-sm transition-all hover:border-accent-gold-medium hover:bg-accent-gold-light/20'
       >
         <span className='font-book tracking-wide text-primary-gold'>
           Book Demo
