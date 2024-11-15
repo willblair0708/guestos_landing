@@ -325,9 +325,24 @@ export default function HeroSection({
       transition={{ duration: 0.5 }}
     >
       <div className='absolute inset-0'>
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.1),transparent_70%)]' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(91,139,140,0.08),transparent_70%)]' />
-        <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20' />
+        <div className='absolute inset-0 bg-gradient-to-b from-black/95 via-black/50 to-black/80' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]' />
+        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+        <motion.div
+          className='absolute -left-[500px] top-1/2 rounded-full bg-gradient-to-r from-[#03E87A]/15 via-[rgba(255,200,87,0.1)] to-transparent blur-3xl'
+          animate={{
+            x: [0, 200, 0],
+            y: [-100, 100, -100],
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
       </div>
 
       <Navbar isFixed={false} />
@@ -453,8 +468,10 @@ export default function HeroSection({
           animate='animate'
           className={`${
             isMobile ? 'w-full' : 'w-full max-w-[600px]'
-          } relative overflow-hidden rounded-2xl border border-primary-gold/10 bg-gradient-to-br from-surface-dark/90 via-surface-dark/95 to-surface-dark/90 p-8 backdrop-blur-xl lg:p-10`}
+          } relative overflow-hidden rounded-2xl border border-[#03E87A]/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-8 backdrop-blur-xl lg:p-10`}
         >
+          <div className='absolute -left-14 top-0 h-[150px] w-[150px] bg-gradient-to-r from-[#03E87A]/20 via-[#03E87A]/10 to-transparent blur-3xl' />
+          <div className='absolute -right-14 -top-10 h-[150px] w-[150px] bg-gradient-to-r from-[#03E87A]/20 via-[#03E87A]/5 to-transparent blur-3xl' />
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className='relative flex w-full flex-col items-start gap-12'
