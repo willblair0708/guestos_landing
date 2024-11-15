@@ -106,7 +106,7 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 ease: [0.22, 1, 0.36, 1],
                 delay: 0.3,
               }}
-              className='group w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/70 via-black/50 to-black/40 p-6 backdrop-blur-2xl transition-all duration-300 hover:border-white/20 hover:from-black/75 hover:via-black/55 hover:to-black/45'
+              className='group w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/70 via-black/50 to-black/40 p-6 backdrop-blur-2xl transition-all duration-300'
             >
               <div className='space-y-6'>
                 <div>
@@ -483,11 +483,8 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
     >
       {/* Enhanced Glassmorphic Background */}
       <div className='pointer-events-none absolute inset-0'>
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.2),transparent_85%)]' />
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(198,168,124,0.18),transparent_85%)]' />
-        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)]' />
         <motion.div
-          className='absolute -left-[400px] top-1/2 h-[700px] w-[700px] rounded-full bg-gradient-to-r from-[#03E87A]/30 via-[#C6A87C]/25 to-transparent blur-[100px]'
+          // className='absolute -left-[400px] top-1/2 h-[700px] w-[700px] rounded-full bg-gradient-to-r from-[#03E87A]/30 via-[#C6A87C]/25 to-transparent blur-[100px]'
           variants={floatingGradientVariants}
           animate='animate'
         />
