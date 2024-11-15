@@ -207,50 +207,161 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className='w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl'
+            className='w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-6 backdrop-blur-xl'
           >
-            <div className='space-y-4'>
+            {/* Avatar and Header */}
+            <div className='flex items-center gap-4 border-b border-white/10 pb-6'>
+              <div className='relative flex h-16 w-16 items-center justify-center'>
+                {/* Outer ring */}
+                <div className='absolute inset-0 rounded-full bg-gradient-to-br from-[#03E87A] via-[#C6A87C] to-[#7C3AED] opacity-20' />
+                {/* Inner circle */}
+                <div className='absolute inset-1 rounded-full bg-black/40 backdrop-blur-xl' />
+                {/* Decorative elements */}
+                <div className='absolute inset-3 rounded-full bg-gradient-to-br from-[#03E87A]/40 via-[#C6A87C]/30 to-transparent' />
+                <div className='absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-[#03E87A] blur-[1px]' />
+                <div className='absolute -bottom-0.5 -left-0.5 h-2 w-2 rounded-full bg-[#C6A87C] blur-[1px]' />
+                {/* AI symbol */}
+                <div className='relative h-6 w-6'>
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                    <div className='h-4 w-[1px] rotate-45 bg-gradient-to-b from-[#03E87A] to-[#C6A87C]' />
+                    <div className='h-4 w-[1px] -rotate-45 bg-gradient-to-b from-[#03E87A] to-[#C6A87C]' />
+                  </div>
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                    <div className='h-[1px] w-4 bg-gradient-to-r from-[#03E87A] to-[#C6A87C]' />
+                  </div>
+                </div>
+              </div>
               <div>
-                <h4 className='text-lg font-medium text-white'>
-                  Meet Your AI Concierge
-                </h4>
+                <h4 className='text-xl font-medium text-white'>Meet Sierra</h4>
                 <p className='mt-1 text-sm text-white/60'>
-                  Sierra is ready to assist your guests
+                  Your AI-Powered Hotel Concierge
                 </p>
               </div>
+            </div>
 
-              <div className='space-y-3'>
-                {[
-                  {
-                    title: 'Multilingual Support',
-                    value: '24/7 Available',
-                    color: '#03E87A',
-                  },
-                  {
-                    title: 'Response Time',
-                    value: '< 1 second',
-                    color: '#C6A87C',
-                  },
-                  {
-                    title: 'Knowledge Base',
-                    value: 'Customized',
-                    color: '#7C3AED',
-                  },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className='flex items-center justify-between rounded-lg bg-white/5 p-3'
-                  >
-                    <span className='text-sm text-white/80'>{item.title}</span>
-                    <span
-                      className='text-sm font-medium'
-                      style={{ color: item.color }}
-                    >
-                      {item.value}
-                    </span>
+            {/* Stats Grid */}
+            <div className='mt-6 grid grid-cols-2 gap-3'>
+              {[
+                {
+                  title: 'Languages',
+                  value: '10+',
+                  subtitle: 'Major Languages',
+                  color: '#03E87A',
+                  icon: (
+                    <div className='relative'>
+                      <div className='absolute inset-0 rounded-full bg-[#03E87A]/20' />
+                      <div className='relative flex h-full w-full items-center justify-center'>
+                        <div className='h-3.5 w-3.5 rounded-full border-2 border-[#03E87A]/60'>
+                          <div className='absolute -right-1 -top-1 h-2 w-2 rounded-full border border-[#03E87A]/60' />
+                        </div>
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  title: 'Response Time',
+                  value: '< 1s',
+                  subtitle: 'Average',
+                  color: '#C6A87C',
+                  icon: (
+                    <div className='relative'>
+                      <div className='absolute inset-0 rounded-full bg-[#C6A87C]/20' />
+                      <div className='relative flex h-full w-full items-center justify-center'>
+                        <div className='h-[2px] w-4 bg-gradient-to-r from-transparent via-[#C6A87C] to-[#C6A87C]/60' />
+                        <div className='absolute right-0 h-2.5 w-[2px] -rotate-45 bg-[#C6A87C]' />
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  title: 'Knowledge',
+                  value: '24/7',
+                  subtitle: 'Availability',
+                  color: '#7C3AED',
+                  icon: (
+                    <div className='relative'>
+                      <div className='absolute inset-0 rounded-full bg-[#7C3AED]/20' />
+                      <div className='relative flex h-full w-full items-center justify-center'>
+                        <div className='h-3.5 w-3.5 rounded-md border-2 border-[#7C3AED]/60 [transform:rotate(45deg)]'>
+                          <div className='absolute inset-0 m-auto h-1.5 w-1.5 rounded-sm bg-[#7C3AED]/40' />
+                        </div>
+                      </div>
+                    </div>
+                  ),
+                },
+                {
+                  title: 'Accuracy',
+                  value: '99%',
+                  subtitle: 'Response Rate',
+                  color: '#F43F5E',
+                  icon: (
+                    <div className='relative'>
+                      <div className='absolute inset-0 rounded-full bg-[#F43F5E]/20' />
+                      <div className='relative flex h-full w-full items-center justify-center'>
+                        <div className='relative h-3.5 w-3.5'>
+                          <div className='absolute inset-x-0 top-0 h-[2px] w-full bg-[#F43F5E]' />
+                          <div className='absolute bottom-0 left-1/2 h-3.5 w-[2px] -translate-x-1/2 bg-[#F43F5E]' />
+                          <div className='absolute right-0 top-0 h-[2px] w-2 rotate-45 bg-[#F43F5E]' />
+                        </div>
+                      </div>
+                    </div>
+                  ),
+                },
+              ].map((item, i) => (
+                <div key={i} className='rounded-xl bg-white/5 p-4'>
+                  <div className='mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-white/10 to-transparent'>
+                    {item.icon}
                   </div>
-                ))}
-              </div>
+                  <p className='text-sm text-white/60'>{item.title}</p>
+                  <p
+                    className='text-lg font-medium'
+                    style={{ color: item.color }}
+                  >
+                    {item.value}
+                  </p>
+                  <p className='text-xs text-white/40'>{item.subtitle}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Features List */}
+            <div className='mt-6 space-y-3'>
+              <h5 className='text-sm font-medium text-white/80'>
+                Key Capabilities
+              </h5>
+              {[
+                {
+                  title: 'Natural Conversations',
+                  description: 'Fluid, context-aware dialogue',
+                  color: '#03E87A',
+                },
+                {
+                  title: 'Local Expert Knowledge',
+                  description: 'Curated recommendations',
+                  color: '#C6A87C',
+                },
+                {
+                  title: 'Smart Automation',
+                  description: 'Efficient request handling',
+                  color: '#7C3AED',
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className='flex items-start gap-3 rounded-lg bg-white/5 p-3'
+                >
+                  <div
+                    className='mt-1 h-2 w-2 rounded-full'
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <div>
+                    <p className='text-sm font-medium text-white/90'>
+                      {item.title}
+                    </p>
+                    <p className='text-xs text-white/50'>{item.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </motion.div>
         );
