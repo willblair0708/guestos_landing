@@ -12,21 +12,6 @@ const SOCIAL_ICONS = [
     href: 'https://www.linkedin.com/company/guestos-ai',
     Icon: SocialIcons.LinkedInIcon,
   },
-  // {
-  //   name: 'youtube',
-  //   href: 'https://www.youtube.com/guestos_ai',
-  //   Icon: SocialIcons.YoutubeIcon,
-  // },
-  // {
-  //   name: 'twitter',
-  //   href: 'https://twitter.com/guestos_ai',
-  //   Icon: SocialIcons.TwitterIcon,
-  // },
-  // {
-  //   name: 'instagram',
-  //   href: 'https://www.instagram.com/guestos_ai',
-  //   Icon: SocialIcons.InstagramIcon,
-  // },
 ];
 
 const mobileMenuVariants = {
@@ -166,49 +151,49 @@ const MobileMenu = memo(
               </div>
 
               <motion.div variants={mobileItemVariants} className='w-full pt-2'>
-                <Link
-                  href='/contact'
-                  onClick={toggleMenu}
-                  className='group flex w-full items-center justify-center space-x-2 rounded-xl border border-primary-gold/20 bg-primary-gold/5 px-5 py-3.5 text-[15px] backdrop-blur-sm transition-all hover:border-primary-gold/30 hover:bg-primary-gold/10'
-                >
-                  <span className='font-medium tracking-wide text-primary-gold'>
-                    Contact
-                  </span>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='h-4 w-4 stroke-primary-gold transition-transform duration-300 group-hover:translate-x-0.5'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    stroke='currentColor'
-                    strokeWidth={1.5}
+                <div className='flex flex-col gap-2'>
+                  <Link
+                    href='/contact'
+                    onClick={toggleMenu}
+                    className='group flex w-full items-center justify-center space-x-2 rounded-xl border border-primary-gold/20 bg-primary-gold/5 px-5 py-3.5 text-[15px] backdrop-blur-sm transition-all hover:border-primary-gold/30 hover:bg-primary-gold/10'
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
-                    />
-                  </svg>
-                </Link>
-              </motion.div>
-            </motion.div>
+                    <span className='font-medium tracking-wide text-primary-gold'>
+                      Contact
+                    </span>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className='h-4 w-4 stroke-primary-gold transition-transform duration-300 group-hover:translate-x-0.5'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
+                      />
+                    </svg>
+                  </Link>
 
-            <motion.div
-              variants={mobileItemVariants}
-              className='mt-8 flex items-center gap-7'
-            >
-              {SOCIAL_ICONS.map(({ name, href, Icon }) => (
-                <motion.a
-                  key={name}
-                  href={href}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-white transition-colors hover:text-primary-gold'
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Icon className='h-5 w-5 text-white' color='currentColor' />
-                </motion.a>
-              ))}
+                  {SOCIAL_ICONS.map(({ name, href, Icon }) => (
+                    <motion.a
+                      key={name}
+                      href={href}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='flex w-full items-center justify-center rounded-xl border border-primary-gold/20 bg-primary-gold/5 px-5 py-3 text-white transition-all hover:border-primary-gold/30 hover:bg-primary-gold/10 hover:text-primary-gold'
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Icon className='h-5 w-5' color='currentColor' />
+                      <span className='ml-2 text-[15px] font-medium'>
+                        LinkedIn
+                      </span>
+                    </motion.a>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
