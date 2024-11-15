@@ -99,7 +99,7 @@ export default function MissionSection({
                 >
                   A Legacy of{' '}
                   <span className='relative inline-block'>
-                    <span className='bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 bg-clip-text text-transparent'>
+                    <span className='bg-gray-900 bg-clip-text text-transparent'>
                       Hospitality
                     </span>
                     <motion.span
