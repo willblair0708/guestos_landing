@@ -176,7 +176,7 @@ const Slide = memo(
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className='absolute left-4 top-[380px] z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-40 sm:top-[340px] md:left-1/2 md:top-[420px] md:w-[min(90vw,600px)] md:-translate-x-1/2 lg:left-40 lg:top-[340px] lg:w-[380px] lg:translate-x-0'
+                className='absolute left-4 top-[540px] z-10 w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-black/60 via-black/40 to-black/30 p-4 backdrop-blur-xl sm:left-40 sm:top-[380px] md:left-1/2 md:w-[min(90vw,600px)] md:-translate-x-1/2 lg:left-40 lg:w-[380px] lg:translate-x-0'
               >
                 <div className='space-y-5'>
                   <div>
