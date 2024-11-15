@@ -43,7 +43,7 @@ const Background = () => (
     transition={{ duration: 1.5, ease: 'easeOut' }}
   >
     <Image
-      src='/assets/platform/platform_header.png'
+      src='/assets/platform/platform_header1.jpg'
       alt='Platform background'
       fill
       priority
@@ -51,12 +51,31 @@ const Background = () => (
       className='h-full w-full object-cover'
       sizes='100vw'
     />
-    <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/50' />
+    <div className='absolute inset-0 bg-gradient-to-b from-black/95 via-black/50 to-black/80' />
     <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
     <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]' />
     <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+    <motion.div
+      className='absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-[#03E87A]/15 via-[rgba(255,200,87,0.1)] to-transparent blur-3xl'
+      variants={floatingGradientVariants}
+      animate='animate'
+    />
   </motion.div>
 );
+
+const floatingGradientVariants = {
+  animate: {
+    x: [0, 200, 0],
+    y: [-100, 100, -100],
+    scale: [1, 1.2, 1],
+    opacity: [0.5, 0.8, 0.5],
+    transition: {
+      duration: 25,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+};
 
 export default function HeroSection({
   id,
