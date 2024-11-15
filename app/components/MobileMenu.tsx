@@ -37,6 +37,7 @@ const mobileMenuVariants = {
       type: 'spring',
       stiffness: 400,
       damping: 40,
+      duration: 0.4,
     },
   },
   open: {
@@ -45,9 +46,10 @@ const mobileMenuVariants = {
     transition: {
       type: 'spring',
       stiffness: 300,
-      damping: 30,
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      damping: 25,
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+      duration: 0.5,
     },
   },
 };
@@ -56,18 +58,20 @@ const mobileItemVariants = {
   closed: {
     opacity: 0,
     y: 20,
+    scale: 0.95,
     transition: {
       type: 'spring',
-      stiffness: 300,
+      stiffness: 350,
     },
   },
   open: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
       type: 'spring',
-      stiffness: 300,
-      damping: 20,
+      stiffness: 350,
+      damping: 25,
     },
   },
 };
@@ -86,40 +90,42 @@ const MobileMenu = memo(
         animate='open'
         exit='closed'
         variants={mobileMenuVariants}
-        className='fixed inset-0 z-50 flex h-[700px] flex-col bg-white/95 backdrop-blur-sm sm:hidden'
+        className='to-black/98 fixed inset-0 z-50 flex h-[100vh] flex-col bg-gradient-to-b from-neutral-900/95 backdrop-blur-lg sm:hidden'
       >
         <motion.div
-          className='relative h-24 w-full'
+          className='relative h-20 w-full border-b border-primary-gold/10 bg-black/20 px-5 shadow-sm backdrop-blur-sm'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.15 }}
         >
-          <motion.div
-            className='absolute left-5 top-[20px] flex w-[85.5px]'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <GuestOSIcon
-              size={85.5}
-              className='mt-9 text-black'
-              stroke='#000000'
-            />
-          </motion.div>
+          {/* <Link href="/">
+            <motion.div
+              className='absolute left-0 flex w-[85.5px] items-center pl-4'
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <GuestOSIcon
+                size={70}
+                className='mt-1 text-primary-gold'
+                stroke='currentColor'
+              />
+            </motion.div>
+          </Link> */}
 
           <motion.button
             onClick={toggleMenu}
-            className='absolute right-5 top-[20px] text-black'
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            className='absolute right-4 top-[22px] rounded-full bg-primary-gold/5 p-2.5 text-primary-gold hover:bg-primary-gold/10'
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             aria-label='Close mobile menu'
           >
             <svg
-              width='38'
-              height='62'
+              width='24'
+              height='24'
               viewBox='0 0 38 62'
               fill='none'
               xmlns='http://www.w3.org/2000/svg'
-              className='transition-colors duration-200 hover:text-gray-600'
+              className='transition-colors duration-200'
             >
               <path
                 fillRule='evenodd'
@@ -131,100 +137,89 @@ const MobileMenu = memo(
           </motion.button>
         </motion.div>
 
-        <div className='flex w-full justify-center py-[100px]'>
+        <div className='flex w-full flex-1 justify-center overflow-y-auto bg-gradient-to-b from-black/50 to-primary-gold/5 py-8'>
           <motion.div
-            className='flex w-full flex-col items-center gap-[50px] px-4'
+            className='flex w-full flex-col items-center gap-8 px-6'
             variants={{
               open: {
-                transition: { staggerChildren: 0.15 },
+                transition: { staggerChildren: 0.12 },
               },
             }}
           >
             <motion.div
-              className='flex w-full flex-col items-center gap-[20px]'
+              className='flex w-full flex-col items-center gap-4'
               variants={{
                 open: {
-                  transition: { staggerChildren: 0.1 },
+                  transition: { staggerChildren: 0.08 },
                 },
               }}
             >
-              <div className='w-full gap-[20px] pl-[140px]'>
-                {navItems.map((item) => (
-                  <MobileMenuItem
-                    key={item.text}
-                    item={item}
-                    pathname={pathname}
-                    toggleMenu={toggleMenu}
-                  />
+              <div className='w-full space-y-2.5'>
+                {navItems.map(({ text, href }) => (
+                  <motion.div
+                    key={text}
+                    variants={mobileItemVariants}
+                    className='w-full'
+                  >
+                    <Link
+                      href={href}
+                      onClick={toggleMenu}
+                      className={`block w-full rounded-xl px-5 py-3.5 text-[15px] font-medium tracking-wide transition-all duration-200 ${
+                        pathname === href
+                          ? 'bg-primary-gold text-black shadow-sm shadow-primary-gold/20'
+                          : 'text-neutral-100 hover:bg-primary-gold/10 hover:text-primary-gold'
+                      }`}
+                    >
+                      {text}
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
 
-            <motion.div
-              className='flex flex-col items-center gap-[60px]'
-              variants={{
-                open: {
-                  transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-                },
-              }}
-            >
-              <Link href='/contact' className='self-center'>
-                <motion.button
-                  variants={mobileItemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className='group flex items-center gap-2.5 rounded-full bg-zinc-900 px-1.5 py-0.5 transition-colors duration-200 hover:bg-zinc-800'
+              <motion.div variants={mobileItemVariants} className='w-full pt-2'>
+                <Link
+                  href='/contact'
                   onClick={toggleMenu}
+                  className='group flex w-full items-center justify-center space-x-2 rounded-xl border border-primary-gold/20 bg-primary-gold/5 px-5 py-3.5 text-[15px] backdrop-blur-sm transition-all hover:border-primary-gold/30 hover:bg-primary-gold/10'
                 >
-                  <span className='text-sm font-book tracking-[1.12px] text-white'>
-                    CONTACT
+                  <span className='font-medium tracking-wide text-primary-gold'>
+                    Contact
                   </span>
-                  <motion.svg
+                  <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    className='h-3.5 w-3.5 text-white transition-transform duration-200 group-hover:translate-x-0.5'
+                    className='h-4 w-4 stroke-primary-gold transition-transform duration-300 group-hover:translate-x-0.5'
                     fill='none'
                     viewBox='0 0 24 24'
                     stroke='currentColor'
+                    strokeWidth={1.5}
                   >
                     <path
                       strokeLinecap='round'
                       strokeLinejoin='round'
-                      strokeWidth={2}
-                      d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+                      d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
                     />
-                  </motion.svg>
-                </motion.button>
-              </Link>
+                  </svg>
+                </Link>
+              </motion.div>
+            </motion.div>
 
-              <div className='flex w-full flex-col items-center border-t border-black pt-4'>
-                <motion.div
-                  className='flex justify-center gap-4'
-                  variants={{
-                    open: {
-                      transition: { staggerChildren: 0.1 },
-                    },
-                  }}
+            <motion.div
+              variants={mobileItemVariants}
+              className='mt-8 flex items-center gap-7'
+            >
+              {SOCIAL_ICONS.map(({ name, href, Icon }) => (
+                <motion.a
+                  key={name}
+                  href={href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-white transition-colors hover:text-primary-gold'
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {SOCIAL_ICONS.map((icon) => (
-                    <motion.div
-                      key={icon.name}
-                      variants={mobileItemVariants}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Link
-                        href={icon.href}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-black transition-colors duration-200 hover:text-[#8B8B8B]'
-                      >
-                        <span className='sr-only'>{icon.name}</span>
-                        <icon.Icon color='currentColor' />
-                      </Link>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
+                  <Icon className='h-5 w-5 text-white' color='currentColor' />
+                </motion.a>
+              ))}
             </motion.div>
           </motion.div>
         </div>
