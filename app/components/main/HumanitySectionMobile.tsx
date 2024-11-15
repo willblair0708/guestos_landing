@@ -107,10 +107,11 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
                 delay: 0.3,
               }}
               className='group w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-black/70 via-black/50 to-black/40 p-6 backdrop-blur-2xl transition-all duration-300'
+              style={{ zIndex: 100 }}
             >
               <div className='space-y-6'>
                 <div>
-                  <h4 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-xl font-medium text-transparent'>
+                  <h4 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-xl font-medium text-white'>
                     Welcome to AI Concierge Setup
                   </h4>
                   <p className='mt-2 font-light text-sm leading-relaxed text-white/60'>
@@ -485,11 +486,9 @@ const SlideMobile = memo(({ index }: { index?: number }) => {
     >
       {/* Enhanced Glassmorphic Background */}
       <div className='pointer-events-none absolute inset-0'>
-        <motion.div
-          // className='absolute -left-[400px] top-1/2 h-[700px] w-[700px] rounded-full bg-gradient-to-r from-[#03E87A]/30 via-[#C6A87C]/25 to-transparent blur-[100px]'
-          variants={floatingGradientVariants}
-          animate='animate'
-        />
+        <div className='bg-[radial-gradient(circle_at_top_right,rgba(198,168,124,0.2) absolute inset-0' />
+        <div className='bg-[radial-gradient(circle_at_bottom_left,rgba(198,168,124,0.18) absolute inset-0' />
+        <motion.div variants={floatingGradientVariants} animate='animate' />
       </div>
 
       {/* Content Section */}
