@@ -155,7 +155,7 @@ export default function ProductSection({
         <div className='relative grid gap-16 lg:grid-cols-2 lg:gap-32'>
           <motion.div
             variants={imageVariants}
-            className='group relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.1] to-white/[0.02] p-[1px] sm:rounded-[2rem]'
+            className='group relative aspect-[3/4] overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.1] to-white/[0.02] p-[1px] sm:rounded-[2rem]'
           >
             <div className='absolute inset-0'>
               <div className='absolute inset-0 bg-gradient-to-r from-primary-gold/25 via-white/15 to-transparent opacity-60 blur-3xl transition-all duration-700 group-hover:opacity-90 group-hover:blur-[100px]' />
