@@ -310,9 +310,25 @@ const Slide = memo(
                   {/* Header */}
                   <div className='border-b border-white/10 p-4'>
                     <div className='flex items-center gap-4'>
-                      <div className='relative h-12 w-12'>
-                        <div className='absolute -inset-1 animate-pulse rounded-full bg-[#03E87A]/20 blur-md' />
-                        <div className='relative h-full w-full rounded-full bg-gradient-to-br from-[#03E87A] to-[#03E87A]/80' />
+                      <div className='relative flex h-12 w-12 items-center justify-center'>
+                        {/* Outer ring */}
+                        <div className='absolute inset-0 rounded-full bg-gradient-to-br from-[#03E87A] via-[#C6A87C] to-[#7C3AED] opacity-20' />
+                        {/* Inner circle */}
+                        <div className='absolute inset-1 rounded-full bg-black/40 backdrop-blur-xl' />
+                        {/* Decorative elements */}
+                        <div className='absolute inset-3 rounded-full bg-gradient-to-br from-[#03E87A]/40 via-[#C6A87C]/30 to-transparent' />
+                        <div className='absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-[#03E87A] blur-[1px]' />
+                        <div className='absolute -bottom-0.5 -left-0.5 h-2 w-2 rounded-full bg-[#C6A87C] blur-[1px]' />
+                        {/* AI symbol */}
+                        <div className='relative h-6 w-6'>
+                          <div className='absolute inset-0 flex items-center justify-center'>
+                            <div className='h-4 w-[1px] rotate-45 bg-gradient-to-b from-[#03E87A] to-[#C6A87C]' />
+                            <div className='h-4 w-[1px] -rotate-45 bg-gradient-to-b from-[#03E87A] to-[#C6A87C]' />
+                          </div>
+                          <div className='absolute inset-0 flex items-center justify-center'>
+                            <div className='h-[1px] w-4 bg-gradient-to-r from-[#03E87A] to-[#C6A87C]' />
+                          </div>
+                        </div>
                       </div>
                       <div>
                         <h4 className='text-sm font-medium text-white'>
