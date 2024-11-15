@@ -101,8 +101,8 @@ const MobileMenu = memo(
           >
             <GuestOSIcon
               size={85.5}
-              className='mt-6 text-black'
-              color='black'
+              className='mt-9 text-black'
+              stroke='#000000'
             />
           </motion.div>
 
