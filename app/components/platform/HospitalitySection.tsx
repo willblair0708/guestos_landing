@@ -20,8 +20,8 @@ export default function HospitalitySection({
     <ProductSection
       id={id}
       bgColor={bgColor}
-      productName='Hotel and Resort'
-      productDescription='Elevate your hotel and resort operations with AI-powered solutions that enhance guest experiences and streamline staff workflows.'
+      productName='Hotel and Resorts'
+      productDescription='Unlock new revenue with AI-native concierge solutions that help guests easily discover, book, and pay for onsite experiences.'
       imageSrc='/assets/platform/hospitality.jpeg'
       overlayContent={
         <>
@@ -56,7 +56,7 @@ export default function HospitalitySection({
                       156
                     </div>
                     <div className='text-center text-xs text-white/60'>
-                      Active Guests
+                      Active Interactions
                     </div>
                   </div>
                   <div className='rounded-lg bg-white/5 p-3'>
@@ -64,7 +64,7 @@ export default function HospitalitySection({
                       4.9
                     </div>
                     <div className='text-center text-xs text-white/60'>
-                      Guest Score
+                      Satisfaction Score
                     </div>
                   </div>
                 </div>
@@ -72,15 +72,15 @@ export default function HospitalitySection({
                 <div className='rounded-lg bg-white/5 p-3'>
                   <div className='flex items-center justify-between'>
                     <span className='text-xs text-white/80'>
-                      Guest Sentiment
+                      Sentiment Analysis
                     </span>
                     <span className='text-xs text-[#03E87A]'>↑ 12%</span>
                   </div>
                   <div className='mt-3 flex gap-2'>
                     {[
-                      { label: 'Excellent', value: '78%' },
-                      { label: 'Good', value: '16%' },
-                      { label: 'Average', value: '6%' },
+                      { label: 'Positive', value: '78%' },
+                      { label: 'Neutral', value: '16%' },
+                      { label: 'Negative', value: '6%' },
                     ].map((item, i) => (
                       <div
                         key={i}
@@ -112,7 +112,7 @@ export default function HospitalitySection({
               <div className='space-y-4'>
                 <div className='flex items-center justify-between'>
                   <h4 className='text-sm font-medium text-white'>
-                    Operations Status
+                    Guest Engagement
                   </h4>
                   <div className='flex items-center gap-2'>
                     <span className='h-2 w-2 animate-pulse rounded-full bg-[#03E87A]' />
@@ -122,9 +122,17 @@ export default function HospitalitySection({
 
                 <div className='space-y-3'>
                   {[
-                    { label: 'Room Service', time: '8m', status: 'On Track' },
-                    { label: 'Housekeeping', time: '24m', status: 'Busy' },
-                    { label: 'Maintenance', time: '12m', status: 'Available' },
+                    { label: 'Upsell Revenue', time: '8m', status: 'On Track' },
+                    {
+                      label: 'Confirmed Bookings',
+                      time: '24m',
+                      status: 'Busy',
+                    },
+                    {
+                      label: 'Automated Support Hours',
+                      time: '12m',
+                      status: 'Available',
+                    },
                   ].map((item, i) => (
                     <div key={i} className='rounded-lg bg-white/5 p-3'>
                       <div className='flex items-center justify-between'>
