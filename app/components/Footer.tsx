@@ -13,9 +13,9 @@ const FOOTER_LINKS = [
   {
     title: 'PRODUCTS',
     links: [
-      { name: 'Hotels and Resorts', href: '/platform#hotels' },
-      { name: 'Tourism and Attractions', href: '/platform#tourism' },
-      { name: 'Education', href: '/platform#education' },
+      { name: 'Hotels and Resorts', href: '/platform#hospitality-section' },
+      { name: 'Tourism and Attractions', href: '/platform#tourism-section' },
+      { name: 'Education', href: '/platform#education-section' },
     ],
   },
   {
