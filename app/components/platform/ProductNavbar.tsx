@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { memo } from 'react';
-import { FiChevronRight } from 'react-icons/fi';
+import { FiChevronRight, FiMenu, FiX } from 'react-icons/fi';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -19,6 +19,25 @@ const navItemVariants = {
     transition: {
       duration: 0.4,
       ease: [0.23, 1, 0.32, 1],
+    },
+  },
+};
+
+const mobileMenuVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.23, 1, 0.32, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.2,
     },
   },
 };
@@ -100,6 +119,16 @@ const ProductLink = memo(
 ProductLink.displayName = 'ProductLink';
 
 function ProductNavbar({ currentProduct }: ProductNavbarProps) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -135,8 +164,9 @@ function ProductNavbar({ currentProduct }: ProductNavbarProps) {
               </div>
             </motion.div>
 
+            {/* Desktop Menu */}
             <motion.div
-              className='flex items-center gap-6'
+              className='hidden items-center gap-6 md:flex'
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -149,7 +179,44 @@ function ProductNavbar({ currentProduct }: ProductNavbarProps) {
                 />
               ))}
             </motion.div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              className='flex items-center justify-center rounded-xl border border-white/10 bg-white/5 p-2 backdrop-blur-lg md:hidden'
+              onClick={toggleMobileMenu}
+              whileTap={{ scale: 0.95 }}
+            >
+              {isMobileMenuOpen ? (
+                <FiX className='h-5 w-5 text-white' />
+              ) : (
+                <FiMenu className='h-5 w-5 text-white' />
+              )}
+            </motion.button>
           </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                variants={mobileMenuVariants}
+                initial='hidden'
+                animate='visible'
+                exit='exit'
+                className='absolute left-0 right-0 top-full mt-2 rounded-2xl border border-white/10 bg-black p-4 backdrop-blur-xl md:hidden'
+              >
+                <div className='flex flex-col gap-2'>
+                  {products.map((product) => (
+                    <ProductLink
+                      key={product}
+                      product={product}
+                      currentProduct={currentProduct}
+                      onClick={closeMobileMenu}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </motion.nav>
