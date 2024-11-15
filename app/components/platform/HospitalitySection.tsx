@@ -122,15 +122,19 @@ export default function HospitalitySection({
 
                 <div className='space-y-3'>
                   {[
-                    { label: 'Upsell Revenue', time: '8m', status: 'On Track' },
+                    {
+                      label: 'Upsell Revenue',
+                      time: '$125,000',
+                      status: 'On Track',
+                    },
                     {
                       label: 'Confirmed Bookings',
-                      time: '24m',
+                      time: '85',
                       status: 'Busy',
                     },
                     {
                       label: 'Automated Support Hours',
-                      time: '12m',
+                      time: '200 hrs',
                       status: 'Available',
                     },
                   ].map((item, i) => (
