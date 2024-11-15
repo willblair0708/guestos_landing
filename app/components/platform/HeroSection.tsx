@@ -43,7 +43,7 @@ const Background = () => (
     transition={{ duration: 1.5, ease: 'easeOut' }}
   >
     <Image
-      src='/assets/platform/platform_header1.jpg'
+      src='/assets/platform/platform_header2.jpg'
       alt='Platform background'
       fill
       priority
