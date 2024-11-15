@@ -368,10 +368,10 @@ export default function HeroSection({
                 isMobile ? 'text-5xl' : 'text-6xl'
               } max-w-2xl font-light leading-[1.1] tracking-tight text-white`}
             >
-              Experience the Future of
+              Experience the Future
               <br />
               <span className='bg-gradient-to-r from-primary-gold via-primary-gold/90 to-primary-gold/80 bg-clip-text text-transparent'>
-                Hospitality AI
+                of Hospitality AI
               </span>
             </motion.h1>
 
