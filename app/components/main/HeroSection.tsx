@@ -86,7 +86,7 @@ const textVariants = {
 };
 
 // Components
-const Background = () => (
+const Background = ({ isMobile }: { isMobile?: boolean }) => (
   <motion.div
     className='absolute inset-0 z-0'
     initial={{ opacity: 0, scale: 1.1 }}
@@ -94,7 +94,11 @@ const Background = () => (
     transition={{ duration: 1.5, ease: 'easeOut' }}
   >
     <Image
-      src='/assets/main/main_hero_poster.webp'
+      src={
+        isMobile
+          ? '/assets/main/main_hero_poster.webp'
+          : '/assets/main/main_hero_poster.webp'
+      }
       alt='Hero background'
       fill
       priority
@@ -211,7 +215,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
     >
-      <Background />
+      <Background isMobile={isMobile} />
 
       <motion.div
         className='relative z-20 flex h-full flex-col'
@@ -225,10 +229,14 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
         <Navbar isFixed={false} />
         <div className='relative grid h-full grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8'>
           <motion.div
-            className='col-span-12 flex items-center lg:col-span-7'
+            className={`col-span-12 flex items-center ${
+              isMobile ? 'justify-center pb-24' : 'lg:col-span-7'
+            }`}
             style={{ opacity, scale }}
           >
-            <div className='w-full space-y-10'>
+            <div
+              className={`w-full space-y-10 ${isMobile ? 'text-center' : ''}`}
+            >
               <motion.div
                 variants={fadeInVariants}
                 initial='hidden'
@@ -239,7 +247,9 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                   className='group inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm backdrop-blur-sm'
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className='relative flex items-center gap-3'>
+                  <div
+                    className={`relative flex items-center gap-3 ${isMobile ? 'justify-center' : ''}`}
+                  >
                     <span className='h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold' />
                     <span className='relative'>
                       Welcome to the Future of Hospitality
@@ -250,7 +260,11 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
 
                 <h1 className='text-hero font-book'>
                   <motion.span
-                    className='block font-light tracking-tight sm:text-4xl lg:text-5xl'
+                    className={`block font-light tracking-tight ${
+                      isMobile
+                        ? 'text-3xl sm:text-4xl'
+                        : 'sm:text-4xl lg:text-5xl'
+                    }`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
@@ -260,7 +274,9 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                 </h1>
 
                 <motion.p
-                  className='max-w-xl font-light text-lg leading-relaxed text-white/60'
+                  className={`font-light text-lg leading-relaxed text-white/60 ${
+                    isMobile ? 'mx-auto max-w-sm' : 'max-w-xl'
+                  }`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.8 }}
@@ -271,7 +287,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
               </motion.div>
             </div>
           </motion.div>
-          <InfoCard />
+          {!isMobile && <InfoCard />}
         </div>
       </motion.div>
 
