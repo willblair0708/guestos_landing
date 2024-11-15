@@ -42,15 +42,15 @@ const Background = () => (
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 1.5, ease: 'easeOut' }}
   >
-    {/* <Image
-      src='/assets/platform/platform_header.webp'
+    <Image
+      src='/assets/platform/platform_header.png'
       alt='Platform background'
       fill
       priority
       quality={100}
       className='h-full w-full object-cover'
       sizes='100vw'
-    /> */}
+    />
     <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/50' />
     <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(3,232,122,0.12),transparent_70%)]' />
     <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]' />
