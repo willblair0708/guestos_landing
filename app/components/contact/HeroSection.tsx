@@ -226,12 +226,12 @@ const FormInput = ({
 };
 
 const formSchema = z.object({
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
-  email: z.string().email(),
-  jobTitle: z.string().min(3),
-  organization: z.string().min(2),
-  message: z.string().min(50),
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string().email('Please enter a valid email address'),
+  jobTitle: z.string(),
+  organization: z.string(),
+  message: z.string(),
 });
 
 export default function HeroSection({
