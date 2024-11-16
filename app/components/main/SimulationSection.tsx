@@ -311,7 +311,7 @@ function PlatformPreview() {
         {/* Main Content Area */}
         <div className='relative h-full w-full overflow-hidden rounded-t-3xl'>
           <Image
-            src='/assets/main/main_hero_poster.webp'
+            src='/assets/main/platform_ui.webp'
             alt='GuestOS Platform'
             fill
             className='object-cover transition-transform duration-700 hover:scale-105'
