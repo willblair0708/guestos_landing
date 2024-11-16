@@ -164,7 +164,11 @@ export default function SimulationSection({
 
         {/* Platform Preview */}
         <div className='mx-auto px-4 sm:px-8'>
-          {isMobile ? <ProductPreviewMobile /> : <PlatformPreview />}
+          {isMobile ? (
+            <ProductPreviewMobile />
+          ) : (
+            <PlatformPreview isMobile={isMobile} />
+          )}
         </div>
       </motion.div>
     </motion.section>
@@ -259,7 +263,7 @@ const features = [
 ];
 
 // Add PlatformPreview component with modern UI
-function PlatformPreview() {
+function PlatformPreview({ isMobile }: { isMobile: boolean }) {
   return (
     <div className='relative mx-auto h-[650px] w-full max-w-screen-2xl rounded-t-[40px] bg-gradient-to-b from-black to-black/95 p-6 shadow-2xl'>
       <div className='flex h-full w-full flex-col'>
@@ -311,7 +315,11 @@ function PlatformPreview() {
         {/* Main Content Area */}
         <div className='relative h-full w-full overflow-hidden rounded-t-3xl'>
           <Image
-            src='/assets/main/platform_ui.webp'
+            src={
+              isMobile
+                ? '/assets/main/platform_ui_mobile.webp'
+                : '/assets/main/platform_ui.webp'
+            }
             alt='GuestOS Platform'
             fill
             className='object-cover transition-transform duration-700 hover:scale-105'
@@ -787,8 +795,8 @@ function ProductPreviewMobile() {
 
         <div className='relative h-full w-full overflow-hidden rounded-t-xl sm:rounded-t-2xl'>
           <Image
-            src='/assets/main/platform_ui.webp'
-            alt='GuestOS Platform'
+            src='/assets/main/platform_ui_mobile.png'
+            alt='GuestOS Platform Mobile'
             fill
             className='object-cover'
             priority
