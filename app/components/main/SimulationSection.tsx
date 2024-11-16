@@ -795,7 +795,7 @@ function ProductPreviewMobile() {
 
         <div className='relative h-full w-full overflow-hidden rounded-t-xl sm:rounded-t-2xl'>
           <Image
-            src='/assets/main/platform_ui_mobile.png'
+            src='/assets/main/platform_ui_mobile.webp'
             alt='GuestOS Platform Mobile'
             fill
             className='object-cover'
