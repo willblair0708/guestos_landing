@@ -143,7 +143,7 @@ const JobDetailsPage = () => {
                         <ul className='grid gap-3 text-white/80'>
                           {job.responsibilities.map((resp, index) => (
                             <li key={index} className='flex items-start gap-3'>
-                              <div className='mt-1.5 h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
+                              <div className='mt-3.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#03E87A]' />
                               <span className='text-lg leading-relaxed'>{resp}</span>
                             </li>
                           ))}
@@ -158,7 +158,7 @@ const JobDetailsPage = () => {
                         <ul className='grid gap-3 text-white/80'>
                           {job.qualifications.map((qual, index) => (
                             <li key={index} className='flex items-start gap-3'>
-                              <div className='mt-1.5 h-1.5 w-1.5 rounded-full bg-[#FFB443]' />
+                              <div className='mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#FFB443]' />
                               <span className='text-lg leading-relaxed'>{qual}</span>
                             </li>
                           ))}
@@ -173,6 +173,23 @@ const JobDetailsPage = () => {
                           <p className='text-lg leading-relaxed text-white/80'>
                             {job.benefits}
                           </p>
+                        </motion.div>
+                      )}
+
+                      {/* Nice to Have section - if it exists */}
+                      {job.niceToHave && (
+                        <motion.div variants={itemVariants} className='space-y-4'>
+                          <h2 className='text-sm font-medium uppercase tracking-wider text-white/40'>
+                            Nice to Have
+                          </h2>
+                          <ul className='grid gap-3 text-white/80'>
+                            {job.niceToHave.map((item, index) => (
+                              <li key={index} className='flex items-start gap-3'>
+                                <div className='mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#03E87A]/50' />
+                                <span className='text-lg leading-relaxed'>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </motion.div>
                       )}
                     </div>

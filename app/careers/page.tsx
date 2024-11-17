@@ -13,6 +13,7 @@ import LinkedIn from '@/public/assets/ui/LinkedIn';
 
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import { jobs } from './jobsData';
 
 const CareersPage = () => {
   const router = useRouter();
@@ -45,27 +46,8 @@ const CareersPage = () => {
     },
   };
 
-  const roles = [
-    {
-      title: 'Full Stack Engineer',
-      type: 'Full Time',
-      location: 'Remote',
-      department: 'Engineering',
-      gradient: 'from-[#03E87A] to-[#03E87A]/5',
-    },
-    {
-      title: 'Research Engineer',
-      type: 'Full Time',
-      location: 'Remote',
-      department: 'Research',
-      gradient: 'from-[#FFB443] to-[#FFB443]/5',
-    },
-  ];
-
-  const handleRoleClick = (role: string) => {
-    router.push(
-      `/careers/${encodeURIComponent(role.toLowerCase().replace(/ /g, '-'))}`
-    );
+  const handleRoleClick = (id: string) => {
+    router.push(`/careers/${id}`);
   };
 
   return (
@@ -112,24 +94,22 @@ const CareersPage = () => {
                   Open Positions
                 </motion.h2>
                 <motion.div variants={itemVariants} className='mt-8 space-y-4'>
-                  {roles.map((role, index) => (
+                  {jobs.map((job) => (
                     <motion.div
-                      key={index}
+                      key={job.id}
                       className='group relative overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-1 backdrop-blur-xl transition-all duration-500 hover:bg-white/[0.05]'
-                      onClick={() => handleRoleClick(role.title)}
+                      onClick={() => handleRoleClick(job.id)}
                       whileHover={{ scale: 1.005 }}
                       role='link'
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${role.gradient} opacity-[0.02] transition-opacity duration-300 group-hover:opacity-[0.05]`} />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${job.gradient} opacity-[0.02] transition-opacity duration-300 group-hover:opacity-[0.05]`} />
                       <div className='relative flex items-center justify-between p-6'>
                         <div className='space-y-1'>
-                          <h3 className='text-lg font-medium sm:text-xl'>{role.title}</h3>
+                          <h3 className='text-lg font-medium sm:text-xl'>{job.title}</h3>
                           <div className='flex items-center gap-4 text-sm text-white/60'>
-                            <span>{role.type}</span>
+                            <span>{job.type}</span>
                             <span>•</span>
-                            <span>{role.location}</span>
-                            <span>•</span>
-                            <span>{role.department}</span>
+                            <span>{job.location}</span>
                           </div>
                         </div>
                         <ArrowIcon color='white' className='rotate-[-90deg] transition-transform duration-300 group-hover:translate-x-1' />
@@ -153,7 +133,7 @@ const CareersPage = () => {
                       </p>
                     </div>
                     <Link
-                      href='mailto:jobs@aaruaaru.com'
+                      href='mailto:jessie@guestos.ai'
                       className='group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:bg-white/90'
                     >
                       Get in Touch
