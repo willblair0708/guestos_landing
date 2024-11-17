@@ -77,13 +77,13 @@ const Slide = memo(
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <Image
+              {/* <Image
                 src={slide.value.image}
                 alt='Woman Aaru'
                 width={500}
                 height={500}
                 className='h-96 lg:h-full'
-              />
+              /> */}
             </motion.div>
           </motion.div>
           <motion.div

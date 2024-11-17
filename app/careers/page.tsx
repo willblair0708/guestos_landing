@@ -137,7 +137,6 @@ const CareersPage = () => {
                       className='group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-all hover:bg-white/90'
                     >
                       Get in Touch
-                      <ArrowIcon className='rotate-[-90deg] transition-transform group-hover:translate-x-1' />
                     </Link>
                   </div>
                 </motion.div>

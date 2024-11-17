@@ -105,7 +105,7 @@ const JobDetailsPage = () => {
 
                         <div className='flex flex-col gap-4'>
                           <a
-                            href='mailto:jobs@aaruaaru.com'
+                            href='mailto:jessie@guestos.ai'
                             className='group inline-flex items-center justify-center gap-2 rounded-xl bg-[#03E87A] px-6 py-3 text-base font-medium text-black transition-all hover:bg-[#03E87A]/90'
                           >
                             Apply Now
