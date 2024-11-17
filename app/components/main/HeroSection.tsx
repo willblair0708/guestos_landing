@@ -274,9 +274,9 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                 </h1>
 
                 <motion.p
-                  className={`font-light text-xl leading-relaxed text-white/60 ${
-                    isMobile ? 'mx-auto max-w-sm' : 'max-w-xl'
-                  }`}
+                  className={`font-light ${
+                    isMobile ? 'text-lg mx-auto max-w-sm' : 'text-xl max-w-xl'
+                  } leading-relaxed text-white/60`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.8 }}
