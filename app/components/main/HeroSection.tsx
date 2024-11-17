@@ -284,6 +284,24 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                   Experience the perfect blend of AI technology and human touch,
                   designed to elevate your guest experience to new heights.
                 </motion.p>
+
+                {/* Add new mobile banner */}
+                {isMobile && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9, duration: 0.8 }}
+                    className='mx-auto max-w-sm'
+                  >
+                    <div className='inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm'>
+                      <div className='h-px w-3 bg-gradient-to-r from-primary-gold to-transparent' />
+                      <span className='text-sm font-light text-white/80'>
+                        Designed by Hoteliers, for Hoteliers
+                      </span>
+                      <div className='h-px w-3 bg-gradient-to-l from-primary-gold to-transparent' />
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
             </div>
           </motion.div>
