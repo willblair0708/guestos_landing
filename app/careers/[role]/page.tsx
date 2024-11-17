@@ -190,6 +190,7 @@ const JobDetailsPage = () => {
                               </li>
                             ))}
                           </ul>
+                          <div className='pt-10' /> {/* Added space under */}
                         </motion.div>
                       )}
                     </div>
