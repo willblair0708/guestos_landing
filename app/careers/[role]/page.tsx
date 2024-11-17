@@ -82,19 +82,24 @@ const JobDetailsPage = () => {
                     <div className='sticky top-[20vh]'>
                       <motion.div variants={itemVariants} className='space-y-6'>
                         <div>
-                          <span className='inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-sm'>
+                          <span className='hidden sm:inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-sm'>
                             <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
                             {job.type}
                           </span>
-                          <h1 className='mt-6 text-4xl font-book tracking-tight sm:text-5xl'>
+                          <h1 className='mt-20 text-4xl font-book tracking-tight sm:mt-4 sm:text-5xl'>
                             {job.title}
                           </h1>
                         </div>
 
                         <div className='space-y-4'>
-                          <div className='flex items-center gap-2 text-white/60'>
+                          <div className='flex flex-wrap items-center gap-2 text-white/60'>
                             {/* <icons.MapPin className='h-4 w-4' /> */}
                             <span>{job.location}</span>
+                            <span className='hidden sm:inline'>•</span>
+                            <span className='inline-flex items-center gap-2 sm:hidden'>
+                              <span className='h-1.5 w-1.5 rounded-full bg-[#03E87A]' />
+                              {job.type}
+                            </span>
                           </div>
                           
                           <div className='flex items-center gap-2 text-white/60'>
