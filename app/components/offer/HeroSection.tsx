@@ -226,21 +226,29 @@ export default function HeroSection({
         body: JSON.stringify({
           ...formData,
           priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
-          successUrl: `${window.location.origin}/success`, // Will render SuccessRedirect
-          cancelUrl: `${window.location.origin}/offer`,
         }),
       });
 
-      const session = await response.json();
+      const { id: sessionId, error } = await response.json();
+
+      if (error) {
+        console.error('Error:', error);
+        return;
+      }
 
       // Redirect to Stripe Checkout
       const stripe = await stripePromise;
-      const { error } = await stripe!.redirectToCheckout({
-        sessionId: session.id,
+      if (!stripe) {
+        console.error('Stripe not loaded');
+        return;
+      }
+
+      const { error: stripeError } = await stripe.redirectToCheckout({
+        sessionId,
       });
 
-      if (error) {
-        console.error('Stripe error:', error);
+      if (stripeError) {
+        console.error('Stripe error:', stripeError);
       }
     } catch (err) {
       console.error('Error:', err);
