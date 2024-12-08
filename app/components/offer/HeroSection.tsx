@@ -93,9 +93,6 @@ const Background = () => {
   );
 };
 
-const HolidayBadge = () => (
-  <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/70" />
-);
 
 const imageVariants = {
   hidden: { scale: 1.15, opacity: 0 },
@@ -364,7 +361,6 @@ export default function HeroSection({
 
             {/* Right Column - Form */}
             <div className='relative'>
-              <HolidayBadge />
               <form onSubmit={handleSubmit} className='relative overflow-hidden rounded-xl border border-white/10 bg-black/40 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.2)]'>
                 <div className='absolute inset-0 bg-gradient-to-br from-red-500/10 to-green-500/10' />
                 <div className='relative space-y-6'>
