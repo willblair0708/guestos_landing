@@ -22,12 +22,24 @@ interface Feature {
   description: string;
 }
 
-const SnowflakeParticle = () => {
-  const randomX = Math.random() * 100;
-  const randomDelay = Math.random() * 5;
-  const randomDuration = 10 + Math.random() * 20;
-  const randomSize = 2 + Math.random() * 4;
-  const randomRotation = Math.random() * 360;
+const SnowflakeParticle = ({ index }: { index: number }) => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Use seeded random values based on index for consistent server/client rendering
+  const seed = index * 123.456;
+  const randomX = ((seed % 100) + index) % 100;
+  const randomDelay = ((seed * 2) % 5);
+  const randomDuration = 10 + ((seed * 3) % 20);
+  const randomSize = 2 + ((seed * 4) % 4);
+  const randomRotation = ((seed * 5) % 360);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <motion.div
@@ -53,7 +65,7 @@ const SnowflakeParticle = () => {
 const SnowEffect = () => (
   <div className="fixed inset-0 pointer-events-none">
     {[...Array(50)].map((_, i) => (
-      <SnowflakeParticle key={i} />
+      <SnowflakeParticle key={i} index={i} />
     ))}
   </div>
 );
