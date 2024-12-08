@@ -18,6 +18,20 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { firstName, lastName, email, companyName, priceId } = body;
 
+    console.log('Received price ID:', priceId);
+
+    // Verify the price exists
+    try {
+      const price = await stripe.prices.retrieve(priceId);
+      console.log('Price details:', price);
+    } catch (err) {
+      console.error('Error retrieving price:', err);
+      return NextResponse.json(
+        { error: 'Invalid price ID or price not found' },
+        { status: 400 }
+      );
+    }
+
     if (!email || !priceId || !firstName || !lastName || !companyName) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -36,7 +50,7 @@ export async function POST(req: Request) {
           }
         },
       ],
-      mode: 'subscription',
+      mode: 'payment',
       customer_email: email,
       metadata: {
         firstName,
@@ -47,14 +61,6 @@ export async function POST(req: Request) {
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/offer`,
       allow_promotion_codes: true,
       billing_address_collection: 'required',
-      subscription_data: {
-        trial_period_days: 14,
-        metadata: {
-          firstName,
-          lastName,
-          companyName,
-        },
-      },
     });
 
     if (!session.id) {
