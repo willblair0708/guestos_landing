@@ -68,7 +68,7 @@ const Background = () => {
     >
       <motion.div className='absolute inset-0'>
         <Image
-          src='/assets/about/about_header.webp'
+          src='/assets/offer/offer_header.jpg'
           alt='About GuestOS'
           fill
           priority
@@ -147,6 +147,23 @@ const PlatformPreview = () => (
   </motion.div>
 );
 
+const SuccessRedirect = () => {
+  useEffect(() => {
+    // After successful payment, redirect to Calendly
+    const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL;
+    window.location.href = calendlyUrl!;
+  }, []);
+
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <h1>Payment Successful!</h1>
+        <p>Redirecting you to schedule your concierge setup...</p>
+      </div>
+    </div>
+  );
+};
+
 export default function HeroSection({
   id,
   bgColor,
@@ -162,27 +179,27 @@ export default function HeroSection({
     { 
       icon: '🎁', 
       text: 'Personalized AI Concierge',
-      description: 'Custom-built for your unique property needs'
+      description: 'Custom-built and trained specifically for your property'
     },
     { 
       icon: '📱', 
-      text: 'Dedicated Communication Line',
-      description: 'Phone number for guest calls and texts'
+      text: 'Dedicated Guest Line',
+      description: 'Exclusive phone number for guest calls and text messages'
     },
     { 
       icon: '💬', 
       text: 'Core Dashboard Access',
-      description: 'View and manage all guest conversations'
+      description: 'View all conversation transcripts and monitor interactions'
     },
     { 
       icon: '📚', 
       text: 'Knowledge Base Control',
-      description: 'Update and maintain property information'
+      description: 'Full control to update and maintain your property information'
     },
     { 
       icon: '⚡', 
-      text: 'Expandable Features',
-      description: 'Options to add advanced capabilities later'
+      text: 'Future-Ready',
+      description: 'Option to add advanced capabilities as your needs grow'
     }
   ];
 
@@ -203,7 +220,7 @@ export default function HeroSection({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // 1. Create checkout session
+      // Create checkout session
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: {
@@ -212,12 +229,14 @@ export default function HeroSection({
         body: JSON.stringify({
           ...formData,
           priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
+          successUrl: `${window.location.origin}/success`, // Will render SuccessRedirect
+          cancelUrl: `${window.location.origin}/offer`,
         }),
       });
 
       const session = await response.json();
 
-      // 2. Redirect to Stripe Checkout
+      // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       const { error } = await stripe!.redirectToCheckout({
         sessionId: session.id,
@@ -246,106 +265,94 @@ export default function HeroSection({
       <motion.div className='relative z-20 flex h-full flex-col'>
         <Navbar isFixed={false} />
 
-        <div className='relative grid h-full grid-cols-12 gap-12 px-6 py-16 sm:px-8 lg:px-12'>
-          <motion.div
-            ref={inViewRef}
-            className='col-span-12 lg:col-span-6'
-            variants={{
-              hidden: { opacity: 0, x: -20 },
-              visible: { opacity: 1, x: 0 }
-            }}
-            initial='hidden'
-            animate={isInView ? 'visible' : 'hidden'}
-            transition={{ duration: 0.8 }}
-          >
-            <div className='space-y-10 mt-20'>
+        <div className='container mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12'>
+          <div className='mb-12'>
+            <motion.div
+              className='inline-flex items-center gap-3 rounded-full border border-red-500/20 bg-gradient-to-r from-red-500/10 to-green-500/10 px-6 py-2.5 backdrop-blur-sm'
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className='h-2 w-2 rounded-full bg-gradient-to-r from-red-500 to-green-500 animate-pulse' />
+              <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light tracking-wider text-transparent'>
+                HOLIDAY SPECIAL
+              </span>
+            </motion.div>
 
+            <motion.h1
+              className='mt-6 text-5xl font-light leading-[1.2] tracking-tight sm:text-6xl lg:text-7xl'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              <span className='bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text text-transparent'>
+                Transform Your
+                <br />
+                Guest Experience
+              </span>
+              <div className='mt-4 space-y-2'>
+                <span className='bg-gradient-to-r from-red-400 to-green-400 bg-clip-text text-transparent block text-3xl sm:text-4xl lg:text-5xl'>
+                  $50/month for 3 months
+                </span>
+                <span className='text-white/60 text-lg'>
+                  Lock in this special rate today
+                </span>
+              </div>
+            </motion.h1>
+          </div>
+
+          <div className='grid grid-cols-1 gap-12 lg:grid-cols-2'>
+            {/* Left Column - Package Details */}
+            <div className='space-y-8'>
               <div className='space-y-6'>
-                <motion.h1
-                  className='text-5xl font-light leading-[1.2] tracking-tight sm:text-6xl lg:text-7xl'
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                >
-                  <span className='bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text text-transparent'>
-                    Transform Your
-                    <br />
-                    Guest Experience
-                  </span>
-                  <div className='mt-4 space-y-2'>
-                    <span className='bg-gradient-to-r from-red-400 to-green-400 bg-clip-text text-transparent block text-3xl sm:text-4xl lg:text-5xl'>
-                      $50/month for 3 months
-                    </span>
-                    <span className='text-white/60 text-lg'>
-                      Lock in this special rate today
-                    </span>
-                  </div>
-                </motion.h1>
-
-                <motion.div
-                  className='space-y-8'
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.8 }}
-                >
-                  <div className='space-y-6'>
-                    <h2 className='text-2xl font-light'>Your Holiday Package Includes:</h2>
-                    <ul className='space-y-4'>
-                      {features.map((feature, index) => (
-                        <motion.li
-                          key={index}
-                          className='flex items-start gap-4 rounded-lg border border-white/5 bg-white/5 p-4 backdrop-blur-sm'
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.8 + index * 0.1 }}
-                        >
-                          <span className='flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-red-500/10 to-green-500/10 text-xl'>
-                            {feature.icon}
-                          </span>
-                          <div>
-                            <span className='block text-lg text-white/90'>{feature.text}</span>
-                            <span className='text-sm text-white/60'>{feature.description}</span>
-                          </div>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className='space-y-4'>
-                    <div className='relative rounded-xl border border-white/10 bg-gradient-to-r from-red-500/5 to-green-500/5 p-5 backdrop-blur-sm'>
-                      <h3 className='text-lg font-medium mb-3'>Offer Terms:</h3>
-                      <div className='space-y-2'>
-                        <p className='text-sm leading-relaxed text-white/80'>
-                          🎄 Special offer valid until December 31, 2024
-                        </p>
-                        <p className='text-sm leading-relaxed text-white/60'>
-                          • Discounted period begins after your AI Concierge is built and activated
-                        </p>
-                        <p className='text-sm leading-relaxed text-white/60'>
-                          • Rate locks in at $50/month for the first 3 months
-                        </p>
-                        <p className='text-sm leading-relaxed text-white/60'>
-                          • Setup appointment scheduled immediately after signup
-                        </p>
+                <h2 className='text-2xl font-light'>Your Holiday Package Includes:</h2>
+                <ul className='space-y-4'>
+                  {features.map((feature, index) => (
+                    <motion.li
+                      key={index}
+                      className='flex items-start gap-4 rounded-lg border border-white/5 bg-white/5 p-4 backdrop-blur-sm'
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.8 + index * 0.1 }}
+                    >
+                      <span className='flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-red-500/10 to-green-500/10 text-xl'>
+                        {feature.icon}
+                      </span>
+                      <div>
+                        <span className='block text-lg text-white/90'>{feature.text}</span>
+                        <span className='text-sm text-white/60'>{feature.description}</span>
                       </div>
-                    </div>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
 
-                    <PlatformPreview />
+              <div className='space-y-4'>
+                <div className='relative rounded-xl border border-white/10 bg-gradient-to-r from-red-500/5 to-green-500/5 p-5 backdrop-blur-sm'>
+                  <h3 className='text-lg font-medium mb-3'>Offer Terms:</h3>
+                  <div className='space-y-2'>
+                    <p className='text-sm leading-relaxed text-white/80'>
+                      🎄 Special holiday offer valid until December 31, 2024
+                    </p>
+                    <p className='text-sm leading-relaxed text-white/60'>
+                      • Discounted period begins after your AI Concierge is built and activated
+                    </p>
+                    <p className='text-sm leading-relaxed text-white/60'>
+                      • Rate locks in at $50/month for the first 3 months
+                    </p>
+                    <p className='text-sm leading-relaxed text-white/60'>
+                      • Setup appointment scheduled immediately after signup
+                    </p>
                   </div>
-                </motion.div>
+                </div>
+
+                <PlatformPreview />
               </div>
             </div>
-          </motion.div>
 
-          <motion.div
-            className='col-span-12 lg:col-span-6'
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <div className='relative mt-80'>
+            {/* Right Column - Form */}
+            <div className='relative'>
               <HolidayBadge />
-              <form onSubmit={handleSubmit} className='relative overflow-hidden mt-96 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.1)]'>
+              <form onSubmit={handleSubmit} className='relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.1)]'>
                 <div className='absolute inset-0 bg-gradient-to-br from-red-500/5 to-green-500/5' />
                 <div className='relative space-y-6'>
                   <div className='grid grid-cols-2 gap-4'>
@@ -396,7 +403,7 @@ export default function HeroSection({
                       onChange={handleInputChange}
                       rows={3}
                       className='mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-white backdrop-blur-sm transition-all focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50'
-                      placeholder='Tell us about your property and goals...'
+                      placeholder='Tell us about your property and goals for using the concierge...'
                     />
                   </div>
 
@@ -428,7 +435,7 @@ export default function HeroSection({
                 </div>
               </form>
             </div>
-          </motion.div>
+          </div>
         </div>
       </motion.div>
     </motion.section>
