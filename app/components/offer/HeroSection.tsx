@@ -388,7 +388,7 @@ export default function HeroSection({
                   </div>
                 </div>
 
-                <PlatformPreview />
+                {/* <PlatformPreview /> */}
               </div>
             </div>
 
