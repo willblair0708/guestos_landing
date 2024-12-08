@@ -3,7 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, useSpring as useFramerSpring, useScroll, useTransform } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
+import { loadStripe } from '@stripe/stripe-js';
 import Navbar from '../Navbar';
+
+// Initialize Stripe
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 interface HeroSectionProps {
   id: string;
@@ -82,15 +86,28 @@ const Background = () => {
   );
 };
 
+const HolidayBadge = () => (
+  <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/70" />
+);
+
 const PreviewImage = () => (
   <div className="relative mt-8 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-    <Image
-      src="/assets/concierge-preview.png"
-      alt="AI Concierge Preview"
-      width={300}
-      height={600}
-      className="w-full"
-    />
+    <div className="grid grid-cols-2 gap-4">
+      <Image
+        src="/assets/concierge-mobile.png"
+        alt="AI Concierge Mobile Interface"
+        width={300}
+        height={600}
+        className="w-full rounded-lg shadow-lg"
+      />
+      <Image
+        src="/assets/concierge-dashboard.png"
+        alt="AI Concierge Dashboard"
+        width={500}
+        height={300}
+        className="w-full rounded-lg shadow-lg"
+      />
+    </div>
     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
   </div>
 );
@@ -132,29 +149,63 @@ export default function HeroSection({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement Stripe integration and Calendly redirect
+    try {
+      // 1. Create checkout session
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
+        }),
+      });
+
+      const session = await response.json();
+
+      // 2. Redirect to Stripe Checkout
+      const stripe = await stripePromise;
+      const { error } = await stripe!.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (error) {
+        console.error('Stripe error:', error);
+      }
+
+      // Note: After successful payment, user will be redirected to success page
+      // which will then redirect to Calendly scheduling
+    } catch (err) {
+      console.error('Error:', err);
+    }
   };
 
   const features = [
     { 
       icon: '🎁', 
       text: 'Personalized AI Concierge',
-      description: 'Custom-built for your property'
+      description: 'Custom-built for your unique property needs'
     },
     { 
       icon: '📱', 
-      text: 'Dedicated Phone Line',
-      description: 'For calls and text messages'
+      text: 'Dedicated Communication Line',
+      description: 'Phone number for guest calls and texts'
     },
     { 
       icon: '💬', 
-      text: 'Conversation Dashboard',
-      description: 'View transcripts and analytics'
+      text: 'Core Dashboard Access',
+      description: 'View and manage all guest conversations'
     },
     { 
       icon: '📚', 
-      text: 'Knowledge Base',
-      description: 'Easy updates and management'
+      text: 'Knowledge Base Control',
+      description: 'Update and maintain property information'
+    },
+    { 
+      icon: '⚡', 
+      text: 'Expandable Features',
+      description: 'Options to add advanced capabilities later'
     }
   ];
 
@@ -208,13 +259,16 @@ export default function HeroSection({
                   transition={{ delay: 0.3, duration: 0.8 }}
                 >
                   <span className='bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text text-transparent'>
-                    Give Your Guests
+                    Transform Your
                     <br />
-                    The Gift of AI 🎄
+                    Guest Experience
                   </span>
-                  <div className='mt-4 text-3xl sm:text-4xl lg:text-5xl'>
-                    <span className='bg-gradient-to-r from-red-400 to-green-400 bg-clip-text text-transparent'>
+                  <div className='mt-4 space-y-2'>
+                    <span className='bg-gradient-to-r from-red-400 to-green-400 bg-clip-text text-transparent block text-3xl sm:text-4xl lg:text-5xl'>
                       $50/month for 3 months
+                    </span>
+                    <span className='text-white/60 text-lg'>
+                      Lock in this special rate today
                     </span>
                   </div>
                 </motion.h1>
@@ -248,25 +302,27 @@ export default function HeroSection({
                     </ul>
                   </div>
 
-                  <div className='relative inline-block rounded-xl border border-white/10 bg-gradient-to-r from-red-500/5 to-green-500/5 p-5 backdrop-blur-sm'>
-                    <div className='space-y-2'>
-                      <p className='text-sm leading-relaxed text-white/80'>
-                        🎄 Special holiday offer valid until December 31, 2024
-                      </p>
-                      <p className='text-sm leading-relaxed text-white/60'>
-                        Discounted period begins after your AI Concierge is built and activated
-                      </p>
+                  <div className='space-y-4'>
+                    <div className='relative rounded-xl border border-white/10 bg-gradient-to-r from-red-500/5 to-green-500/5 p-5 backdrop-blur-sm'>
+                      <h3 className='text-lg font-medium mb-3'>Offer Terms:</h3>
+                      <div className='space-y-2'>
+                        <p className='text-sm leading-relaxed text-white/80'>
+                          🎄 Special offer valid until December 31, 2024
+                        </p>
+                        <p className='text-sm leading-relaxed text-white/60'>
+                          • Discounted period begins after your AI Concierge is built and activated
+                        </p>
+                        <p className='text-sm leading-relaxed text-white/60'>
+                          • Rate locks in at $50/month for the first 3 months
+                        </p>
+                        <p className='text-sm leading-relaxed text-white/60'>
+                          • Setup appointment scheduled immediately after signup
+                        </p>
+                      </div>
                     </div>
-                    <motion.div
-                      className='absolute -right-2 -top-2 text-xl'
-                      animate={{ rotate: [0, 10, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      ⭐️
-                    </motion.div>
-                  </div>
 
-                  <PreviewImage />
+                    <PreviewImage />
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -279,10 +335,8 @@ export default function HeroSection({
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <div className='relative'>
-              <form 
-                onSubmit={handleSubmit} 
-                className='relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.1)]'
-              >
+              <HolidayBadge />
+              <form onSubmit={handleSubmit} className='relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.1)]'>
                 <div className='absolute inset-0 bg-gradient-to-br from-red-500/5 to-green-500/5' />
                 <div className='relative space-y-6'>
                   <div className='grid grid-cols-2 gap-4'>
@@ -337,28 +391,30 @@ export default function HeroSection({
                     />
                   </div>
 
-                  <motion.button
-                    type='submit'
-                    className='group relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-red-500 to-green-500 px-6 py-3 text-white shadow-lg transition-all hover:shadow-xl'
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span className='relative z-10 font-medium'>Claim Your Holiday Offer</span>
-                    <motion.div
-                      className='absolute inset-0 bg-gradient-to-r from-white/20 to-transparent'
-                      initial={{ x: '-100%' }}
-                      whileHover={{ x: '100%' }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </motion.button>
-
                   <div className='space-y-2 text-center'>
-                    <p className='text-sm text-white/40'>
-                      No credit card required to start
-                    </p>
-                    <p className='text-xs text-white/40'>
-                      After signup, you'll be directed to schedule your concierge setup
-                    </p>
+                    <motion.button
+                      type='submit'
+                      className='group relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-red-500 to-green-500 px-6 py-3 text-white shadow-lg transition-all hover:shadow-xl'
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className='relative z-10 font-medium'>Claim Your Holiday Offer</span>
+                      <motion.div
+                        className='absolute inset-0 bg-gradient-to-r from-white/20 to-transparent'
+                        initial={{ x: '-100%' }}
+                        whileHover={{ x: '100%' }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    </motion.button>
+
+                    <div className='space-y-2 pt-4 border-t border-white/10'>
+                      <p className='text-sm text-white/40'>
+                        No credit card required to start
+                      </p>
+                      <p className='text-xs text-white/40'>
+                        After payment, you'll be directed to schedule your concierge setup via Calendly
+                      </p>
+                    </div>
                   </div>
                 </div>
               </form>
