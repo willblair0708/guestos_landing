@@ -10,7 +10,7 @@ import useIsMobile from '@/hooks/use-is-mobile';
 // Initialize Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 // TODO: Move to environment variables after testing
-const PRICE_ID = 'price_1OQXXXXXXXXXXXXXXXXXXXxx'; // Replace with your actual price ID
+const PRICE_ID = 'price_1Q57qs03FtqvnkTMrfMalvub'; // Replace with your actual price ID
 
 interface HeroSectionProps {
   id: string;
@@ -231,6 +231,11 @@ export default function HeroSection({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      // Validate form data
+      if (!formData.email || !formData.firstName || !formData.lastName || !formData.companyName) {
+        throw new Error('Please fill in all required fields');
+      }
+
       // Create checkout session
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
@@ -243,17 +248,22 @@ export default function HeroSection({
         }),
       });
 
+      const responseData = await response.json();
+      
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Failed to create checkout session');
+        console.error('API Error Response:', responseData);
+        throw new Error(responseData.error || 'Failed to create checkout session');
       }
 
-      const { id: sessionId } = await response.json();
+      const { id: sessionId } = responseData;
+      if (!sessionId) {
+        throw new Error('No session ID returned from the API');
+      }
 
       // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       if (!stripe) {
-        throw new Error('Stripe not loaded');
+        throw new Error('Stripe not loaded - check your publishable key');
       }
 
       const { error: stripeError } = await stripe.redirectToCheckout({
@@ -261,11 +271,12 @@ export default function HeroSection({
       });
 
       if (stripeError) {
+        console.error('Stripe Error:', stripeError);
         throw stripeError;
       }
     } catch (err) {
-      console.error('Error:', err);
-      // Here you might want to show an error message to the user
+      console.error('Detailed Error:', err);
+      alert(err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.');
     }
   };
 
