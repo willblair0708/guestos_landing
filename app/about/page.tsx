@@ -10,9 +10,19 @@ import useIsMobile from '@/hooks/use-is-mobile';
 
 import Footer from '../components/Footer';
 
-const HeroSection = dynamic(() => import('../components/offer/HeroSection'), {
+const HeroSection = dynamic(() => import('../components/about/HeroSection'), {
   ssr: false,
 });
+
+const MissionSection = dynamic(
+  () => import('../components/about/MissionSection'),
+  { ssr: false }
+);
+
+const FutureSection = dynamic(
+  () => import('../components/about/FutureSection'),
+  { ssr: false }
+);
 
 // const SimulationSection = dynamic(
 //   () => import('../components/about/SimulationSection'),
@@ -54,6 +64,12 @@ export default function AboutPage() {
             <HeroSection id='section-0' bgColor='#123456' isMobile={isMobile} />
 
             <motion.div ref={ref}>
+              <MissionSection
+                id='section-1'
+                bgColor='#FFFFFF'
+                isMobile={isMobile}
+                inView={inView}
+              />
               {/* <SimulationSection
                 id='section-3'
                 bgColor='#000000'
