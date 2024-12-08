@@ -10,7 +10,7 @@ import useIsMobile from '@/hooks/use-is-mobile';
 
 import Footer from '../components/Footer';
 
-const HeroSection = dynamic(() => import('../components/about/HeroSection'), {
+const HeroSection = dynamic(() => import('../components/offer/HeroSection'), {
   ssr: false,
 });
 
