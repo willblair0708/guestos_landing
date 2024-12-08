@@ -70,12 +70,10 @@ export default function AboutPage() {
                 isMobile={isMobile}
                 inView={inView}
               />
-              {/* <SimulationSection
+              <FutureSection
                 id='section-3'
                 bgColor='#000000'
-                isMobile={isMobile}
-                inView={inView}
-              /> */}
+              />
             </motion.div>
           </motion.main>
         </motion.div>
