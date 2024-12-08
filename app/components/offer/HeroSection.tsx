@@ -229,6 +229,11 @@ export default function HeroSection({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      if (!process.env.NEXT_PUBLIC_STRIPE_PRICE_ID) {
+        console.error('Stripe price ID not configured');
+        return;
+      }
+
       // Create checkout session
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
@@ -241,18 +246,17 @@ export default function HeroSection({
         }),
       });
 
-      const { id: sessionId, error } = await response.json();
-
-      if (error) {
-        console.error('Error:', error);
-        return;
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to create checkout session');
       }
+
+      const { id: sessionId } = await response.json();
 
       // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       if (!stripe) {
-        console.error('Stripe not loaded');
-        return;
+        throw new Error('Stripe not loaded');
       }
 
       const { error: stripeError } = await stripe.redirectToCheckout({
@@ -260,10 +264,11 @@ export default function HeroSection({
       });
 
       if (stripeError) {
-        console.error('Stripe error:', stripeError);
+        throw stripeError;
       }
     } catch (err) {
       console.error('Error:', err);
+      // Here you might want to show an error message to the user
     }
   };
 
