@@ -9,6 +9,8 @@ import useIsMobile from '@/hooks/use-is-mobile';
 
 // Initialize Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+// TODO: Move to environment variables after testing
+const PRICE_ID = 'price_1OQXXXXXXXXXXXXXXXXXXXxx'; // Replace with your actual price ID
 
 interface HeroSectionProps {
   id: string;
@@ -229,11 +231,6 @@ export default function HeroSection({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      if (!process.env.NEXT_PUBLIC_STRIPE_PRICE_ID) {
-        console.error('Stripe price ID not configured');
-        return;
-      }
-
       // Create checkout session
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
@@ -242,7 +239,7 @@ export default function HeroSection({
         },
         body: JSON.stringify({
           ...formData,
-          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
+          priceId: PRICE_ID,
         }),
       });
 
