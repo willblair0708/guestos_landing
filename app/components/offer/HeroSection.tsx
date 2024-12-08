@@ -5,6 +5,7 @@ import { motion, useSpring as useFramerSpring, useScroll, useTransform } from 'f
 import { AnimatePresence } from 'framer-motion';
 import { loadStripe } from '@stripe/stripe-js';
 import Navbar from '../Navbar';
+import useIsMobile from '@/hooks/use-is-mobile';
 
 // Initialize Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
@@ -13,6 +14,12 @@ interface HeroSectionProps {
   id: string;
   bgColor: string;
   isMobile: boolean;
+}
+
+interface Feature {
+  icon: string;
+  text: string;
+  description: string;
 }
 
 const SnowflakeParticle = () => {
@@ -90,26 +97,54 @@ const HolidayBadge = () => (
   <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/70" />
 );
 
-const PreviewImage = () => (
-  <div className="relative mt-8 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-    <div className="grid grid-cols-2 gap-4">
-      <Image
-        src="/assets/concierge-mobile.png"
-        alt="AI Concierge Mobile Interface"
-        width={300}
-        height={600}
-        className="w-full rounded-lg shadow-lg"
-      />
-      <Image
-        src="/assets/concierge-dashboard.png"
-        alt="AI Concierge Dashboard"
-        width={500}
-        height={300}
-        className="w-full rounded-lg shadow-lg"
-      />
+const imageVariants = {
+  hidden: { scale: 1.15, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 2,
+      ease: [0.2, 0.1, 0.3, 1],
+    },
+  },
+};
+
+const PlatformPreview = () => (
+  <motion.div
+    variants={imageVariants}
+    className='group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.1] to-white/[0.02] p-[1px] sm:rounded-[2rem]'
+  >
+    <div className='absolute inset-0'>
+      <div className='absolute inset-0 bg-gradient-to-r from-red-500/25 via-white/15 to-green-500/25 opacity-60 blur-3xl transition-all duration-700 group-hover:opacity-90 group-hover:blur-[100px]' />
     </div>
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-  </div>
+
+    <div className='relative grid grid-cols-2 gap-4 overflow-hidden rounded-[2rem] p-4'>
+      <div className='relative aspect-[9/16] overflow-hidden rounded-xl'>
+        <Image
+          src='/assets/concierge-mobile.png'
+          alt='AI Concierge Mobile Interface'
+          fill
+          className='object-cover transition-all duration-1000 will-change-transform group-hover:scale-110'
+          quality={100}
+          priority
+          sizes='(max-width: 768px) 100vw, 50vw'
+        />
+        <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
+      </div>
+      <div className='relative aspect-video overflow-hidden rounded-xl'>
+        <Image
+          src='/assets/concierge-dashboard.png'
+          alt='AI Concierge Dashboard'
+          fill
+          className='object-cover transition-all duration-1000 will-change-transform group-hover:scale-110'
+          quality={100}
+          priority
+          sizes='(max-width: 768px) 100vw, 50vw'
+        />
+        <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
+      </div>
+    </div>
+  </motion.div>
 );
 
 export default function HeroSection({
@@ -123,15 +158,33 @@ export default function HeroSection({
     triggerOnce: true,
   });
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
-  const y = useTransform(scrollYProgress, [0, 0.3], [0, 15]);
-  const ySpring = useFramerSpring(y, { stiffness: 120, damping: 25, restDelta: 0.001 });
+  const features: Feature[] = [
+    { 
+      icon: '🎁', 
+      text: 'Personalized AI Concierge',
+      description: 'Custom-built for your unique property needs'
+    },
+    { 
+      icon: '📱', 
+      text: 'Dedicated Communication Line',
+      description: 'Phone number for guest calls and texts'
+    },
+    { 
+      icon: '💬', 
+      text: 'Core Dashboard Access',
+      description: 'View and manage all guest conversations'
+    },
+    { 
+      icon: '📚', 
+      text: 'Knowledge Base Control',
+      description: 'Update and maintain property information'
+    },
+    { 
+      icon: '⚡', 
+      text: 'Expandable Features',
+      description: 'Options to add advanced capabilities later'
+    }
+  ];
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -173,41 +226,10 @@ export default function HeroSection({
       if (error) {
         console.error('Stripe error:', error);
       }
-
-      // Note: After successful payment, user will be redirected to success page
-      // which will then redirect to Calendly scheduling
     } catch (err) {
       console.error('Error:', err);
     }
   };
-
-  const features = [
-    { 
-      icon: '🎁', 
-      text: 'Personalized AI Concierge',
-      description: 'Custom-built for your unique property needs'
-    },
-    { 
-      icon: '📱', 
-      text: 'Dedicated Communication Line',
-      description: 'Phone number for guest calls and texts'
-    },
-    { 
-      icon: '💬', 
-      text: 'Core Dashboard Access',
-      description: 'View and manage all guest conversations'
-    },
-    { 
-      icon: '📚', 
-      text: 'Knowledge Base Control',
-      description: 'Update and maintain property information'
-    },
-    { 
-      icon: '⚡', 
-      text: 'Expandable Features',
-      description: 'Options to add advanced capabilities later'
-    }
-  ];
 
   return (
     <motion.section
@@ -221,13 +243,10 @@ export default function HeroSection({
       <Background />
       <SnowEffect />
 
-      <motion.div
-        className='relative z-20 flex h-full flex-col'
-        style={{ opacity, scale, y: ySpring }}
-      >
+      <motion.div className='relative z-20 flex h-full flex-col'>
         <Navbar isFixed={false} />
 
-        <div className='relative grid h-full grid-cols-12 gap-12 px-6 py-16 sm:px-8 lg:px-12 mt-20'>
+        <div className='relative grid h-full grid-cols-12 gap-12 px-6 py-16 sm:px-8 lg:px-12'>
           <motion.div
             ref={inViewRef}
             className='col-span-12 lg:col-span-6'
@@ -239,17 +258,7 @@ export default function HeroSection({
             animate={isInView ? 'visible' : 'hidden'}
             transition={{ duration: 0.8 }}
           >
-            <div className='space-y-10'>
-              <motion.div
-                className='inline-flex items-center gap-3 rounded-full border border-red-500/20 bg-gradient-to-r from-red-500/10 to-green-500/10 px-6 py-2.5 backdrop-blur-sm'
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className='h-2 w-2 rounded-full bg-gradient-to-r from-red-500 to-green-500 animate-pulse' />
-                <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light tracking-wider text-transparent'>
-                  HOLIDAY SPECIAL
-                </span>
-              </motion.div>
+            <div className='space-y-10 mt-20'>
 
               <div className='space-y-6'>
                 <motion.h1
@@ -321,7 +330,7 @@ export default function HeroSection({
                       </div>
                     </div>
 
-                    <PreviewImage />
+                    <PlatformPreview />
                   </div>
                 </motion.div>
               </div>
@@ -334,9 +343,9 @@ export default function HeroSection({
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <div className='relative'>
+            <div className='relative mt-80'>
               <HolidayBadge />
-              <form onSubmit={handleSubmit} className='relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.1)]'>
+              <form onSubmit={handleSubmit} className='relative overflow-hidden mt-96 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.1)]'>
                 <div className='absolute inset-0 bg-gradient-to-br from-red-500/5 to-green-500/5' />
                 <div className='relative space-y-6'>
                   <div className='grid grid-cols-2 gap-4'>
