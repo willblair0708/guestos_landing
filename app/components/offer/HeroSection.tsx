@@ -268,33 +268,33 @@ export default function HeroSection({
         <div className='container mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12'>
           <div className='mb-12'>
             <motion.div
-              className='inline-flex items-center gap-3 rounded-full border border-red-500/20 bg-gradient-to-r from-red-500/10 to-green-500/10 px-6 py-2.5 backdrop-blur-sm'
+              className='inline-flex items-center gap-3 rounded-full border border-red-500/30 bg-gradient-to-r from-red-500/20 to-green-500/20 px-6 py-2.5 backdrop-blur-md'
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              <span className='h-2 w-2 rounded-full bg-gradient-to-r from-red-500 to-green-500 animate-pulse' />
-              <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-light tracking-wider text-transparent'>
-                HOLIDAY SPECIAL
+              <span className='h-2.5 w-2.5 rounded-full bg-gradient-to-r from-red-500 to-green-500 animate-pulse' />
+              <span className='bg-gradient-to-r from-white to-white/90 bg-clip-text font-medium tracking-wider text-transparent'>
+                HOLIDAY SPECIAL 🎄
               </span>
             </motion.div>
 
             <motion.h1
-              className='mt-6 text-5xl font-light leading-[1.2] tracking-tight sm:text-6xl lg:text-7xl'
+              className='mt-8 text-5xl font-light leading-[1.2] tracking-tight sm:text-6xl lg:text-7xl'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
               <span className='bg-gradient-to-r from-white via-white/95 to-white/90 bg-clip-text text-transparent'>
-                Transform Your
+                Give Your Guests
                 <br />
-                Guest Experience
+                The Gift of AI
               </span>
-              <div className='mt-4 space-y-2'>
+              <div className='mt-6 space-y-2'>
                 <span className='bg-gradient-to-r from-red-400 to-green-400 bg-clip-text text-transparent block text-3xl sm:text-4xl lg:text-5xl'>
                   $50/month for 3 months
                 </span>
-                <span className='text-white/60 text-lg'>
-                  Lock in this special rate today
+                <span className='text-white/70 text-lg font-light'>
+                  Lock in this special holiday rate today ⭐
                 </span>
               </div>
             </motion.h1>
@@ -304,21 +304,24 @@ export default function HeroSection({
             {/* Left Column - Package Details */}
             <div className='space-y-8'>
               <div className='space-y-6'>
-                <h2 className='text-2xl font-light'>Your Holiday Package Includes:</h2>
+                <h2 className='text-2xl font-light flex items-center gap-3'>
+                  <span>Your Holiday Package Includes:</span>
+                  <span className='text-3xl'>🎁</span>
+                </h2>
                 <ul className='space-y-4'>
                   {features.map((feature, index) => (
                     <motion.li
                       key={index}
-                      className='flex items-start gap-4 rounded-lg border border-white/5 bg-white/5 p-4 backdrop-blur-sm'
+                      className='flex items-start gap-4 rounded-xl border border-white/10 bg-black/40 p-5 backdrop-blur-md hover:bg-black/50 transition-colors duration-300'
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.8 + index * 0.1 }}
                     >
-                      <span className='flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-red-500/10 to-green-500/10 text-xl'>
+                      <span className='flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-red-500/20 to-green-500/20 text-2xl'>
                         {feature.icon}
                       </span>
                       <div>
-                        <span className='block text-lg text-white/90'>{feature.text}</span>
+                        <span className='block text-lg font-medium text-white/90'>{feature.text}</span>
                         <span className='text-sm text-white/60'>{feature.description}</span>
                       </div>
                     </motion.li>
@@ -326,21 +329,31 @@ export default function HeroSection({
                 </ul>
               </div>
 
-              <div className='space-y-4'>
-                <div className='relative rounded-xl border border-white/10 bg-gradient-to-r from-red-500/5 to-green-500/5 p-5 backdrop-blur-sm'>
-                  <h3 className='text-lg font-medium mb-3'>Offer Terms:</h3>
-                  <div className='space-y-2'>
-                    <p className='text-sm leading-relaxed text-white/80'>
-                      🎄 Special holiday offer valid until December 31, 2024
+              <div className='space-y-6'>
+                <div className='relative rounded-xl border border-white/10 bg-black/40 p-6 backdrop-blur-md'>
+                  <div className='absolute -right-2 -top-2 text-2xl animate-bounce'>
+                    🎄
+                  </div>
+                  <h3 className='text-lg font-medium mb-4 flex items-center gap-2'>
+                    <span>Holiday Offer Terms</span>
+                    <span className='text-red-400'>•</span>
+                  </h3>
+                  <div className='space-y-3'>
+                    <p className='text-sm leading-relaxed text-white/80 flex items-center gap-2'>
+                      <span className='text-red-400'>•</span>
+                      Special offer valid until December 31, 2024
                     </p>
-                    <p className='text-sm leading-relaxed text-white/60'>
-                      • Discounted period begins after your AI Concierge is built and activated
+                    <p className='text-sm leading-relaxed text-white/70 flex items-center gap-2'>
+                      <span className='text-green-400'>•</span>
+                      Discounted period begins after your AI Concierge is built and activated
                     </p>
-                    <p className='text-sm leading-relaxed text-white/60'>
-                      • Rate locks in at $50/month for the first 3 months
+                    <p className='text-sm leading-relaxed text-white/70 flex items-center gap-2'>
+                      <span className='text-green-400'>•</span>
+                      Rate locks in at $50/month for the first 3 months
                     </p>
-                    <p className='text-sm leading-relaxed text-white/60'>
-                      • Setup appointment scheduled immediately after signup
+                    <p className='text-sm leading-relaxed text-white/70 flex items-center gap-2'>
+                      <span className='text-red-400'>•</span>
+                      Setup appointment scheduled immediately after signup
                     </p>
                   </div>
                 </div>
@@ -352,8 +365,8 @@ export default function HeroSection({
             {/* Right Column - Form */}
             <div className='relative'>
               <HolidayBadge />
-              <form onSubmit={handleSubmit} className='relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.1)]'>
-                <div className='absolute inset-0 bg-gradient-to-br from-red-500/5 to-green-500/5' />
+              <form onSubmit={handleSubmit} className='relative overflow-hidden rounded-xl border border-white/10 bg-black/40 p-8 backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,0.2)]'>
+                <div className='absolute inset-0 bg-gradient-to-br from-red-500/10 to-green-500/10' />
                 <div className='relative space-y-6'>
                   <div className='grid grid-cols-2 gap-4'>
                     {[
@@ -361,14 +374,14 @@ export default function HeroSection({
                       { name: 'lastName', label: 'Last Name', type: 'text', required: true }
                     ].map((field) => (
                       <div key={field.name}>
-                        <label className='block text-sm font-light text-white/80'>{field.label}*</label>
+                        <label className='block text-sm font-medium text-white/90'>{field.label}*</label>
                         <input
                           type={field.type}
                           name={field.name}
                           required={field.required}
                           value={formData[field.name as keyof typeof formData]}
                           onChange={handleInputChange}
-                          className='mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-white backdrop-blur-sm transition-all focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50'
+                          className='mt-1 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white backdrop-blur-sm transition-all placeholder:text-white/30 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50'
                         />
                       </div>
                     ))}
@@ -381,7 +394,7 @@ export default function HeroSection({
                     { name: 'phone', label: 'Phone Number', type: 'tel', required: false }
                   ].map((field) => (
                     <div key={field.name}>
-                      <label className='block text-sm font-light text-white/80'>
+                      <label className='block text-sm font-medium text-white/90'>
                         {field.label}{field.required && '*'}
                       </label>
                       <input
@@ -390,31 +403,31 @@ export default function HeroSection({
                         required={field.required}
                         value={formData[field.name as keyof typeof formData]}
                         onChange={handleInputChange}
-                        className='mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-white backdrop-blur-sm transition-all focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50'
+                        className='mt-1 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white backdrop-blur-sm transition-all placeholder:text-white/30 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50'
                       />
                     </div>
                   ))}
 
                   <div>
-                    <label className='block text-sm font-light text-white/80'>Property Description</label>
+                    <label className='block text-sm font-medium text-white/90'>Property Description</label>
                     <textarea
                       name='description'
                       value={formData.description}
                       onChange={handleInputChange}
                       rows={3}
-                      className='mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-white backdrop-blur-sm transition-all focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50'
+                      className='mt-1 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white backdrop-blur-sm transition-all placeholder:text-white/30 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500/50'
                       placeholder='Tell us about your property and goals for using the concierge...'
                     />
                   </div>
 
-                  <div className='space-y-2 text-center'>
+                  <div className='space-y-4 pt-4'>
                     <motion.button
                       type='submit'
-                      className='group relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-red-500 to-green-500 px-6 py-3 text-white shadow-lg transition-all hover:shadow-xl'
+                      className='group relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-red-500 to-green-500 px-6 py-3.5 text-white shadow-lg transition-all hover:shadow-xl'
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className='relative z-10 font-medium'>Claim Your Holiday Offer</span>
+                      <span className='relative z-10 font-medium text-lg'>Claim Your Holiday Offer 🎁</span>
                       <motion.div
                         className='absolute inset-0 bg-gradient-to-r from-white/20 to-transparent'
                         initial={{ x: '-100%' }}
@@ -423,9 +436,10 @@ export default function HeroSection({
                       />
                     </motion.button>
 
-                    <div className='space-y-2 pt-4 border-t border-white/10'>
-                      <p className='text-sm text-white/40'>
-                        No credit card required to start
+                    <div className='space-y-2 pt-4 border-t border-white/10 text-center'>
+                      <p className='text-sm text-white/50 flex items-center justify-center gap-2'>
+                        <span>No credit card required to start</span>
+                        <span className='text-lg'>✨</span>
                       </p>
                       <p className='text-xs text-white/40'>
                         After payment, you'll be directed to schedule your concierge setup via Calendly
