@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
       automatic_tax: { enabled: true },
     });
 
-    return NextResponse.redirect(session.url!, 303);
+    return NextResponse.json({ url: session.url });
   } catch (err) {
     const error = err as StripeType.errors.StripeError;
     return NextResponse.json(

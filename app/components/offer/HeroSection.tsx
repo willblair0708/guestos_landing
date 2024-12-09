@@ -230,53 +230,17 @@ export default function HeroSection({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     try {
-      // Validate form data
-      if (!formData.email || !formData.firstName || !formData.lastName || !formData.companyName) {
-        throw new Error('Please fill in all required fields');
-      }
-
-      // Create checkout session
       const response = await fetch('/api/checkout_sessions', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          priceId: PRICE_ID,
-        }),
       });
-
-      const responseData = await response.json();
+      const data = await response.json();
       
-      if (!response.ok) {
-        console.error('API Error Response:', responseData);
-        throw new Error(responseData.error || 'Failed to create checkout session');
-      }
-
-      const { id: sessionId } = responseData;
-      if (!sessionId) {
-        throw new Error('No session ID returned from the API');
-      }
-
       // Redirect to Stripe Checkout
-      const stripe = await stripePromise;
-      if (!stripe) {
-        throw new Error('Stripe not loaded - check your publishable key');
-      }
-
-      const { error: stripeError } = await stripe.redirectToCheckout({
-        sessionId,
-      });
-
-      if (stripeError) {
-        console.error('Stripe Error:', stripeError);
-        throw stripeError;
-      }
-    } catch (err) {
-      console.error('Detailed Error:', err);
-      alert(err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.');
+      window.location.href = data.url;
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
