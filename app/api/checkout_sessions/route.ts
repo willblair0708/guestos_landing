@@ -1,34 +1,28 @@
-import Stripe from 'stripe';
-import { NextRequest, NextResponse } from 'next/server';
+const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
-if (!process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY) {
-  throw new Error('Missing Stripe secret key');
-}
-
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY, {
-  apiVersion: '2024-11-20.acacia'
-});
-
-export async function POST(req: NextRequest) {
-  try {
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price: 'price_1QTu1603FtqvnkTMTlCEV9kt',
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: 'https://calendly.com/guestos_ai',
-      cancel_url: `${req.headers.get('origin')}/?canceled=true`,
-      automatic_tax: { enabled: true },
-    });
-
-    return NextResponse.redirect(session.url!, 303);
-  } catch (err) {
-    if (err instanceof Stripe.errors.StripeError) {
-      return NextResponse.json({ message: err.message }, { status: err.statusCode || 500 });
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    try {
+      // Create Checkout Sessions from body params.
+      const session = await stripe.checkout.sessions.create({
+        line_items: [
+          {
+            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+            price: 'price_1QTu1603FtqvnkTMTlCEV9kt',
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        success_url: `${req.headers.origin}/?success=true`,
+        cancel_url: `${req.headers.origin}/?canceled=true`,
+        automatic_tax: {enabled: true},
+      });
+      res.redirect(303, session.url);
+    } catch (err) {
+      res.status(err.statusCode || 500).json(err.message);
     }
-    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+  } else {
+    res.setHeader('Allow', 'POST');
+    res.status(405).end('Method Not Allowed');
   }
 }
