@@ -1,8 +1,14 @@
-import Stripe from 'stripe';
 import { NextRequest, NextResponse } from 'next/server';
-import type { Stripe as StripeType } from 'stripe';
+import { Stripe } from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+// Initialize Stripe with strict type checking for API key
+if (!process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is not defined in environment variables');
+}
+
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY, {
+  apiVersion: '2024-11-20.acacia', // Updated to latest API version
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    const error = err as StripeType.errors.StripeError;
+    const error = err as Stripe.errors.StripeError;
     return NextResponse.json(
       { message: error.message },
       { status: error.statusCode || 500 }
