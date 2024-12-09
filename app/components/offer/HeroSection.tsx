@@ -234,13 +234,21 @@ export default function HeroSection({
     try {
       const response = await fetch('/api/checkout_sessions', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+      
       const data = await response.json();
+      
+      if (!response.ok) throw new Error(data.message);
       
       // Redirect to Stripe Checkout
       window.location.href = data.url;
     } catch (error) {
       console.error('Error:', error);
+      // You might want to show an error message to the user here
     }
   };
 

@@ -12,10 +12,12 @@ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY, {
 
 export async function POST(req: NextRequest) {
   try {
+    const formData = await req.json(); // Get the form data
+
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
-          price: 'price_1QU9jo03FtqvnkTMsheFdZF6',
+          price: process.env.NEXT_PUBLIC_PRICE_ID,
           quantity: 1,
         },
       ],
@@ -23,6 +25,16 @@ export async function POST(req: NextRequest) {
       success_url: `https://calendly.com/guestos_ai`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
       automatic_tax: { enabled: true },
+      metadata: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        companyName: formData.companyName,
+        companyWebsite: formData.companyWebsite,
+        email: formData.email,
+        phone: formData.phone,
+        description: formData.description
+      },
+      customer_email: formData.email, // Pre-fill customer email
     });
 
     return NextResponse.json({ url: session.url });
