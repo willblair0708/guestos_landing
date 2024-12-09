@@ -10,7 +10,7 @@ import useIsMobile from '@/hooks/use-is-mobile';
 // Initialize Stripe
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 // TODO: Move to environment variables after testing
-const PRICE_ID = 'price_1QTuB303FtqvnkTM1ltev6zu'; // Replace with your actual price ID
+const PRICE_ID = 'price_1QU9jo03FtqvnkTMsheFdZF6'; // Replace with your actual price ID
 
 interface HeroSectionProps {
   id: string;
