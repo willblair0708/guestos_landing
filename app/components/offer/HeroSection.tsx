@@ -438,10 +438,6 @@ export default function HeroSection({
                     </motion.button>
 
                     <div className='space-y-2 pt-4 border-t border-white/10 text-center'>
-                      <p className='text-sm text-white/50 flex items-center justify-center gap-2'>
-                        <span>No credit card required to start</span>
-                        <span className='text-lg'>✨</span>
-                      </p>
                       <p className='text-xs text-white/40'>
                         After payment, you'll be directed to schedule your concierge setup via Calendly
                       </p>
