@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
         },
       ],
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/?success=true`,
+      success_url: `https://calendly.com/guestos_ai`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
       automatic_tax: { enabled: true },
     });
