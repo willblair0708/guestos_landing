@@ -418,7 +418,7 @@ export default function HeroSection({
 
                   {[
                     { name: 'companyName', label: 'Company Name', type: 'text', required: true },
-                    { name: 'companyWebsite', label: 'Company Website', type: 'url', required: true },
+                    { name: 'companyWebsite', label: 'Company Website', type: 'text', required: false, pattern: '(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)' },
                     { name: 'email', label: 'Email Address', type: 'email', required: true },
                     { name: 'phone', label: 'Phone Number', type: 'tel', required: false }
                   ].map((field) => (
