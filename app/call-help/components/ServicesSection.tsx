@@ -30,19 +30,36 @@ interface Service {
 const services: Service[] = [
   {
     title: 'Wildfire Relief Resource Hub',
-    description: 'This 24/7 hotline connects people who want to donate with those who need it most. Every connection is verified, and we provide follow-up updates by text to keep you informed.',
+    description: 'This hotline connects helpers directly with those in need during the Palisades Fire relief effort. Call 831-480-5016 for 24/7 assistance with donations, housing, and animal support.',
     partner: 'malibu foundation',
-    status: 'Active',
+    status: 'Active 24/7',
+    phoneNumber: '831-480-5016',
     testimonial: {
-      quote: "The resource hub connected me with a family in need within hours. It's amazing to see the direct impact of your donation.",
+      quote: "The resource hub made it easy to donate items and connect with families who needed immediate help. The process was seamless.",
       author: "Sarah M.",
       role: "Donor"
     },
     features: [
-      { text: 'Real-time donation matching' },
-      { text: 'Verified recipient profiles' },
-      { text: 'SMS status updates' },
-      { text: 'Impact tracking' },
+      {
+        number: '1',
+        title: 'DONATE ITEMS',
+        description: 'Donate essential items to those in need'
+      },
+      {
+        number: '2',
+        title: 'PICK UP ITEMS',
+        description: 'Arrange pickup of donated items'
+      },
+      {
+        number: '3',
+        title: 'ACCESS HOUSING',
+        description: 'Find temporary housing solutions'
+      },
+      {
+        number: '4',
+        title: 'ASSIST ANIMALS',
+        description: 'Help with animal evacuation and care'
+      }
     ],
     icon: (props: any) => (
       <motion.svg 
