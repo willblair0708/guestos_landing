@@ -7,8 +7,8 @@ import useIsMobile from '@/hooks/use-is-mobile';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import ContactForm from './components/ContactForm';
-import ContactMethods from './components/ContactMethods';
-import SupportOptions from './components/SupportOptions';
+// import ContactMethods from './components/ContactMethods';
+// import SupportOptions from './components/SupportOptions';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -133,7 +133,7 @@ export default function ContactPage() {
             </div>
 
             {/* Additional Contact Sections */}
-            <div className="mx-auto mt-24 max-w-7xl">
+            {/* <div className="mx-auto mt-24 max-w-7xl">
               <div className="grid gap-8 lg:grid-cols-2">
                 <motion.div variants={itemVariants}>
                   <ContactMethods />
@@ -142,7 +142,7 @@ export default function ContactPage() {
                   <SupportOptions />
                 </motion.div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <Footer />
