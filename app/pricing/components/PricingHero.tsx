@@ -33,34 +33,32 @@ const itemVariants = {
   },
 };
 
-const floatingGradientVariants = {
-  animate: {
-    x: [0, 200, 0],
-    y: [-100, 100, -100],
-    scale: [1, 1.2, 1],
-    opacity: [0.5, 0.8, 0.5],
-    transition: {
-      duration: 25,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  },
-};
+// Predefined particle positions to avoid hydration mismatch
+const floatingParticles = [
+  { id: 1, size: 3, x: 15, y: 25, duration: 15, delay: 0 },
+  { id: 2, size: 2, x: 35, y: 45, duration: 20, delay: 1 },
+  { id: 3, size: 4, x: 55, y: 15, duration: 18, delay: 2 },
+  { id: 4, size: 2.5, x: 75, y: 65, duration: 22, delay: 3 },
+  { id: 5, size: 3.5, x: 25, y: 85, duration: 16, delay: 4 },
+  { id: 6, size: 2, x: 85, y: 35, duration: 19, delay: 0.5 },
+  { id: 7, size: 3, x: 45, y: 55, duration: 21, delay: 1.5 },
+  { id: 8, size: 2.5, x: 65, y: 75, duration: 17, delay: 2.5 },
+  { id: 9, size: 4, x: 95, y: 25, duration: 23, delay: 3.5 },
+  { id: 10, size: 3, x: 5, y: 95, duration: 20, delay: 4.5 },
+];
 
-// Background Component
-const Background = () => (
-  <div className="absolute inset-0 z-0">
-    <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/50 to-black/80" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,200,87,0.12),transparent_70%)]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]" />
-    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
-    <motion.div
-      className="absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-accent-gold-light/15 via-[rgba(255,200,87,0.1)] to-transparent blur-3xl"
-      variants={floatingGradientVariants}
-      animate="animate"
-    />
-  </div>
-);
+const particleVariants = {
+  animate: (custom: { duration: number, delay: number }) => ({
+    y: [0, -50, 0],
+    opacity: [0, 1, 0],
+    transition: {
+      duration: custom.duration,
+      delay: custom.delay,
+      repeat: Infinity,
+      ease: "linear"
+    }
+  })
+};
 
 const features = [
   'No hidden fees',
@@ -90,9 +88,26 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
-      className="relative h-screen overflow-hidden text-white"
+      className="relative h-screen text-white"
     >
-      <Background />
+      {/* Floating Particles */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {floatingParticles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="absolute rounded-full bg-accent-gold-light/30"
+            style={{
+              width: particle.size,
+              height: particle.size,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+            }}
+            variants={particleVariants}
+            animate="animate"
+            custom={{ duration: particle.duration, delay: particle.delay }}
+          />
+        ))}
+      </div>
 
       <motion.div
         className="relative z-20 flex h-full flex-col"
@@ -121,7 +136,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
               >
                 <motion.div
                   variants={itemVariants}
-                  className="relative inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-base backdrop-blur-sm"
+                  className="relative inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"
                 >
                   <div className={`relative flex items-center gap-3 ${isMobile ? 'justify-center' : ''}`}>
                     <span className="h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold" />
@@ -165,7 +180,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                     <motion.div
                       key={feature}
                       variants={itemVariants}
-                      className="flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-sm"
+                      className="group flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-sm transition-all duration-300 hover:border-accent-gold-light/50 hover:bg-white/10"
                     >
                       <motion.svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +199,9 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                           d="M5 13l4 4L19 7"
                         />
                       </motion.svg>
-                      <span className="text-white/80">{feature}</span>
+                      <span className="text-white/80 transition-colors duration-300 group-hover:text-primary-gold">
+                        {feature}
+                      </span>
                     </motion.div>
                   ))}
                 </motion.div>

@@ -1,14 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
-
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
 
 import useIsMobile from '@/hooks/use-is-mobile';
 import Footer from '../components/Footer';
 import PricingCard from './components/PricingCard';
 import PricingHero from './components/PricingHero';
-import Link from 'next/link';
 
 const pricingTiers = [
   {
@@ -66,9 +65,10 @@ const pricingTiers = [
 ];
 
 const stats = [
-  { value: '99.9%', label: 'Uptime SLA' },
-  { value: '24/7', label: 'Support' },
-  { value: '15min', label: 'Response Time' },
+  { value: '99.9%', label: 'Uptime SLA', description: 'Enterprise-grade reliability' },
+  { value: '24/7', label: 'Support', description: 'Round-the-clock assistance' },
+  { value: '15min', label: 'Response Time', description: 'Average support response' },
+  { value: '100%', label: 'Satisfaction', description: 'Customer happiness guaranteed' },
 ];
 
 const faqs = [
@@ -115,22 +115,9 @@ const cardVariants = {
   },
 };
 
-const floatingGradientVariants = {
-  animate: {
-    x: [0, 200, 0],
-    y: [-100, 100, -100],
-    scale: [1, 1.2, 1],
-    opacity: [0.5, 0.8, 0.5],
-    transition: {
-      duration: 25,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  },
-};
-
 export default function PricingPage() {
   const isMobile = useIsMobile();
+  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -140,22 +127,64 @@ export default function PricingPage() {
 
   return (
     <>
-      <motion.div
+      <div
+        ref={mainRef}
         key="pricing-page"
-        className="relative min-h-screen w-screen overflow-hidden bg-black font-sans"
+        className="relative min-h-screen w-full bg-black font-sans"
       >
-        {/* Background Elements */}
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
+        {/* Single consolidated background */}
+        <div className="fixed inset-0 pointer-events-none">
+          {/* Base gradients */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-900/95 to-black" />
+          
+          {/* Accent gradients */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,200,87,0.15),transparent_50%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(255,87,87,0.1),transparent_50%)]" />
+          </div>
+          
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,200,87,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,200,87,0.05)_1px,transparent_1px)] bg-[size:14px_14px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
+          
+          {/* Animated accent gradients */}
           <motion.div
-            className="absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-accent-gold-light/5 via-[rgba(255,200,87,0.05)] to-transparent blur-3xl"
-            variants={floatingGradientVariants}
-            animate="animate"
+            className="absolute -left-1/4 top-0 h-[500px] w-[500px] rounded-full bg-accent-gold-light/10 blur-[120px]"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
           />
           <motion.div
-            className="absolute right-0 top-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-l from-accent-gold-light/5 via-[rgba(255,200,87,0.05)] to-transparent blur-3xl"
-            variants={floatingGradientVariants}
-            animate="animate"
+            className="absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-red-500/5 blur-[100px]"
+            animate={{
+              x: [0, -50, 0],
+              y: [0, 100, 0],
+              scale: [1.2, 1, 1.2],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-0 left-1/3 h-[600px] w-[600px] rounded-full bg-accent-gold-light/5 blur-[150px]"
+            animate={{
+              x: [50, -50, 50],
+              y: [0, -50, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
           />
         </div>
 
@@ -163,6 +192,7 @@ export default function PricingPage() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
+          className="relative z-10"
         >
           <PricingHero isMobile={isMobile} />
 
@@ -174,16 +204,17 @@ export default function PricingPage() {
             <div className="mx-auto max-w-7xl">
               <motion.div
                 variants={cardVariants}
-                className="grid grid-cols-1 gap-4 sm:grid-cols-3"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
               >
                 {stats.map((stat, index) => (
                   <motion.div
                     key={stat.label}
                     variants={cardVariants}
-                    className="relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur-sm"
+                    className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-accent-gold-light/50 hover:bg-neutral-900/80"
                   >
+                    {/* Hover gradient effect */}
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent"
+                      className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                       animate={{
                         x: ['0%', '100%'],
                         opacity: [0, 0.1, 0],
@@ -194,9 +225,15 @@ export default function PricingPage() {
                         delay: index * 0.2,
                       }}
                     />
-                    <div className="relative text-center">
+                    
+                    {/* Corner gradients */}
+                    <div className="absolute -right-12 -top-12 h-24 w-24 rounded-full bg-accent-gold-light/5 blur-2xl" />
+                    <div className="absolute -bottom-12 -left-12 h-24 w-24 rounded-full bg-accent-gold-light/5 blur-2xl" />
+
+                    <div className="relative">
                       <div className="mb-2 text-3xl font-bold text-primary-gold">{stat.value}</div>
-                      <div className="text-sm text-neutral-400">{stat.label}</div>
+                      <div className="mb-1 text-sm font-medium text-white">{stat.label}</div>
+                      <div className="text-sm text-neutral-400">{stat.description}</div>
                     </div>
                   </motion.div>
                 ))}
@@ -204,6 +241,7 @@ export default function PricingPage() {
             </div>
           </motion.section>
 
+          {/* Pricing Cards Section */}
           <motion.section className="relative z-10 px-4 pt-24 pb-32 sm:px-6 lg:px-8">
             {/* Section Title */}
             <motion.div
@@ -223,16 +261,12 @@ export default function PricingPage() {
               variants={containerVariants}
               className="relative mx-auto grid max-w-7xl gap-6 sm:gap-8 lg:grid-cols-3 lg:gap-12"
             >
-              {/* Decorative Elements */}
-              <div className="absolute -left-32 top-1/2 h-64 w-64 rounded-full bg-accent-gold-light/5 blur-3xl" />
-              <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-accent-gold-light/5 blur-3xl" />
-
               {pricingTiers.map((tier, index) => (
                 <motion.div 
                   key={tier.title} 
                   variants={cardVariants}
                   className={`relative ${
-                    tier.isPopular ? 'lg:mt-[-24px]' : ''
+                    tier.isPopular ? 'lg:-mt-6' : ''
                   }`}
                 >
                   <PricingCard {...tier} />
@@ -240,7 +274,7 @@ export default function PricingPage() {
               ))}
             </motion.div>
 
-            {/* FAQ Section */}
+            {/* FAQ Section with Enhanced Design */}
             <motion.div 
               variants={containerVariants}
               className="mx-auto mt-32 max-w-3xl"
@@ -262,10 +296,23 @@ export default function PricingPage() {
                   <motion.div
                     key={index}
                     variants={cardVariants}
-                    className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 backdrop-blur-sm"
+                    className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 backdrop-blur-sm transition-all duration-300 hover:border-accent-gold-light/50"
                   >
-                    <div className="p-6">
-                      <h3 className="mb-4 text-lg font-medium text-white">
+                    {/* Hover gradient effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      animate={{
+                        x: ['0%', '100%'],
+                        opacity: [0, 0.1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    />
+                    
+                    <div className="relative p-6">
+                      <h3 className="mb-4 text-lg font-medium text-white group-hover:text-primary-gold">
                         {faq.question}
                       </h3>
                       <p className="text-neutral-400">
@@ -286,7 +333,7 @@ export default function PricingPage() {
                 variants={cardVariants}
                 className="relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 backdrop-blur-sm"
               >
-                {/* Decorative corner gradients */}
+                {/* Corner gradients */}
                 <div className="absolute -left-24 -top-24 h-48 w-48 rounded-full bg-accent-gold-light/5 blur-3xl" />
                 <div className="absolute -bottom-24 -right-24 h-48 w-48 rounded-full bg-accent-gold-light/5 blur-3xl" />
 
@@ -294,17 +341,17 @@ export default function PricingPage() {
                   All plans include
                 </h3>
                 <div className="relative grid gap-6 text-neutral-400 sm:grid-cols-2 lg:grid-cols-3">
-                  <div className="flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
+                  <div className="group flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 transition-all duration-300 hover:border-accent-gold-light/50">
                     <span className="text-xl text-primary-gold">✓</span>
-                    <span className="text-sm">24/7 System Monitoring</span>
+                    <span className="text-sm group-hover:text-white">24/7 System Monitoring</span>
                   </div>
-                  <div className="flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
+                  <div className="group flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 transition-all duration-300 hover:border-accent-gold-light/50">
                     <span className="text-xl text-primary-gold">✓</span>
-                    <span className="text-sm">99.9% Uptime SLA</span>
+                    <span className="text-sm group-hover:text-white">99.9% Uptime SLA</span>
                   </div>
-                  <div className="flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
+                  <div className="group flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 transition-all duration-300 hover:border-accent-gold-light/50">
                     <span className="text-xl text-primary-gold">✓</span>
-                    <span className="text-sm">Dedicated Support</span>
+                    <span className="text-sm group-hover:text-white">Dedicated Support</span>
                   </div>
                 </div>
               </motion.div>
@@ -314,7 +361,10 @@ export default function PricingPage() {
                 variants={cardVariants}
                 className="mt-12 text-center"
               >
-                <Link href="/contact" className="group inline-flex items-center gap-2 text-neutral-400 transition-colors hover:text-primary-gold">
+                <Link 
+                  href="/contact" 
+                  className="group inline-flex items-center gap-2 rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-6 py-3 text-neutral-400 transition-all duration-300 hover:border-accent-gold-light/50 hover:bg-accent-gold-light/20 hover:text-primary-gold"
+                >
                   <span>Still have questions? Talk to our team</span>
                   <motion.svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -335,7 +385,7 @@ export default function PricingPage() {
             </motion.div>
           </motion.section>
         </motion.main>
-      </motion.div>
+      </div>
       <Footer />
     </>
   );
