@@ -35,9 +35,9 @@ const services: Service[] = [
     status: 'Active 24/7',
     phoneNumber: '831-480-5016',
     testimonial: {
-      quote: "The resource hub made it easy to donate items and connect with families who needed immediate help. The process was seamless.",
-      author: "Sarah M.",
-      role: "Donor"
+      quote: "Thank you for making it so easy to get the information and solutions I needed. It's just been too much to even try to look.",
+      author: "Housing Support Caller",
+      role: "Evacuee"
     },
     features: [
       {
@@ -81,8 +81,8 @@ const services: Service[] = [
     status: 'Active 24/7',
     phoneNumber: '831-230-2682',
     testimonial: {
-      quote: "The AI system provided crucial evacuation information when we needed it most. It's incredibly responsive and accurate.",
-      author: "Michael R.",
+      quote: "I didn't even realize I was talking to an AI—it felt like a real person helping me.",
+      author: "Information Line Caller",
       role: "Resident"
     },
     features: [

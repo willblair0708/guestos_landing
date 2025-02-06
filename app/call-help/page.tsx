@@ -8,7 +8,6 @@ import HeroSection from './components/HeroSection';
 import ProblemSolutionSection from './components/ProblemSolutionSection';
 import ServicesSection from './components/ServicesSection';
 import ImpactSection from './components/ImpactSection';
-import TestimonialsSection from './components/TestimonialsSection';
 import VisionSection from './components/VisionSection';
 import StorySection from './components/StorySection';
 import MediaSection from './components/MediaSection';
@@ -66,7 +65,6 @@ export default function CallHelpPage() {
             
             {/* Impact and Social Proof */}
             <ImpactSection />
-            <TestimonialsSection />
             
             {/* Story and Vision */}
             <div className="relative">
