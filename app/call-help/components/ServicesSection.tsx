@@ -322,7 +322,8 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Call Button */}
-                <motion.button
+                <motion.a
+                  href={`tel:${service.phoneNumber}`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="group mt-4 flex w-full items-center justify-center gap-2 rounded-full border border-accent-gold-light bg-accent-gold-light/10 py-3 text-primary-gold transition-colors hover:bg-accent-gold-light/20"
@@ -344,7 +345,7 @@ export default function ServicesSection() {
                     />
                   </motion.svg>
                   <span>Call Now</span>
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           ))}
