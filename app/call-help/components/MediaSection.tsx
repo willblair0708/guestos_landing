@@ -1,47 +1,24 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 const mediaItems = [
   {
-    title: 'GuestOS: Powering AI Hotlines for Wildfire Relief',
-    type: 'Press Release',
-    date: 'January 2025',
-    source: 'TechCrunch',
-    thumbnail: '/path/to/thumbnail1.jpg', // Add actual path
-    shareUrl: 'https://example.com/article1',
-  },
-  {
-    title: 'Malibu Housing Hotline',
-    type: 'Initiative Launch',
-    date: 'January 2025',
-    source: 'Local News',
-    thumbnail: '/path/to/thumbnail2.jpg', // Add actual path
-    shareUrl: 'https://example.com/article2',
-  },
-  {
-    title: 'Interview post-French Fire loss',
+    title: 'French Fire victim works to create technology to help others who lose home',
     type: 'CBS News',
-    date: 'July 2024',
-    source: 'CBS',
-    thumbnail: '/path/to/thumbnail3.jpg', // Add actual path
-    shareUrl: 'https://example.com/article3',
+    date: 'July 10, 2024',
+    source: 'CBS Sacramento',
+    thumbnail: '/assets/call-help/cbs-news.jpg',
+    url: 'https://www.cbsnews.com/sacramento/news/french-fire-victim-works-to-create-technology-to-help-others-who-lose-home/',
   },
   {
-    title: 'Discussing wildfire experiences',
-    type: 'All Things Wildfire Podcast',
-    date: 'August 2024',
-    source: 'Podcast',
-    thumbnail: '/path/to/thumbnail4.jpg', // Add actual path
-    shareUrl: 'https://example.com/article4',
-  },
-  {
-    title: 'Interview on home inventory app',
+    title: 'California fire victim launches app to help others with insurance claims',
     type: 'CBS News',
-    date: 'January 2025',
-    source: 'CBS',
-    thumbnail: '/path/to/thumbnail5.jpg', // Add actual path
-    shareUrl: 'https://example.com/article5',
-  },
+    date: 'January 7, 2025',
+    source: 'CBS Sacramento',
+    thumbnail: '/assets/call-help/cbs-news.jpg',
+    url: 'https://www.cbsnews.com/sacramento/news/california-fire-victim-launches-app-help-with-insurance-claims/',
+  }
 ];
 
 const containerVariants = {
@@ -144,64 +121,56 @@ export default function MediaSection() {
 
             <div className="relative space-y-6">
               {mediaItems.map((item, index) => (
-                <motion.div
+                <a 
                   key={index}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
-                  className="group relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/50 p-6 transition-all duration-300 hover:border-accent-gold-light/50"
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
                 >
-                  {/* Hover Gradient */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    animate={{
-                      x: ['0%', '100%'],
-                      opacity: [0, 0.1, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                  />
-                  
-                  <div className="relative flex gap-6">
-                    {/* Thumbnail */}
-                    <div className="relative hidden h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border border-neutral-800 sm:block">
-                      <div className="absolute inset-0 flex items-center justify-center bg-neutral-900 text-neutral-600">
-                        {item.source}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-grow flex-col">
-                      <div className="mb-2 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="inline-flex items-center rounded-full border border-accent-gold-light/20 bg-accent-gold-light/5 px-2.5 py-0.5 text-sm text-primary-gold">
-                            {item.type}
-                          </span>
-                          <span className="text-sm text-neutral-500">{item.source}</span>
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.02 }}
+                    className="group relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/50 p-6 transition-all duration-300 hover:border-accent-gold-light/50"
+                  >
+                    {/* Hover Gradient */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      animate={{
+                        x: ['0%', '100%'],
+                        opacity: [0, 0.1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    />
+                    
+                    <div className="relative flex gap-6">
+                      {/* Thumbnail */}
+                      <div className="relative hidden h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border border-neutral-800 sm:block">
+                        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900 text-neutral-600">
+                          {item.source}
                         </div>
-                        <span className="text-sm text-neutral-500">{item.date}</span>
                       </div>
-                      <h3 className="mb-4 text-lg font-light text-white group-hover:text-primary-gold">
-                        {item.title}
-                      </h3>
 
-                      {/* Social Share */}
-                      <div className="mt-auto flex items-center justify-end gap-2">
-                        {Object.entries(socialIcons).map(([platform, icon]) => (
-                          <motion.button
-                            key={platform}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => handleShare(platform, item.shareUrl)}
-                            className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900/50 text-neutral-400 transition-colors hover:border-accent-gold-light hover:text-primary-gold"
-                          >
-                            {icon}
-                          </motion.button>
-                        ))}
+                      <div className="flex flex-grow flex-col">
+                        <div className="mb-2 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="inline-flex items-center rounded-full border border-accent-gold-light/20 bg-accent-gold-light/5 px-2.5 py-0.5 text-sm text-primary-gold">
+                              {item.type}
+                            </span>
+                            <span className="text-sm text-neutral-500">{item.source}</span>
+                          </div>
+                          <span className="text-sm text-neutral-500">{item.date}</span>
+                        </div>
+                        <h3 className="text-lg font-light text-white group-hover:text-primary-gold">
+                          {item.title}
+                        </h3>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </a>
               ))}
             </div>
           </div>
