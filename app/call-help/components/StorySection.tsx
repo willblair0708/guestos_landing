@@ -104,11 +104,13 @@ export default function StorySection() {
               variants={itemVariants}
               className="relative mt-16 overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 backdrop-blur-sm"
             >
-              {/* Image Placeholder */}
+              {/* Image */}
               <div className="relative mb-8 h-64 overflow-hidden rounded-xl border border-neutral-800">
-                <div className="absolute inset-0 flex items-center justify-center bg-neutral-900 text-neutral-600">
-                  Add founder image here
-                </div>
+                <img
+                  src="/assets/call-help/atlas.jpeg"
+                  alt="Atlas Fire aftermath"
+                  className="h-full w-full object-cover"
+                />
               </div>
 
               <div className="relative space-y-8">

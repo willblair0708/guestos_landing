@@ -62,6 +62,13 @@ const Background = () => (
   </div>
 );
 
+const features = [
+  'No hidden fees',
+  'Cancel anytime',
+  'Free 14-day trial',
+  'Dedicated support',
+];
+
 export default function PricingHero({ isMobile }: PricingHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
@@ -148,6 +155,39 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                   Choose the perfect plan for your business needs. All plans include our
                   core AI technology and dedicated support.
                 </motion.p>
+
+                {/* Features Grid */}
+                <motion.div
+                  variants={containerVariants}
+                  className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4"
+                >
+                  {features.map((feature, index) => (
+                    <motion.div
+                      key={feature}
+                      variants={itemVariants}
+                      className="flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-sm"
+                    >
+                      <motion.svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-primary-gold"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.5 + index * 0.1 }}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </motion.svg>
+                      <span className="text-white/80">{feature}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
 
                 {isMobile && (
                   <motion.div
