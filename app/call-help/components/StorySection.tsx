@@ -119,7 +119,7 @@ export default function StorySection() {
                 </p>
 
                 <div className="flex flex-wrap items-center justify-center gap-4">
-                  <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://www.linkedin.com/in/jessiefischer/" target="_blank" rel="noopener noreferrer">
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
