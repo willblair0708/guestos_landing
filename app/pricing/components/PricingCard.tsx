@@ -77,12 +77,6 @@ export default function PricingCard({
       <div className="mb-8 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-medium text-white">{title}</h3>
-          {isPopular && (
-            <div className="flex items-center gap-1.5 rounded-full bg-primary-gold/10 px-3 py-1">
-              <span className="h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold" />
-              <span className="text-xs font-medium text-primary-gold">Popular Choice</span>
-            </div>
-          )}
         </div>
         <div className="space-y-1">
           <div className="flex items-baseline gap-1">
