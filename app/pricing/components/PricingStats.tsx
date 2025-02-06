@@ -1,15 +1,5 @@
 import { motion } from 'framer-motion';
 
-interface PricingStatsProps {
-  stats: Array<{
-    value: string;
-    label: string;
-    description?: string;
-    prefix?: string;
-    suffix?: string;
-  }>;
-}
-
 export default function PricingStats({ stats }: PricingStatsProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -32,8 +22,8 @@ export default function PricingStats({ stats }: PricingStatsProps) {
         </div>
 
         <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/30 text-center sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, index) => (
-            <div key={index} className="relative flex flex-col bg-neutral-900/50 px-8 py-12">
+          {stats.map((stat) => (
+            <div key={stat.id} className="relative flex flex-col bg-neutral-900/50 px-8 py-12">
               {/* Stat Background */}
               <div className="absolute inset-0 -z-10 bg-gradient-to-b from-neutral-900/50 to-black/30" />
 

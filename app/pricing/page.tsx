@@ -12,7 +12,7 @@ import PricingHero from './components/PricingHero';
 const pricingTiers = [
   {
     title: 'Core AI Concierge',
-    price: '199',
+    price: '299',
     description: 'Perfect for businesses starting their AI journey',
     features: [
       { text: 'AI Concierge Hours (9am-5pm)', included: true, tooltip: 'Business hours only, Monday-Friday' },
@@ -29,13 +29,13 @@ const pricingTiers = [
   },
   {
     title: 'Professional',
-    price: '499',
+    price: '699',
     description: 'Enhanced features for growing businesses',
     features: [
       { text: 'AI Concierge Hours (7am-9pm)', included: true, tooltip: 'Extended hours with weekend support', isNew: true },
       { text: 'AI Model Training (5 Models)', included: true, tooltip: 'Train up to 5 custom AI models', isNew: true },
       { text: 'Analytics Dashboard', included: true, tooltip: 'Advanced metrics with custom reports' },
-      { text: 'Email Support (4h)', included: true, tooltip: 'Priority response within 4 hours' },
+      { text: 'Email Support (Instant)', included: true, tooltip: 'AI-powered instant response' },
       { text: 'Calendar Integration', included: true, tooltip: 'Multi-platform calendar integration' },
       { text: 'Payment Processing', included: true, tooltip: 'Standard payment methods' },
       { text: 'API Access', included: true, tooltip: 'Basic API access' },
@@ -53,7 +53,7 @@ const pricingTiers = [
       { text: 'AI Concierge Hours (24/7)', included: true, tooltip: '24/7 coverage with phone support', isNew: true },
       { text: 'AI Model Training (Unlimited)', included: true, tooltip: 'Unlimited AI models with custom fine-tuning' },
       { text: 'Analytics Dashboard', included: true, tooltip: 'Enterprise analytics suite' },
-      { text: 'Email Support (Instant)', included: true, tooltip: 'Instant priority support with dedicated team' },
+      { text: 'Email Support (Instant)', included: true, tooltip: 'AI-powered instant response with human escalation' },
       { text: 'Calendar Integration', included: true, tooltip: 'Full calendar suite with custom integrations' },
       { text: 'Payment Processing', included: true, tooltip: 'Custom payment solutions' },
       { text: 'API Access', included: true, tooltip: 'Full API access with custom endpoints' },
@@ -258,11 +258,11 @@ export default function PricingPage() {
                 <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   <div className="group flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 transition-all duration-300 hover:border-primary-gold/30 hover:bg-neutral-900/80">
                     <span className="text-xl text-primary-gold">✓</span>
-                    <span className="text-sm text-neutral-300 group-hover:text-white">24/7 System Monitoring</span>
+                    <span className="text-sm text-neutral-300 group-hover:text-white">Multilingual Support</span>
                   </div>
                   <div className="group flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 transition-all duration-300 hover:border-primary-gold/30 hover:bg-neutral-900/80">
                     <span className="text-xl text-primary-gold">✓</span>
-                    <span className="text-sm text-neutral-300 group-hover:text-white">99.9% Uptime SLA</span>
+                    <span className="text-sm text-neutral-300 group-hover:text-white">24/7 System Monitoring</span>
                   </div>
                   <div className="group flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 transition-all duration-300 hover:border-primary-gold/30 hover:bg-neutral-900/80">
                     <span className="text-xl text-primary-gold">✓</span>
