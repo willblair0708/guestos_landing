@@ -77,7 +77,7 @@ export default function SupportOptions() {
     >
       {/* Background Elements */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-1/2 -top-1/2 h-[200%] w-[200%] animate-[spin_60s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,rgba(234,179,8,0.1)_360deg)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-gold/5 via-transparent to-transparent opacity-30" />
       </div>
 
       <div className="space-y-6">
