@@ -64,13 +64,6 @@ const pricingTiers = [
   },
 ];
 
-const stats = [
-  { value: '99.9%', label: 'Uptime SLA', description: 'Enterprise-grade reliability' },
-  { value: '24/7', label: 'Support', description: 'Round-the-clock assistance' },
-  { value: '15min', label: 'Response Time', description: 'Average support response' },
-  { value: '100%', label: 'Satisfaction', description: 'Customer happiness guaranteed' },
-];
-
 const faqs = [
   {
     question: 'What payment methods do you accept?',
@@ -157,7 +150,7 @@ export default function PricingPage() {
               ease: "linear"
             }}
           />
-          <motion.div
+        <motion.div
             className="absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-accent-gold-light/10 blur-[100px]"
             animate={{
               x: [0, -50, 0],
@@ -180,47 +173,6 @@ export default function PricingPage() {
         >
           <PricingHero isMobile={isMobile} />
 
-          {/* Stats Section */}
-          <motion.section
-            variants={cardVariants}
-            className="relative z-10 -mt-20 px-4 sm:px-6 lg:px-8"
-          >
-            <div className="mx-auto max-w-7xl">
-              <motion.div
-                variants={cardVariants}
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-              >
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    variants={cardVariants}
-                    className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-primary-gold/30 hover:bg-neutral-900/80"
-                  >
-                    {/* Hover gradient effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-primary-gold/0 via-primary-gold/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      animate={{
-                        x: ['0%', '100%'],
-                        opacity: [0, 0.1, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.2,
-                      }}
-                    />
-
-                    <div className="relative">
-                      <div className="mb-2 text-3xl font-bold text-primary-gold">{stat.value}</div>
-                      <div className="mb-1 text-sm font-medium text-white">{stat.label}</div>
-                      <div className="text-sm text-neutral-400">{stat.description}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.section>
-
           {/* Pricing Cards Section */}
           <motion.section className="relative z-10 px-4 pt-24 pb-32 sm:px-6 lg:px-8">
             {/* Section Title */}
@@ -228,10 +180,10 @@ export default function PricingPage() {
               variants={cardVariants}
               className="mx-auto mb-16 max-w-2xl text-center"
             >
-              <h2 className="mb-4 bg-gradient-to-r from-neutral-900 to-neutral-800 bg-clip-text text-3xl font-light text-transparent sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-light text-white sm:text-4xl">
                 Choose your plan
               </h2>
-              <p className="text-lg text-neutral-600">
+              <p className="text-lg text-neutral-300">
                 All plans include our core AI technology. Upgrade or downgrade at any time.
               </p>
             </motion.div>
@@ -347,7 +299,7 @@ export default function PricingPage() {
               </motion.div>
             </motion.div>
           </motion.section>
-        </motion.main>
+          </motion.main>
       </div>
       <Footer />
     </>
