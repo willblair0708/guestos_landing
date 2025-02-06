@@ -86,7 +86,7 @@ const contactInfo = [
         />
       </svg>
     ),
-    label: 'Call us at',
+    label: 'Call my GuestOS Concierge at',
     value: '+1 (555) 123-4567',
   },
 ];
