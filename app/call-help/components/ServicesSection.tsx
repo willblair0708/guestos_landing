@@ -29,6 +29,57 @@ interface Service {
 
 const services: Service[] = [
   {
+    title: 'Malibu Housing Hotline',
+    description: 'Call 424-484-2372 for 24/7 assistance with finding immediate housing solutions during the Palisades Fire crisis. Get matched with verified temporary and long-term rental options.',
+    partner: 'malibu foundation',
+    status: 'Active 24/7',
+    phoneNumber: '424-484-2372',
+    testimonial: {
+      quote: "The hotline connected me with a real estate professional who had an available rental within hours. It was such a relief to find help so quickly.",
+      author: "Housing Support Caller",
+      role: "Wildfire Evacuee"
+    },
+    features: [
+      {
+        number: '1',
+        title: 'IMMEDIATE MATCHING',
+        description: 'Get matched with available rentals instantly'
+      },
+      {
+        number: '2',
+        title: 'VERIFIED LISTINGS',
+        description: 'Access on-market and off-market properties'
+      },
+      {
+        number: '3',
+        title: 'EXPERT SUPPORT',
+        description: 'Speak directly with real estate professionals'
+      },
+      {
+        number: '4',
+        title: '24/7 AVAILABILITY',
+        description: 'Get help any time, day or night'
+      }
+    ],
+    icon: (props: any) => (
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        className="h-6 w-6" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor"
+        {...props}
+      >
+        <path 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          strokeWidth={1.5} 
+          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" 
+        />
+      </svg>
+    ),
+  },
+  {
     title: 'Wildfire Relief Resource Hub',
     description: 'This hotline connects helpers directly with those in need during the Palisades Fire relief effort. Call 831-480-5016 for 24/7 assistance with donations, housing, and animal support.',
     partner: 'malibu foundation',
@@ -187,17 +238,17 @@ export default function ServicesSection() {
 
         <motion.div
           variants={containerVariants}
-          className="mt-16 grid gap-8 lg:grid-cols-2 lg:gap-12"
+          className="mt-16 grid gap-8 lg:grid-cols-3 lg:gap-8"
         >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
               whileHover="hover"
-              className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-accent-gold-light/50 hover:bg-neutral-900/80"
+              className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-accent-gold-light/50 hover:bg-neutral-900/80"
             >
               {/* Status Badge */}
-              <div className="absolute right-8 top-8 flex items-center gap-2 rounded-full border border-accent-gold-light/20 bg-accent-gold-light/5 px-3 py-1">
+              <div className="absolute right-6 top-6 flex items-center gap-2 rounded-full border border-accent-gold-light/20 bg-accent-gold-light/5 px-3 py-1">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-gold opacity-75"></span>
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-gold"></span>
@@ -206,7 +257,7 @@ export default function ServicesSection() {
               </div>
 
               {/* Service Image Placeholder */}
-              <div className="relative mb-8 h-48 overflow-hidden rounded-xl border border-neutral-800 transition-all duration-300 group-hover:border-accent-gold-light/30">
+              <div className="relative mb-6 h-36 overflow-hidden rounded-xl border border-neutral-800 transition-all duration-300 group-hover:border-accent-gold-light/30">
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent"
                   animate={{
@@ -232,10 +283,10 @@ export default function ServicesSection() {
                   >
                     <service.icon />
                   </motion.div>
-                  <h3 className="text-2xl font-light text-white">{service.title}</h3>
+                  <h3 className="text-xl font-light text-white">{service.title}</h3>
                 </div>
 
-                <p className="text-lg leading-relaxed text-neutral-400">
+                <p className="text-base leading-relaxed text-neutral-400">
                   {service.description}
                 </p>
 
@@ -256,11 +307,11 @@ export default function ServicesSection() {
                     >
                       {'number' in feature ? (
                         <>
-                          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-900 text-2xl font-bold text-primary-gold">
+                          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-900 text-xl font-bold text-primary-gold">
                             {(feature as NumberedFeature).number}
                           </div>
                           <div>
-                            <div className="text-lg font-semibold text-white">{(feature as NumberedFeature).title}</div>
+                            <div className="text-base font-semibold text-white">{(feature as NumberedFeature).title}</div>
                             <div className="text-sm text-neutral-400">{(feature as NumberedFeature).description}</div>
                           </div>
                         </>

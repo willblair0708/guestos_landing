@@ -67,7 +67,7 @@ const contactInfo = [
       </svg>
     ),
     label: 'Email us at',
-    value: 'contact@guestos.com',
+    value: 'jessie@guestos.ai',
   },
   {
     icon: (props: any) => (

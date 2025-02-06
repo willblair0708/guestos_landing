@@ -21,8 +21,8 @@ const contactMethods = [
       </svg>
     ),
     label: 'Email',
-    value: 'contact@guestos.com',
-    href: 'mailto:contact@guestos.com',
+    value: 'jessie@guestos.ai',
+    href: 'mailto:jessie@guestos.ai',
   },
   {
     icon: (props: any) => (
