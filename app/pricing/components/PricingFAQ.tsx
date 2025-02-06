@@ -1,3 +1,12 @@
+import { motion } from 'framer-motion';
+
+interface PricingFAQProps {
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
 export default function PricingFAQ({ faqs }: PricingFAQProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -28,7 +37,7 @@ export default function PricingFAQ({ faqs }: PricingFAQProps) {
         <dl className="mt-16 space-y-8 divide-y divide-neutral-800">
           {faqs.map((faq, index) => (
             <motion.div
-              key={faq.id}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

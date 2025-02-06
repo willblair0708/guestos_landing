@@ -1,3 +1,10 @@
+import { motion } from 'framer-motion';
+
+interface ComparisonTableProps {
+  features: any[];
+  plans: any[];
+}
+
 export default function ComparisonTable({ features, plans }: ComparisonTableProps) {
   return (
     <div className="relative mx-auto max-w-7xl overflow-hidden">
