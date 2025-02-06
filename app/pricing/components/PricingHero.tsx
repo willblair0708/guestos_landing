@@ -61,10 +61,42 @@ const particleVariants = {
 };
 
 const features = [
-  'No hidden fees',
-  'Cancel anytime',
-  'Free 14-day trial',
-  'Dedicated support',
+  { 
+    icon: (props: any) => (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    text: 'No hidden fees',
+    description: 'Transparent pricing, always'
+  },
+  {
+    icon: (props: any) => (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+      </svg>
+    ),
+    text: 'Cancel anytime',
+    description: 'No long-term contracts'
+  },
+  {
+    icon: (props: any) => (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    text: 'Free 14-day trial',
+    description: 'Test all features'
+  },
+  {
+    icon: (props: any) => (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    ),
+    text: 'Dedicated support',
+    description: '24/7 expert assistance'
+  }
 ];
 
 export default function PricingHero({ isMobile }: PricingHeroProps) {
@@ -77,10 +109,19 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
-      className="relative h-screen text-white"
+      className="relative min-h-screen text-white"
     >
-      {/* Floating Particles */}
+      {/* Enhanced Background Elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,200,87,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(255,87,87,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,rgba(255,200,87,0.05),rgba(255,87,87,0.05),rgba(255,200,87,0.05))]" />
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,200,87,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,200,87,0.05)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        
+        {/* Floating Particles */}
         {floatingParticles.map((particle) => (
           <motion.div
             key={particle.id}
@@ -101,46 +142,57 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
       <motion.div className="relative z-20 flex h-full flex-col">
         <Navbar isFixed={false} />
         
-        <div className="relative grid h-full grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="relative grid min-h-[calc(100vh-80px)] grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
           <motion.div
             className={`col-span-12 flex items-center ${
               isMobile ? 'justify-center pb-24' : ''
             }`}
           >
-            <div className={`w-full space-y-10 ${isMobile ? 'text-center' : ''}`}>
+            <div className={`w-full space-y-12 ${isMobile ? 'text-center' : ''}`}>
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="space-y-6"
+                className="space-y-8"
               >
+                {/* Enhanced Badge */}
                 <motion.div
                   variants={itemVariants}
-                  className="relative inline-block overflow-hidden rounded-full border border-primary-gold/20 bg-primary-gold/5 px-4 py-2 backdrop-blur-sm"
+                  className="relative inline-flex overflow-hidden rounded-full border border-primary-gold/20 bg-primary-gold/5 p-1 backdrop-blur-sm"
                 >
-                  <div className={`relative flex items-center gap-3 ${isMobile ? 'justify-center' : ''}`}>
-                    <span className="h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold" />
+                  <div className={`relative flex items-center gap-3 rounded-full bg-neutral-900/50 px-4 py-2 ${isMobile ? 'justify-center' : ''}`}>
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-gold opacity-75"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-gold"></span>
+                    </span>
                     <span className="text-primary-gold">
                       Choose Your Plan
                     </span>
                   </div>
                 </motion.div>
 
-                <motion.h1
-                  variants={itemVariants}
-                  className={`text-hero font-book ${
-                    isMobile ? 'text-4xl sm:text-5xl' : 'sm:text-5xl lg:text-6xl'
-                  }`}
-                >
-                  <span className="block text-white font-light tracking-tight">
-                    Simple, transparent pricing
-                  </span>
-                </motion.h1>
+                {/* Enhanced Title */}
+                <div className="space-y-4">
+                  <motion.h1
+                    variants={itemVariants}
+                    className={`text-hero font-book ${
+                      isMobile ? 'text-4xl sm:text-5xl' : 'sm:text-6xl lg:text-7xl'
+                    }`}
+                  >
+                    <span className="block font-light tracking-tight text-white">
+                      Simple, transparent
+                    </span>
+                    <span className="mt-2 block bg-gradient-to-r from-primary-gold via-primary-gold to-white bg-clip-text font-light tracking-tight text-transparent">
+                      pricing for all
+                    </span>
+                  </motion.h1>
 
-                <motion.div variants={itemVariants} className="mx-auto w-24">
-                  <div className="h-px w-full bg-gradient-to-r from-primary-gold to-transparent" />
-                </motion.div>
+                  <motion.div variants={itemVariants} className="mx-auto w-32">
+                    <div className="h-px w-full bg-gradient-to-r from-primary-gold via-primary-gold to-transparent" />
+                  </motion.div>
+                </div>
 
+                {/* Enhanced Description */}
                 <motion.p
                   variants={itemVariants}
                   className={`font-light ${
@@ -151,55 +203,89 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                   core AI technology and dedicated support.
                 </motion.p>
 
-                {/* Features Grid */}
+                {/* Enhanced Features Grid */}
                 <motion.div
                   variants={containerVariants}
-                  className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4"
+                  className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
                 >
                   {features.map((feature, index) => (
                     <motion.div
-                      key={feature}
+                      key={feature.text}
                       variants={itemVariants}
-                      className="group flex items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/50 px-4 py-2 text-sm shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-primary-gold/50 hover:bg-neutral-900/80"
+                      whileHover={{ scale: 1.02 }}
+                      className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-primary-gold/50 hover:bg-neutral-900/80"
                     >
-                      <motion.svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 text-primary-gold"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.5 + index * 0.1 }}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </motion.svg>
-                      <span className="text-neutral-300 transition-colors duration-300 group-hover:text-primary-gold">
-                        {feature}
-                      </span>
+                      {/* Hover gradient effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-primary-gold/0 via-primary-gold/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                        animate={{
+                          x: ['0%', '100%'],
+                          opacity: [0, 0.1, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: index * 0.2,
+                        }}
+                      />
+
+                      <div className="relative space-y-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-gold/20 bg-primary-gold/5">
+                          <feature.icon className="h-5 w-5 text-primary-gold" />
+                        </div>
+                        <h3 className="text-lg font-medium text-white">{feature.text}</h3>
+                        <p className="text-sm text-neutral-400">{feature.description}</p>
+                      </div>
                     </motion.div>
                   ))}
                 </motion.div>
 
-                {isMobile && (
-                  <motion.div
-                    variants={itemVariants}
-                    className="mx-auto max-w-sm"
+                {/* Enhanced CTA */}
+                <motion.div
+                  variants={itemVariants}
+                  className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row"
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary-gold to-primary-gold px-8 py-4 text-white shadow-lg shadow-primary-gold/20"
                   >
-                    <div className="inline-flex items-center gap-3 rounded-full border border-neutral-800 bg-neutral-900/50 px-4 py-2 shadow-lg shadow-black/20 backdrop-blur-sm">
-                      <div className="h-px w-3 bg-gradient-to-r from-primary-gold to-transparent" />
-                      <span className="text-sm font-light text-neutral-300">
-                        Transparent pricing, no hidden fees
-                      </span>
-                      <div className="h-px w-3 bg-gradient-to-l from-primary-gold to-transparent" />
-                    </div>
-                  </motion.div>
-                )}
+                    <span className="relative z-10">Get Started Now</span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-primary-gold via-white/10 to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      animate={{
+                        x: ['0%', '100%'],
+                        opacity: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    />
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group flex items-center gap-2 rounded-xl border border-neutral-800 bg-neutral-900/50 px-8 py-4 text-neutral-300 backdrop-blur-sm transition-all duration-300 hover:border-primary-gold/50 hover:bg-neutral-900/80 hover:text-white"
+                  >
+                    <span>Compare Plans</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </motion.button>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>
