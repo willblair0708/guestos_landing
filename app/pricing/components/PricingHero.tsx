@@ -82,15 +82,6 @@ const features = [
   {
     icon: (props: any) => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    text: 'Free 14-day trial',
-    description: 'Test all features'
-  },
-  {
-    icon: (props: any) => (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
       </svg>
     ),
@@ -206,7 +197,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                 {/* Enhanced Features Grid */}
                 <motion.div
                   variants={containerVariants}
-                  className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+                  className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3"
                 >
                   {features.map((feature, index) => (
                     <motion.div
@@ -229,8 +220,8 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                         }}
                       />
 
-                      <div className="relative space-y-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary-gold/20 bg-primary-gold/5">
+                      <div className="relative space-y-3 text-center">
+                        <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-primary-gold/20 bg-primary-gold/5">
                           <feature.icon className="h-5 w-5 text-primary-gold" />
                         </div>
                         <h3 className="text-lg font-medium text-white">{feature.text}</h3>
