@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface PricingFeature {
   text: string;
   included: boolean;
+  tooltip?: string;
+  isNew?: boolean;
 }
 
 interface PricingCardProps {
@@ -25,6 +28,8 @@ export default function PricingCard({
   ctaHref,
   isPopular = false,
 }: PricingCardProps) {
+  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
@@ -32,9 +37,9 @@ export default function PricingCard({
         isPopular
           ? 'border-accent-gold-light bg-accent-gold-light/10'
           : 'border-neutral-800 bg-neutral-900/50'
-      } p-8 backdrop-blur-sm transition-colors duration-300`}
+      } p-8 backdrop-blur-sm transition-all duration-500`}
     >
-      {/* Popular Badge Container - Always present but only visible when isPopular is true */}
+      {/* Popular Badge */}
       <div className="absolute left-0 right-0 -top-5 flex justify-center">
         {isPopular && (
           <motion.div 
@@ -80,8 +85,16 @@ export default function PricingCard({
       <div className="mb-10 flex-grow">
         <ul className="space-y-4">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start space-x-3">
-              <span
+            <motion.li
+              key={index}
+              className="group relative flex items-start space-x-3"
+              onHoverStart={() => setHoveredFeature(index)}
+              onHoverEnd={() => setHoveredFeature(null)}
+            >
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: index * 0.1 }}
                 className={`mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full ${
                   feature.included
                     ? 'bg-accent-gold-light text-black'
@@ -89,7 +102,7 @@ export default function PricingCard({
                 }`}
               >
                 {feature.included ? '✓' : '×'}
-              </span>
+              </motion.span>
               <span
                 className={`text-base ${
                   feature.included
@@ -98,8 +111,24 @@ export default function PricingCard({
                 }`}
               >
                 {feature.text}
+                {feature.isNew && (
+                  <span className="ml-2 inline-flex items-center rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-2 py-0.5 text-xs text-primary-gold">
+                    New
+                  </span>
+                )}
               </span>
-            </li>
+              {/* Tooltip */}
+              {feature.tooltip && hoveredFeature === index && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute left-0 -top-2 z-10 w-48 -translate-y-full rounded-lg border border-neutral-800 bg-neutral-900 p-2 text-sm text-neutral-400 shadow-xl"
+                >
+                  {feature.tooltip}
+                  <div className="absolute -bottom-1 left-4 h-2 w-2 rotate-45 border-b border-r border-neutral-800 bg-neutral-900" />
+                </motion.div>
+              )}
+            </motion.li>
           ))}
         </ul>
       </div>
@@ -132,7 +161,23 @@ export default function PricingCard({
               />
             </motion.svg>
           </div>
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          {/* Animated gradient background */}
+          <motion.div
+            className="absolute inset-0 -z-10"
+            initial={false}
+            animate={{
+              background: [
+                'linear-gradient(45deg, rgba(255,200,87,0.1) 0%, rgba(255,200,87,0) 100%)',
+                'linear-gradient(45deg, rgba(255,200,87,0) 0%, rgba(255,200,87,0.1) 50%, rgba(255,200,87,0) 100%)',
+                'linear-gradient(45deg, rgba(255,200,87,0) 0%, rgba(255,200,87,0.1) 100%)',
+              ],
+              transition: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "linear"
+              }
+            }}
+          />
         </motion.button>
       </Link>
     </motion.div>

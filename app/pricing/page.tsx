@@ -16,14 +16,14 @@ const pricingTiers = [
     price: '199',
     description: 'Perfect for businesses starting their AI journey',
     features: [
-      { text: 'AI Concierge Service', included: true },
-      { text: 'Custom AI Training', included: true },
-      { text: 'Basic Analytics', included: true },
-      { text: 'Email Support', included: true },
-      { text: 'Calendar Integration', included: false },
-      { text: 'Payment Integration', included: false },
-      { text: 'Priority Support', included: false },
-      { text: 'Custom Development', included: false },
+      { text: 'AI Concierge Service', included: true, tooltip: '24/7 AI-powered customer service' },
+      { text: 'Custom AI Training', included: true, tooltip: 'Train AI on your specific business needs' },
+      { text: 'Basic Analytics', included: true, tooltip: 'Essential metrics and insights' },
+      { text: 'Email Support', included: true, tooltip: 'Response within 24 hours' },
+      { text: 'Calendar Integration', included: false, tooltip: 'Sync with popular calendar apps' },
+      { text: 'Payment Integration', included: false, tooltip: 'Process payments seamlessly' },
+      { text: 'Priority Support', included: false, tooltip: 'Get help within 2 hours' },
+      { text: 'Custom Development', included: false, tooltip: 'Tailored solutions for your needs' },
     ],
     ctaLabel: 'Get Started',
     ctaHref: '/contact',
@@ -33,14 +33,14 @@ const pricingTiers = [
     price: '499',
     description: 'Enhanced features for growing businesses',
     features: [
-      { text: 'AI Concierge Service', included: true },
-      { text: 'Custom AI Training', included: true },
-      { text: 'Advanced Analytics', included: true },
-      { text: 'Priority Email Support', included: true },
-      { text: 'Calendar Integration', included: true },
-      { text: 'Payment Integration', included: true },
-      { text: 'Priority Support', included: true },
-      { text: 'Custom Development', included: false },
+      { text: 'AI Concierge Service', included: true, tooltip: '24/7 AI-powered customer service' },
+      { text: 'Custom AI Training', included: true, tooltip: 'Train AI on your specific business needs' },
+      { text: 'Advanced Analytics', included: true, tooltip: 'Detailed metrics and custom reports', isNew: true },
+      { text: 'Priority Email Support', included: true, tooltip: 'Response within 4 hours' },
+      { text: 'Calendar Integration', included: true, tooltip: 'Sync with popular calendar apps' },
+      { text: 'Payment Integration', included: true, tooltip: 'Process payments seamlessly' },
+      { text: 'Priority Support', included: true, tooltip: 'Get help within 2 hours' },
+      { text: 'Custom Development', included: false, tooltip: 'Tailored solutions for your needs' },
     ],
     ctaLabel: 'Get Started',
     ctaHref: '/contact',
@@ -51,17 +51,42 @@ const pricingTiers = [
     price: 'Custom',
     description: 'Tailored solutions for large organizations',
     features: [
-      { text: 'AI Concierge Service', included: true },
-      { text: 'Custom AI Training', included: true },
-      { text: 'Enterprise Analytics', included: true },
-      { text: '24/7 Support', included: true },
-      { text: 'Calendar Integration', included: true },
-      { text: 'Payment Integration', included: true },
-      { text: 'Priority Support', included: true },
-      { text: 'Custom Development', included: true },
+      { text: 'AI Concierge Service', included: true, tooltip: '24/7 AI-powered customer service' },
+      { text: 'Custom AI Training', included: true, tooltip: 'Train AI on your specific business needs' },
+      { text: 'Enterprise Analytics', included: true, tooltip: 'Advanced analytics with custom integrations', isNew: true },
+      { text: '24/7 Support', included: true, tooltip: 'Round-the-clock dedicated support' },
+      { text: 'Calendar Integration', included: true, tooltip: 'Sync with popular calendar apps' },
+      { text: 'Payment Integration', included: true, tooltip: 'Process payments seamlessly' },
+      { text: 'Priority Support', included: true, tooltip: 'Get help within 1 hour' },
+      { text: 'Custom Development', included: true, tooltip: 'Tailored solutions for your needs' },
     ],
     ctaLabel: 'Contact Sales',
     ctaHref: '/contact',
+  },
+];
+
+const stats = [
+  { value: '99.9%', label: 'Uptime SLA' },
+  { value: '24/7', label: 'Support' },
+  { value: '15min', label: 'Response Time' },
+];
+
+const faqs = [
+  {
+    question: 'What payment methods do you accept?',
+    answer: 'We accept all major credit cards, wire transfers, and ACH payments. Enterprise customers can also opt for custom billing arrangements.',
+  },
+  {
+    question: 'Can I upgrade or downgrade my plan?',
+    answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.',
+  },
+  {
+    question: 'Do you offer a free trial?',
+    answer: 'Yes, we offer a 14-day free trial for all our plans. No credit card required to start.',
+  },
+  {
+    question: 'What kind of support do you provide?',
+    answer: 'We offer email support for all plans, with priority support and 24/7 phone support available on higher tiers.',
   },
 ];
 
@@ -141,6 +166,44 @@ export default function PricingPage() {
         >
           <PricingHero isMobile={isMobile} />
 
+          {/* Stats Section */}
+          <motion.section
+            variants={cardVariants}
+            className="relative z-10 -mt-20 px-4 sm:px-6 lg:px-8"
+          >
+            <div className="mx-auto max-w-7xl">
+              <motion.div
+                variants={cardVariants}
+                className="grid grid-cols-1 gap-4 sm:grid-cols-3"
+              >
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    variants={cardVariants}
+                    className="relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur-sm"
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent"
+                      animate={{
+                        x: ['0%', '100%'],
+                        opacity: [0, 0.1, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.2,
+                      }}
+                    />
+                    <div className="relative text-center">
+                      <div className="mb-2 text-3xl font-bold text-primary-gold">{stat.value}</div>
+                      <div className="text-sm text-neutral-400">{stat.label}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.section>
+
           <motion.section className="relative z-10 px-4 pt-24 pb-32 sm:px-6 lg:px-8">
             {/* Section Title */}
             <motion.div
@@ -175,6 +238,43 @@ export default function PricingPage() {
                   <PricingCard {...tier} />
                 </motion.div>
               ))}
+            </motion.div>
+
+            {/* FAQ Section */}
+            <motion.div 
+              variants={containerVariants}
+              className="mx-auto mt-32 max-w-3xl"
+            >
+              <motion.div
+                variants={cardVariants}
+                className="mb-12 text-center"
+              >
+                <h2 className="mb-4 bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-3xl font-light text-transparent">
+                  Frequently Asked Questions
+                </h2>
+              </motion.div>
+
+              <motion.div
+                variants={containerVariants}
+                className="space-y-6"
+              >
+                {faqs.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    variants={cardVariants}
+                    className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 backdrop-blur-sm"
+                  >
+                    <div className="p-6">
+                      <h3 className="mb-4 text-lg font-medium text-white">
+                        {faq.question}
+                      </h3>
+                      <p className="text-neutral-400">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
 
             {/* Additional Info Section */}
@@ -214,8 +314,8 @@ export default function PricingPage() {
                 variants={cardVariants}
                 className="mt-12 text-center"
               >
-                <Link href="/faq" className="group inline-flex items-center gap-2 text-neutral-400 transition-colors hover:text-primary-gold">
-                  <span>Have questions? Check our FAQ</span>
+                <Link href="/contact" className="group inline-flex items-center gap-2 text-neutral-400 transition-colors hover:text-primary-gold">
+                  <span>Still have questions? Talk to our team</span>
                   <motion.svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
