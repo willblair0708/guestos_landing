@@ -33,9 +33,18 @@ export default function CallHelpPage() {
       >
         {/* Background Elements */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          {/* Grid pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,200,87,0.12),transparent_70%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,200,87,0.08),transparent_70%)]" />
+          
+          {/* Unique gradient pattern for Call-Help */}
+          <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_40%_30%,rgba(255,87,87,0.08),rgba(255,200,87,0.08),rgba(255,87,87,0.08))]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_70%,rgba(255,87,87,0.12),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,200,87,0.08),transparent_50%)]" />
+          
+          {/* Emergency-themed accent gradients */}
+          <div className="absolute left-0 top-1/4 h-[500px] w-[500px] animate-pulse rounded-full bg-red-500/5 blur-[100px]" />
+          <div className="absolute right-0 top-3/4 h-[300px] w-[300px] animate-pulse rounded-full bg-accent-gold-light/5 blur-[80px]" />
+          <div className="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 animate-pulse rounded-full bg-red-500/3 blur-[120px]" />
         </div>
 
         <motion.main
