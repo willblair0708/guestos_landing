@@ -12,7 +12,7 @@ const navItems = [
   { text: 'Home', href: '/' },
   { text: 'Platform', href: '/platform' },
   { text: 'About', href: '/about' },
-  { text: 'Offer', href: '/offer' },
+  { text: 'Pricing', href: '/pricing' },
 ] as const;
 
 const navItemVariants = {
