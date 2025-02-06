@@ -8,6 +8,7 @@ import useIsMobile from '@/hooks/use-is-mobile';
 import Footer from '../components/Footer';
 import PricingCard from './components/PricingCard';
 import PricingHero from './components/PricingHero';
+import Link from 'next/link';
 
 const pricingTiers = [
   {
@@ -69,7 +70,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
       when: 'beforeChildren',
       ease: 'easeInOut',
       duration: 0.5,
@@ -78,13 +79,27 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.8,
       ease: [0.6, 0.05, 0.01, 0.9],
+    },
+  },
+};
+
+const floatingGradientVariants = {
+  animate: {
+    x: [0, 200, 0],
+    y: [-100, 100, -100],
+    scale: [1, 1.2, 1],
+    opacity: [0.5, 0.8, 0.5],
+    transition: {
+      duration: 25,
+      repeat: Infinity,
+      ease: 'easeInOut',
     },
   },
 };
@@ -102,8 +117,23 @@ export default function PricingPage() {
     <>
       <motion.div
         key="pricing-page"
-        className="min-h-screen w-screen overflow-hidden bg-black font-sans"
+        className="relative min-h-screen w-screen overflow-hidden bg-black font-sans"
       >
+        {/* Background Elements */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
+          <motion.div
+            className="absolute -left-[500px] top-1/2 h-[1000px] w-[1000px] rounded-full bg-gradient-to-r from-accent-gold-light/5 via-[rgba(255,200,87,0.05)] to-transparent blur-3xl"
+            variants={floatingGradientVariants}
+            animate="animate"
+          />
+          <motion.div
+            className="absolute right-0 top-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-l from-accent-gold-light/5 via-[rgba(255,200,87,0.05)] to-transparent blur-3xl"
+            variants={floatingGradientVariants}
+            animate="animate"
+          />
+        </div>
+
         <motion.main
           initial="hidden"
           animate="visible"
@@ -111,16 +141,97 @@ export default function PricingPage() {
         >
           <PricingHero isMobile={isMobile} />
 
-          <motion.section className="relative z-10 px-4 pb-24 sm:px-6 lg:px-8">
+          <motion.section className="relative z-10 px-4 pt-24 pb-32 sm:px-6 lg:px-8">
+            {/* Section Title */}
+            <motion.div
+              variants={cardVariants}
+              className="mx-auto mb-16 max-w-2xl text-center"
+            >
+              <h2 className="mb-4 bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-3xl font-light text-transparent sm:text-4xl">
+                Choose your plan
+              </h2>
+              <p className="text-lg text-neutral-400">
+                All plans include our core AI technology. Upgrade or downgrade at any time.
+              </p>
+            </motion.div>
+
+            {/* Pricing Cards */}
             <motion.div
               variants={containerVariants}
-              className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3"
+              className="relative mx-auto grid max-w-7xl gap-6 sm:gap-8 lg:grid-cols-3 lg:gap-12"
             >
-              {pricingTiers.map((tier) => (
-                <motion.div key={tier.title} variants={cardVariants}>
+              {/* Decorative Elements */}
+              <div className="absolute -left-32 top-1/2 h-64 w-64 rounded-full bg-accent-gold-light/5 blur-3xl" />
+              <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-accent-gold-light/5 blur-3xl" />
+
+              {pricingTiers.map((tier, index) => (
+                <motion.div 
+                  key={tier.title} 
+                  variants={cardVariants}
+                  className={`relative ${
+                    tier.isPopular ? 'lg:mt-[-24px]' : ''
+                  }`}
+                >
                   <PricingCard {...tier} />
                 </motion.div>
               ))}
+            </motion.div>
+
+            {/* Additional Info Section */}
+            <motion.div 
+              variants={containerVariants}
+              className="mx-auto mt-32 max-w-3xl text-center"
+            >
+              <motion.div
+                variants={cardVariants}
+                className="relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 backdrop-blur-sm"
+              >
+                {/* Decorative corner gradients */}
+                <div className="absolute -left-24 -top-24 h-48 w-48 rounded-full bg-accent-gold-light/5 blur-3xl" />
+                <div className="absolute -bottom-24 -right-24 h-48 w-48 rounded-full bg-accent-gold-light/5 blur-3xl" />
+
+                <h3 className="relative mb-6 bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-2xl font-light text-transparent">
+                  All plans include
+                </h3>
+                <div className="relative grid gap-6 text-neutral-400 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
+                    <span className="text-xl text-primary-gold">✓</span>
+                    <span className="text-sm">24/7 System Monitoring</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
+                    <span className="text-xl text-primary-gold">✓</span>
+                    <span className="text-sm">99.9% Uptime SLA</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900/50 p-4">
+                    <span className="text-xl text-primary-gold">✓</span>
+                    <span className="text-sm">Dedicated Support</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* FAQ Link */}
+              <motion.div
+                variants={cardVariants}
+                className="mt-12 text-center"
+              >
+                <Link href="/faq" className="group inline-flex items-center gap-2 text-neutral-400 transition-colors hover:text-primary-gold">
+                  <span>Have questions? Check our FAQ</span>
+                  <motion.svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                    />
+                  </motion.svg>
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.section>
         </motion.main>
