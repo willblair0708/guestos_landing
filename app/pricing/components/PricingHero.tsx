@@ -71,17 +71,6 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.9]);
-  const y = useTransform(scrollYProgress, [0, 0.3], ['0%', '15%']);
-  const blur = useTransform(scrollYProgress, [0, 0.3], [0, 5]);
-  const ySpring = useSpring(y, SPRING_CONFIG);
-
   return (
     <motion.section
       ref={sectionRef}
@@ -109,15 +98,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
         ))}
       </div>
 
-      <motion.div
-        className="relative z-20 flex h-full flex-col"
-        style={{
-          opacity,
-          scale,
-          y: ySpring,
-          filter: `blur(${blur}px)`,
-        }}
-      >
+      <motion.div className="relative z-20 flex h-full flex-col">
         <Navbar isFixed={false} />
         
         <div className="relative grid h-full grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
@@ -125,7 +106,6 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
             className={`col-span-12 flex items-center ${
               isMobile ? 'justify-center pb-24' : ''
             }`}
-            style={{ opacity, scale }}
           >
             <div className={`w-full space-y-10 ${isMobile ? 'text-center' : ''}`}>
               <motion.div
