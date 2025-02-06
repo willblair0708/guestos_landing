@@ -34,14 +34,28 @@ export default function PricingCard({
           : 'border-neutral-800 bg-neutral-900/50'
       } p-8 backdrop-blur-sm transition-colors duration-300`}
     >
-      {isPopular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 transform">
-          <span className="inline-flex items-center gap-1 rounded-full border border-accent-gold-light bg-accent-gold-light px-3 py-1 text-sm font-medium text-black">
-            <span className="h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-black" />
-            Most Popular
-          </span>
-        </div>
-      )}
+      {/* Popular Badge Container - Always present but only visible when isPopular is true */}
+      <div className="absolute left-0 right-0 -top-5 flex justify-center">
+        {isPopular && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-block"
+          >
+            <div className="relative">
+              {/* Glow effect */}
+              <div className="absolute -inset-1 rounded-full bg-accent-gold-light/20 blur-sm" />
+              
+              {/* Badge */}
+              <div className="relative flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-accent-gold-light bg-accent-gold-light px-4 py-1.5">
+                <span className="h-1.5 w-1.5 animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-white" />
+                <span className="text-sm font-medium text-white">Most Popular</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </div>
 
       <div className="mb-8">
         <h3 className="mb-3 text-2xl font-medium text-white">{title}</h3>
