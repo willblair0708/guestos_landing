@@ -7,6 +7,8 @@ import useIsMobile from '@/hooks/use-is-mobile';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import ContactForm from './components/ContactForm';
+import ContactMethods from './components/ContactMethods';
+import SupportOptions from './components/SupportOptions';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -74,7 +76,7 @@ export default function ContactPage() {
           {/* Gradient overlays */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,200,87,0.15),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(255,87,87,0.1),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,rgba(255,200,87,0.05),rgba(255,87,87,0.05),rgba(255,200,87,0.05))]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-gold/5 via-transparent to-transparent opacity-30" />
 
           {/* Floating Particles */}
           {floatingParticles.map((particle) => (
@@ -123,10 +125,23 @@ export default function ContactPage() {
               </p>
             </motion.div>
 
+            {/* Contact Form Section */}
             <div className="mx-auto mt-16 max-w-2xl">
               <motion.div variants={itemVariants}>
                 <ContactForm />
               </motion.div>
+            </div>
+
+            {/* Additional Contact Sections */}
+            <div className="mx-auto mt-24 max-w-7xl">
+              <div className="grid gap-8 lg:grid-cols-2">
+                <motion.div variants={itemVariants}>
+                  <ContactMethods />
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  <SupportOptions />
+                </motion.div>
+              </div>
             </div>
           </div>
 
