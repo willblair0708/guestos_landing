@@ -95,7 +95,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
         {floatingParticles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute rounded-full bg-accent-gold-light/30"
+            className="absolute rounded-full bg-primary-gold/30"
             style={{
               width: particle.size,
               height: particle.size,
@@ -136,11 +136,11 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
               >
                 <motion.div
                   variants={itemVariants}
-                  className="relative inline-block overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"
+                  className="relative inline-block overflow-hidden rounded-full border border-primary-gold/20 bg-primary-gold/5 px-4 py-2 backdrop-blur-sm"
                 >
                   <div className={`relative flex items-center gap-3 ${isMobile ? 'justify-center' : ''}`}>
                     <span className="h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold" />
-                    <span className="bg-gradient-to-r from-primary-gold to-accent-gold-light bg-clip-text text-transparent">
+                    <span className="text-primary-gold">
                       Choose Your Plan
                     </span>
                   </div>
@@ -152,7 +152,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                     isMobile ? 'text-4xl sm:text-5xl' : 'sm:text-5xl lg:text-6xl'
                   }`}
                 >
-                  <span className="block bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light tracking-tight text-transparent">
+                  <span className="block text-white font-light tracking-tight">
                     Simple, transparent pricing
                   </span>
                 </motion.h1>
@@ -165,7 +165,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                   variants={itemVariants}
                   className={`font-light ${
                     isMobile ? 'mx-auto max-w-sm text-lg' : 'max-w-xl text-xl'
-                  } leading-relaxed text-white/60`}
+                  } leading-relaxed text-neutral-300`}
                 >
                   Choose the perfect plan for your business needs. All plans include our
                   core AI technology and dedicated support.
@@ -180,7 +180,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                     <motion.div
                       key={feature}
                       variants={itemVariants}
-                      className="group flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-sm transition-all duration-300 hover:border-accent-gold-light/50 hover:bg-white/10"
+                      className="group flex items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/50 px-4 py-2 text-sm shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-300 hover:border-primary-gold/50 hover:bg-neutral-900/80"
                     >
                       <motion.svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +199,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                           d="M5 13l4 4L19 7"
                         />
                       </motion.svg>
-                      <span className="text-white/80 transition-colors duration-300 group-hover:text-primary-gold">
+                      <span className="text-neutral-300 transition-colors duration-300 group-hover:text-primary-gold">
                         {feature}
                       </span>
                     </motion.div>
@@ -211,9 +211,9 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                     variants={itemVariants}
                     className="mx-auto max-w-sm"
                   >
-                    <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+                    <div className="inline-flex items-center gap-3 rounded-full border border-neutral-800 bg-neutral-900/50 px-4 py-2 shadow-lg shadow-black/20 backdrop-blur-sm">
                       <div className="h-px w-3 bg-gradient-to-r from-primary-gold to-transparent" />
-                      <span className="text-sm font-light text-white/80">
+                      <span className="text-sm font-light text-neutral-300">
                         Transparent pricing, no hidden fees
                       </span>
                       <div className="h-px w-3 bg-gradient-to-l from-primary-gold to-transparent" />

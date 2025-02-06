@@ -17,6 +17,7 @@ interface PricingCardProps {
   ctaLabel: string;
   ctaHref: string;
   isPopular?: boolean;
+  isMobile?: boolean;
 }
 
 const featureVariants = {
@@ -53,206 +54,101 @@ export default function PricingCard({
   ctaLabel,
   ctaHref,
   isPopular = false,
+  isMobile = false,
 }: PricingCardProps) {
-  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
-      className={`group relative flex h-full flex-col rounded-2xl border ${
-        isPopular
-          ? 'border-accent-gold-light bg-accent-gold-light/10'
-          : 'border-neutral-800 bg-neutral-900/50'
-      } p-8 backdrop-blur-sm transition-all duration-500`}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900/50 p-8 shadow-lg shadow-black/20 backdrop-blur-sm transition-all duration-500 hover:border-primary-gold/50 hover:bg-neutral-900/80 ${
+        isPopular ? 'ring-2 ring-primary-gold/20' : ''
+      }`}
     >
       {/* Popular Badge */}
-      <div className="absolute left-0 right-0 -top-5 flex justify-center">
-        {isPopular && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block"
-          >
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute -inset-1 rounded-full bg-accent-gold-light/20 blur-sm" />
-              
-              {/* Badge */}
-              <div className="relative flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-accent-gold-light bg-accent-gold-light px-4 py-1.5">
-                <span className="h-1.5 w-1.5 animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-white" />
-                <span className="text-sm font-medium text-white">Most Popular</span>
-              </div>
+      {isPopular && (
+        <div className="absolute -right-12 top-8 z-10 -rotate-45 bg-gradient-to-r from-primary-gold to-primary-gold px-12 py-1.5 text-center text-xs font-medium text-white shadow-sm">
+          Most Popular
+        </div>
+      )}
+
+      {/* Card Header */}
+      <div className="mb-8 space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-medium text-white">{title}</h3>
+          {isPopular && (
+            <div className="flex items-center gap-1.5 rounded-full bg-primary-gold/10 px-3 py-1">
+              <span className="h-1.5 w-1.5 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-primary-gold" />
+              <span className="text-xs font-medium text-primary-gold">Popular Choice</span>
             </div>
-          </motion.div>
-        )}
+          )}
+        </div>
+        <div className="space-y-1">
+          <div className="flex items-baseline gap-1">
+            <span className="text-4xl font-medium text-white">${price}</span>
+            <span className="text-sm text-neutral-400">/month</span>
+          </div>
+          <p className="text-sm leading-relaxed text-neutral-300">{description}</p>
+        </div>
       </div>
 
-      {/* Card Content */}
-      <div className="relative space-y-8">
-        {/* Header */}
-        <div>
-          <h3 className="mb-3 text-2xl font-medium text-white">{title}</h3>
-          <p className="mb-6 text-base text-neutral-400">{description}</p>
-          <div className="mb-6">
-            {price === 'Custom' ? (
-              <span className="bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-4xl font-bold text-transparent">
-                Custom
-              </span>
-            ) : (
-              <div className="flex items-baseline">
-                <span className="bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-4xl font-bold text-transparent">
-                  ${price}
-                </span>
-                <span className="ml-2 text-neutral-400">/month</span>
-              </div>
-            )}
-          </div>
-          <div className="h-px w-12 bg-gradient-to-r from-primary-gold to-transparent" />
-        </div>
-
-        {/* Features List */}
-        <div className="flex-grow">
-          <ul className="space-y-4">
-            {features.map((feature, index) => (
-              <motion.li
-                key={index}
-                variants={featureVariants}
-                initial="hidden"
-                animate="visible"
-                custom={index}
-                className="group/feature relative flex items-start space-x-3"
-                onHoverStart={() => setHoveredFeature(index)}
-                onHoverEnd={() => setHoveredFeature(null)}
-              >
-                <motion.span
-                  variants={checkmarkVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className={`mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full ${
-                    feature.included
-                      ? 'bg-accent-gold-light text-black'
-                      : 'bg-neutral-800 text-neutral-500'
-                  }`}
-                >
-                  {feature.included ? '✓' : '×'}
-                </motion.span>
-                <span
-                  className={`text-base ${
-                    feature.included
-                      ? 'text-white'
-                      : 'text-neutral-500 line-through'
-                  }`}
-                >
-                  {feature.text}
-                  {feature.isNew && (
-                    <motion.span 
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                      className="ml-2 inline-flex items-center rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-2 py-0.5 text-xs text-primary-gold"
-                    >
-                      New
-                    </motion.span>
-                  )}
-                </span>
-
-                {/* Enhanced Tooltip */}
-                {feature.tooltip && hoveredFeature === index && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 -top-2 z-10 w-48 -translate-y-full rounded-lg border border-neutral-800 bg-neutral-900/95 p-3 text-sm text-neutral-400 shadow-xl backdrop-blur-sm"
-                  >
-                    <div className="relative">
-                      {feature.tooltip}
-                      <div className="absolute -bottom-1 left-4 h-2 w-2 rotate-45 border-b border-r border-neutral-800 bg-neutral-900" />
-                    </div>
-                  </motion.div>
-                )}
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-
-        {/* CTA Button */}
-        <Link href={ctaHref} className="mt-auto block">
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`group relative flex w-full items-center justify-center space-x-2 overflow-hidden rounded-full ${
-              isPopular
-                ? 'border-accent-gold-medium bg-accent-gold-light text-black hover:bg-accent-gold-medium'
-                : 'border border-accent-gold-light bg-accent-gold-light/10 text-primary-gold hover:border-accent-gold-medium hover:bg-accent-gold-light/20'
-            } px-6 py-3.5 text-base transition-all duration-300`}
+      {/* Features List */}
+      <div className="mb-8 flex-grow space-y-4">
+        {features.map((feature, index) => (
+          <motion.div
+            key={feature.text}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 * index }}
+            className="flex items-start gap-3"
           >
-            <div className="relative flex items-center justify-center gap-2">
-              <span className="relative z-10">{ctaLabel}</span>
-              <motion.svg
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2 + index * 0.1 }}
+              className="mt-1 rounded-full bg-primary-gold/10 p-1"
+            >
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className={`relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 ${
-                  isPopular ? 'stroke-black' : 'stroke-primary-gold'
-                }`}
+                className="h-3 w-3 text-primary-gold"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth={1.5}
+                stroke="currentColor"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
                 />
-              </motion.svg>
-            </div>
-
-            {/* Enhanced Animated Gradient Background */}
-            <motion.div
-              className="absolute inset-0 -z-10"
-              initial={false}
-              animate={{
-                background: [
-                  'linear-gradient(45deg, rgba(255,200,87,0.1) 0%, rgba(255,200,87,0) 100%)',
-                  'linear-gradient(45deg, rgba(255,200,87,0) 0%, rgba(255,200,87,0.1) 50%, rgba(255,200,87,0) 100%)',
-                  'linear-gradient(45deg, rgba(255,200,87,0) 0%, rgba(255,200,87,0.1) 100%)',
-                ],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
-          </motion.button>
-        </Link>
+              </svg>
+            </motion.div>
+            <span className="text-sm leading-relaxed text-neutral-300">{feature.text}</span>
+          </motion.div>
+        ))}
       </div>
 
-      {/* Card Background Effects */}
-      <div className="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
-        {/* Top gradient */}
-        <div className="absolute -top-1/2 left-1/2 h-[200px] w-[200px] -translate-x-1/2 translate-y-1/2 bg-accent-gold-light/10 blur-[100px]" />
-        
-        {/* Bottom gradient */}
-        <div className="absolute -bottom-1/2 left-1/2 h-[200px] w-[200px] -translate-x-1/2 -translate-y-1/2 bg-accent-gold-light/5 blur-[100px]" />
-        
-        {/* Animated hover gradient */}
-        <motion.div
-          className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          initial={false}
-          animate={{
-            background: [
-              'radial-gradient(circle at 0% 0%, rgba(255,200,87,0.1), transparent 50%)',
-              'radial-gradient(circle at 100% 100%, rgba(255,200,87,0.1), transparent 50%)',
-              'radial-gradient(circle at 0% 0%, rgba(255,200,87,0.1), transparent 50%)',
-            ],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-      </div>
+      {/* CTA Button */}
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className={`relative w-full overflow-hidden rounded-xl py-3 text-sm font-medium transition-all duration-300 ${
+          isPopular
+            ? 'bg-gradient-to-r from-primary-gold to-primary-gold text-white shadow-lg shadow-primary-gold/20'
+            : 'border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:border-primary-gold/50 hover:bg-primary-gold/5'
+        }`}
+      >
+        <span className="relative z-10">Get Started</span>
+        {isPopular && (
+          <motion.div
+            className="absolute inset-0 -z-0 bg-gradient-to-r from-primary-gold via-primary-gold to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            initial={false}
+            animate={isHovered ? { x: ['0%', '100%'] } : { x: '0%' }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
+        )}
+      </motion.button>
     </motion.div>
   );
 } 
