@@ -95,54 +95,88 @@ export default function PricingCard({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * index }}
-            className="flex items-start gap-3"
+            className="group/feature flex items-start gap-3"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2 + index * 0.1 }}
-              className="mt-1 rounded-full bg-primary-gold/10 p-1"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-3 w-3 text-primary-gold"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </motion.div>
-            <span className="text-sm leading-relaxed text-neutral-300">{feature.text}</span>
+            <div className={`mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full ${
+              feature.included
+                ? 'bg-primary-gold/10 text-primary-gold'
+                : 'bg-red-500/10 text-red-500'
+            }`}>
+              {feature.included ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3 w-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3 w-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-2">
+                <span className={`text-sm leading-relaxed ${
+                  feature.included ? 'text-neutral-300 group-hover/feature:text-white' : 'text-neutral-500'
+                }`}>
+                  {feature.text}
+                </span>
+                {feature.isNew && (
+                  <span className="inline-flex items-center rounded-full bg-primary-gold/10 px-2 py-0.5 text-xs font-medium text-primary-gold">
+                    New
+                  </span>
+                )}
+              </div>
+              {feature.tooltip && (
+                <span className="mt-0.5 text-xs text-neutral-500">{feature.tooltip}</span>
+              )}
+            </div>
           </motion.div>
         ))}
       </div>
 
       {/* CTA Button */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className={`relative w-full overflow-hidden rounded-xl py-3 text-sm font-medium transition-all duration-300 ${
-          isPopular
-            ? 'bg-gradient-to-r from-primary-gold to-primary-gold text-white shadow-lg shadow-primary-gold/20'
-            : 'border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:border-primary-gold/50 hover:bg-primary-gold/5'
-        }`}
-      >
-        <span className="relative z-10">Get Started</span>
-        {isPopular && (
-          <motion.div
-            className="absolute inset-0 -z-0 bg-gradient-to-r from-primary-gold via-primary-gold to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            initial={false}
-            animate={isHovered ? { x: ['0%', '100%'] } : { x: '0%' }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        )}
-      </motion.button>
+      <Link href={ctaHref}>
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className={`relative w-full overflow-hidden rounded-xl py-3 text-sm font-medium transition-all duration-300 ${
+            isPopular
+              ? 'bg-gradient-to-r from-primary-gold to-primary-gold text-white shadow-lg shadow-primary-gold/20'
+              : 'border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:border-primary-gold/50 hover:bg-primary-gold/5'
+          }`}
+        >
+          <span className="relative z-10">{ctaLabel}</span>
+          {isPopular && (
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-primary-gold via-primary-gold to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              initial={false}
+              animate={isHovered ? { x: ['0%', '100%'] } : { x: '0%' }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
+          )}
+        </motion.button>
+      </Link>
     </motion.div>
   );
 } 
