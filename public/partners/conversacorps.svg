@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Conversation Bubbles Symbol -->
+  <path d="M20 35C20 27.268 26.268 21 34 21H46C53.732 21 60 27.268 60 35C60 42.732 53.732 49 46 49H34C26.268 49 20 42.732 20 35Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M30 25C30 17.268 36.268 11 44 11H56C63.732 11 70 17.268 70 25C70 32.732 63.732 39 56 39H44C36.268 39 30 32.732 30 25Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  
+  <!-- Text -->
+  <text x="90" y="35" font-family="Arial" font-size="16" font-weight="bold" fill="currentColor">
+    CONVERSACORPS
+  </text>
+</svg> 

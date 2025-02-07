@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Foundation Symbol -->
+  <path d="M30 15 L45 45 L15 45 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  <circle cx="30" cy="30" r="20" stroke="currentColor" stroke-width="2" fill="none"/>
+  
+  <!-- Text -->
+  <text x="70" y="35" font-family="Arial" font-size="16" font-weight="bold" fill="currentColor">
+    THE MALIBU FOUNDATION
+  </text>
+</svg> 

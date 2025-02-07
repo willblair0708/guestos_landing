@@ -11,6 +11,7 @@ import ImpactSection from './components/ImpactSection';
 import VisionSection from './components/VisionSection';
 import StorySection from './components/StorySection';
 import MediaSection from './components/MediaSection';
+import PartnersSection from './components/PartnersSection';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -71,6 +72,9 @@ export default function CallHelpPage() {
               <StorySection />
               <VisionSection />
             </div>
+            
+            {/* Partners Section */}
+            <PartnersSection />
             
             {/* Additional Information */}
             <MediaSection />
