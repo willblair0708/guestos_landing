@@ -1,5 +1,6 @@
 import { motion, useInView, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 import Navbar from '../../components/Navbar';
 
@@ -236,28 +237,33 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                   variants={itemVariants}
                   className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row"
                 >
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group relative flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary-gold to-primary-gold px-8 py-4 text-white shadow-lg shadow-primary-gold/20"
-                  >
-                    <span className="relative z-10">Get Started Now</span>
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-primary-gold via-white/10 to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      animate={{
-                        x: ['0%', '100%'],
-                        opacity: [0, 1, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
-                    />
-                  </motion.button>
+                  <Link href="/contact">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="group relative flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary-gold to-primary-gold px-8 py-4 text-white shadow-lg shadow-primary-gold/20"
+                    >
+                      <span className="relative z-10">Get Started Now</span>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-primary-gold via-white/10 to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                        animate={{
+                          x: ['0%', '100%'],
+                          opacity: [0, 1, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                        }}
+                      />
+                    </motion.button>
+                  </Link>
 
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      document.getElementById('pricing-cards')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="group flex items-center gap-2 rounded-xl border border-neutral-800 bg-neutral-900/50 px-8 py-4 text-neutral-300 backdrop-blur-sm transition-all duration-300 hover:border-primary-gold/50 hover:bg-neutral-900/80 hover:text-white"
                   >
                     <span>Compare Plans</span>

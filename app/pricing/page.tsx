@@ -174,7 +174,7 @@ export default function PricingPage() {
           <PricingHero isMobile={isMobile} />
 
           {/* Pricing Cards Section */}
-          <motion.section className="relative z-10 px-4 pt-24 pb-32 sm:px-6 lg:px-8">
+          <motion.section id="pricing-cards" className="relative z-10 px-4 pt-24 pb-32 sm:px-6 lg:px-8">
             {/* Section Title */}
             <motion.div
               variants={cardVariants}
