@@ -16,7 +16,7 @@ const pricingTiers = [
     description: 'Perfect for businesses starting their AI journey',
     features: [
       { text: 'AI Concierge (24/7)', included: true, tooltip: 'Standard AI voice with basic responses' },
-      { text: 'Call Transfers (2/mo)', included: true, tooltip: 'Up to 2 call transfers to human agents per month' },
+      { text: 'Live Transfers (2 Lines)', included: true, tooltip: 'Transfer calls to your staff (e.g., front desk) or partner organizations' },
       { text: 'AI Model Training (1 Model)', included: true, tooltip: 'Single AI model with basic training' },
       { text: 'Analytics Dashboard', included: true, tooltip: 'Basic metrics and monthly reports' },
       { text: 'Email Support (48h)', included: true, tooltip: 'Response within 48 business hours' },
@@ -33,7 +33,7 @@ const pricingTiers = [
     description: 'Enhanced features for growing businesses',
     features: [
       { text: 'AI Concierge (24/7)', included: true, tooltip: 'Choose from multiple AI voice options', isNew: true },
-      { text: 'Call Transfers (4/mo)', included: true, tooltip: 'Up to 4 call transfers to human agents per month', isNew: true },
+      { text: 'Live Transfers (4 Lines)', included: true, tooltip: 'Transfer to multiple departments or partner organizations (e.g., front desk, housekeeping, partner services)', isNew: true },
       { text: 'AI Model Training (5 Models)', included: true, tooltip: 'Train up to 5 custom AI models' },
       { text: 'Analytics Dashboard', included: true, tooltip: 'Advanced metrics with custom reports' },
       { text: 'Email Support (Instant)', included: true, tooltip: 'AI-powered instant response' },
@@ -51,7 +51,7 @@ const pricingTiers = [
     description: 'Tailored solutions for large organizations',
     features: [
       { text: 'AI Concierge (24/7)', included: true, tooltip: 'Fully customizable AI voice options', isNew: true },
-      { text: 'Call Transfers (Unlimited)', included: true, tooltip: 'Unlimited call transfers to human agents', isNew: true },
+      { text: 'Live Transfers (Custom)', included: true, tooltip: 'Custom amount of transfers to any department or partner organization (e.g., multiple properties, emergency services, partner networks)', isNew: true },
       { text: 'AI Model Training (Unlimited)', included: true, tooltip: 'Unlimited AI models with custom fine-tuning' },
       { text: 'Analytics Dashboard', included: true, tooltip: 'Enterprise analytics suite' },
       { text: 'Email Support (Instant)', included: true, tooltip: 'AI-powered instant response with human escalation' },
