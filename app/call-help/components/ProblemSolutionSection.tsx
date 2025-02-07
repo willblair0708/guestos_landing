@@ -92,7 +92,7 @@ export default function ProblemSolutionSection() {
             <div className="absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-accent-gold-light/5 blur-3xl" />
             
             <div className="relative space-y-6">
-              <h3 className="text-2xl font-light text-white">So We Built Our Own</h3>
+              <h3 className="text-2xl font-light text-white">We Built a Solution</h3>
               <div className="h-px w-12 bg-gradient-to-r from-primary-gold to-transparent" />
               <p className="text-lg leading-relaxed text-neutral-400">
                 At GuestOS, we leveraged our expertise to create:
