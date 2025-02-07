@@ -20,13 +20,13 @@ const partners = [
     name: 'The Malibu Foundation',
     url: 'https://www.themalibufoundation.org/',
     description: 'Leading disaster response and community resilience initiatives in California.',
-    logo: '/partners/malibu-foundation.svg',
+    logo: '/partners/malibu.png',
   },
   {
     name: 'Conversacorps / Aid Arena',
     url: 'https://conversacorps.org/aid_arena/',
     description: 'Pioneering innovative solutions for crisis communication and humanitarian aid.',
-    logo: '/partners/conversacorps.svg',
+    logo: '/partners/conversacorps.webp',
   },
 ];
 
