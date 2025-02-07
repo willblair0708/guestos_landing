@@ -1,5 +1,16 @@
 import { motion } from 'framer-motion';
 
+interface PricingStatsProps {
+  stats: Array<{
+    id: string | number;
+    label: string;
+    value: string | number;
+    prefix?: string;
+    suffix?: string;
+    description?: string;
+  }>;
+}
+
 export default function PricingStats({ stats }: PricingStatsProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

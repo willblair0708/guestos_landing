@@ -1,5 +1,13 @@
 import { motion } from 'framer-motion';
 
+interface PricingFAQProps {
+  faqs: Array<{
+    id: string | number;
+    question: string;
+    answer: string;
+  }>;
+}
+
 export default function PricingFAQ({ faqs }: PricingFAQProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
