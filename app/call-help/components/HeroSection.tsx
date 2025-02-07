@@ -60,7 +60,7 @@ const particleVariants = {
 };
 
 const stats = [
-  { value: 24, unit: '7', label: 'Support Available', prefix: '/', suffix: '' },
+  { value: '24/7', label: 'Support Available', prefix: '', suffix: '' },
   { value: 1000, label: 'People Helped', prefix: '', suffix: '+' },
   { value: 100, label: 'Verified Info', prefix: '', suffix: '%' },
 ];
