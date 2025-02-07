@@ -117,9 +117,6 @@ export default function ProblemSolutionSection() {
                   </motion.li>
                 ))}
               </ul>
-              <p className="mt-6 text-lg italic text-neutral-400">
-                "This wasn't a pre-planned initiative. We built this because the need was immediate. And it worked."
-              </p>
             </div>
           </motion.div>
         </div>
