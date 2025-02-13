@@ -26,7 +26,7 @@ const partners = [
     name: 'Conversacorps / Aid Arena',
     url: 'https://conversacorps.org/aid_arena/',
     description: 'Pioneering innovative solutions for crisis communication and humanitarian aid.',
-    logo: '/partners/conversacorps.webp',
+    logo: '/partners/conversacorps.png',
   },
 ];
 
@@ -72,7 +72,7 @@ export default function PartnersSection() {
               <motion.div
                 key={partner.name}
                 variants={fadeInUp}
-                className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-8 backdrop-blur-sm transition-all duration-300 hover:border-accent-gold-light/50 hover:bg-neutral-900/80"
+                className=""
               >
                 <a href={partner.url} target="_blank" rel="noopener noreferrer">
                   <div className="relative flex flex-col items-center gap-6">
