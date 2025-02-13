@@ -107,7 +107,7 @@ export default function StorySection() {
               {/* Image */}
               <div className="relative mb-8 h-64 overflow-hidden rounded-xl border border-neutral-800">
                 <img
-                  src="/assets/call-help/atlas.jpeg"
+                  src="/partners/atlas-2.jpeg"
                   alt="Atlas Fire aftermath"
                   className="h-full w-full object-cover"
                 />

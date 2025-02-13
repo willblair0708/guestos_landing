@@ -271,7 +271,7 @@ export default function ServicesSection() {
                   }}
                 />
                 <div className="absolute inset-0 flex items-center justify-center text-neutral-600">
-                  Add service image here
+                  {/* Add service image here */}
                 </div>
               </div>
 
