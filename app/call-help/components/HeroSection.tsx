@@ -250,9 +250,13 @@ export default function HeroSection({ isMobile }: HeroSectionProps) {
           className="col-span-12 hidden lg:col-span-5 lg:flex"
         >
           <div className="group relative h-[600px] w-full overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50">
-            <div className="absolute inset-0 flex items-center justify-center text-neutral-600">
-              Add hero image/video here
-            </div>
+            <Image
+              src="/partners/atlas.jpeg" // Update this with the actual image path (use `/public` directory for static images)
+              alt="Hero Image"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-2xl"
+            />
           </div>
         </motion.div>
       </div>
