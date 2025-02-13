@@ -198,7 +198,8 @@ export default function HeroSection({ isMobile }: HeroSectionProps) {
             variants={itemVariants}
             className="flex flex-col gap-4 sm:flex-row"
           >
-            <Link href="/contact">
+            {/* Phone Call CTA */}
+            <a href="tel:8312822349">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -217,7 +218,9 @@ export default function HeroSection({ isMobile }: HeroSectionProps) {
                   <span>Launch Your AI-Powered Helpline</span>
                 </span>
               </motion.button>
-            </Link>
+            </a>
+
+            {/* Learn More CTA */}
             <Link href="#learn-more">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -262,4 +265,4 @@ export default function HeroSection({ isMobile }: HeroSectionProps) {
       </div>
     </section>
   );
-} 
+}
