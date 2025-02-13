@@ -7,16 +7,16 @@ const mediaItems = [
     title: 'French Fire victim works to create technology to help others who lose home',
     type: 'CBS News',
     date: 'July 10, 2024',
-    source: 'CBS Sacramento',
-    thumbnail: '/partners/cbs.jpeg',
+    source: '',
+    thumbnail: '/partners/cbs.jpg',
     url: 'https://www.cbsnews.com/sacramento/news/french-fire-victim-works-to-create-technology-to-help-others-who-lose-home/',
   },
   {
     title: 'California fire victim launches app to help others with insurance claims',
     type: 'CBS News',
     date: 'January 7, 2025',
-    source: 'CBS Sacramento',
-    thumbnail: '/partners/cbs-2.jpeg,
+    source: '',
+    thumbnail: '/partners/cbs-2.jpeg',
     url: 'https://www.cbsnews.com/sacramento/news/california-fire-victim-launches-app-help-with-insurance-claims/',
   }
 ];
@@ -149,9 +149,11 @@ export default function MediaSection() {
                     <div className="relative flex gap-6">
                       {/* Thumbnail */}
                       <div className="relative hidden h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border border-neutral-800 sm:block">
-                        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900 text-neutral-600">
-                          {item.source}
-                        </div>
+                        <img
+                          src={item.thumbnail}
+                          alt={item.title}
+                          className="h-full w-full object-cover"
+                        />
                       </div>
 
                       <div className="flex flex-grow flex-col">
@@ -178,4 +180,4 @@ export default function MediaSection() {
       </motion.div>
     </section>
   );
-} 
+}
