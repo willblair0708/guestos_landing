@@ -8,7 +8,7 @@ const mediaItems = [
     type: 'CBS News',
     date: 'July 10, 2024',
     source: 'CBS Sacramento',
-    thumbnail: '/assets/call-help/cbs-news.jpg',
+    thumbnail: '/partners/cbs.jpeg',
     url: 'https://www.cbsnews.com/sacramento/news/french-fire-victim-works-to-create-technology-to-help-others-who-lose-home/',
   },
   {
@@ -16,7 +16,7 @@ const mediaItems = [
     type: 'CBS News',
     date: 'January 7, 2025',
     source: 'CBS Sacramento',
-    thumbnail: '/assets/call-help/cbs-news.jpg',
+    thumbnail: '/partners/cbs-2.jpeg,
     url: 'https://www.cbsnews.com/sacramento/news/california-fire-victim-launches-app-help-with-insurance-claims/',
   }
 ];
