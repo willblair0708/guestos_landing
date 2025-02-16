@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { useState } from 'react';
+import { useCheckout } from '../../hooks/useCheckout';
 
 interface PricingFeature {
   text: string;
@@ -15,7 +15,7 @@ interface PricingCardProps {
   description: string;
   features: PricingFeature[];
   ctaLabel: string;
-  ctaHref: string;
+  priceId: string;
   isPopular?: boolean;
   isMobile?: boolean;
 }
@@ -52,11 +52,25 @@ export default function PricingCard({
   description,
   features,
   ctaLabel,
-  ctaHref,
+  priceId,
   isPopular = false,
   isMobile = false,
 }: PricingCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const { startCheckout, isLoading } = useCheckout();
+
+  const handleGetStarted = () => {
+    console.log('Get Started clicked for:', title);
+    console.log('Price ID:', priceId);
+    
+    if (ctaLabel === 'Contact Sales') {
+      window.location.href = '/contact';
+      return;
+    }
+    startCheckout({
+      priceId,
+    });
+  };
 
   return (
     <motion.div
@@ -156,27 +170,29 @@ export default function PricingCard({
       </div>
 
       {/* CTA Button */}
-      <Link href={ctaHref}>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className={`relative w-full overflow-hidden rounded-xl py-3 text-sm font-medium transition-all duration-300 ${
-            isPopular
-              ? 'bg-gradient-to-r from-primary-gold to-primary-gold text-white shadow-lg shadow-primary-gold/20'
-              : 'border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:border-primary-gold/50 hover:bg-primary-gold/5'
-          }`}
-        >
-          <span className="relative z-10">{ctaLabel}</span>
-          {isPopular && (
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-primary-gold via-primary-gold to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              initial={false}
-              animate={isHovered ? { x: ['0%', '100%'] } : { x: '0%' }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          )}
-        </motion.button>
-      </Link>
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={handleGetStarted}
+        disabled={isLoading}
+        className={`relative w-full overflow-hidden rounded-xl py-3 text-sm font-medium transition-all duration-300 ${
+          isPopular
+            ? 'bg-gradient-to-r from-primary-gold to-primary-gold text-white shadow-lg shadow-primary-gold/20'
+            : 'border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:border-primary-gold/50 hover:bg-primary-gold/5'
+        } disabled:cursor-not-allowed disabled:opacity-50`}
+      >
+        <span className="relative z-10">
+          {isLoading ? 'Loading...' : ctaLabel}
+        </span>
+        {isPopular && (
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-primary-gold via-primary-gold to-primary-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            initial={false}
+            animate={isHovered ? { x: ['0%', '100%'] } : { x: '0%' }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
+        )}
+      </motion.button>
     </motion.div>
   );
 } 

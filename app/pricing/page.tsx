@@ -25,7 +25,7 @@ const pricingTiers = [
       { text: 'Custom Development', included: false, tooltip: 'Not available in Core plan' },
     ],
     ctaLabel: 'Get Started',
-    ctaHref: '/contact',
+    priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BASIC ?? 'missing_price_id',
   },
   {
     title: 'Professional',
@@ -42,7 +42,7 @@ const pricingTiers = [
       { text: 'Custom Development', included: false, tooltip: 'Available in Enterprise plan only' },
     ],
     ctaLabel: 'Get Started',
-    ctaHref: '/contact',
+    priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_PRO ?? 'missing_price_id',
     isPopular: true,
   },
   {
@@ -60,7 +60,7 @@ const pricingTiers = [
       { text: 'Custom Development', included: true, tooltip: 'Dedicated development team' },
     ],
     ctaLabel: 'Contact Sales',
-    ctaHref: '/contact',
+    priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_ENTERPRISE ?? 'contact_sales',
   },
 ];
 
