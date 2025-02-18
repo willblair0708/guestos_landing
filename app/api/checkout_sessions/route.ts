@@ -13,16 +13,16 @@ interface CheckoutFormData {
 }
 
 // Initialize Stripe with strict type checking for API key
-if (!process.env.STRIPE_SECRET_KEY) {
+if (!process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY) {
   console.error('Missing environment variables:', {
-    STRIPE_SECRET_KEY: !!process.env.STRIPE_SECRET_KEY,
+    NEXT_PUBLIC_STRIPE_SECRET_KEY: !!process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY,
     NEXT_PUBLIC_STRIPE_PRICE_ID_BASIC: !!process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BASIC,
     NEXT_PUBLIC_STRIPE_PRICE_ID_PRO: !!process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_PRO,
   });
   throw new Error('STRIPE_SECRET_KEY is not defined in environment variables');
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, {
   apiVersion: '2024-11-20.acacia',
 });
 
