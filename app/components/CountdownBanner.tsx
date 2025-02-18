@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import useIsMobile from '@/hooks/use-is-mobile';
@@ -18,16 +16,16 @@ function BannerContent({
       <div className='flex items-center gap-4'>
         <div className='flex items-center gap-2'>
           <div className='relative'>
-            <div className='h-2 w-2 animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-accent-gold-light' />
-            <div className='absolute -inset-1 animate-[ping_2s_ease-in-out_infinite] rounded-full bg-accent-gold-light/40' />
+            <div className='h-1.5 w-1.5 animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-primary-gold' />
+            <div className='absolute -inset-0.5 animate-[ping_2s_ease-in-out_infinite] rounded-full bg-primary-gold/30' />
           </div>
-          <span className='text-sm font-semibold tracking-wide text-accent-gold-light'>AI ASSISTANCE</span>
+          <span className='text-sm font-medium text-primary-gold'>CALL-HELP INITIATIVE</span>
         </div>
         {!isMobile && (
           <>
-            <div className='h-4 w-px bg-white/20' />
-            <div className='text-sm font-medium text-white'>
-              Empowering communities with 24/7 AI-powered support and guidance
+            <div className='h-4 w-px bg-white/10' />
+            <div className='text-sm text-white/90'>
+              Empowering communities with AI-powered support systems
             </div>
           </>
         )}
@@ -36,33 +34,33 @@ function BannerContent({
       {/* Right side with stats and CTA */}
       <div className='flex items-center gap-6'>
         {!isMobile && (
-          <div className='flex items-center gap-6 border-r border-white/20 pr-6'>
+          <div className='flex items-center gap-6 border-r border-white/10 pr-6'>
             <div className='flex items-center gap-2'>
-              <span className='text-sm font-semibold text-accent-gold-light'>Instant</span>
-              <span className='text-sm font-medium text-white/80'>Response</span>
+              <span className='text-sm font-medium text-white/90'>24/7</span>
+              <span className='text-sm text-white/60'>Assistance</span>
             </div>
             <div className='flex items-center gap-2'>
-              <span className='text-sm font-semibold text-accent-gold-light'>Always</span>
-              <span className='text-sm font-medium text-white/80'>Available</span>
+              <span className='text-sm font-medium text-white/90'>100+</span>
+              <span className='text-sm text-white/60'>Partners</span>
             </div>
           </div>
         )}
         
         <Link
           href="/contact"
-          className='group relative flex items-center gap-2 overflow-hidden rounded-full border-2 border-accent-gold-light/30 bg-accent-gold-light/10 px-4 py-1.5 text-sm font-medium backdrop-blur-sm transition-all hover:border-accent-gold-light/50 hover:bg-accent-gold-light/20'
+          className='group relative flex items-center gap-2 overflow-hidden rounded-full border border-primary-gold/20 bg-primary-gold/5 px-4 py-1.5 text-sm backdrop-blur-sm transition-all hover:border-primary-gold/40 hover:bg-primary-gold/10'
         >
-          <span className='text-accent-gold-light'>
+          <span className='text-primary-gold group-hover:text-primary-gold'>
             Learn More
           </span>
           <motion.span
-            className='inline-block text-accent-gold-light'
+            className='inline-block text-primary-gold'
             animate={{ x: [0, 3, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
             →
           </motion.span>
-          <div className='absolute inset-0 -z-10 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/10 to-accent-gold-light/0 opacity-0 transition-opacity group-hover:opacity-100' />
+          <div className='absolute inset-0 -z-10 bg-gradient-to-r from-primary-gold/0 via-primary-gold/5 to-primary-gold/0 opacity-0 transition-opacity group-hover:opacity-100' />
         </Link>
       </div>
     </div>
@@ -84,14 +82,14 @@ export default function CountdownBanner(props: CountdownBannerProps) {
       }}
       initial='hidden'
       animate='visible'
-      className={`relative z-50 w-full border-b border-white/20 bg-black text-white backdrop-blur-xl ${
+      className={`relative z-50 w-full border-b border-white/10 bg-black/90 text-white backdrop-blur-xl ${
         isMobile ? 'h-[40px] px-4 py-2' : 'h-[48px] px-[30px] py-[10px]'
       }`}
     >
       {/* Ambient background effects */}
       <div className='pointer-events-none absolute inset-0'>
-        <div className='absolute inset-0 bg-gradient-to-r from-accent-gold-light/10 via-transparent to-accent-gold-light/10' />
-        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,200,87,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,200,87,0.05)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
+        <div className='absolute inset-0 bg-gradient-to-r from-primary-gold/5 via-transparent to-primary-gold/5' />
+        <div className='absolute inset-0 bg-[linear-gradient(rgba(255,200,87,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,200,87,0.02)_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]' />
       </div>
       
       <BannerContent {...props} isMobile={isMobile} />
