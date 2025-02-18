@@ -47,7 +47,7 @@ function BannerContent({
         )}
         
         <Link
-          href="/contact"
+          href="/call-help"
           className='group relative flex items-center gap-2 overflow-hidden rounded-full border border-primary-gold/20 bg-primary-gold/5 px-4 py-1.5 text-sm backdrop-blur-sm transition-all hover:border-primary-gold/40 hover:bg-primary-gold/10'
         >
           <span className='text-primary-gold group-hover:text-primary-gold'>
