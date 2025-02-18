@@ -137,37 +137,15 @@ const InfoCard = () => (
       <div className='relative space-y-4'>
         <div className='flex items-center space-x-3'>
           <h2 className='bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text font-light text-3xl text-transparent'>
-            Enhancing Human Connection
+            Beyond Traditional Hospitality
           </h2>
         </div>
         <div className='h-px w-12 bg-gradient-to-r from-primary-gold to-transparent' />
       </div>
 
       <p className='relative font-light text-lg leading-relaxed text-white/70'>
-        Born from a family of hoteliers, GuestOS helps you focus on what matters
-        most - creating memorable experiences for your guests.
+        Born from a family of hoteliers, GuestOS helps you create meaningful connections - whether serving guests at a luxury resort or providing critical support during times of need.
       </p>
-
-      {/* <div className='relative flex items-center justify-between'>
-        <motion.button
-          className='group flex items-center space-x-3 rounded-full border border-primary-gold/10 bg-primary-gold/5 px-6 py-3 backdrop-blur-sm transition-all'
-          whileHover={{
-            scale: 1.05,
-            backgroundColor: 'rgba(255,200,87,0.15)',
-            transition: { duration: 0.2 },
-          }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <span className='text-sm text-white/90'>Learn More</span>
-          <motion.span
-            className='inline-block text-white/90'
-            animate={{ x: [0, 5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
-            →
-          </motion.span>
-        </motion.button>
-      </div> */}
     </div>
   </motion.div>
 );
@@ -269,7 +247,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
                   >
-                    The AI Concierge for Hospitality
+                    Enhancing Human Connection Through Hospitality
                   </motion.span>
                 </h1>
 
@@ -281,8 +259,7 @@ export default function HeroSection({ id, isMobile }: HeroSectionProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.8 }}
                 >
-                  Experience the perfect blend of AI technology and human touch,
-                  designed to elevate your guest experience to new heights.
+                  Elevating guest experiences with AI-powered solutions that bring warmth to every interaction. From luxury hotels to crisis response, we're redefining what's possible in hospitality.
                 </motion.p>
 
                 {/* Add new mobile banner */}
