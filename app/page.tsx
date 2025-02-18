@@ -11,6 +11,7 @@ import HeroSection from './components/main/HeroSection';
 import HumanitySection from './components/main/HumanitySection';
 import HumanitySectionMobile from './components/main/HumanitySectionMobile';
 import SimulationSection from './components/main/SimulationSection';
+import CountdownBanner from './components/CountdownBanner';
 
 export default function Home() {
   const isMobile = useIsMobile();
@@ -41,6 +42,7 @@ export default function Home() {
               key='home-page'
               className='min-h-screen overflow-hidden font-sans'
             >
+              <CountdownBanner />
               <motion.main
                 ref={containerRef}
                 initial='visible'
