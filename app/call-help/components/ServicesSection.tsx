@@ -247,34 +247,6 @@ export default function ServicesSection() {
               whileHover="hover"
               className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4 sm:p-6 backdrop-blur-sm transition-all duration-500 hover:border-accent-gold-light/50 hover:bg-neutral-900/80"
             >
-              {/* Status Badge */}
-              <div className="absolute right-4 sm:right-6 top-4 sm:top-6 flex items-center gap-2 rounded-full border border-accent-gold-light/20 bg-accent-gold-light/5 px-2 py-0.5 sm:px-3 sm:py-1">
-                <span className="relative flex h-1.5 sm:h-2 w-1.5 sm:w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-gold opacity-75"></span>
-                  <span className="relative inline-flex h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-primary-gold"></span>
-                </span>
-                <span className="text-xs sm:text-sm text-primary-gold">{service.status}</span>
-              </div>
-
-              {/* Service Image Placeholder */}
-              <div className="relative mb-4 sm:mb-6 h-24 sm:h-36 overflow-hidden rounded-xl border border-neutral-800 transition-all duration-300 group-hover:border-accent-gold-light/30">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent"
-                  animate={{
-                    x: ['0%', '100%'],
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.2,
-                  }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center text-neutral-600">
-                  {/* Add service image here */}
-                </div>
-              </div>
-
               <div className="relative space-y-4 sm:space-y-6">
                 <div className="flex items-center gap-3 sm:gap-4">
                   <motion.div 
