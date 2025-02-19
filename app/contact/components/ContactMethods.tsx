@@ -42,8 +42,8 @@ const contactMethods = [
       </svg>
     ),
     label: 'Phone',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567',
+    value: '+1 (831) 282-2349',
+    href: 'tel:+18312822349',
   },
   {
     icon: (props: any) => (
