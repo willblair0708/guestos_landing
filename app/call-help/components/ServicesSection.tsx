@@ -82,7 +82,7 @@ const services: Service[] = [
   {
     title: 'Wildfire Relief Resource Hub',
     description: 'This hotline connects helpers directly with those in need during the Palisades Fire relief effort. Call 831-480-5016 for 24/7 assistance with donations, housing, and animal support.',
-    partner: 'malibu foundation',
+    partner: '',
     status: 'Active 24/7',
     phoneNumber: '831-480-5016',
     testimonial: {
