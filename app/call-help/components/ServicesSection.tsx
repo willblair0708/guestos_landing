@@ -215,7 +215,7 @@ export default function ServicesSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
-    <section ref={sectionRef} id="learn-more" className="relative py-32">
+    <section ref={sectionRef} id="learn-more" className="relative py-16 sm:py-32">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -227,37 +227,37 @@ export default function ServicesSection() {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-4 py-2"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-gold-light bg-accent-gold-light/10 px-3 py-1.5 sm:px-4 sm:py-2"
           >
-            <span className="text-primary-gold">Our Services</span>
+            <span className="text-sm sm:text-base text-primary-gold">Our Services</span>
           </motion.div>
-          <h2 className="mb-8 bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-3xl font-light text-transparent sm:text-4xl">
+          <h2 className="mb-6 sm:mb-8 bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-2xl sm:text-3xl md:text-4xl font-light text-transparent">
             Emergency Response Solutions
           </h2>
         </motion.div>
 
         <motion.div
           variants={containerVariants}
-          className="mt-16 grid gap-8 lg:grid-cols-3 lg:gap-8"
+          className="mt-8 sm:mt-16 grid gap-6 sm:gap-8 lg:grid-cols-3"
         >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
               whileHover="hover"
-              className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-accent-gold-light/50 hover:bg-neutral-900/80"
+              className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4 sm:p-6 backdrop-blur-sm transition-all duration-500 hover:border-accent-gold-light/50 hover:bg-neutral-900/80"
             >
               {/* Status Badge */}
-              <div className="absolute right-6 top-6 flex items-center gap-2 rounded-full border border-accent-gold-light/20 bg-accent-gold-light/5 px-3 py-1">
-                <span className="relative flex h-2 w-2">
+              <div className="absolute right-4 sm:right-6 top-4 sm:top-6 flex items-center gap-2 rounded-full border border-accent-gold-light/20 bg-accent-gold-light/5 px-2 py-0.5 sm:px-3 sm:py-1">
+                <span className="relative flex h-1.5 sm:h-2 w-1.5 sm:w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-gold opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-gold"></span>
+                  <span className="relative inline-flex h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-primary-gold"></span>
                 </span>
-                <span className="text-sm text-primary-gold">{service.status}</span>
+                <span className="text-xs sm:text-sm text-primary-gold">{service.status}</span>
               </div>
 
               {/* Service Image Placeholder */}
-              <div className="relative mb-6 h-36 overflow-hidden rounded-xl border border-neutral-800 transition-all duration-300 group-hover:border-accent-gold-light/30">
+              <div className="relative mb-4 sm:mb-6 h-24 sm:h-36 overflow-hidden rounded-xl border border-neutral-800 transition-all duration-300 group-hover:border-accent-gold-light/30">
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-accent-gold-light/0 via-accent-gold-light/5 to-transparent"
                   animate={{
@@ -275,30 +275,30 @@ export default function ServicesSection() {
                 </div>
               </div>
 
-              <div className="relative space-y-6">
-                <div className="flex items-center gap-4">
+              <div className="relative space-y-4 sm:space-y-6">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <motion.div 
-                    className="flex h-12 w-12 items-center justify-center rounded-full border border-accent-gold-light bg-accent-gold-light/10 text-primary-gold"
+                    className="flex h-10 sm:h-12 w-10 sm:w-12 items-center justify-center rounded-full border border-accent-gold-light bg-accent-gold-light/10 text-primary-gold"
                     variants={iconVariants}
                   >
-                    <service.icon />
+                    <service.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                   </motion.div>
-                  <h3 className="text-xl font-light text-white">{service.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-light text-white">{service.title}</h3>
                 </div>
 
-                <p className="text-base leading-relaxed text-neutral-400">
+                <p className="text-sm sm:text-base leading-relaxed text-neutral-400">
                   {service.description}
                 </p>
 
                 {/* Features Grid */}
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-3 sm:gap-4">
                   {service.features.map((feature, idx) => (
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 * idx }}
-                      className={`flex items-center gap-4 rounded-lg border border-neutral-800 p-4 transition-all duration-300 hover:border-accent-gold-light/30
+                      className={`flex items-center gap-3 sm:gap-4 rounded-lg border border-neutral-800 p-3 sm:p-4 transition-all duration-300 hover:border-accent-gold-light/30
                         ${idx === 0 ? 'bg-[#F6D77C]/10' : ''}
                         ${idx === 1 ? 'bg-[#C1E6D7]/10' : ''}
                         ${idx === 2 ? 'bg-[#F8D3C5]/10' : ''}
@@ -307,12 +307,12 @@ export default function ServicesSection() {
                     >
                       {'number' in feature ? (
                         <>
-                          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-900 text-xl font-bold text-primary-gold">
+                          <div className="flex h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-900 text-lg sm:text-xl font-bold text-primary-gold">
                             {(feature as NumberedFeature).number}
                           </div>
                           <div>
-                            <div className="text-base font-semibold text-white">{(feature as NumberedFeature).title}</div>
-                            <div className="text-sm text-neutral-400">{(feature as NumberedFeature).description}</div>
+                            <div className="text-sm sm:text-base font-semibold text-white">{(feature as NumberedFeature).title}</div>
+                            <div className="text-xs sm:text-sm text-neutral-400">{(feature as NumberedFeature).description}</div>
                           </div>
                         </>
                       ) : (
@@ -342,25 +342,25 @@ export default function ServicesSection() {
                 </div>
 
                 {service.phoneNumber && (
-                  <div className="mt-6 rounded-xl border border-accent-gold-light bg-accent-gold-light/5 p-4 text-center">
-                    <div className="mb-2 text-sm text-neutral-400">Call for 24/7 Information</div>
-                    <div className="text-2xl font-bold text-primary-gold">{service.phoneNumber}</div>
+                  <div className="mt-4 sm:mt-6 rounded-xl border border-accent-gold-light bg-accent-gold-light/5 p-3 sm:p-4 text-center">
+                    <div className="mb-1 sm:mb-2 text-xs sm:text-sm text-neutral-400">Call for 24/7 Information</div>
+                    <div className="text-xl sm:text-2xl font-bold text-primary-gold">{service.phoneNumber}</div>
                   </div>
                 )}
 
                 {/* Testimonial */}
                 <motion.div 
-                  className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-6"
+                  className="rounded-xl border border-neutral-800 bg-neutral-900/50 p-4 sm:p-6"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="mb-4 flex items-center gap-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary-gold opacity-50" fill="currentColor" viewBox="0 0 24 24">
+                  <div className="mb-3 sm:mb-4 flex items-center gap-3 sm:gap-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-8 sm:w-8 text-primary-gold opacity-50" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                     </svg>
                     <div className="h-px flex-grow bg-gradient-to-r from-primary-gold to-transparent" />
                   </div>
-                  <p className="mb-4 text-sm italic text-neutral-400">{service.testimonial.quote}</p>
-                  <div className="flex items-center justify-end gap-2 text-sm">
+                  <p className="mb-3 sm:mb-4 text-xs sm:text-sm italic text-neutral-400">{service.testimonial.quote}</p>
+                  <div className="flex items-center justify-end gap-2 text-xs sm:text-sm">
                     <span className="font-medium text-primary-gold">{service.testimonial.author}</span>
                     <span className="text-neutral-500">•</span>
                     <span className="text-neutral-400">{service.testimonial.role}</span>
@@ -368,8 +368,8 @@ export default function ServicesSection() {
                 </motion.div>
 
                 <div className="flex items-center gap-2">
-                  <div className="h-px w-12 bg-gradient-to-r from-primary-gold to-transparent" />
-                  <span className="text-sm text-primary-gold">{service.partner}</span>
+                  <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-primary-gold to-transparent" />
+                  <span className="text-xs sm:text-sm text-primary-gold">{service.partner}</span>
                 </div>
 
                 {/* Call Button */}
@@ -381,7 +381,7 @@ export default function ServicesSection() {
                 >
                   <motion.svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
+                    className="h-4 w-4 sm:h-5 sm:w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -395,7 +395,7 @@ export default function ServicesSection() {
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </motion.svg>
-                  <span>Call Now</span>
+                  <span className="text-sm sm:text-base">Call Now</span>
                 </motion.a>
               </div>
             </motion.div>
