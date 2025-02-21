@@ -129,8 +129,8 @@ export default function TermsOfService() {
         <Section index={12} title="13. Contact Information">
           <p>
             For any questions regarding these Terms, email us at{' '}
-            <a href="mailto:contact@guestos.ai" className="text-accent-gold-light hover:underline">
-              contact@guestos.ai
+            <a href="mailto:jessie@guestos.ai" className="text-accent-gold hover:text-accent-gold-dark transition-colors duration-300">
+              jessie@guestos.ai
             </a>
             .
           </p>

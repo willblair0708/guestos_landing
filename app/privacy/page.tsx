@@ -129,8 +129,8 @@ export default function PrivacyPolicy() {
           </ul>
           <p className="mt-4">
             To exercise any of these rights, please email us at{' '}
-            <a href="mailto:contact@guestos.ai" className="text-accent-gold-light hover:underline">
-              contact@guestos.ai
+            <a href="mailto:jessie@guestos.ai" className="text-accent-gold hover:text-accent-gold-dark transition-colors duration-300">
+              jessie@guestos.ai
             </a>
             .
           </p>
@@ -160,8 +160,8 @@ export default function PrivacyPolicy() {
         <Section index={9} title="10. Contact Information">
           <p>
             For any questions regarding this Privacy Policy, email us at{' '}
-            <a href="mailto:contact@guestos.ai" className="text-accent-gold-light hover:underline">
-              contact@guestos.ai
+            <a href="mailto:jessie@guestos.ai" className="text-accent-gold hover:text-accent-gold-dark transition-colors duration-300">
+              jessie@guestos.ai
             </a>
             .
           </p>
