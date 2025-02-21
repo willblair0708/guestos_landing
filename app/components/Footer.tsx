@@ -24,6 +24,8 @@ const FOOTER_LINKS = [
       { name: 'About', href: '/about' },
       { name: 'Careers', href: '/careers' },
       { name: 'Contact', href: '/contact' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Service', href: '/terms' },
     ],
   },
 ];
