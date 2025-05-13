@@ -12,7 +12,7 @@ import PricingHero from './components/PricingHero';
 const pricingTiers = [
   {
     title: 'Core AI Concierge',
-    price: '299',
+    price: '499',
     description: 'Perfect for businesses starting their AI journey',
     features: [
       { text: 'AI Concierge (24/7)', included: true, tooltip: 'Standard AI voice with basic responses' },
@@ -26,24 +26,6 @@ const pricingTiers = [
     ],
     ctaLabel: 'Get Started',
     priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BASIC ?? 'missing_price_id',
-  },
-  {
-    title: 'Professional',
-    price: '699',
-    description: 'Enhanced features for growing businesses',
-    features: [
-      { text: 'AI Concierge (24/7)', included: true, tooltip: 'Choose from multiple AI voice options', isNew: true },
-      { text: 'Live Transfers (4 Lines)', included: true, tooltip: 'Transfer to multiple departments or partner organizations (e.g., front desk, housekeeping, partner services)', isNew: true },
-      { text: 'AI Model Training (5 Models)', included: true, tooltip: 'Train up to 5 custom AI models' },
-      { text: 'Analytics Dashboard', included: true, tooltip: 'Advanced metrics with custom reports' },
-      { text: 'Email Support (Instant)', included: true, tooltip: 'AI-powered instant response' },
-      { text: 'Calendar Integration', included: true, tooltip: 'Multi-platform calendar integration' },
-      { text: 'Payment Processing', included: true, tooltip: 'Standard payment methods' },
-      { text: 'Custom Development', included: false, tooltip: 'Available in Enterprise plan only' },
-    ],
-    ctaLabel: 'Get Started',
-    priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_PRO ?? 'missing_price_id',
-    isPopular: true,
   },
   {
     title: 'Enterprise',
@@ -68,10 +50,6 @@ const faqs = [
   {
     question: 'What payment methods do you accept?',
     answer: 'We accept all major credit cards, wire transfers, and ACH payments. Enterprise customers can also opt for custom billing arrangements.',
-  },
-  {
-    question: 'Can I upgrade or downgrade my plan?',
-    answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.',
   },
 //   {
 //     question: 'Do you offer a free trial?',
@@ -184,22 +162,20 @@ export default function PricingPage() {
                 Choose your plan
               </h2>
               <p className="text-lg text-neutral-300">
-                All plans include our core AI technology. Upgrade or downgrade at any time.
+                All plans include our core AI technology with 1-year contracts.
               </p>
             </motion.div>
 
             {/* Pricing Cards */}
             <motion.div
               variants={containerVariants}
-              className="relative mx-auto grid max-w-7xl gap-6 sm:gap-8 lg:grid-cols-3 lg:gap-12"
+              className="relative mx-auto grid max-w-5xl gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12 justify-center"
             >
               {pricingTiers.map((tier, index) => (
                 <motion.div 
                   key={tier.title} 
                   variants={cardVariants}
-                  className={`relative ${
-                    tier.isPopular ? 'lg:-mt-6' : ''
-                  }`}
+                  className="relative"
                 >
                   <PricingCard {...tier} />
                 </motion.div>
