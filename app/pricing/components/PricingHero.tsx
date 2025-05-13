@@ -142,13 +142,13 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
       <motion.div className="relative z-20 flex h-full flex-col">
         <Navbar isFixed={false} />
         
-        <div className="relative grid min-h-[calc(100vh-80px)] grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="relative grid min-h-[calc(100vh-40px)] grid-cols-12 gap-4 px-4 pt-24 pb-32 sm:px-6 lg:px-8">
           <motion.div
             className={`col-span-12 flex items-center ${
               isMobile ? 'justify-center pb-24' : ''
             }`}
           >
-            <div className={`w-full space-y-12 ${isMobile ? 'text-center' : ''}`}>
+            <div className={`w-full space-y-16 ${isMobile ? 'text-center' : ''}`}>
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -172,7 +172,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                 </motion.div>
 
                 {/* Enhanced Title */}
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <motion.h1
                     variants={itemVariants}
                     className={`text-hero font-book ${
@@ -182,7 +182,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                     <span className="block font-light tracking-tight text-white">
                       Simple, transparent
                     </span>
-                    <span className="mt-2 block bg-gradient-to-r from-primary-gold via-primary-gold to-white bg-clip-text font-light tracking-tight text-transparent">
+                    <span className="mt-4 block bg-gradient-to-r from-primary-gold via-primary-gold to-white bg-clip-text font-light tracking-tight text-transparent leading-tight pb-2">
                       pricing for all
                     </span>
                   </motion.h1>
@@ -243,7 +243,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
                 {/* Enhanced CTA */}
                 <motion.div
                   variants={itemVariants}
-                  className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row"
+                  className="mt-20 flex flex-col items-center justify-center gap-6 sm:flex-row"
                 >
                   <motion.button
                     whileHover={{ scale: 1.02 }}
