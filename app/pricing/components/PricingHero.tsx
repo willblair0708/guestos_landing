@@ -98,9 +98,7 @@ export default function PricingHero({ isMobile }: PricingHeroProps) {
   const { startCheckout, isLoading } = useCheckout();
 
   const handleGetStarted = () => {
-    startCheckout({
-      priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BASIC || '',
-    });
+    window.location.href = '/contact';
   };
 
   return (
