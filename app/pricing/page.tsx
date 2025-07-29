@@ -24,8 +24,8 @@ const pricingTiers = [
       { text: 'Payment Processing', included: false, tooltip: 'Not available in Core plan' },
       { text: 'Custom Development', included: false, tooltip: 'Not available in Core plan' },
     ],
-    ctaLabel: 'Get Started',
-    priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_BASIC ?? 'missing_price_id',
+    ctaLabel: 'Contact Sales',
+    priceId: 'contact_sales',
   },
   {
     title: 'Enterprise',
