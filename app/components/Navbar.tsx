@@ -14,6 +14,7 @@ const navItems = [
   { text: 'About', href: '/about' },
   { text: 'Pricing', href: '/pricing' },
   { text: 'Call-Help', href: '/call-help' },
+  { text: 'Community', href: '/community' },
 ] as const;
 
 const navItemVariants = {
