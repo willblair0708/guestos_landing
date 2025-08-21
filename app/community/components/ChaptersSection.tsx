@@ -58,15 +58,8 @@ export default function ChaptersSection() {
               <div className="flex items-start">
                 <span className="mr-3 mt-1 text-gray-500">✓</span>
                 <div>
-                  <span className="font-medium text-gray-900">Los Angeles, CA</span>
-                  <span className="text-gray-600"> – TBD</span>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <span className="mr-3 mt-1 text-gray-500">✓</span>
-                <div>
                   <span className="font-medium text-gray-900">Yosemite, CA</span>
-                  <span className="text-gray-600"> – TBD</span>
+                  <span className="text-gray-600"> – September 2025</span>
                 </div>
               </div>
               <div className="flex items-start">
@@ -74,6 +67,13 @@ export default function ChaptersSection() {
                 <div>
                   <span className="font-medium text-gray-900">Toronto</span>
                   <span className="text-gray-600"> – October 2025</span>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <span className="mr-3 mt-1 text-gray-500">✓</span>
+                <div>
+                  <span className="font-medium text-gray-900">Los Angeles, CA</span>
+                  <span className="text-gray-600"> – November 2025</span>
                 </div>
               </div>
               <div className="flex items-start">
