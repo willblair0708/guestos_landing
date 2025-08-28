@@ -12,7 +12,7 @@ import PricingHero from './components/PricingHero';
 const pricingTiers = [
   {
     title: 'Core AI Concierge',
-    price: '499',
+    price: '999',
     description: 'Perfect for businesses starting their AI journey',
     features: [
       { text: 'AI Concierge (24/7)', included: true, tooltip: 'Standard AI voice with basic responses' },
